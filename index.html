@@ -4940,6 +4940,111 @@
     .admin-entry p { margin: 0; color: var(--feature-muted); font-size: .68rem; }
     .admin-entry button, .admin-locked button { min-height: 42px; padding: 0 16px; border: 1px solid rgba(255,214,74,.25); border-radius: 11px; background: rgba(255,214,74,.1); color: #ffdf72; font-size: .66rem; font-weight: 950; cursor: pointer; white-space: nowrap; }
 
+    .feature-hero-community { background: radial-gradient(circle at 86% 18%, rgba(83, 237, 218, .2), transparent 24rem), linear-gradient(145deg, rgba(26, 33, 77, .98), rgba(9, 14, 35, .98)); }
+    .community-live-pill { display: inline-flex; padding: 9px 12px; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; background: rgba(255,255,255,.055); color: #a8b4d3; font-size: .61rem; font-weight: 900; white-space: nowrap; }
+    .community-live-pill i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; }
+    .community-live-pill.is-live { border-color: rgba(69,229,154,.22); background: rgba(69,229,154,.08); color: #70edb2; }
+    .community-live-pill.is-error { border-color: rgba(255,104,124,.22); background: rgba(255,104,124,.08); color: #ff8496; }
+    .community-notice { display: grid; margin-bottom: 12px; padding: 16px 18px; grid-template-columns: 42px minmax(0,1fr) auto; align-items: center; gap: 13px; border: 1px solid rgba(var(--accent-rgb),.24); border-radius: 16px; background: linear-gradient(120deg, rgba(var(--accent-rgb),.1), rgba(12,17,40,.94)); }
+    .community-notice.is-private { border-color: rgba(255,194,81,.23); background: linear-gradient(120deg, rgba(255,194,81,.09), rgba(12,17,40,.94)); }
+    .community-notice > span { display: grid; width: 40px; height: 40px; place-items: center; border-radius: 12px; background: rgba(var(--accent-rgb),.14); color: var(--accent); font-size: 1.25rem; }
+    .community-notice.is-private > span { background: rgba(255,194,81,.12); color: #ffce72; }
+    .community-notice strong { display: block; font-size: .72rem; }
+    .community-notice p { margin: 4px 0 0; color: var(--feature-muted); font-size: .62rem; line-height: 1.45; }
+    .community-tabs { display: grid; margin-bottom: 13px; padding: 6px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border: 1px solid var(--feature-line); border-radius: 15px; background: rgba(8,13,32,.8); }
+    .community-tabs button { display: flex; min-width: 0; min-height: 46px; padding: 8px 10px; align-items: center; justify-content: center; gap: 7px; border: 0; border-radius: 10px; background: transparent; color: #8f9bba; font-size: .65rem; font-weight: 900; cursor: pointer; }
+    .community-tabs button > span { color: var(--accent); font-size: .9rem; }
+    .community-tabs button > b { min-width: 20px; padding: 3px 6px; border-radius: 999px; background: rgba(255,255,255,.07); color: #c7d0e8; font-size: .52rem; }
+    .community-tabs button[aria-selected="true"] { background: rgba(var(--accent-rgb),.15); box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb),.28); color: #fff; }
+    .community-panel { display: none; }
+    .community-panel.is-active { display: block; }
+    .community-search { display: flex; min-height: 48px; margin-bottom: 13px; padding: 0 15px; align-items: center; gap: 10px; border: 1px solid var(--feature-line); border-radius: 14px; background: rgba(8,13,32,.8); }
+    .community-search:focus-within { border-color: rgba(var(--accent-rgb),.54); box-shadow: 0 0 0 3px rgba(var(--accent-rgb),.1); }
+    .community-search svg { width: 18px; color: var(--accent); }
+    .community-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #eef2ff; font: inherit; font-size: .69rem; }
+    .community-search input::placeholder { color: #75819f; }
+    .community-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+    .member-card { position: relative; display: grid; min-width: 0; padding: 17px; gap: 14px; overflow: hidden; border: 1px solid var(--feature-line); border-radius: 18px; background: linear-gradient(145deg, rgba(22,29,64,.96), rgba(8,13,32,.98)); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+    .member-card::before { position: absolute; inset: 0 0 auto; height: 3px; content: ""; background: linear-gradient(90deg, var(--accent), #62ebe5); opacity: .7; }
+    .member-card-head { display: grid; grid-template-columns: 54px minmax(0,1fr) auto; align-items: center; gap: 11px; }
+    .social-avatar { display: grid; width: 52px; height: 52px; flex: 0 0 52px; overflow: hidden; place-items: center; border: 1px solid rgba(255,255,255,.24); border-radius: 16px; background: linear-gradient(145deg, var(--accent), #6656ea); color: #fff; font-family: var(--display, sans-serif); font-size: 1.1rem; font-style: italic; font-weight: 950; }
+    .social-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .member-card h2, .request-user strong { margin: 0; overflow: hidden; color: #f5f7ff; font-family: var(--display, sans-serif); font-size: 1.15rem; font-style: italic; line-height: 1; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+    .member-card-head p, .request-user small { margin: 5px 0 0; overflow: hidden; color: #8e9bb9; font-size: .58rem; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+    .member-percent { display: grid; text-align: right; }
+    .member-percent strong { color: var(--accent); font-family: var(--display, sans-serif); font-size: 1.45rem; font-style: italic; line-height: 1; }
+    .member-percent span { color: #7884a3; font-size: .44rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .member-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 7px; }
+    .member-stats span { display: flex; padding: 8px 9px; align-items: center; justify-content: space-between; gap: 6px; border-radius: 9px; background: rgba(255,255,255,.045); color: #8390ad; font-size: .52rem; font-weight: 850; text-transform: uppercase; }
+    .member-stats strong { color: #e6ebfa; font-size: .65rem; }
+    .member-actions, .request-actions { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.25fr); gap: 7px; }
+    .social-button, .member-actions a { display: flex; min-height: 38px; padding: 0 10px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; background: rgba(255,255,255,.045); color: #bcc6df; font-size: .58rem; font-weight: 900; text-align: center; text-decoration: none; cursor: pointer; }
+    .social-button.is-primary { border: 0; background: linear-gradient(135deg, var(--accent), #58e1e8); color: #06131f; }
+    .social-button.is-success { border-color: rgba(69,229,154,.23); background: rgba(69,229,154,.1); color: #76eeb6; }
+    .social-button.is-danger { border-color: rgba(255,104,124,.18); background: rgba(255,104,124,.07); color: #ff91a0; }
+    .social-button:disabled { opacity: .5; cursor: default; }
+    .request-columns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+    .request-section { padding: 20px; }
+    .request-list { display: grid; gap: 8px; }
+    .request-row { display: grid; padding: 11px; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.075); border-radius: 12px; background: rgba(255,255,255,.03); }
+    .request-user { display: flex; min-width: 0; align-items: center; gap: 9px; }
+    .request-user .social-avatar { width: 40px; height: 40px; flex-basis: 40px; border-radius: 12px; font-size: .9rem; }
+    .request-user > div { min-width: 0; }
+    .request-actions { display: flex; }
+    .request-actions .social-button { min-width: 76px; }
+    .community-empty { grid-column: 1 / -1; display: grid; min-height: 180px; padding: 30px; place-items: center; align-content: center; gap: 7px; border: 1px dashed rgba(255,255,255,.13); border-radius: 18px; background: rgba(8,13,32,.52); text-align: center; }
+    .community-empty > span { color: var(--accent); font-size: 1.7rem; }
+    .community-empty strong { font-family: var(--display, sans-serif); font-size: 1.3rem; font-style: italic; text-transform: uppercase; }
+    .community-empty p { max-width: 440px; margin: 0; color: var(--feature-muted); font-size: .65rem; line-height: 1.45; }
+    .messenger-shell { display: grid; min-height: 560px; grid-template-columns: 280px minmax(0,1fr); overflow: hidden; border: 1px solid var(--feature-line); border-radius: 19px; background: rgba(8,13,32,.82); }
+    .conversation-sidebar { border-right: 1px solid var(--feature-line); background: rgba(255,255,255,.018); }
+    .conversation-heading { display: grid; padding: 19px; gap: 4px; border-bottom: 1px solid var(--feature-line); }
+    .conversation-heading span { color: var(--accent); font-size: .55rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
+    .conversation-heading strong { font-family: var(--display, sans-serif); font-size: 1.25rem; font-style: italic; text-transform: uppercase; }
+    .conversation-list { display: grid; padding: 8px; gap: 4px; }
+    .conversation-item { display: grid; width: 100%; min-width: 0; padding: 10px; grid-template-columns: 42px minmax(0,1fr); align-items: center; gap: 9px; border: 0; border-radius: 11px; background: transparent; color: #fff; text-align: left; cursor: pointer; }
+    .conversation-item:hover, .conversation-item.is-active { background: rgba(var(--accent-rgb),.12); }
+    .conversation-item .social-avatar { width: 40px; height: 40px; flex-basis: 40px; border-radius: 12px; font-size: .82rem; }
+    .conversation-item strong, .conversation-item small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .conversation-item strong { font-size: .65rem; }
+    .conversation-item small { margin-top: 4px; color: #8793b0; font-size: .52rem; }
+    .chat-room { min-width: 0; }
+    .chat-empty { display: grid; min-height: 560px; padding: 30px; place-items: center; align-content: center; gap: 7px; text-align: center; }
+    .chat-empty span { color: var(--accent); font-size: 2.2rem; }
+    .chat-empty strong { font-family: var(--display, sans-serif); font-size: 1.6rem; font-style: italic; text-transform: uppercase; }
+    .chat-empty p { max-width: 390px; margin: 0; color: var(--feature-muted); font-size: .68rem; line-height: 1.5; }
+    .chat-active { display: grid; height: 560px; grid-template-rows: auto minmax(0,1fr) auto; }
+    .chat-header { display: flex; min-width: 0; padding: 12px 16px; align-items: center; gap: 10px; border-bottom: 1px solid var(--feature-line); }
+    .chat-header > button { display: none; width: 36px; height: 36px; border: 0; border-radius: 10px; background: rgba(255,255,255,.06); color: #fff; cursor: pointer; }
+    .chat-header .social-avatar { width: 42px; height: 42px; flex-basis: 42px; border-radius: 12px; font-size: .9rem; }
+    .chat-header > div { min-width: 0; }
+    .chat-header strong, .chat-header small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .chat-header strong { font-size: .7rem; }
+    .chat-header small { margin-top: 4px; color: #8c98b7; font-size: .54rem; }
+    .chat-messages { display: flex; min-height: 0; padding: 18px; overflow-y: auto; flex-direction: column; gap: 7px; scroll-behavior: smooth; }
+    .chat-message { display: grid; max-width: min(76%, 520px); gap: 4px; align-self: flex-start; }
+    .chat-message.is-mine { align-self: flex-end; text-align: right; }
+    .chat-message p { margin: 0; padding: 10px 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 13px 13px 13px 4px; background: rgba(255,255,255,.06); color: #e8edf9; font-size: .67rem; line-height: 1.45; overflow-wrap: anywhere; white-space: pre-wrap; }
+    .chat-message.is-mine p { border: 0; border-radius: 13px 13px 4px 13px; background: var(--accent); color: #06131f; }
+    .chat-message time { color: #707d9c; font-size: .46rem; font-weight: 750; }
+    .chat-composer { display: grid; padding: 12px; grid-template-columns: minmax(0,1fr) auto; gap: 8px; border-top: 1px solid var(--feature-line); }
+    .chat-composer input { min-width: 0; min-height: 44px; padding: 0 13px; border: 1px solid rgba(255,255,255,.1); border-radius: 11px; outline: 0; background: rgba(255,255,255,.045); color: #fff; font: inherit; font-size: .67rem; }
+    .chat-composer input:focus { border-color: rgba(var(--accent-rgb),.56); }
+    .chat-composer button { min-width: 92px; border: 0; border-radius: 11px; background: var(--accent); color: #06131f; font-size: .61rem; font-weight: 950; cursor: pointer; }
+    .profile-settings-shortcut { display: grid; width: 100%; min-height: 62px; margin-top: 9px; padding: 11px; grid-template-columns: 38px minmax(0,1fr); align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.09); border-radius: 13px; background: rgba(255,255,255,.035); color: #fff; text-align: left; cursor: pointer; }
+    .profile-settings-shortcut > span:first-child { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 10px; background: rgba(var(--accent-rgb),.12); color: var(--accent); font-size: 1rem; }
+    .profile-settings-shortcut > span:last-child { display: grid; gap: 3px; }
+    .profile-settings-shortcut strong { font-size: .63rem; }
+    .profile-settings-shortcut small { color: #8995b5; font-size: .53rem; }
+    .home-community-card { display: grid; margin-bottom: 12px; padding: 17px 18px; grid-template-columns: 48px minmax(0,1fr) auto; align-items: center; gap: 14px; overflow: hidden; border: 1px solid rgba(var(--accent-rgb),.3); border-radius: 17px; background: radial-gradient(circle at 92% 50%, rgba(86,232,224,.13), transparent 24rem), linear-gradient(120deg, rgba(var(--accent-rgb),.14), rgba(14,20,47,.97) 46%); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); color: #fff; text-decoration: none; }
+    .home-community-card > span:first-child { display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid rgba(var(--accent-rgb),.28); border-radius: 14px; background: rgba(var(--accent-rgb),.14); color: var(--accent); font-size: 1.25rem; }
+    .home-community-card > div { min-width: 0; }
+    .home-community-card small { display: block; margin-bottom: 4px; color: var(--accent); font-size: .53rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
+    .home-community-card strong { display: block; font-family: var(--display, sans-serif); font-size: 1.35rem; font-style: italic; line-height: 1; text-transform: uppercase; }
+    .home-community-card p { margin: 5px 0 0; color: #9da9c7; font-size: .62rem; line-height: 1.4; }
+    .home-community-card > b { padding: 9px 12px; border-radius: 10px; background: var(--accent); color: #06131f; font-size: .58rem; font-weight: 950; white-space: nowrap; }
+    .home-community-card:hover { border-color: rgba(var(--accent-rgb),.55); transform: translateY(-1px); }
+
     html[data-card-size="small"] { --catalog-min: 170px; }
     html[data-card-size="medium"] { --catalog-min: 214px; }
     html[data-card-size="large"] { --catalog-min: 270px; }
@@ -4983,6 +5088,7 @@
     @media (max-width: 960px) {
       .topbar-links a { padding-inline: 7px; font-size: .56rem; }
       .guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .community-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
     @media (max-width: 760px) {
       .feature-page { padding: 12px 0 34px; }
@@ -4998,6 +5104,9 @@
       .background-picker { grid-template-columns: repeat(2, 1fr); }
       .feature-hero > .feature-secondary, .privacy-pill, .admin-guard-state { align-self: flex-start; }
       .feature-hero-settings, .feature-hero-profile, .feature-hero-admin { align-items: flex-start; flex-direction: column; gap: 15px; }
+      .feature-hero-community { align-items: flex-start; flex-direction: column; gap: 15px; }
+      .request-columns { grid-template-columns: 1fr; }
+      .messenger-shell { grid-template-columns: 235px minmax(0,1fr); }
       .admin-publish-bar { bottom: calc(72px + env(safe-area-inset-bottom)); grid-template-columns: 1fr 1fr; }
       .admin-publish-bar > div { grid-column: 1 / -1; }
     }
@@ -5005,6 +5114,20 @@
       .guide-toolbar { gap: 5px; padding: 5px; }
       .guide-toolbar button { min-height: 44px; font-size: .55rem; }
       .guide-grid { grid-template-columns: 1fr; }
+      .community-notice { grid-template-columns: 40px minmax(0,1fr); }
+      .home-community-card { grid-template-columns: 42px minmax(0,1fr); padding: 14px; gap: 11px; }
+      .home-community-card > span:first-child { width: 40px; height: 40px; border-radius: 12px; }
+      .home-community-card > b { grid-column: 1 / -1; text-align: center; }
+      .community-notice .feature-secondary { grid-column: 1 / -1; width: 100%; }
+      .community-tabs { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .community-grid { grid-template-columns: 1fr; }
+      .messenger-shell { min-height: 520px; grid-template-columns: 1fr; }
+      .messenger-shell.has-active-chat .conversation-sidebar { display: none; }
+      .messenger-shell:not(.has-active-chat) .chat-room { display: none; }
+      .conversation-sidebar { border-right: 0; }
+      .chat-active { height: 520px; }
+      .chat-header > button { display: block; }
+      .chat-message { max-width: 88%; }
       .guide-card { min-height: 146px; padding-left: 132px; }
       .guide-card img { width: 128px; height: 128px; }
       .profile-form, .share-panel, .setting-card, .admin-form { padding: 17px; }
@@ -5044,6 +5167,7 @@
           <a href="#catalog" data-page-target="catalog">Catalogue</a>
           <a href="#inventory" data-page-target="inventory">Inventaire</a>
           <a href="#guide" data-page-target="guide">Guide</a>
+          <a href="#community" data-page-target="community">Communauté</a>
           <a href="#profile" data-page-target="profile">Profil</a>
           <a href="#settings" data-page-target="settings">Réglages</a>
           <a href="#patch-notes" data-page-target="patch-notes">Patch Notes</a>
@@ -5084,6 +5208,11 @@
         </div>
         <button class="auth-toggle" id="authToggleBtn" type="button" data-connected="false" disabled><span class="auth-google" aria-hidden="true">G</span><span>Connexion Google</span></button>
       </div>
+      <a class="home-community-card" href="#community" data-page-target="community">
+        <span aria-hidden="true">◉</span>
+        <div><small>Nouveau · Communauté</small><strong>Trouve des collectionneurs</strong><p>Consulte les profils publics, ajoute des amis et discute avec eux après acceptation.</p></div>
+        <b>Voir les membres</b>
+      </a>
       <div class="hud-grid">
         <div class="progress-wrap" style="--progress:0">
           <div class="progress-copy">
@@ -5249,6 +5378,69 @@
       <div class="guide-grid" id="guideGrid"></div>
     </section>
 
+    <section class="feature-page app-page" id="communityPage" data-page="community" aria-labelledby="communityTitle">
+      <header class="feature-hero feature-hero-community">
+        <div>
+          <span class="feature-eyebrow">Mini réseau social Sprite Locker</span>
+          <h1 id="communityTitle">La communauté <span>des collectionneurs</span></h1>
+          <p>Découvre les profils publics, ajoute des joueurs en ami et discute avec eux une fois leur demande acceptée.</p>
+        </div>
+        <span class="community-live-pill" id="communityLiveState"><i aria-hidden="true"></i>Connexion…</span>
+      </header>
+
+      <aside class="community-notice" id="communityAuthNotice">
+        <span aria-hidden="true">◇</span>
+        <div><strong>Connecte ton compte Google</strong><p>Tu peux consulter les membres publics sans compte. La connexion est requise pour ajouter des amis et discuter.</p></div>
+        <button class="feature-secondary" id="communityConnectBtn" type="button">Connexion Google</button>
+      </aside>
+
+      <aside class="community-notice is-private" id="communityPrivacyNotice" hidden>
+        <span aria-hidden="true">◆</span>
+        <div><strong>Ton profil reste privé</strong><p>Tu peux parcourir la communauté, mais rends volontairement ton profil public avant d’envoyer une demande d’ami.</p></div>
+        <button class="feature-secondary" type="button" data-page-target="profile">Gérer mon profil</button>
+      </aside>
+
+      <nav class="community-tabs" id="communityTabs" role="tablist" aria-label="Sections de la communauté">
+        <button type="button" data-community-tab="members" aria-selected="true"><span>◉</span>Membres <b id="communityMemberCount">0</b></button>
+        <button type="button" data-community-tab="requests" aria-selected="false"><span>↗</span>Demandes <b id="communityRequestCount">0</b></button>
+        <button type="button" data-community-tab="friends" aria-selected="false"><span>♥</span>Amis <b id="communityFriendCount">0</b></button>
+        <button type="button" data-community-tab="messages" aria-selected="false"><span>▣</span>Messages</button>
+      </nav>
+
+      <div class="community-panel is-active" data-community-panel="members">
+        <label class="community-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input id="communitySearch" type="search" placeholder="Rechercher un membre par pseudo ou identifiant…" autocomplete="off" spellcheck="false">
+        </label>
+        <div class="community-grid" id="communityMemberGrid" aria-live="polite"></div>
+      </div>
+
+      <div class="community-panel" data-community-panel="requests" hidden>
+        <div class="request-columns">
+          <section class="panel-card request-section"><div class="panel-heading"><div><span>À traiter</span><h2>Demandes reçues</h2></div></div><div class="request-list" id="incomingRequestList"></div></section>
+          <section class="panel-card request-section"><div class="panel-heading"><div><span>En attente</span><h2>Demandes envoyées</h2></div></div><div class="request-list" id="outgoingRequestList"></div></section>
+        </div>
+      </div>
+
+      <div class="community-panel" data-community-panel="friends" hidden>
+        <div class="community-grid" id="communityFriendGrid"></div>
+      </div>
+
+      <div class="community-panel" data-community-panel="messages" hidden>
+        <div class="messenger-shell">
+          <aside class="conversation-sidebar"><div class="conversation-heading"><span>Conversations</span><strong>Mes amis</strong></div><div id="conversationList" class="conversation-list"></div></aside>
+          <section class="chat-room" id="chatRoom">
+            <div class="chat-empty" id="chatEmpty"><span aria-hidden="true">▣</span><strong>Choisis un ami</strong><p>Seuls les amis dont la demande a été acceptée peuvent échanger des messages.</p></div>
+            <div class="chat-active" id="chatActive" hidden>
+              <header class="chat-header"><button id="chatBackBtn" type="button" aria-label="Retour aux conversations">←</button><span class="social-avatar" id="chatAvatar">SL</span><div><strong id="chatFriendName">Ami</strong><small id="chatFriendHandle">@profil</small></div></header>
+              <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+              <form class="chat-composer" id="chatForm"><label class="sr-only" for="chatInput">Message</label><input id="chatInput" type="text" maxlength="500" autocomplete="off" placeholder="Écris un message…" required><button type="submit">Envoyer</button></form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <section class="feature-page app-page" id="profilePage" data-page="profile" aria-labelledby="profileTitle">
       <header class="feature-hero feature-hero-profile">
         <div>
@@ -5256,7 +5448,7 @@
           <h1 id="profileTitle">Ton profil <span>partageable</span></h1>
           <p>Présente ta progression, tes variantes favorites et les quatre esprits qui représentent le mieux ton casier.</p>
         </div>
-        <span class="privacy-pill" id="profilePrivacyPill"><i aria-hidden="true"></i>Profil public</span>
+        <span class="privacy-pill is-private" id="profilePrivacyPill"><i aria-hidden="true"></i>Profil privé</span>
       </header>
 
       <div class="profile-layout">
@@ -5286,10 +5478,10 @@
 
         <div class="profile-controls" id="ownProfileControls">
           <form class="panel-card profile-form" id="profileForm">
-            <div class="panel-heading"><div><span>Profil public</span><h2>Personnalise ta page</h2></div><span class="panel-status" id="profileSaveState">Enregistré</span></div>
+            <div class="panel-heading"><div><span>Confidentialité maîtrisée</span><h2>Personnalise ta page</h2></div><span class="panel-status" id="profileSaveState">Enregistré</span></div>
             <label class="field-label">Pseudo affiché<input id="profilePseudo" type="text" maxlength="28" placeholder="Ton pseudo Fortnite"></label>
             <label class="field-label">Identifiant public<div class="handle-input"><span>@</span><input id="profileHandle" type="text" maxlength="24" inputmode="url" autocomplete="off" placeholder="sprite-player"></div><small>Lettres, chiffres et tirets uniquement.</small></label>
-            <label class="switch-row"><span><strong>Profil privé</strong><small>Ton lien public ne présentera aucune donnée.</small></span><input id="profilePrivate" type="checkbox" role="switch"></label>
+            <label class="switch-row"><span><strong>Profil privé</strong><small>Activé par défaut. Désactive-le seulement si tu veux apparaître dans la communauté.</small></span><input id="profilePrivate" type="checkbox" role="switch" checked></label>
             <fieldset class="variant-picker"><legend>Variantes préférées</legend><div id="favoriteVariantPicker"></div></fieldset>
             <fieldset class="favorite-picker"><legend>Choisis tes quatre esprits favoris</legend><div id="favoriteSpritePicker"></div></fieldset>
             <button class="feature-primary" id="saveProfileBtn" type="submit">Enregistrer et publier le profil</button>
@@ -5305,6 +5497,7 @@
               <button type="button" id="nativeShareProfile"><span>↗</span>Partager</button>
             </div>
             <button class="collection-card-button" id="generateCollectionCard" type="button"><span aria-hidden="true">✦</span><span><strong>Générer ma carte de collection</strong><small>Image verticale prête pour les réseaux sociaux</small></span><b>Créer</b></button>
+            <button class="profile-settings-shortcut" type="button" data-page-target="settings"><span aria-hidden="true">⚙</span><span><strong>Personnaliser l’apparence</strong><small>Couleur, fond, cartes et animations</small></span></button>
           </section>
         </div>
 
@@ -5465,13 +5658,13 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5.5h6a3 3 0 0 1 3 3v10H7a3 3 0 0 0-3 3z"></path><path d="M20 5.5h-4a3 3 0 0 0-3 3v10h4a3 3 0 0 1 3 3z"></path></svg>
       <span>Guide</span>
     </a>
+    <a class="mobile-dock-item" href="#community" data-page-target="community">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M2.5 20a5.5 5.5 0 0 1 11 0M13 20a4 4 0 0 1 8 0"></path></svg>
+      <span>Communauté</span>
+    </a>
     <a class="mobile-dock-item" href="#profile" data-page-target="profile">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21a7.5 7.5 0 0 1 15 0"></path></svg>
       <span>Profil</span>
-    </a>
-    <a class="mobile-dock-item" href="#settings" data-page-target="settings">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .4 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.4 1.7 1.7 0 0 0-1 1.6v.1h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.4l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .4-1.9 1.7 1.7 0 0 0-1.6-1H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.4-1.9L4.2 7l2.9-2.8.1.1a1.7 1.7 0 0 0 1.9.4 1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.4l.1-.1L19.9 7l-.1.1a1.7 1.7 0 0 0-.4 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
-      <span>Réglages</span>
     </a>
   </nav>
 
@@ -6560,10 +6753,11 @@
         if (quickLinks[1]) quickLinks[1].textContent = t("catalogNav");
         if (quickLinks[2]) quickLinks[2].textContent = t("inventoryNav");
         if (quickLinks[3]) quickLinks[3].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
-        if (quickLinks[4]) quickLinks[4].textContent = APP_LANGUAGE === "fr" ? "Profil" : "Profile";
-        if (quickLinks[5]) quickLinks[5].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
-        if (quickLinks[6]) quickLinks[6].textContent = t("patchNotesNav");
-        if (quickLinks[7]) quickLinks[7].textContent = "Admin";
+        if (quickLinks[4]) quickLinks[4].textContent = APP_LANGUAGE === "fr" ? "Communauté" : "Community";
+        if (quickLinks[5]) quickLinks[5].textContent = APP_LANGUAGE === "fr" ? "Profil" : "Profile";
+        if (quickLinks[6]) quickLinks[6].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
+        if (quickLinks[7]) quickLinks[7].textContent = t("patchNotesNav");
+        if (quickLinks[8]) quickLinks[8].textContent = "Admin";
         const heroTitle = document.querySelector(".hero-text h1");
         if (heroTitle) heroTitle.innerHTML = t("heroTitleHtml");
 
@@ -6639,8 +6833,8 @@
         if (mobileLabels[1]) mobileLabels[1].textContent = t("catalogNav");
         if (mobileLabels[2]) mobileLabels[2].textContent = t("inventoryNav");
         if (mobileLabels[3]) mobileLabels[3].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
-        if (mobileLabels[4]) mobileLabels[4].textContent = APP_LANGUAGE === "fr" ? "Profil" : "Profile";
-        if (mobileLabels[5]) mobileLabels[5].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
+        if (mobileLabels[4]) mobileLabels[4].textContent = APP_LANGUAGE === "fr" ? "Communauté" : "Community";
+        if (mobileLabels[5]) mobileLabels[5].textContent = APP_LANGUAGE === "fr" ? "Profil" : "Profile";
         setAttribute("#topBtn", "aria-label", "backToTop");
 
         setText("#patchKicker", "patchKicker");
@@ -6831,7 +7025,7 @@
 
       function normalizedPage(value) {
         const route = String(value || "").split("/")[0];
-        return ["home", "catalog", "inventory", "guide", "profile", "settings", "admin", "patch-notes"].includes(route) ? route : "home";
+        return ["home", "catalog", "inventory", "guide", "community", "profile", "settings", "admin", "patch-notes"].includes(route) ? route : "home";
       }
 
       function updateCollectionPageCopy() {
@@ -6852,6 +7046,7 @@
         const collectionVisible = activePage === "catalog" || activePage === "inventory";
         const patchNotesVisible = activePage === "patch-notes";
         const guideVisible = activePage === "guide";
+        const communityVisible = activePage === "community";
         const profileVisible = activePage === "profile";
         const settingsVisible = activePage === "settings";
         const adminVisible = activePage === "admin";
@@ -6860,6 +7055,7 @@
         document.getElementById("collectionPage").classList.toggle("is-active", collectionVisible);
         document.getElementById("patchNotesPage").classList.toggle("is-active", patchNotesVisible);
         document.getElementById("guidePage").classList.toggle("is-active", guideVisible);
+        document.getElementById("communityPage").classList.toggle("is-active", communityVisible);
         document.getElementById("profilePage").classList.toggle("is-active", profileVisible);
         document.getElementById("settingsPage").classList.toggle("is-active", settingsVisible);
         document.getElementById("adminPage").classList.toggle("is-active", adminVisible);
@@ -6877,6 +7073,10 @@
           render();
         } else if (guideVisible) {
           renderGuide();
+          updateStats();
+        } else if (communityVisible) {
+          renderCommunityPage();
+          ensureFirebaseReady().then(ready => { if (ready) startSocialListeners(); });
           updateStats();
         } else if (profileVisible) {
           renderProfilePage(requestedPublicHandle);
@@ -7531,6 +7731,7 @@
 
       async function handleAuthState(user) {
         const sequence = ++authSequence;
+        stopSocialListeners();
         if (cloudUnsubscribe) {
           cloudUnsubscribe();
           cloudUnsubscribe = null;
@@ -7541,12 +7742,19 @@
         updateAccountInterface(firebaseUser);
         if (!firebaseUser) {
           setAdminAccess(false);
+          startSocialListeners();
+          renderCommunityPage();
           return;
         }
         setSyncStatus("loading", t("firebaseConnecting"));
         await synchronizeCloud({ pull: true });
+        await enforceDefaultProfilePrivacy();
         await checkAdminAccess(firebaseUser);
-        if (sequence === authSequence && firebaseUser && firebaseUser.uid === user.uid) startCloudListener();
+        if (sequence === authSequence && firebaseUser && firebaseUser.uid === user.uid) {
+          startCloudListener();
+          startSocialListeners();
+          renderCommunityPage();
+        }
       }
 
       async function initializeFirebaseSync() {
@@ -7571,9 +7779,16 @@
             signInWithPopup: authModule.signInWithPopup,
             signInWithRedirect: authModule.signInWithRedirect,
             signOut: authModule.signOut,
+            collection: firestoreModule.collection,
+            query: firestoreModule.query,
+            where: firestoreModule.where,
+            orderBy: firestoreModule.orderBy,
+            limit: firestoreModule.limit,
             doc: firestoreModule.doc,
             getDoc: firestoreModule.getDoc,
+            getDocs: firestoreModule.getDocs,
             setDoc: firestoreModule.setDoc,
+            updateDoc: firestoreModule.updateDoc,
             deleteDoc: firestoreModule.deleteDoc,
             writeBatch: firestoreModule.writeBatch,
             increment: firestoreModule.increment,
@@ -7595,6 +7810,7 @@
 
           firebaseReady = true;
           loadPublishedContent();
+          startSocialListeners();
           setTimeout(() => { try { startPublicVisitorCounter(); } catch (_) {} }, 0);
           const hadRedirectPending = redirectWasPending();
           let redirectResult = null;
@@ -7834,6 +8050,17 @@
       let adminContent = loadAdminContent();
       let adminDraft = loadAdminDraft();
       let adminDraftDirty = false;
+      let activeCommunityTab = "members";
+      let communitySearchTerm = "";
+      let publicMembers = [];
+      let outgoingFriendRequests = [];
+      let incomingFriendRequests = [];
+      let activeConversationId = "";
+      let activeChatMessages = [];
+      let communityProfilesUnsubscribe = null;
+      let outgoingRequestsUnsubscribe = null;
+      let incomingRequestsUnsubscribe = null;
+      let activeChatUnsubscribe = null;
 
       function sanitizeHandle(value) {
         return normalizedText(String(value || ""))
@@ -7843,17 +8070,20 @@
           .slice(0, 24);
       }
 
-      function normalizeProfile(value = {}) {
+      function normalizeProfile(value = {}, { publishedRecord = false } = {}) {
         const variantsList = Array.isArray(value.favoriteVariants) ? value.favoriteVariants : [];
         const spriteList = Array.isArray(value.favoriteSprites) ? value.favoriteSprites : [];
+        const privacyChoiceMade = publishedRecord || value.privacyChoiceMade === true;
         return {
           pseudo: String(value.pseudo || "Collectionneur").trim().slice(0, 28) || "Collectionneur",
           handle: sanitizeHandle(value.handle || "sprite-player") || "sprite-player",
-          private: Boolean(value.private),
+          private: publishedRecord ? Boolean(value.private) : (privacyChoiceMade ? Boolean(value.private) : true),
+          privacyChoiceMade,
           favoriteVariants: [...new Set(variantsList.filter(key => variants[key]))].slice(0, 4),
           favoriteSprites: spriteList.slice(0, 4),
           stats: value.stats && typeof value.stats === "object" ? value.stats : null,
           avatar: typeof value.avatar === "string" ? value.avatar : "",
+          ownerUid: typeof value.ownerUid === "string" ? value.ownerUid : "",
           updatedAtMs: Math.max(0, Number(value.updatedAtMs) || 0)
         };
       }
@@ -8074,7 +8304,7 @@
             showProfileMessage("Profil introuvable", "Cet identifiant public n’existe pas ou n’est plus publié.");
             return;
           }
-          const publicProfile = normalizeProfile(snapshot.data());
+          const publicProfile = normalizeProfile(snapshot.data(), { publishedRecord: true });
           if (publicProfile.private) {
             showProfileMessage("Ce profil est privé", "Son propriétaire a choisi de garder sa collection secrète.");
             return;
@@ -8097,6 +8327,7 @@
           pseudo,
           handle,
           private: document.getElementById("profilePrivate").checked,
+          privacyChoiceMade: true,
           favoriteSprites,
           avatar: firebaseUser && firebaseUser.photoURL || profileSettings.avatar,
           updatedAtMs: Date.now()
@@ -8126,8 +8357,396 @@
           const publicRef = firebaseSdk.doc(firebaseDb, "spriteLockerProfiles", handle);
           if (profileSettings.private) await firebaseSdk.deleteDoc(publicRef).catch(() => {});
           else await firebaseSdk.setDoc(publicRef, publicPayload);
+          restartCommunityProfilesListener();
+          renderCommunityPage();
           showToast(profileSettings.private ? "Profil rendu privé" : "Profil public publié");
         } catch (error) {
+          showToast(friendlyFirebaseError(error));
+        }
+      }
+
+      async function enforceDefaultProfilePrivacy() {
+        if (!firebaseUser || !firebaseSdk || !firebaseDb || profileSettings.privacyChoiceMade) return;
+        profileSettings = normalizeProfile({ ...profileSettings, private: true, privacyChoiceMade: false, updatedAtMs: Date.now() });
+        try { localStorage.setItem(PROFILE_KEY, JSON.stringify(profileSettings)); } catch (_) {}
+        try {
+          await firebaseSdk.setDoc(cloudDocumentReference(), { profile: profileSettings }, { merge: true });
+          const handle = sanitizeHandle(profileSettings.handle);
+          if (handle) await firebaseSdk.deleteDoc(firebaseSdk.doc(firebaseDb, "spriteLockerProfiles", handle)).catch(() => {});
+        } catch (_) {}
+        if (activePage === "profile" && !requestedPublicHandle) {
+          renderProfileCard(profileSettings);
+          renderProfileEditor();
+        }
+      }
+
+      function setCommunityLiveState(state, label) {
+        const pill = document.getElementById("communityLiveState");
+        if (!pill) return;
+        pill.classList.toggle("is-live", state === "live");
+        pill.classList.toggle("is-error", state === "error");
+        pill.innerHTML = `<i aria-hidden="true"></i>${esc(label)}`;
+      }
+
+      function socialAvatarInner(profile = {}) {
+        const pseudo = String(profile.pseudo || "Collectionneur");
+        const avatar = typeof profile.avatar === "string" ? profile.avatar : "";
+        if (avatar) return `<img src="${esc(avatar)}" alt="" loading="lazy" referrerpolicy="no-referrer">`;
+        const initials = pseudo.split(/\s+/).filter(Boolean).map(part => part[0]).join("").slice(0, 2).toUpperCase() || "SL";
+        return esc(initials);
+      }
+
+      function normalizeSocialProfile(value = {}) {
+        const normalized = normalizeProfile(value, { publishedRecord: true });
+        return {
+          ...normalized,
+          uid: String(value.uid || value.ownerUid || normalized.ownerUid || ""),
+          ownerUid: String(value.ownerUid || value.uid || normalized.ownerUid || ""),
+          stats: value.stats && typeof value.stats === "object" ? value.stats : { owned: 0, mastered: 0, missing: sprites.length, total: sprites.length, percent: 0 }
+        };
+      }
+
+      function socialProfileSnapshot(profile = profileSettings) {
+        return {
+          uid: firebaseUser ? firebaseUser.uid : "",
+          pseudo: String(profile.pseudo || "Collectionneur").slice(0, 28),
+          handle: sanitizeHandle(profile.handle) || "sprite-player",
+          avatar: String(profile.avatar || (firebaseUser && firebaseUser.photoURL) || "").slice(0, 600),
+          stats: currentCollectionStats()
+        };
+      }
+
+      function normalizeFriendRequestSnapshot(snapshot) {
+        const value = snapshot.data() || {};
+        return {
+          id: snapshot.id,
+          senderUid: String(value.senderUid || ""),
+          receiverUid: String(value.receiverUid || ""),
+          senderProfile: normalizeSocialProfile(value.senderProfile || {}),
+          receiverProfile: normalizeSocialProfile(value.receiverProfile || {}),
+          status: ["pending", "accepted", "declined"].includes(value.status) ? value.status : "pending",
+          createdAtMs: Math.max(0, Number(value.createdAtMs) || 0),
+          updatedAtMs: Math.max(0, Number(value.updatedAtMs) || 0)
+        };
+      }
+
+      function allFriendRequests() {
+        const map = new Map();
+        [...incomingFriendRequests, ...outgoingFriendRequests].forEach(request => map.set(request.id, request));
+        return [...map.values()];
+      }
+
+      function friendProfileForRequest(request) {
+        if (!firebaseUser || !request) return normalizeSocialProfile();
+        return request.senderUid === firebaseUser.uid ? request.receiverProfile : request.senderProfile;
+      }
+
+      function acceptedFriendships() {
+        if (!firebaseUser) return [];
+        const friends = new Map();
+        allFriendRequests().filter(request => request.status === "accepted").forEach(request => {
+          const profile = friendProfileForRequest(request);
+          const friendUid = request.senderUid === firebaseUser.uid ? request.receiverUid : request.senderUid;
+          if (friendUid && !friends.has(friendUid)) friends.set(friendUid, { request, profile: { ...profile, uid: friendUid } });
+        });
+        return [...friends.values()].sort((a, b) => a.profile.pseudo.localeCompare(b.profile.pseudo, APP_LOCALE));
+      }
+
+      function relationForMember(uid) {
+        const requests = allFriendRequests().filter(request => request.senderUid === uid || request.receiverUid === uid);
+        return requests.find(request => request.status === "accepted")
+          || requests.find(request => request.status === "pending" && request.receiverUid === firebaseUser?.uid)
+          || requests.find(request => request.status === "pending" && request.senderUid === firebaseUser?.uid)
+          || null;
+      }
+
+      function communityEmpty(icon, title, copy) {
+        return `<div class="community-empty"><span aria-hidden="true">${icon}</span><strong>${esc(title)}</strong><p>${esc(copy)}</p></div>`;
+      }
+
+      function memberActionMarkup(member) {
+        if (!firebaseUser) return `<button class="social-button is-primary" type="button" data-social-action="connect">Se connecter</button>`;
+        if (member.ownerUid === firebaseUser.uid) return `<button class="social-button" type="button" disabled>C’est toi</button>`;
+        const relation = relationForMember(member.ownerUid);
+        if (!relation) return `<button class="social-button is-primary" type="button" data-social-action="add" data-member-uid="${esc(member.ownerUid)}">Ajouter en ami</button>`;
+        if (relation.status === "accepted") return `<button class="social-button is-success" type="button" data-social-action="message" data-request-id="${esc(relation.id)}">Message</button>`;
+        if (relation.receiverUid === firebaseUser.uid) return `<button class="social-button is-primary" type="button" data-social-action="show-requests">Répondre</button>`;
+        return `<button class="social-button" type="button" data-social-action="cancel" data-request-id="${esc(relation.id)}">Demande envoyée</button>`;
+      }
+
+      function renderMemberDirectory() {
+        const grid = document.getElementById("communityMemberGrid");
+        if (!grid) return;
+        const queryText = normalizedText(communitySearchTerm.trim());
+        const members = publicMembers.filter(member => !queryText || normalizedText(`${member.pseudo} ${member.handle}`).includes(queryText));
+        grid.innerHTML = members.length ? members.map(member => {
+          const stats = member.stats || {};
+          return `<article class="member-card">
+            <div class="member-card-head"><span class="social-avatar">${socialAvatarInner(member)}</span><div><h2>${esc(member.pseudo)}</h2><p>@${esc(member.handle)}</p></div><div class="member-percent"><strong>${Math.max(0, Number(stats.percent) || 0)}%</strong><span>collection</span></div></div>
+            <div class="member-stats"><span>Possédés <strong>${Math.max(0, Number(stats.owned) || 0)}</strong></span><span>Maîtrisés <strong>${Math.max(0, Number(stats.mastered) || 0)}</strong></span></div>
+            <div class="member-actions"><a href="#profile/${esc(member.handle)}">Voir le profil</a>${memberActionMarkup(member)}</div>
+          </article>`;
+        }).join("") : communityEmpty("◉", queryText ? "Aucun membre trouvé" : "Aucun profil public", queryText ? "Essaie un autre pseudo ou identifiant." : "Les profils apparaîtront ici dès que leurs propriétaires les rendront publics.");
+      }
+
+      function requestRowMarkup(request, incoming) {
+        const profile = incoming ? request.senderProfile : request.receiverProfile;
+        const actions = incoming
+          ? `<div class="request-actions"><button class="social-button is-success" type="button" data-social-action="accept" data-request-id="${esc(request.id)}">Accepter</button><button class="social-button is-danger" type="button" data-social-action="decline" data-request-id="${esc(request.id)}">Refuser</button></div>`
+          : `<div class="request-actions"><button class="social-button" type="button" data-social-action="cancel" data-request-id="${esc(request.id)}">Annuler</button></div>`;
+        return `<article class="request-row"><div class="request-user"><span class="social-avatar">${socialAvatarInner(profile)}</span><div><strong>${esc(profile.pseudo)}</strong><small>@${esc(profile.handle)}</small></div></div>${actions}</article>`;
+      }
+
+      function renderFriendRequests() {
+        const incoming = incomingFriendRequests.filter(request => request.status === "pending");
+        const outgoing = outgoingFriendRequests.filter(request => request.status === "pending");
+        const incomingList = document.getElementById("incomingRequestList");
+        const outgoingList = document.getElementById("outgoingRequestList");
+        if (incomingList) incomingList.innerHTML = incoming.length ? incoming.map(request => requestRowMarkup(request, true)).join("") : communityEmpty("✓", "Tout est à jour", "Tu n’as aucune demande d’ami à traiter.");
+        if (outgoingList) outgoingList.innerHTML = outgoing.length ? outgoing.map(request => requestRowMarkup(request, false)).join("") : communityEmpty("↗", "Aucun envoi en attente", "Les demandes envoyées apparaîtront ici.");
+      }
+
+      function renderFriends() {
+        const grid = document.getElementById("communityFriendGrid");
+        if (!grid) return;
+        const friends = acceptedFriendships();
+        grid.innerHTML = friends.length ? friends.map(({ request, profile }) => {
+          const stats = profile.stats || {};
+          return `<article class="member-card"><div class="member-card-head"><span class="social-avatar">${socialAvatarInner(profile)}</span><div><h2>${esc(profile.pseudo)}</h2><p>@${esc(profile.handle)}</p></div><div class="member-percent"><strong>${Math.max(0, Number(stats.percent) || 0)}%</strong><span>collection</span></div></div><div class="member-actions"><button class="social-button is-danger" type="button" data-social-action="remove-friend" data-request-id="${esc(request.id)}">Retirer</button><button class="social-button is-success" type="button" data-social-action="message" data-request-id="${esc(request.id)}">Discuter</button></div></article>`;
+        }).join("") : communityEmpty("♥", "Aucun ami pour le moment", "Ajoute un membre public puis attends qu’il accepte ta demande.");
+      }
+
+      function renderConversationList() {
+        const list = document.getElementById("conversationList");
+        if (!list) return;
+        const friends = acceptedFriendships();
+        if (activeConversationId && !friends.some(item => item.request.id === activeConversationId)) closeActiveConversation();
+        list.innerHTML = friends.length ? friends.map(({ request, profile }) => `<button class="conversation-item${request.id === activeConversationId ? " is-active" : ""}" type="button" data-social-action="message" data-request-id="${esc(request.id)}"><span class="social-avatar">${socialAvatarInner(profile)}</span><span><strong>${esc(profile.pseudo)}</strong><small>@${esc(profile.handle)}</small></span></button>`).join("") : communityEmpty("▣", "Aucune conversation", "Une conversation devient disponible après l’acceptation d’une demande d’ami.");
+        renderActiveChatIdentity();
+      }
+
+      function renderActiveChatIdentity() {
+        const shell = document.querySelector(".messenger-shell");
+        const empty = document.getElementById("chatEmpty");
+        const active = document.getElementById("chatActive");
+        if (!shell || !empty || !active) return;
+        const friendship = acceptedFriendships().find(item => item.request.id === activeConversationId);
+        shell.classList.toggle("has-active-chat", Boolean(friendship));
+        empty.hidden = Boolean(friendship);
+        active.hidden = !friendship;
+        if (!friendship) return;
+        document.getElementById("chatAvatar").innerHTML = socialAvatarInner(friendship.profile);
+        document.getElementById("chatFriendName").textContent = friendship.profile.pseudo;
+        document.getElementById("chatFriendHandle").textContent = `@${friendship.profile.handle}`;
+      }
+
+      function renderChatMessages() {
+        const container = document.getElementById("chatMessages");
+        if (!container) return;
+        container.innerHTML = activeChatMessages.length ? activeChatMessages.map(message => {
+          const mine = firebaseUser && message.senderUid === firebaseUser.uid;
+          const date = new Date(message.createdAtMs || Date.now());
+          const time = date.toLocaleTimeString(APP_LOCALE, { hour: "2-digit", minute: "2-digit" });
+          return `<article class="chat-message${mine ? " is-mine" : ""}"><p>${esc(message.text)}</p><time datetime="${date.toISOString()}">${esc(time)}</time></article>`;
+        }).join("") : communityEmpty("✦", "Commence la discussion", "Envoie le premier message à ton ami.");
+        requestAnimationFrame(() => { container.scrollTop = container.scrollHeight; });
+      }
+
+      function activateCommunityTab(tab) {
+        activeCommunityTab = ["members", "requests", "friends", "messages"].includes(tab) ? tab : "members";
+        document.querySelectorAll("[data-community-tab]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.communityTab === activeCommunityTab)));
+        document.querySelectorAll("[data-community-panel]").forEach(panel => {
+          const active = panel.dataset.communityPanel === activeCommunityTab;
+          panel.classList.toggle("is-active", active);
+          panel.hidden = !active;
+        });
+      }
+
+      function renderCommunityPage() {
+        if (!document.getElementById("communityPage")) return;
+        const connected = Boolean(firebaseUser);
+        document.getElementById("communityAuthNotice").hidden = connected;
+        document.getElementById("communityPrivacyNotice").hidden = !connected || (!profileSettings.private && profileSettings.privacyChoiceMade);
+        document.getElementById("communityMemberCount").textContent = String(publicMembers.length);
+        document.getElementById("communityRequestCount").textContent = String(incomingFriendRequests.filter(request => request.status === "pending").length);
+        document.getElementById("communityFriendCount").textContent = String(acceptedFriendships().length);
+        activateCommunityTab(activeCommunityTab);
+        renderMemberDirectory();
+        renderFriendRequests();
+        renderFriends();
+        renderConversationList();
+        renderChatMessages();
+        if (!firebaseReady) setCommunityLiveState("loading", "Connexion…");
+      }
+
+      function restartCommunityProfilesListener() {
+        if (communityProfilesUnsubscribe) communityProfilesUnsubscribe();
+        communityProfilesUnsubscribe = null;
+        if (!firebaseSdk || !firebaseDb) return;
+        setCommunityLiveState("loading", "Chargement…");
+        const profilesQuery = firebaseSdk.query(
+          firebaseSdk.collection(firebaseDb, "spriteLockerProfiles"),
+          firebaseSdk.where("private", "==", false),
+          firebaseSdk.where("privacyChoiceMade", "==", true),
+          firebaseSdk.limit(250)
+        );
+        communityProfilesUnsubscribe = firebaseSdk.onSnapshot(profilesQuery, snapshot => {
+          publicMembers = snapshot.docs.map(profileDoc => ({ ...normalizeSocialProfile(profileDoc.data()), documentId: profileDoc.id })).filter(member => member.ownerUid && !member.private).sort((a, b) => a.pseudo.localeCompare(b.pseudo, APP_LOCALE));
+          setCommunityLiveState("live", `${publicMembers.length} membre${publicMembers.length > 1 ? "s" : ""} public${publicMembers.length > 1 ? "s" : ""}`);
+          renderCommunityPage();
+        }, () => {
+          publicMembers = [];
+          setCommunityLiveState("error", "Règles Firebase requises");
+          renderCommunityPage();
+        });
+      }
+
+      function stopSocialListeners() {
+        [communityProfilesUnsubscribe, outgoingRequestsUnsubscribe, incomingRequestsUnsubscribe, activeChatUnsubscribe].forEach(unsubscribe => { if (typeof unsubscribe === "function") unsubscribe(); });
+        communityProfilesUnsubscribe = null;
+        outgoingRequestsUnsubscribe = null;
+        incomingRequestsUnsubscribe = null;
+        activeChatUnsubscribe = null;
+        activeChatMessages = [];
+        activeConversationId = "";
+        outgoingFriendRequests = [];
+        incomingFriendRequests = [];
+      }
+
+      function startSocialListeners() {
+        if (!firebaseSdk || !firebaseDb) return;
+        restartCommunityProfilesListener();
+        if (outgoingRequestsUnsubscribe) outgoingRequestsUnsubscribe();
+        if (incomingRequestsUnsubscribe) incomingRequestsUnsubscribe();
+        outgoingRequestsUnsubscribe = null;
+        incomingRequestsUnsubscribe = null;
+        outgoingFriendRequests = [];
+        incomingFriendRequests = [];
+        if (!firebaseUser) {
+          renderCommunityPage();
+          return;
+        }
+        const requests = firebaseSdk.collection(firebaseDb, "spriteLockerFriendRequests");
+        const outgoingQuery = firebaseSdk.query(requests, firebaseSdk.where("senderUid", "==", firebaseUser.uid));
+        const incomingQuery = firebaseSdk.query(requests, firebaseSdk.where("receiverUid", "==", firebaseUser.uid));
+        outgoingRequestsUnsubscribe = firebaseSdk.onSnapshot(outgoingQuery, snapshot => {
+          outgoingFriendRequests = snapshot.docs.map(normalizeFriendRequestSnapshot);
+          renderCommunityPage();
+        }, () => showToast("Impossible de charger les demandes envoyées"));
+        incomingRequestsUnsubscribe = firebaseSdk.onSnapshot(incomingQuery, snapshot => {
+          incomingFriendRequests = snapshot.docs.map(normalizeFriendRequestSnapshot);
+          renderCommunityPage();
+        }, () => showToast("Impossible de charger les demandes reçues"));
+      }
+
+      async function requireSocialAccount() {
+        const ready = await ensureFirebaseReady();
+        if (!ready) {
+          showToast("Firebase est indisponible pour le moment");
+          return false;
+        }
+        if (!firebaseUser) {
+          await connectGoogleAccount();
+          return false;
+        }
+        return true;
+      }
+
+      async function sendFriendRequest(memberUid) {
+        if (!await requireSocialAccount()) return;
+        if (profileSettings.private || !profileSettings.privacyChoiceMade) {
+          showToast("Rends d’abord ton profil public pour ajouter des amis");
+          showPage("profile");
+          return;
+        }
+        const member = publicMembers.find(item => item.ownerUid === memberUid);
+        if (!member || memberUid === firebaseUser.uid) return;
+        if (relationForMember(memberUid)) return;
+        const requestRef = firebaseSdk.doc(firebaseSdk.collection(firebaseDb, "spriteLockerFriendRequests"));
+        try {
+          const now = Date.now();
+          await firebaseSdk.setDoc(requestRef, {
+            senderUid: firebaseUser.uid,
+            receiverUid: memberUid,
+            senderProfile: socialProfileSnapshot(),
+            receiverProfile: { uid: memberUid, pseudo: member.pseudo, handle: member.handle, avatar: member.avatar || "", stats: member.stats || {} },
+            status: "pending",
+            createdAt: firebaseSdk.serverTimestamp(),
+            createdAtMs: now,
+            updatedAt: firebaseSdk.serverTimestamp(),
+            updatedAtMs: now
+          });
+          showToast(`Demande envoyée à ${member.pseudo}`);
+        } catch (error) { showToast(friendlyFirebaseError(error)); }
+      }
+
+      async function respondToFriendRequest(requestId, accepted) {
+        if (!await requireSocialAccount()) return;
+        const request = incomingFriendRequests.find(item => item.id === requestId && item.status === "pending");
+        if (!request) return;
+        try {
+          const now = Date.now();
+          await firebaseSdk.updateDoc(firebaseSdk.doc(firebaseDb, "spriteLockerFriendRequests", requestId), { status: accepted ? "accepted" : "declined", updatedAt: firebaseSdk.serverTimestamp(), updatedAtMs: now });
+          showToast(accepted ? `${request.senderProfile.pseudo} est maintenant ton ami` : "Demande refusée");
+          if (accepted) activateCommunityTab("friends");
+        } catch (error) { showToast(friendlyFirebaseError(error)); }
+      }
+
+      async function deleteFriendRequest(requestId, message) {
+        if (!await requireSocialAccount()) return;
+        const request = allFriendRequests().find(item => item.id === requestId);
+        if (!request) return;
+        try {
+          await firebaseSdk.deleteDoc(firebaseSdk.doc(firebaseDb, "spriteLockerFriendRequests", requestId));
+          if (activeConversationId === requestId) closeActiveConversation();
+          showToast(message);
+        } catch (error) { showToast(friendlyFirebaseError(error)); }
+      }
+
+      function closeActiveConversation() {
+        if (activeChatUnsubscribe) activeChatUnsubscribe();
+        activeChatUnsubscribe = null;
+        activeConversationId = "";
+        activeChatMessages = [];
+        renderConversationList();
+        renderChatMessages();
+      }
+
+      function openConversation(requestId) {
+        const friendship = acceptedFriendships().find(item => item.request.id === requestId);
+        if (!friendship || !firebaseSdk || !firebaseDb || !firebaseUser) {
+          showToast("Cette conversation n’est disponible qu’entre amis");
+          return;
+        }
+        activeConversationId = requestId;
+        activeCommunityTab = "messages";
+        activateCommunityTab("messages");
+        renderConversationList();
+        if (activeChatUnsubscribe) activeChatUnsubscribe();
+        const messagesQuery = firebaseSdk.query(
+          firebaseSdk.collection(firebaseDb, "spriteLockerFriendRequests", requestId, "messages"),
+          firebaseSdk.orderBy("createdAtMs", "asc"),
+          firebaseSdk.limit(200)
+        );
+        activeChatUnsubscribe = firebaseSdk.onSnapshot(messagesQuery, snapshot => {
+          activeChatMessages = snapshot.docs.map(messageDoc => ({ id: messageDoc.id, ...messageDoc.data(), createdAtMs: Math.max(0, Number(messageDoc.data().createdAtMs) || 0), text: String(messageDoc.data().text || "") }));
+          renderChatMessages();
+        }, () => showToast("Impossible de charger cette conversation"));
+      }
+
+      async function sendChatMessage() {
+        if (!firebaseUser || !activeConversationId || !firebaseSdk || !firebaseDb) return;
+        const friendship = acceptedFriendships().find(item => item.request.id === activeConversationId);
+        const input = document.getElementById("chatInput");
+        const text = String(input.value || "").trim().slice(0, 500);
+        if (!friendship || !text) return;
+        input.value = "";
+        try {
+          const messageRef = firebaseSdk.doc(firebaseSdk.collection(firebaseDb, "spriteLockerFriendRequests", activeConversationId, "messages"));
+          const now = Date.now();
+          await firebaseSdk.setDoc(messageRef, { senderUid: firebaseUser.uid, text, createdAt: firebaseSdk.serverTimestamp(), createdAtMs: now });
+        } catch (error) {
+          input.value = text;
           showToast(friendlyFirebaseError(error));
         }
       }
@@ -8518,6 +9137,37 @@
         if (button) openDetails(button.dataset.guideSprite);
       });
 
+      document.getElementById("communityTabs").addEventListener("click", event => {
+        const button = event.target.closest("[data-community-tab]");
+        if (button) activateCommunityTab(button.dataset.communityTab);
+      });
+
+      document.getElementById("communitySearch").addEventListener("input", event => {
+        communitySearchTerm = event.target.value;
+        renderMemberDirectory();
+      });
+
+      document.getElementById("communityPage").addEventListener("click", event => {
+        const button = event.target.closest("[data-social-action]");
+        if (!button) return;
+        const action = button.dataset.socialAction;
+        if (action === "connect") connectGoogleAccount();
+        if (action === "add") sendFriendRequest(button.dataset.memberUid);
+        if (action === "accept") respondToFriendRequest(button.dataset.requestId, true);
+        if (action === "decline") respondToFriendRequest(button.dataset.requestId, false);
+        if (action === "cancel") deleteFriendRequest(button.dataset.requestId, "Demande annulée");
+        if (action === "remove-friend") deleteFriendRequest(button.dataset.requestId, "Ami retiré");
+        if (action === "message") openConversation(button.dataset.requestId);
+        if (action === "show-requests") activateCommunityTab("requests");
+      });
+
+      document.getElementById("communityConnectBtn").addEventListener("click", connectGoogleAccount);
+      document.getElementById("chatBackBtn").addEventListener("click", closeActiveConversation);
+      document.getElementById("chatForm").addEventListener("submit", event => {
+        event.preventDefault();
+        sendChatMessage();
+      });
+
       document.getElementById("profileForm").addEventListener("submit", event => {
         event.preventDefault();
         publishProfile();
@@ -8532,6 +9182,7 @@
         document.getElementById("publicProfileLink").value = profileShareUrl();
         document.getElementById("profileSaveState").textContent = "À enregistrer";
         renderProfileCard(profileSettings);
+        renderCommunityPage();
       });
 
       document.getElementById("favoriteVariantPicker").addEventListener("click", event => {
