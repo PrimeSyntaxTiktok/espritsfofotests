@@ -5056,7 +5056,7 @@
     .admin-guard-state { border-color: rgba(255,214,74,.2); background: rgba(255,214,74,.08); color: #ffdc6b; }
     .admin-guard-state.is-ready { border-color: rgba(69,229,154,.2); background: rgba(69,229,154,.08); color: #72efb3; }
     .admin-workspace { display: grid; gap: 12px; }
-    .admin-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 6px; border: 1px solid var(--feature-line); border-radius: 14px; background: rgba(8,13,32,.76); }
+    .admin-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; padding: 6px; border: 1px solid var(--feature-line); border-radius: 14px; background: rgba(8,13,32,.76); }
     .admin-tabs button { min-height: 42px; border: 0; border-radius: 9px; background: transparent; color: #8b97b7; font-size: .64rem; font-weight: 900; cursor: pointer; }
     .admin-tabs button[aria-selected="true"] { background: rgba(var(--accent-rgb), .15); color: #fff; }
     .admin-form { display: none; padding: 23px; }
@@ -5073,6 +5073,17 @@
     .admin-history article { display: flex; padding: 12px 14px; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(255,255,255,.035); }
     .admin-history strong { font-size: .68rem; }
     .admin-history span { color: #8490af; font-size: .57rem; }
+    .admin-content-manager { display: grid; gap: 14px; }
+    .admin-manage-group { padding: 16px; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; background: rgba(255,255,255,.025); }
+    .admin-manage-group h3 { margin: 0 0 10px; font-family: var(--display,sans-serif); font-size: 1.2rem; font-style: italic; text-transform: uppercase; }
+    .admin-manage-list { display: grid; gap: 7px; }
+    .admin-manage-row { display: grid; padding: 10px 11px; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.07); border-radius: 10px; background: rgba(255,255,255,.035); }
+    .admin-manage-row strong, .admin-manage-row small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .admin-manage-row strong { font-size: .61rem; }
+    .admin-manage-row small { margin-top: 4px; color: #818dab; font-size: .49rem; }
+    .admin-manage-actions { display: flex; gap: 5px; }
+    .admin-manage-actions button { min-height: 32px; padding: 0 9px; border: 1px solid rgba(255,255,255,.09); border-radius: 8px; background: rgba(255,255,255,.04); color: #aeb9d4; font-size: .51rem; font-weight: 900; cursor: pointer; }
+    .admin-manage-actions button.is-danger { color: #ff8999; }
 
     .collection-card-dialog { width: min(540px, calc(100% - 24px)); padding: 0; overflow: hidden; border: 1px solid rgba(var(--accent-rgb), .3); border-radius: 22px; background: #0b1028; box-shadow: 0 28px 90px rgba(0,0,0,.7); color: #fff; }
     .collection-card-dialog::backdrop { background: rgba(2,5,15,.8); backdrop-filter: blur(10px); }
@@ -5152,6 +5163,263 @@
     .published-patch-feed { display: grid; gap: 14px; margin-bottom: 14px; }
     .custom-patch-entry { padding: 24px; border-color: rgba(var(--accent-rgb), .24); background: linear-gradient(135deg, rgba(var(--accent-rgb), .1), rgba(13,18,42,.97) 40%); }
     .custom-patch-entry .patch-card { margin-top: 18px; }
+    .social-app-shell { display: grid; min-height: 650px; grid-template-columns: 220px minmax(0,1fr); overflow: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 22px; background: rgba(8,12,29,.92); box-shadow: 0 28px 70px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.05); }
+    .social-sidebar { display: flex; min-width: 0; padding: 14px 10px; border-right: 1px solid rgba(255,255,255,.08); background: linear-gradient(180deg, rgba(17,23,51,.98), rgba(10,14,33,.98)); flex-direction: column; }
+    .social-brand { display: flex; min-width: 0; padding: 6px 8px 17px; align-items: center; gap: 10px; }
+    .social-brand > span { display: grid; width: 38px; height: 38px; flex: 0 0 38px; place-items: center; border-radius: 13px; background: linear-gradient(145deg, var(--accent), #5865f2); box-shadow: 0 8px 22px rgba(var(--accent-rgb),.18); color: #06131f; font-family: var(--display,sans-serif); font-size: 1.25rem; font-style: italic; font-weight: 950; }
+    .social-brand > div { min-width: 0; }
+    .social-brand strong, .social-brand small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .social-brand strong { font-size: .68rem; }
+    .social-brand small { margin-top: 4px; color: #7783a2; font-size: .48rem; }
+    .social-side-nav.community-tabs { display: grid; margin: 0; padding: 0; grid-template-columns: 1fr; gap: 4px; border: 0; border-radius: 0; background: transparent; }
+    .social-side-nav.community-tabs button { display: grid; width: 100%; min-height: 45px; padding: 8px 10px; grid-template-columns: 29px minmax(0,1fr) auto; align-items: center; justify-content: initial; gap: 8px; border-radius: 11px; color: #9da8c5; text-align: left; }
+    .social-side-nav.community-tabs button > span { display: grid; width: 28px; height: 28px; place-items: center; border-radius: 9px; background: rgba(255,255,255,.045); color: #aeb8d2; }
+    .social-side-nav.community-tabs button > em { overflow: hidden; font-style: normal; text-overflow: ellipsis; white-space: nowrap; }
+    .social-side-nav.community-tabs button > b { justify-self: end; }
+    .social-side-nav.community-tabs button:hover { background: rgba(255,255,255,.045); color: #fff; }
+    .social-side-nav.community-tabs button[aria-selected="true"] { background: linear-gradient(90deg, rgba(var(--accent-rgb),.2), rgba(88,101,242,.12)); box-shadow: inset 3px 0 0 var(--accent); color: #fff; }
+    .social-side-nav.community-tabs button[aria-selected="true"] > span { background: var(--accent); color: #06131f; }
+    .social-self-card { display: grid; margin-top: auto; padding: 10px; grid-template-columns: 38px minmax(0,1fr); align-items: center; gap: 9px; border: 1px solid rgba(255,255,255,.07); border-radius: 12px; background: rgba(255,255,255,.035); }
+    .social-self-card .social-avatar { width: 36px; height: 36px; flex-basis: 36px; border-radius: 11px; font-size: .78rem; }
+    .social-self-card > div { min-width: 0; }
+    .social-self-card strong, .social-self-card small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .social-self-card strong { font-size: .59rem; }
+    .social-self-card small { margin-top: 4px; color: #7f8aa8; font-size: .47rem; }
+    .social-workspace { min-width: 0; padding: 0 18px 20px; background: radial-gradient(circle at 85% 4%, rgba(var(--accent-rgb),.06), transparent 23rem); }
+    .social-workspace-head { display: flex; min-height: 82px; margin-bottom: 15px; padding: 16px 2px; align-items: center; justify-content: space-between; gap: 14px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .social-workspace-head > div { min-width: 0; }
+    .social-workspace-head span:first-child { color: var(--accent); font-size: .49rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
+    .social-workspace-head h2 { margin: 4px 0 2px; font-family: var(--display,sans-serif); font-size: 1.55rem; font-style: italic; line-height: 1; text-transform: uppercase; }
+    .social-workspace-head p { margin: 0; color: #808cab; font-size: .57rem; }
+    .social-online { display: inline-flex; padding: 7px 9px; align-items: center; gap: 6px; border-radius: 999px; background: rgba(69,229,154,.08); color: #72eeb3 !important; font-size: .51rem !important; letter-spacing: 0 !important; text-transform: none !important; white-space: nowrap; }
+    .social-online i, .chat-secure-state i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+    .social-composer { display: grid; margin-bottom: 13px; padding: 15px; grid-template-columns: 44px minmax(0,1fr); gap: 11px; border: 1px solid rgba(255,255,255,.09); border-radius: 17px; background: linear-gradient(145deg, rgba(24,31,65,.96), rgba(12,17,39,.98)); box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+    .social-composer > .social-avatar { width: 42px; height: 42px; flex-basis: 42px; border-radius: 13px; font-size: .88rem; }
+    .social-composer label { min-width: 0; }
+    .social-composer textarea { width: 100%; min-height: 74px; padding: 11px 12px; resize: vertical; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; outline: 0; background: rgba(4,8,23,.5); color: #edf1ff; font: inherit; font-size: .67rem; line-height: 1.5; }
+    .social-composer textarea:focus { border-color: rgba(var(--accent-rgb),.55); box-shadow: 0 0 0 3px rgba(var(--accent-rgb),.08); }
+    .social-composer footer { display: flex; grid-column: 2; align-items: center; justify-content: space-between; gap: 10px; }
+    .social-composer footer > span { display: inline-flex; align-items: center; gap: 6px; color: #7d89a8; font-size: .52rem; font-weight: 750; }
+    .social-composer footer > span i { color: var(--accent); font-style: normal; }
+    .social-composer footer button { min-height: 38px; padding: 0 14px; border: 0; border-radius: 10px; background: linear-gradient(135deg, var(--accent), #57dce7); box-shadow: 0 8px 18px rgba(var(--accent-rgb),.15); color: #06131f; font-size: .59rem; font-weight: 950; cursor: pointer; }
+    .social-composer footer button b { font-size: .8rem; }
+    .social-composer.is-locked { border-color: rgba(255,190,72,.22); }
+    .social-composer.is-locked textarea { background: rgba(255,190,72,.035); }
+    .social-composer.is-locked footer button { background: linear-gradient(135deg, #ffcf72, #f39b58); }
+    .social-feed { display: grid; gap: 11px; }
+    .social-post { overflow: hidden; border: 1px solid rgba(255,255,255,.085); border-radius: 17px; background: linear-gradient(145deg, rgba(21,28,60,.97), rgba(10,15,35,.98)); box-shadow: inset 0 1px 0 rgba(255,255,255,.045); }
+    .social-post-head { display: grid; padding: 14px 15px 9px; grid-template-columns: 43px minmax(0,1fr) auto; align-items: center; gap: 10px; }
+    .social-post-head .social-avatar { width: 41px; height: 41px; flex-basis: 41px; border-radius: 13px; font-size: .83rem; }
+    .social-post-author { min-width: 0; }
+    .social-post-author button { max-width: 100%; padding: 0; overflow: hidden; border: 0; background: transparent; color: #f3f6ff; font-size: .65rem; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
+    .social-post-author span { display: block; margin-top: 4px; color: #7683a2; font-size: .49rem; }
+    .post-owner-actions { display: flex; gap: 5px; }
+    .post-owner-actions button, .comment-tools button { width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.08); border-radius: 9px; background: rgba(255,255,255,.035); color: #909dbb; font-size: .62rem; cursor: pointer; }
+    .post-owner-actions button:hover, .comment-tools button:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .post-owner-actions button.is-danger, .comment-tools button.is-danger { color: #ff8999; }
+    .social-post-body { margin: 0; padding: 5px 15px 14px; color: #dfe5f7; font-size: .69rem; line-height: 1.55; overflow-wrap: anywhere; white-space: pre-wrap; }
+    .social-post-meta { display: flex; min-height: 34px; padding: 0 15px 9px; align-items: center; justify-content: space-between; gap: 10px; color: #7682a1; font-size: .5rem; }
+    .reaction-summary { display: flex; align-items: center; gap: 5px; }
+    .reaction-summary i { display: grid; width: 19px; height: 19px; place-items: center; margin-right: -8px; border: 2px solid #111730; border-radius: 50%; background: #5865f2; font-style: normal; font-size: .48rem; }
+    .reaction-summary i:nth-child(2) { background: #ed4777; }
+    .reaction-summary i:nth-child(3) { background: #ef8c3d; }
+    .social-post-actions { display: grid; padding: 6px 10px; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 5px; border-top: 1px solid rgba(255,255,255,.075); border-bottom: 1px solid rgba(255,255,255,.075); }
+    .social-post-actions button { display: flex; min-width: 0; min-height: 36px; padding: 0 8px; align-items: center; justify-content: center; gap: 6px; border: 0; border-radius: 9px; background: transparent; color: #929fbc; font-size: .54rem; font-weight: 850; cursor: pointer; }
+    .social-post-actions button:hover { background: rgba(255,255,255,.05); color: #fff; }
+    .social-post-actions button[aria-pressed="true"] { background: rgba(var(--accent-rgb),.12); color: var(--accent); }
+    .social-comments { display: grid; padding: 11px 14px 14px; gap: 9px; }
+    .social-comment { display: grid; grid-template-columns: 32px minmax(0,1fr) auto; align-items: start; gap: 8px; }
+    .social-comment > .social-avatar { width: 30px; height: 30px; flex-basis: 30px; border-radius: 10px; font-size: .64rem; }
+    .comment-bubble { min-width: 0; padding: 8px 10px; border-radius: 11px; background: rgba(255,255,255,.055); }
+    .comment-bubble strong { display: block; color: #f0f3ff; font-size: .56rem; }
+    .comment-bubble p { margin: 4px 0 0; color: #c4cce1; font-size: .59rem; line-height: 1.45; overflow-wrap: anywhere; white-space: pre-wrap; }
+    .comment-tools { display: flex; gap: 3px; }
+    .comment-tools button { width: 25px; height: 25px; border-radius: 7px; font-size: .52rem; }
+    .comment-composer { display: grid; padding-top: 3px; grid-template-columns: 32px minmax(0,1fr) auto; align-items: center; gap: 8px; }
+    .comment-composer .social-avatar { width: 30px; height: 30px; flex-basis: 30px; border-radius: 10px; font-size: .62rem; }
+    .comment-composer input { min-width: 0; min-height: 36px; padding: 0 11px; border: 1px solid rgba(255,255,255,.08); border-radius: 999px; outline: 0; background: rgba(255,255,255,.045); color: #fff; font: inherit; font-size: .58rem; }
+    .comment-composer input:focus { border-color: rgba(var(--accent-rgb),.5); }
+    .comment-composer button { min-width: 62px; min-height: 34px; border: 0; border-radius: 999px; background: var(--accent); color: #06131f; font-size: .53rem; font-weight: 950; cursor: pointer; }
+    .member-directory-head { display: grid; margin-bottom: 12px; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 10px; }
+    .member-directory-head .community-search { margin: 0; }
+    .admin-directory-badge { padding: 9px 11px; border: 1px solid rgba(255,210,83,.2); border-radius: 999px; background: rgba(255,210,83,.08); color: #ffdc79; font-size: .52rem; font-weight: 900; white-space: nowrap; }
+    .member-privacy-state { display: inline-flex; width: fit-content; margin-top: 6px; padding: 4px 6px; border-radius: 999px; background: rgba(69,229,154,.08); color: #75eeb5; font-size: .43rem; font-weight: 900; text-transform: uppercase; }
+    .member-privacy-state.is-private { background: rgba(255,190,72,.09); color: #ffca6e; }
+    .admin-member-card { border-color: rgba(255,210,83,.15); }
+    .member-name-button { display: block; max-width: 100%; padding: 0; overflow: hidden; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+    .member-name-button h2 { pointer-events: none; }
+    .member-actions.has-admin-action { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .admin-moderate-button { border-color: rgba(255,210,83,.2); background: rgba(255,210,83,.08); color: #ffdb76; }
+    .chat-secure-state { display: inline-flex; margin-left: auto; padding: 6px 8px; align-items: center; gap: 5px; border-radius: 999px; background: rgba(69,229,154,.08); color: #72eeb3; font-size: .48rem; font-weight: 900; }
+    .social-modal { width: min(470px, calc(100% - 24px)); padding: 24px; border: 1px solid rgba(255,255,255,.14); border-radius: 20px; background: linear-gradient(145deg,#171e42,#090e23); box-shadow: 0 30px 90px rgba(0,0,0,.65); color: #fff; text-align: center; }
+    .social-modal::backdrop { background: rgba(2,5,15,.78); backdrop-filter: blur(9px); }
+    .social-modal-icon { display: grid; width: 58px; height: 58px; margin: 0 auto 13px; place-items: center; border-radius: 17px; background: rgba(var(--accent-rgb),.13); color: var(--accent); font-size: 1.55rem; }
+    .social-modal h2 { margin: 0; font-family: var(--display,sans-serif); font-size: 1.7rem; font-style: italic; text-transform: uppercase; }
+    .social-modal > p { margin: 8px 0 0; color: #98a4c2; font-size: .66rem; line-height: 1.5; }
+    .social-modal-actions { display: grid; margin-top: 19px; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .social-modal-actions button, .moderation-actions button, .social-modal-close { min-height: 41px; padding: 0 12px; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; background: rgba(255,255,255,.05); color: #c2cbe2; font-size: .58rem; font-weight: 950; cursor: pointer; }
+    .social-modal-actions button.is-primary { border: 0; background: var(--accent); color: #06131f; }
+    .moderation-modal { text-align: left; }
+    .moderation-modal > header { display: flex; align-items: center; gap: 11px; }
+    .moderation-modal > header > div { min-width: 0; }
+    .moderation-modal > header small { color: #ffdc79; font-size: .5rem; font-weight: 950; letter-spacing: .1em; text-transform: uppercase; }
+    .moderation-modal > header h2 { margin-top: 4px; }
+    .moderation-modal > header p { margin: 3px 0 0; color: #8793b2; font-size: .56rem; }
+    .moderation-status { margin: 15px 0 12px; padding: 10px 12px; border-radius: 10px; background: rgba(69,229,154,.08); color: #75eeb6; font-size: .58rem; font-weight: 900; }
+    .moderation-status.is-blocked { background: rgba(255,96,119,.09); color: #ff8798; }
+    .moderation-actions { display: grid; margin-top: 13px; grid-template-columns: 1fr; gap: 7px; }
+    .moderation-actions button.is-danger { border-color: rgba(255,96,119,.2); background: rgba(255,96,119,.08); color: #ff8a9a; }
+    .moderation-actions button.is-success { border-color: rgba(69,229,154,.2); background: rgba(69,229,154,.08); color: #74eeb4; }
+    .social-modal-close { width: 100%; margin-top: 8px; }
+    .content-editor-modal { text-align: left; }
+    .content-editor-modal h2 { margin-bottom: 14px; }
+    .patch-admin-actions { display: flex; margin-top: 12px; gap: 7px; }
+    .patch-admin-actions button { min-height: 36px; padding: 0 11px; border: 1px solid rgba(255,255,255,.1); border-radius: 9px; background: rgba(255,255,255,.05); color: #bdc6dd; font-size: .55rem; font-weight: 900; cursor: pointer; }
+    .patch-admin-actions button:last-child { border-color: rgba(255,96,119,.18); color: #ff8a9a; }
+    @media (max-width: 900px) {
+      .social-app-shell { grid-template-columns: 190px minmax(0,1fr); }
+      .social-workspace { padding-inline: 13px; }
+    }
+    @media (max-width: 760px) {
+      .social-app-shell { display: block; min-height: 0; border-radius: 18px; }
+      .social-sidebar { position: sticky; z-index: 9; top: 64px; display: block; padding: 8px; overflow: hidden; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .social-brand, .social-self-card { display: none; }
+      .social-side-nav.community-tabs { display: flex; padding-bottom: 2px; overflow-x: auto; gap: 5px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+      .social-side-nav.community-tabs::-webkit-scrollbar { display: none; }
+      .social-side-nav.community-tabs button { min-width: 108px; width: auto; flex: 0 0 108px; grid-template-columns: 25px minmax(0,1fr) auto; scroll-snap-align: start; }
+      .social-side-nav.community-tabs button[aria-selected="true"] { box-shadow: inset 0 -3px 0 var(--accent); }
+      .social-workspace { padding: 0 11px 15px; }
+      .social-workspace-head { min-height: 72px; }
+      .member-directory-head { grid-template-columns: 1fr; }
+      .admin-directory-badge { width: fit-content; }
+    }
+    @media (max-width: 520px) {
+      .social-workspace-head p { display: none; }
+      .social-workspace-head h2 { font-size: 1.35rem; }
+      .social-composer { padding: 11px; grid-template-columns: 36px minmax(0,1fr); gap: 8px; }
+      .social-composer > .social-avatar { width: 34px; height: 34px; flex-basis: 34px; border-radius: 10px; }
+      .social-composer footer { grid-column: 1 / -1; }
+      .social-composer footer > span { display: none; }
+      .social-composer footer button { width: 100%; }
+      .social-post-actions { grid-template-columns: repeat(4,minmax(0,1fr)); padding-inline: 5px; }
+      .social-post-actions button { padding-inline: 3px; font-size: .48rem; }
+      .social-post-actions button span { display: none; }
+      .comment-composer { grid-template-columns: 30px minmax(0,1fr); }
+      .comment-composer button { grid-column: 2; width: 100%; }
+      .social-modal { padding: 20px 16px; }
+    }
+    @media (max-width: 700px) {
+      .mobile-dock {
+        right: max(8px, env(safe-area-inset-right));
+        left: max(8px, env(safe-area-inset-left));
+        display: flex;
+        width: auto;
+        max-width: none;
+        min-height: 70px;
+        padding: 7px 9px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        justify-content: flex-start;
+        gap: 6px;
+        scroll-behavior: smooth;
+        scroll-padding-inline: 9px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        overscroll-behavior-x: contain;
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch;
+      }
+      .mobile-dock::-webkit-scrollbar { display: none; }
+      .mobile-dock-item {
+        min-width: 74px;
+        min-height: 54px;
+        padding: 6px 7px;
+        flex: 0 0 74px;
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
+      }
+      .mobile-dock-item span { font-size: .45rem; }
+      .mobile-dock-item svg { width: 19px; height: 19px; }
+      .mobile-dock::after { width: 1px; flex: 0 0 1px; content: ""; }
+    }
+
+    /* Gestion directe des Patch Notes dans l'onglet administrateur. */
+    .admin-patch-quick { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(var(--accent-rgb), .2); }
+    .admin-patch-quick > header { display: flex; margin-bottom: 10px; align-items: flex-end; justify-content: space-between; gap: 12px; }
+    .admin-patch-quick > header span { color: var(--accent); font-size: .5rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
+    .admin-patch-quick > header h3 { margin: 4px 0 0; font-family: var(--display, sans-serif); font-size: 1.35rem; font-style: italic; text-transform: uppercase; }
+    .admin-patch-quick > header small { color: var(--feature-muted); font-size: .5rem; font-weight: 850; }
+    .admin-patch-quick-list { display: grid; gap: 8px; }
+    .admin-patch-quick-row { display: grid; padding: 12px; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.09); border-radius: 12px; background: rgba(255,255,255,.035); }
+    .admin-patch-quick-row > div:first-child { min-width: 0; }
+    .admin-patch-quick-row strong, .admin-patch-quick-row small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .admin-patch-quick-row strong { font-size: .64rem; }
+    .admin-patch-quick-row small { margin-top: 4px; color: var(--feature-muted); font-size: .49rem; }
+    .admin-patch-quick-actions { display: flex; gap: 7px; }
+    .admin-patch-quick-actions button, .patch-admin-actions button { display: inline-flex; min-height: 39px; padding: 0 13px; align-items: center; justify-content: center; gap: 6px; border: 1px solid rgba(var(--accent-rgb), .3); border-radius: 10px; background: rgba(var(--accent-rgb), .12); color: var(--accent); font-size: .57rem; font-weight: 950; cursor: pointer; }
+    .admin-patch-quick-actions button.is-danger, .patch-admin-actions button.is-danger, .patch-admin-actions button:last-child { border-color: rgba(255,96,119,.28); background: rgba(255,96,119,.1); color: #ff8a9a; }
+    .patch-admin-actions { margin: 0; padding: 13px 18px; justify-content: flex-end; border-top: 1px solid rgba(255,255,255,.08); background: rgba(3,7,21,.28); }
+    .patch-admin-actions::before { margin-right: auto; align-self: center; color: var(--accent); content: "Commandes administrateur"; font-size: .49rem; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+    .home-feed-card { background: radial-gradient(circle at 92% 50%, rgba(var(--accent-rgb),.22), transparent 24rem), linear-gradient(120deg, rgba(var(--accent-rgb),.2), rgba(14,20,47,.97) 48%); }
+
+    /* Le thème choisi pilote désormais les surfaces de toutes les pages. */
+    html[data-background="night"] {
+      --theme-deep: #050817;
+      --theme-surface: #111832;
+      --theme-surface-2: #182044;
+      --theme-body: radial-gradient(circle at 14% -8%, rgba(var(--accent-rgb), .32), transparent 30rem), radial-gradient(circle at 100% 18%, rgba(var(--accent-rgb), .1), transparent 25rem), linear-gradient(180deg, #0b0e20 0%, #050817 72%);
+    }
+    html[data-background="galaxy"] {
+      --theme-deep: #070519;
+      --theme-surface: #181036;
+      --theme-surface-2: #26164b;
+      --theme-body: radial-gradient(circle at 18% 5%, rgba(127,75,255,.4), transparent 31rem), radial-gradient(circle at 88% 24%, rgba(255,72,186,.19), transparent 27rem), radial-gradient(circle at 52% 86%, rgba(var(--accent-rgb),.14), transparent 25rem), linear-gradient(145deg, #070719, #100b2c 55%, #071225);
+    }
+    html[data-background="storm"] {
+      --theme-deep: #070812;
+      --theme-surface: #15182c;
+      --theme-surface-2: #202644;
+      --theme-body: radial-gradient(circle at 15% 4%, rgba(84,60,181,.4), transparent 29rem), radial-gradient(circle at 95% 35%, rgba(var(--accent-rgb),.24), transparent 30rem), linear-gradient(155deg, #080914, #11142b 60%, #080a16);
+    }
+    html[data-background="zero"] {
+      --theme-deep: #041019;
+      --theme-surface: #0b1d2d;
+      --theme-surface-2: #102b42;
+      --theme-body: radial-gradient(circle at 50% -5%, rgba(92,234,255,.34), transparent 27rem), radial-gradient(circle at 85% 26%, rgba(156,87,255,.24), transparent 25rem), radial-gradient(circle at 10% 75%, rgba(var(--accent-rgb),.13), transparent 26rem), linear-gradient(160deg, #05131f, #0b102d 62%, #09091c);
+    }
+    html[data-background] {
+      --bg: var(--theme-deep);
+      --bg-deep: var(--theme-deep);
+      --surface: var(--theme-surface);
+      --surface-2: var(--theme-surface-2);
+      --surface-3: color-mix(in srgb, var(--theme-surface-2) 76%, white 8%);
+      --panel: color-mix(in srgb, var(--theme-surface) 90%, transparent);
+      --panel-2: var(--theme-surface-2);
+      --card: var(--theme-surface);
+      --blue: var(--accent);
+      --cyan: var(--accent);
+      --yellow: var(--accent);
+      --purple: color-mix(in srgb, var(--accent) 62%, #9a65ff);
+      --feature-surface: color-mix(in srgb, var(--theme-surface) 90%, transparent);
+      --feature-line: rgba(var(--accent-rgb), .2);
+    }
+    html[data-background] body { background: var(--theme-body); background-attachment: fixed; }
+    html[data-background] :is(.topbar, .mobile-dock) { border-color: rgba(var(--accent-rgb), .2); background: color-mix(in srgb, var(--theme-surface) 92%, transparent); box-shadow: 0 18px 50px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.06); }
+    html[data-background] :is(.sync-card, .progress-wrap, .stat, .variant-overview, .toolbar, .panel-card, .guide-summary, .guide-card, .member-card, .request-row, .conversation-sidebar, .chat-room, .social-composer, .social-post, .comment-bubble, .admin-publish-bar, .admin-history article, .admin-manage-row, .admin-patch-quick-row, .patch-entry, .patch-card, dialog) { border-color: rgba(var(--accent-rgb), .16); background: linear-gradient(145deg, color-mix(in srgb, var(--theme-surface-2) 90%, transparent), color-mix(in srgb, var(--theme-deep) 94%, transparent)); }
+    html[data-background] :is(.feature-hero, .profile-cover, .patch-simple-head) { border-color: rgba(var(--accent-rgb), .22); background: radial-gradient(circle at 88% 8%, rgba(var(--accent-rgb), .19), transparent 23rem), linear-gradient(135deg, color-mix(in srgb, var(--theme-surface-2) 92%, transparent), color-mix(in srgb, var(--theme-deep) 96%, transparent)); }
+    html[data-background] .social-app-shell { border-color: rgba(var(--accent-rgb), .18); background: color-mix(in srgb, var(--theme-deep) 94%, transparent); }
+    html[data-background] .social-sidebar { border-color: rgba(var(--accent-rgb), .14); background: linear-gradient(180deg, color-mix(in srgb, var(--theme-surface-2) 94%, transparent), color-mix(in srgb, var(--theme-deep) 97%, transparent)); }
+    html[data-background] .social-workspace { background: radial-gradient(circle at 85% 4%, rgba(var(--accent-rgb),.12), transparent 23rem); }
+    html[data-background] :is(.topbar-links a[aria-current="page"], .mobile-dock-item[aria-current="page"], .community-tabs button[aria-selected="true"], .admin-tabs button[aria-selected="true"], .segmented button[aria-pressed="true"]) { border-color: rgba(var(--accent-rgb), .42); background: rgba(var(--accent-rgb), .15); color: var(--accent); }
+
+    @media (max-width: 700px) {
+      .mobile-dock { overflow-x: scroll !important; overflow-y: hidden !important; scroll-snap-type: x proximity !important; touch-action: pan-x !important; cursor: grab; }
+      .mobile-dock.is-dragging { scroll-behavior: auto; scroll-snap-type: none !important; cursor: grabbing; }
+      .admin-patch-quick-row { grid-template-columns: 1fr; }
+      .admin-patch-quick-actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .patch-admin-actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .patch-admin-actions::before { grid-column: 1 / -1; margin: 0 0 2px; }
+    }
   </style>
 </head>
 <body>
@@ -5167,7 +5435,8 @@
           <a href="#catalog" data-page-target="catalog">Catalogue</a>
           <a href="#inventory" data-page-target="inventory">Inventaire</a>
           <a href="#guide" data-page-target="guide">Guide</a>
-          <a href="#community" data-page-target="community">Communauté</a>
+          <a href="#community/feed" data-page-target="community/feed">Fil public</a>
+          <a href="#community/members" data-page-target="community/members">Communauté</a>
           <a href="#profile" data-page-target="profile">Profil</a>
           <a href="#settings" data-page-target="settings">Réglages</a>
           <a href="#patch-notes" data-page-target="patch-notes">Patch Notes</a>
@@ -5208,7 +5477,12 @@
         </div>
         <button class="auth-toggle" id="authToggleBtn" type="button" data-connected="false" disabled><span class="auth-google" aria-hidden="true">G</span><span>Connexion Google</span></button>
       </div>
-      <a class="home-community-card" href="#community" data-page-target="community">
+      <a class="home-community-card home-feed-card" href="#community/feed" data-page-target="community/feed">
+        <span aria-hidden="true">⌂</span>
+        <div><small>En direct · Fil public</small><strong>Découvre les publications</strong><p>Publie une actualité, réponds aux membres et réagis comme sur un véritable réseau social.</p></div>
+        <b>Ouvrir le fil</b>
+      </a>
+      <a class="home-community-card" href="#community/members" data-page-target="community/members">
         <span aria-hidden="true">◉</span>
         <div><small>Nouveau · Communauté</small><strong>Trouve des collectionneurs</strong><p>Consulte les profils publics, ajoute des amis et discute avec eux après acceptation.</p></div>
         <b>Voir les membres</b>
@@ -5381,63 +5655,81 @@
     <section class="feature-page app-page" id="communityPage" data-page="community" aria-labelledby="communityTitle">
       <header class="feature-hero feature-hero-community">
         <div>
-          <span class="feature-eyebrow">Mini réseau social Sprite Locker</span>
+          <span class="feature-eyebrow">Réseau social Sprite Locker</span>
           <h1 id="communityTitle">La communauté <span>des collectionneurs</span></h1>
-          <p>Découvre les profils publics, ajoute des joueurs en ami et discute avec eux une fois leur demande acceptée.</p>
+          <p>Publie, réagis, commente, rencontre d’autres joueurs et discute en privé avec tes amis.</p>
         </div>
         <span class="community-live-pill" id="communityLiveState"><i aria-hidden="true"></i>Connexion…</span>
       </header>
 
       <aside class="community-notice" id="communityAuthNotice">
         <span aria-hidden="true">◇</span>
-        <div><strong>Connecte ton compte Google</strong><p>Tu peux consulter les membres publics sans compte. La connexion est requise pour ajouter des amis et discuter.</p></div>
+        <div><strong>Connecte ton compte Google</strong><p>Le fil et les profils publics restent consultables. Connecte-toi pour participer à la communauté.</p></div>
         <button class="feature-secondary" id="communityConnectBtn" type="button">Connexion Google</button>
       </aside>
 
       <aside class="community-notice is-private" id="communityPrivacyNotice" hidden>
-        <span aria-hidden="true">◆</span>
-        <div><strong>Ton profil reste privé</strong><p>Tu peux parcourir la communauté, mais rends volontairement ton profil public avant d’envoyer une demande d’ami.</p></div>
-        <button class="feature-secondary" type="button" data-page-target="profile">Gérer mon profil</button>
+        <span aria-hidden="true">🔒</span>
+        <div><strong>Fonctions sociales verrouillées</strong><p>Ton profil est privé. Tu peux consulter le fil, mais tu dois rendre ton profil public pour publier, commenter, réagir, ajouter des amis ou envoyer des messages.</p></div>
+        <button class="feature-secondary" type="button" data-page-target="profile">Rendre mon profil public</button>
       </aside>
 
-      <nav class="community-tabs" id="communityTabs" role="tablist" aria-label="Sections de la communauté">
-        <button type="button" data-community-tab="members" aria-selected="true"><span>◉</span>Membres <b id="communityMemberCount">0</b></button>
-        <button type="button" data-community-tab="requests" aria-selected="false"><span>↗</span>Demandes <b id="communityRequestCount">0</b></button>
-        <button type="button" data-community-tab="friends" aria-selected="false"><span>♥</span>Amis <b id="communityFriendCount">0</b></button>
-        <button type="button" data-community-tab="messages" aria-selected="false"><span>▣</span>Messages</button>
-      </nav>
+      <div class="social-app-shell">
+        <aside class="social-sidebar">
+          <div class="social-brand"><span>F</span><div><strong>Sprite Social</strong><small>Communauté en direct</small></div></div>
+          <nav class="community-tabs social-side-nav" id="communityTabs" role="tablist" aria-label="Sections de la communauté">
+            <button type="button" data-community-tab="feed" aria-selected="true"><span>⌂</span><em>Fil public</em><b id="communityPostCount">0</b></button>
+            <button type="button" data-community-tab="members" aria-selected="false"><span>◉</span><em>Membres</em><b id="communityMemberCount">0</b></button>
+            <button type="button" data-community-tab="requests" aria-selected="false"><span>↗</span><em>Demandes</em><b id="communityRequestCount">0</b></button>
+            <button type="button" data-community-tab="friends" aria-selected="false"><span>♥</span><em>Amis</em><b id="communityFriendCount">0</b></button>
+            <button type="button" data-community-tab="messages" aria-selected="false"><span>▣</span><em>Messages</em></button>
+          </nav>
+          <div class="social-self-card" id="socialSelfCard"><span class="social-avatar">SL</span><div><strong>Mode visiteur</strong><small>Lecture uniquement</small></div></div>
+        </aside>
 
-      <div class="community-panel is-active" data-community-panel="members">
-        <label class="community-search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
-          <input id="communitySearch" type="search" placeholder="Rechercher un membre par pseudo ou identifiant…" autocomplete="off" spellcheck="false">
-        </label>
-        <div class="community-grid" id="communityMemberGrid" aria-live="polite"></div>
-      </div>
+        <main class="social-workspace">
+          <header class="social-workspace-head"><div><span id="communitySectionKicker">Communauté</span><h2 id="communitySectionTitle">Fil public</h2><p id="communitySectionCopy">Les dernières publications de la communauté Sprite Locker.</p></div><span class="social-online"><i></i>En direct</span></header>
 
-      <div class="community-panel" data-community-panel="requests" hidden>
-        <div class="request-columns">
-          <section class="panel-card request-section"><div class="panel-heading"><div><span>À traiter</span><h2>Demandes reçues</h2></div></div><div class="request-list" id="incomingRequestList"></div></section>
-          <section class="panel-card request-section"><div class="panel-heading"><div><span>En attente</span><h2>Demandes envoyées</h2></div></div><div class="request-list" id="outgoingRequestList"></div></section>
-        </div>
-      </div>
+          <section class="community-panel is-active" data-community-panel="feed">
+            <form class="social-composer" id="postComposer">
+              <span class="social-avatar" id="postComposerAvatar">SL</span>
+              <label><span class="sr-only">Nouvelle publication</span><textarea id="postComposerInput" maxlength="1500" rows="3" placeholder="Partage quelque chose avec la communauté…" required></textarea></label>
+              <footer><span><i aria-hidden="true">◉</i> Publication publique</span><button type="submit"><b>＋</b> Publier</button></footer>
+            </form>
+            <div class="social-feed" id="communityFeed" aria-live="polite"></div>
+          </section>
 
-      <div class="community-panel" data-community-panel="friends" hidden>
-        <div class="community-grid" id="communityFriendGrid"></div>
-      </div>
+          <section class="community-panel" data-community-panel="members" hidden>
+            <div class="member-directory-head">
+              <label class="community-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="communitySearch" type="search" placeholder="Rechercher un membre par pseudo ou identifiant…" autocomplete="off" spellcheck="false"></label>
+              <span class="admin-directory-badge" id="adminDirectoryBadge" hidden>Vue administrateur · profils privés inclus</span>
+            </div>
+            <div class="community-grid" id="communityMemberGrid" aria-live="polite"></div>
+          </section>
 
-      <div class="community-panel" data-community-panel="messages" hidden>
-        <div class="messenger-shell">
-          <aside class="conversation-sidebar"><div class="conversation-heading"><span>Conversations</span><strong>Mes amis</strong></div><div id="conversationList" class="conversation-list"></div></aside>
-          <section class="chat-room" id="chatRoom">
-            <div class="chat-empty" id="chatEmpty"><span aria-hidden="true">▣</span><strong>Choisis un ami</strong><p>Seuls les amis dont la demande a été acceptée peuvent échanger des messages.</p></div>
-            <div class="chat-active" id="chatActive" hidden>
-              <header class="chat-header"><button id="chatBackBtn" type="button" aria-label="Retour aux conversations">←</button><span class="social-avatar" id="chatAvatar">SL</span><div><strong id="chatFriendName">Ami</strong><small id="chatFriendHandle">@profil</small></div></header>
-              <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
-              <form class="chat-composer" id="chatForm"><label class="sr-only" for="chatInput">Message</label><input id="chatInput" type="text" maxlength="500" autocomplete="off" placeholder="Écris un message…" required><button type="submit">Envoyer</button></form>
+          <section class="community-panel" data-community-panel="requests" hidden>
+            <div class="request-columns">
+              <section class="panel-card request-section"><div class="panel-heading"><div><span>À traiter</span><h2>Demandes reçues</h2></div></div><div class="request-list" id="incomingRequestList"></div></section>
+              <section class="panel-card request-section"><div class="panel-heading"><div><span>En attente</span><h2>Demandes envoyées</h2></div></div><div class="request-list" id="outgoingRequestList"></div></section>
             </div>
           </section>
-        </div>
+
+          <section class="community-panel" data-community-panel="friends" hidden><div class="community-grid" id="communityFriendGrid"></div></section>
+
+          <section class="community-panel" data-community-panel="messages" hidden>
+            <div class="messenger-shell">
+              <aside class="conversation-sidebar"><div class="conversation-heading"><span>Messenger Sprite Locker</span><strong>Conversations</strong></div><div id="conversationList" class="conversation-list"></div></aside>
+              <section class="chat-room" id="chatRoom">
+                <div class="chat-empty" id="chatEmpty"><span aria-hidden="true">▣</span><strong>Choisis un ami</strong><p>Seuls les amis dont la demande a été acceptée peuvent échanger des messages privés.</p></div>
+                <div class="chat-active" id="chatActive" hidden>
+                  <header class="chat-header"><button id="chatBackBtn" type="button" aria-label="Retour aux conversations">←</button><span class="social-avatar" id="chatAvatar">SL</span><div><strong id="chatFriendName">Ami</strong><small id="chatFriendHandle">@profil</small></div><span class="chat-secure-state"><i></i>Privé</span></header>
+                  <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+                  <form class="chat-composer" id="chatForm"><label class="sr-only" for="chatInput">Message</label><input id="chatInput" type="text" maxlength="500" autocomplete="off" placeholder="Écris un message…" required><button type="submit" aria-label="Envoyer le message">➤</button></form>
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
       </div>
     </section>
 
@@ -5564,6 +5856,7 @@
           <button type="button" data-admin-tab="edit" aria-selected="false">Modifier</button>
           <button type="button" data-admin-tab="variant" aria-selected="false">Nouvelle variante</button>
           <button type="button" data-admin-tab="patch" aria-selected="false">Patch Note</button>
+          <button type="button" data-admin-tab="manage" aria-selected="false">Gérer / supprimer</button>
         </nav>
         <form class="panel-card admin-form is-active" id="adminSpiritForm" data-admin-panel="spirit">
           <div class="panel-heading"><div><span>Catalogue</span><h2>Ajouter un nouvel esprit</h2></div></div>
@@ -5584,7 +5877,16 @@
           <div class="panel-heading"><div><span>Actualité</span><h2>Publier un Patch Note</h2></div></div>
           <div class="form-grid"><label class="field-label field-span">Titre<input name="title" required maxlength="100"></label><label class="field-label field-span">Contenu<textarea name="body" required maxlength="1800" rows="7" placeholder="Une ligne par nouveauté…"></textarea></label><label class="field-label">Date de publication<input name="date" required type="datetime-local"></label></div>
           <button class="feature-primary" type="submit">Ajouter le Patch Note</button>
+          <section class="admin-patch-quick" aria-labelledby="adminPatchQuickTitle">
+            <header><div><span>Gestion directe</span><h3 id="adminPatchQuickTitle">Mes Patch Notes</h3></div><small>Modifier ou supprimer</small></header>
+            <div class="admin-patch-quick-list" id="adminPatchQuickList" aria-live="polite"></div>
+          </section>
         </form>
+        <section class="panel-card admin-form" id="adminManagePanel" data-admin-panel="manage">
+          <div class="panel-heading"><div><span>Gestion complète</span><h2>Modifier ou supprimer le contenu</h2></div></div>
+          <p class="admin-manage-copy">Gère les Patch Notes, ajouts, variantes et corrections publiés. Les changements sont ajoutés au brouillon avant publication.</p>
+          <div class="admin-content-manager" id="adminContentManager"></div>
+        </section>
         <section class="admin-publish-bar"><div><span>Brouillon global</span><strong id="adminDraftStatus">Aucune modification</strong></div><button id="adminPreviewBtn" type="button">Aperçu local</button><button class="feature-primary" id="adminPublishBtn" type="button">Publier sur Sprite Locker</button></section>
         <div class="admin-history" id="adminHistory"></div>
       </div>
@@ -5658,7 +5960,11 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5.5h6a3 3 0 0 1 3 3v10H7a3 3 0 0 0-3 3z"></path><path d="M20 5.5h-4a3 3 0 0 0-3 3v10h4a3 3 0 0 1 3 3z"></path></svg>
       <span>Guide</span>
     </a>
-    <a class="mobile-dock-item" href="#community" data-page-target="community">
+    <a class="mobile-dock-item" href="#community/feed" data-page-target="community/feed">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h14v16H5z"></path><path d="M8 8h8M8 12h8M8 16h5"></path></svg>
+      <span>Fil public</span>
+    </a>
+    <a class="mobile-dock-item" href="#community/members" data-page-target="community/members">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M2.5 20a5.5 5.5 0 0 1 11 0M13 20a4 4 0 0 1 8 0"></path></svg>
       <span>Communauté</span>
     </a>
@@ -5666,7 +5972,41 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21a7.5 7.5 0 0 1 15 0"></path></svg>
       <span>Profil</span>
     </a>
+    <a class="mobile-dock-item" href="#settings" data-page-target="settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .4 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.4 1.7 1.7 0 0 0-1 1.6v.1h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.4l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .4-1.9 1.7 1.7 0 0 0-1.6-1H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.4-1.9L4.2 7l2.9-2.8.1.1a1.7 1.7 0 0 0 1.9.4 1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.4l.1-.1L19.9 7l-.1.1a1.7 1.7 0 0 0-.4 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
+      <span>Réglages</span>
+    </a>
+    <a class="mobile-dock-item" href="#patch-notes" data-page-target="patch-notes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M14 3v5h5M9 12h7M9 16h7"></path></svg>
+      <span>Patch Notes</span>
+    </a>
+    <a class="mobile-dock-item" href="#admin" data-page-target="admin" data-admin-link hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 4.5 6v5c0 5 3.2 8.4 7.5 10 4.3-1.6 7.5-5 7.5-10V6z"></path><path d="m9 12 2 2 4-5"></path></svg>
+      <span>Admin</span>
+    </a>
   </nav>
+
+  <dialog class="social-modal" id="socialAccessDialog" aria-labelledby="socialAccessTitle">
+    <div class="social-modal-icon" aria-hidden="true">🔒</div>
+    <h2 id="socialAccessTitle">Profil public requis</h2>
+    <p id="socialAccessCopy">Rends volontairement ton profil public pour utiliser les fonctions sociales de Sprite Locker.</p>
+    <div class="social-modal-actions"><button type="button" data-social-modal-close>Plus tard</button><button class="is-primary" type="button" data-page-target="profile">Gérer mon profil</button></div>
+  </dialog>
+
+  <dialog class="social-modal moderation-modal" id="memberModerationDialog" aria-labelledby="memberModerationTitle">
+    <header><span class="social-avatar" id="moderationAvatar">SL</span><div><small>Modération du membre</small><h2 id="memberModerationTitle">Membre</h2><p id="moderationHandle">@profil</p></div></header>
+    <div class="moderation-status" id="moderationStatus">Compte actif</div>
+    <label class="field-label">Motif de modération<textarea id="moderationReason" maxlength="300" rows="3" placeholder="Explique la raison de la mesure…"></textarea></label>
+    <div class="moderation-actions"><button type="button" data-moderation-action="hide-profile">Masquer le profil public</button><button class="is-danger" type="button" data-moderation-action="block">Bloquer les fonctions sociales</button><button class="is-success" type="button" data-moderation-action="unblock">Réactiver le membre</button></div>
+    <button class="social-modal-close" type="button" data-moderation-action="close">Fermer</button>
+  </dialog>
+
+  <dialog class="social-modal content-editor-modal" id="socialContentEditor" aria-labelledby="socialContentEditorTitle">
+    <h2 id="socialContentEditorTitle">Modifier le contenu</h2>
+    <label class="field-label" id="socialEditorTitleField">Titre<input id="socialEditorTitle" type="text" maxlength="120"></label>
+    <label class="field-label">Contenu<textarea id="socialEditorBody" maxlength="1800" rows="7" required></textarea></label>
+    <div class="social-modal-actions"><button type="button" data-editor-action="close">Annuler</button><button class="is-primary" type="button" data-editor-action="save">Enregistrer</button></div>
+  </dialog>
 
   <button class="top-btn" id="topBtn" type="button" aria-label="Revenir en haut">↑</button>
 
@@ -6753,11 +7093,12 @@
         if (quickLinks[1]) quickLinks[1].textContent = t("catalogNav");
         if (quickLinks[2]) quickLinks[2].textContent = t("inventoryNav");
         if (quickLinks[3]) quickLinks[3].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
-        if (quickLinks[4]) quickLinks[4].textContent = APP_LANGUAGE === "fr" ? "Communauté" : "Community";
-        if (quickLinks[5]) quickLinks[5].textContent = APP_LANGUAGE === "fr" ? "Profil" : "Profile";
-        if (quickLinks[6]) quickLinks[6].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
-        if (quickLinks[7]) quickLinks[7].textContent = t("patchNotesNav");
-        if (quickLinks[8]) quickLinks[8].textContent = "Admin";
+        if (quickLinks[4]) quickLinks[4].textContent = APP_LANGUAGE === "fr" ? "Fil public" : "Public feed";
+        if (quickLinks[5]) quickLinks[5].textContent = APP_LANGUAGE === "fr" ? "Communauté" : "Community";
+        if (quickLinks[6]) quickLinks[6].textContent = APP_LANGUAGE === "fr" ? "Profil" : "Profile";
+        if (quickLinks[7]) quickLinks[7].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
+        if (quickLinks[8]) quickLinks[8].textContent = t("patchNotesNav");
+        if (quickLinks[9]) quickLinks[9].textContent = "Admin";
         const heroTitle = document.querySelector(".hero-text h1");
         if (heroTitle) heroTitle.innerHTML = t("heroTitleHtml");
 
@@ -6833,8 +7174,12 @@
         if (mobileLabels[1]) mobileLabels[1].textContent = t("catalogNav");
         if (mobileLabels[2]) mobileLabels[2].textContent = t("inventoryNav");
         if (mobileLabels[3]) mobileLabels[3].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
-        if (mobileLabels[4]) mobileLabels[4].textContent = APP_LANGUAGE === "fr" ? "Communauté" : "Community";
-        if (mobileLabels[5]) mobileLabels[5].textContent = APP_LANGUAGE === "fr" ? "Profil" : "Profile";
+        if (mobileLabels[4]) mobileLabels[4].textContent = APP_LANGUAGE === "fr" ? "Fil public" : "Public feed";
+        if (mobileLabels[5]) mobileLabels[5].textContent = APP_LANGUAGE === "fr" ? "Communauté" : "Community";
+        if (mobileLabels[6]) mobileLabels[6].textContent = APP_LANGUAGE === "fr" ? "Profil" : "Profile";
+        if (mobileLabels[7]) mobileLabels[7].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
+        if (mobileLabels[8]) mobileLabels[8].textContent = t("patchNotesNav");
+        if (mobileLabels[9]) mobileLabels[9].textContent = "Admin";
         setAttribute("#topBtn", "aria-label", "backToTop");
 
         setText("#patchKicker", "patchKicker");
@@ -7039,6 +7384,10 @@
       function showPage(page, { updateHash = true } = {}) {
         const requestedRoute = String(page || "home").replace(/^#/, "");
         activePage = normalizedPage(requestedRoute);
+        const requestedCommunityTab = requestedRoute.split("/")[1];
+        if (activePage === "community" && ["feed", "members", "requests", "friends", "messages"].includes(requestedCommunityTab)) {
+          activeCommunityTab = requestedCommunityTab;
+        }
         requestedPublicHandle = activePage === "profile" && requestedRoute.includes("/")
           ? sanitizeHandle(requestedRoute.split("/").slice(1).join("/"))
           : "";
@@ -7059,10 +7408,19 @@
         document.getElementById("profilePage").classList.toggle("is-active", profileVisible);
         document.getElementById("settingsPage").classList.toggle("is-active", settingsVisible);
         document.getElementById("adminPage").classList.toggle("is-active", adminVisible);
+        const primaryNavigationTarget = activePage === "community"
+          ? (activeCommunityTab === "feed" ? "community/feed" : "community/members")
+          : activePage;
         document.querySelectorAll("[data-page-target]").forEach(link => {
-          if (link.dataset.pageTarget === activePage) link.setAttribute("aria-current", "page");
+          if (link.dataset.pageTarget === primaryNavigationTarget) link.setAttribute("aria-current", "page");
           else link.removeAttribute("aria-current");
         });
+        const mobileDock = document.querySelector(".mobile-dock");
+        const activeMobileLink = mobileDock?.querySelector(`[data-page-target="${primaryNavigationTarget}"]`);
+        if (mobileDock && activeMobileLink && typeof mobileDock.scrollTo === "function" && window.innerWidth <= 700) {
+          const targetLeft = activeMobileLink.offsetLeft - (mobileDock.clientWidth - activeMobileLink.offsetWidth) / 2;
+          mobileDock.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+        }
 
         statusFilter = activePage === "inventory" ? "owned" : "all";
         document.querySelectorAll("[data-status]").forEach(button => {
@@ -7091,9 +7449,63 @@
           updateStats();
         }
 
-        const nextHash = `#${profileVisible && requestedPublicHandle ? `profile/${requestedPublicHandle}` : activePage}`;
+        const nextRoute = profileVisible && requestedPublicHandle
+          ? `profile/${requestedPublicHandle}`
+          : (communityVisible ? `community/${activeCommunityTab}` : activePage);
+        const nextHash = `#${nextRoute}`;
         if (updateHash && location.hash !== nextHash) history.pushState({ page: activePage }, "", nextHash);
         if (typeof window.scrollTo === "function") window.scrollTo({ top: 0, behavior: "auto" });
+      }
+
+      function setupMobileDockSwipe() {
+        const dock = document.querySelector(".mobile-dock");
+        if (!dock || dock.dataset.swipeReady === "true") return;
+        dock.dataset.swipeReady = "true";
+        let startX = 0;
+        let startY = 0;
+        let startScrollLeft = 0;
+        let tracking = false;
+        let suppressClick = false;
+
+        dock.addEventListener("touchstart", event => {
+          if (event.touches.length !== 1) return;
+          const touch = event.touches[0];
+          startX = touch.clientX;
+          startY = touch.clientY;
+          startScrollLeft = dock.scrollLeft;
+          tracking = true;
+          suppressClick = false;
+        }, { passive: true });
+
+        dock.addEventListener("touchmove", event => {
+          if (!tracking || event.touches.length !== 1) return;
+          const touch = event.touches[0];
+          const deltaX = startX - touch.clientX;
+          const deltaY = startY - touch.clientY;
+          if (Math.abs(deltaX) <= Math.abs(deltaY) || Math.abs(deltaX) < 3) return;
+          event.preventDefault();
+          suppressClick = true;
+          dock.classList.add("is-dragging");
+          dock.scrollLeft = startScrollLeft + deltaX;
+        }, { passive: false });
+
+        const endTouch = () => {
+          tracking = false;
+          dock.classList.remove("is-dragging");
+          setTimeout(() => { suppressClick = false; }, 160);
+        };
+        dock.addEventListener("touchend", endTouch, { passive: true });
+        dock.addEventListener("touchcancel", endTouch, { passive: true });
+        dock.addEventListener("click", event => {
+          if (!suppressClick) return;
+          event.preventDefault();
+          event.stopPropagation();
+        }, true);
+        dock.addEventListener("wheel", event => {
+          if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+          event.preventDefault();
+          dock.scrollLeft += event.deltaY;
+        }, { passive: false });
       }
 
       function getVisibleSprites() {
@@ -7749,6 +8161,8 @@
         setSyncStatus("loading", t("firebaseConnecting"));
         await synchronizeCloud({ pull: true });
         await enforceDefaultProfilePrivacy();
+        startModerationListener();
+        await syncMemberDirectoryRecord();
         await checkAdminAccess(firebaseUser);
         if (sequence === authSequence && firebaseUser && firebaseUser.uid === user.uid) {
           startCloudListener();
@@ -8050,17 +8464,28 @@
       let adminContent = loadAdminContent();
       let adminDraft = loadAdminDraft();
       let adminDraftDirty = false;
-      let activeCommunityTab = "members";
+      let activeCommunityTab = "feed";
       let communitySearchTerm = "";
       let publicMembers = [];
+      let adminMembers = [];
       let outgoingFriendRequests = [];
       let incomingFriendRequests = [];
+      let communityPosts = [];
+      let activeModeration = { blocked: false, reason: "" };
+      let moderationTargetUid = "";
+      let socialEditorContext = null;
       let activeConversationId = "";
       let activeChatMessages = [];
       let communityProfilesUnsubscribe = null;
+      let communityPostsUnsubscribe = null;
+      let adminMembersUnsubscribe = null;
+      let moderationUnsubscribe = null;
       let outgoingRequestsUnsubscribe = null;
       let incomingRequestsUnsubscribe = null;
       let activeChatUnsubscribe = null;
+      const postComments = new Map();
+      const postReactions = new Map();
+      const postChildUnsubscribes = new Map();
 
       function sanitizeHandle(value) {
         return normalizedText(String(value || ""))
@@ -8319,6 +8744,12 @@
 
       async function publishProfile() {
         const oldHandle = profileSettings.handle;
+        const requestedPrivateState = document.getElementById("profilePrivate").checked;
+        if (activeModeration.blocked && !requestedPrivateState) {
+          showSocialAccessWarning("rendre ton profil public");
+          document.getElementById("profilePrivate").checked = true;
+          return;
+        }
         const pseudo = document.getElementById("profilePseudo").value.trim() || "Collectionneur";
         const handle = sanitizeHandle(document.getElementById("profileHandle").value) || "sprite-player";
         const favoriteSprites = [...document.querySelectorAll("[data-favorite-slot]")].map(select => select.value).filter(Boolean).slice(0, 4);
@@ -8326,7 +8757,7 @@
           ...profileSettings,
           pseudo,
           handle,
-          private: document.getElementById("profilePrivate").checked,
+          private: requestedPrivateState,
           privacyChoiceMade: true,
           favoriteSprites,
           avatar: firebaseUser && firebaseUser.photoURL || profileSettings.avatar,
@@ -8351,12 +8782,18 @@
         };
         try {
           await firebaseSdk.setDoc(cloudDocumentReference(), { profile: profileSettings }, { merge: true });
-          if (oldHandle && oldHandle !== handle && firebaseSdk.deleteDoc) {
-            await firebaseSdk.deleteDoc(firebaseSdk.doc(firebaseDb, "spriteLockerProfiles", oldHandle)).catch(() => {});
+          let previousPublishedHandle = oldHandle;
+          try {
+            const memberSnapshot = await firebaseSdk.getDoc(firebaseSdk.doc(firebaseDb, "spriteLockerMembers", firebaseUser.uid));
+            if (memberSnapshot.exists()) previousPublishedHandle = sanitizeHandle(memberSnapshot.data().handle) || previousPublishedHandle;
+          } catch (_) {}
+          if (previousPublishedHandle && previousPublishedHandle !== handle && firebaseSdk.deleteDoc) {
+            await firebaseSdk.deleteDoc(firebaseSdk.doc(firebaseDb, "spriteLockerProfiles", previousPublishedHandle)).catch(() => {});
           }
           const publicRef = firebaseSdk.doc(firebaseDb, "spriteLockerProfiles", handle);
           if (profileSettings.private) await firebaseSdk.deleteDoc(publicRef).catch(() => {});
           else await firebaseSdk.setDoc(publicRef, publicPayload);
+          await syncMemberDirectoryRecord();
           restartCommunityProfilesListener();
           renderCommunityPage();
           showToast(profileSettings.private ? "Profil rendu privé" : "Profil public publié");
@@ -8416,6 +8853,60 @@
         };
       }
 
+      function socialProfileIsPublic() {
+        return Boolean(firebaseUser && profileSettings.privacyChoiceMade && !profileSettings.private && !activeModeration.blocked);
+      }
+
+      function showSocialAccessWarning(action = "utiliser cette fonction") {
+        const dialog = document.getElementById("socialAccessDialog");
+        const copy = document.getElementById("socialAccessCopy");
+        if (activeModeration.blocked) {
+          copy.textContent = `Tes fonctions sociales ont été suspendues par la modération${activeModeration.reason ? ` : ${activeModeration.reason}` : "."}`;
+        } else {
+          copy.textContent = `Pour ${action}, ton profil doit d’abord être volontairement rendu public. Cette protection évite qu’un profil privé publie ou contacte d’autres membres par erreur.`;
+        }
+        if (!dialog.open) dialog.showModal();
+      }
+
+      async function ensurePublicSocialAccess(action) {
+        if (!await requireSocialAccount()) return false;
+        if (!socialProfileIsPublic()) {
+          showSocialAccessWarning(action);
+          return false;
+        }
+        return true;
+      }
+
+      async function syncMemberDirectoryRecord() {
+        if (!firebaseUser || !firebaseSdk || !firebaseDb) return;
+        const stats = currentCollectionStats();
+        try {
+          await firebaseSdk.setDoc(firebaseSdk.doc(firebaseDb, "spriteLockerMembers", firebaseUser.uid), {
+            uid: firebaseUser.uid,
+            pseudo: profileSettings.pseudo,
+            handle: profileSettings.handle,
+            avatar: String(profileSettings.avatar || firebaseUser.photoURL || "").slice(0, 600),
+            private: Boolean(profileSettings.private || !profileSettings.privacyChoiceMade),
+            privacyChoiceMade: Boolean(profileSettings.privacyChoiceMade),
+            stats,
+            updatedAt: firebaseSdk.serverTimestamp(),
+            updatedAtMs: Date.now()
+          }, { merge: true });
+        } catch (_) {}
+      }
+
+      function startModerationListener() {
+        if (moderationUnsubscribe) moderationUnsubscribe();
+        moderationUnsubscribe = null;
+        activeModeration = { blocked: false, reason: "" };
+        if (!firebaseUser || !firebaseSdk || !firebaseDb) return;
+        moderationUnsubscribe = firebaseSdk.onSnapshot(firebaseSdk.doc(firebaseDb, "spriteLockerModeration", firebaseUser.uid), snapshot => {
+          const value = snapshot.exists() ? snapshot.data() : {};
+          activeModeration = { blocked: value.blocked === true, reason: String(value.reason || "") };
+          renderCommunityPage();
+        }, () => { activeModeration = { blocked: false, reason: "" }; });
+      }
+
       function normalizeFriendRequestSnapshot(snapshot) {
         const value = snapshot.data() || {};
         return {
@@ -8467,6 +8958,7 @@
       function memberActionMarkup(member) {
         if (!firebaseUser) return `<button class="social-button is-primary" type="button" data-social-action="connect">Se connecter</button>`;
         if (member.ownerUid === firebaseUser.uid) return `<button class="social-button" type="button" disabled>C’est toi</button>`;
+        if (member.private) return `<button class="social-button" type="button" disabled>Profil privé</button>`;
         const relation = relationForMember(member.ownerUid);
         if (!relation) return `<button class="social-button is-primary" type="button" data-social-action="add" data-member-uid="${esc(member.ownerUid)}">Ajouter en ami</button>`;
         if (relation.status === "accepted") return `<button class="social-button is-success" type="button" data-social-action="message" data-request-id="${esc(relation.id)}">Message</button>`;
@@ -8478,15 +8970,100 @@
         const grid = document.getElementById("communityMemberGrid");
         if (!grid) return;
         const queryText = normalizedText(communitySearchTerm.trim());
-        const members = publicMembers.filter(member => !queryText || normalizedText(`${member.pseudo} ${member.handle}`).includes(queryText));
+        const visibleSource = adminAccess ? adminMembers : publicMembers;
+        const members = visibleSource.filter(member => !queryText || normalizedText(`${member.pseudo} ${member.handle}`).includes(queryText));
+        document.getElementById("adminDirectoryBadge").hidden = !adminAccess;
         grid.innerHTML = members.length ? members.map(member => {
           const stats = member.stats || {};
-          return `<article class="member-card">
-            <div class="member-card-head"><span class="social-avatar">${socialAvatarInner(member)}</span><div><h2>${esc(member.pseudo)}</h2><p>@${esc(member.handle)}</p></div><div class="member-percent"><strong>${Math.max(0, Number(stats.percent) || 0)}%</strong><span>collection</span></div></div>
+          const isPrivate = Boolean(member.private || !member.privacyChoiceMade);
+          const memberName = adminAccess
+            ? `<button class="member-name-button" type="button" data-social-action="moderate-member" data-member-uid="${esc(member.ownerUid)}"><h2>${esc(member.pseudo)}</h2></button>`
+            : `<h2>${esc(member.pseudo)}</h2>`;
+          const profileAction = isPrivate ? `<button class="social-button" type="button" disabled>Profil non public</button>` : `<button class="social-button" type="button" data-social-action="open-member-profile" data-member-handle="${esc(member.handle)}">Voir le profil</button>`;
+          const adminAction = adminAccess ? `<button class="social-button admin-moderate-button" type="button" data-social-action="moderate-member" data-member-uid="${esc(member.ownerUid)}">Modérer</button>` : "";
+          return `<article class="member-card${adminAccess ? " admin-member-card" : ""}">
+            <div class="member-card-head"><span class="social-avatar">${socialAvatarInner(member)}</span><div>${memberName}<p>@${esc(member.handle)}</p><span class="member-privacy-state${isPrivate ? " is-private" : ""}">${isPrivate ? "Privé" : "Public"}</span></div><div class="member-percent"><strong>${Math.max(0, Number(stats.percent) || 0)}%</strong><span>collection</span></div></div>
             <div class="member-stats"><span>Possédés <strong>${Math.max(0, Number(stats.owned) || 0)}</strong></span><span>Maîtrisés <strong>${Math.max(0, Number(stats.mastered) || 0)}</strong></span></div>
-            <div class="member-actions"><a href="#profile/${esc(member.handle)}">Voir le profil</a>${memberActionMarkup(member)}</div>
+            <div class="member-actions${adminAccess ? " has-admin-action" : ""}">${profileAction}${memberActionMarkup({ ...member, private: isPrivate })}${adminAction}</div>
           </article>`;
-        }).join("") : communityEmpty("◉", queryText ? "Aucun membre trouvé" : "Aucun profil public", queryText ? "Essaie un autre pseudo ou identifiant." : "Les profils apparaîtront ici dès que leurs propriétaires les rendront publics.");
+        }).join("") : communityEmpty("◉", queryText ? "Aucun membre trouvé" : (adminAccess ? "Aucun membre enregistré" : "Aucun profil public"), queryText ? "Essaie un autre pseudo ou identifiant." : "Les membres apparaîtront ici après leur prochaine connexion.");
+      }
+
+      function relativeSocialTime(timestamp) {
+        const difference = Math.max(0, Date.now() - Math.max(0, Number(timestamp) || 0));
+        if (difference < 60000) return "À l’instant";
+        if (difference < 3600000) return `Il y a ${Math.floor(difference / 60000)} min`;
+        if (difference < 86400000) return `Il y a ${Math.floor(difference / 3600000)} h`;
+        if (difference < 604800000) return `Il y a ${Math.floor(difference / 86400000)} j`;
+        return new Date(timestamp).toLocaleDateString(APP_LOCALE, { day: "numeric", month: "short", year: "numeric" });
+      }
+
+      function normalizePostSnapshot(snapshot) {
+        const value = snapshot.data() || {};
+        return { id: snapshot.id, authorUid: String(value.authorUid || ""), authorProfile: normalizeSocialProfile(value.authorProfile || {}), body: String(value.body || "").slice(0, 1500), createdAtMs: Math.max(0, Number(value.createdAtMs) || 0), updatedAtMs: Math.max(0, Number(value.updatedAtMs) || 0) };
+      }
+
+      function renderCommunityFeed() {
+        const feed = document.getElementById("communityFeed");
+        if (!feed) return;
+        feed.innerHTML = communityPosts.length ? communityPosts.map(post => {
+          const reactions = postReactions.get(post.id) || [];
+          const comments = postComments.get(post.id) || [];
+          const mine = reactions.find(reaction => reaction.userUid === firebaseUser?.uid);
+          const counts = reactions.reduce((result, reaction) => { result[reaction.type] = (result[reaction.type] || 0) + 1; return result; }, { like: 0, love: 0, fire: 0 });
+          const canManage = adminAccess || post.authorUid === firebaseUser?.uid;
+          const authorHandle = sanitizeHandle(post.authorProfile.handle);
+          const commentsMarkup = comments.map(comment => {
+            const canManageComment = adminAccess || comment.authorUid === firebaseUser?.uid;
+            return `<article class="social-comment"><span class="social-avatar">${socialAvatarInner(comment.authorProfile)}</span><div class="comment-bubble"><strong>${esc(comment.authorProfile.pseudo)}</strong><p>${esc(comment.body)}</p></div>${canManageComment ? `<div class="comment-tools"><button type="button" data-social-action="edit-comment" data-post-id="${esc(post.id)}" data-comment-id="${esc(comment.id)}" title="Modifier">✎</button><button class="is-danger" type="button" data-social-action="delete-comment" data-post-id="${esc(post.id)}" data-comment-id="${esc(comment.id)}" title="Supprimer">×</button></div>` : ""}</article>`;
+          }).join("");
+          return `<article class="social-post" data-post-id="${esc(post.id)}">
+            <header class="social-post-head"><span class="social-avatar">${socialAvatarInner(post.authorProfile)}</span><div class="social-post-author"><button type="button" data-social-action="open-member-profile" data-member-handle="${esc(authorHandle)}">${esc(post.authorProfile.pseudo)}</button><span>@${esc(authorHandle)} · ${esc(relativeSocialTime(post.createdAtMs))}${post.updatedAtMs > post.createdAtMs ? " · modifié" : ""}</span></div>${canManage ? `<div class="post-owner-actions"><button type="button" data-social-action="edit-post" data-post-id="${esc(post.id)}" title="Modifier">✎</button><button class="is-danger" type="button" data-social-action="delete-post" data-post-id="${esc(post.id)}" title="Supprimer">×</button></div>` : ""}</header>
+            <p class="social-post-body">${esc(post.body)}</p>
+            <div class="social-post-meta"><span class="reaction-summary">${reactions.length ? `<i>👍</i><i>❤</i><i>🔥</i><span>${reactions.length} réaction${reactions.length > 1 ? "s" : ""}</span>` : "Aucune réaction"}</span><span>${comments.length} commentaire${comments.length > 1 ? "s" : ""}</span></div>
+            <div class="social-post-actions"><button type="button" data-social-action="react" data-reaction="like" data-post-id="${esc(post.id)}" aria-pressed="${mine?.type === "like"}">👍 <span>J’aime</span>${counts.like ? ` ${counts.like}` : ""}</button><button type="button" data-social-action="react" data-reaction="love" data-post-id="${esc(post.id)}" aria-pressed="${mine?.type === "love"}">❤ <span>J’adore</span>${counts.love ? ` ${counts.love}` : ""}</button><button type="button" data-social-action="react" data-reaction="fire" data-post-id="${esc(post.id)}" aria-pressed="${mine?.type === "fire"}">🔥 <span>Incroyable</span>${counts.fire ? ` ${counts.fire}` : ""}</button><button type="button" data-social-action="focus-comment" data-post-id="${esc(post.id)}">💬 <span>Commenter</span></button></div>
+            <div class="social-comments">${commentsMarkup}<form class="comment-composer" data-comment-form data-post-id="${esc(post.id)}"><span class="social-avatar">${socialAvatarInner(profileSettings)}</span><input type="text" maxlength="700" placeholder="Écrire un commentaire…" required><button type="submit">Répondre</button></form></div>
+          </article>`;
+        }).join("") : communityEmpty("⌂", "Le fil est encore vide", "Sois le premier membre public à lancer une discussion.");
+      }
+
+      function stopPostChildListeners() {
+        postChildUnsubscribes.forEach(unsubscribes => unsubscribes.forEach(unsubscribe => { if (typeof unsubscribe === "function") unsubscribe(); }));
+        postChildUnsubscribes.clear();
+        postComments.clear();
+        postReactions.clear();
+      }
+
+      function syncPostChildListeners() {
+        const activeIds = new Set(communityPosts.map(post => post.id));
+        [...postChildUnsubscribes.keys()].filter(id => !activeIds.has(id)).forEach(id => {
+          postChildUnsubscribes.get(id).forEach(unsubscribe => unsubscribe());
+          postChildUnsubscribes.delete(id); postComments.delete(id); postReactions.delete(id);
+        });
+        communityPosts.forEach(post => {
+          if (postChildUnsubscribes.has(post.id)) return;
+          const commentsQuery = firebaseSdk.query(firebaseSdk.collection(firebaseDb, "spriteLockerPosts", post.id, "comments"), firebaseSdk.orderBy("createdAtMs", "asc"), firebaseSdk.limit(100));
+          const commentsUnsubscribe = firebaseSdk.onSnapshot(commentsQuery, snapshot => {
+            postComments.set(post.id, snapshot.docs.map(commentDoc => { const value = commentDoc.data() || {}; return { id: commentDoc.id, authorUid: String(value.authorUid || ""), authorProfile: normalizeSocialProfile(value.authorProfile || {}), body: String(value.body || "").slice(0, 700), createdAtMs: Math.max(0, Number(value.createdAtMs) || 0), updatedAtMs: Math.max(0, Number(value.updatedAtMs) || 0) }; })); renderCommunityFeed();
+          }, () => {});
+          const reactionsUnsubscribe = firebaseSdk.onSnapshot(firebaseSdk.collection(firebaseDb, "spriteLockerPosts", post.id, "reactions"), snapshot => {
+            postReactions.set(post.id, snapshot.docs.map(reactionDoc => ({ id: reactionDoc.id, ...reactionDoc.data() }))); renderCommunityFeed();
+          }, () => {});
+          postChildUnsubscribes.set(post.id, [commentsUnsubscribe, reactionsUnsubscribe]);
+        });
+      }
+
+      function startCommunityPostsListener() {
+        if (communityPostsUnsubscribe) communityPostsUnsubscribe();
+        communityPostsUnsubscribe = null;
+        stopPostChildListeners();
+        if (!firebaseSdk || !firebaseDb) return;
+        const postsQuery = firebaseSdk.query(firebaseSdk.collection(firebaseDb, "spriteLockerPosts"), firebaseSdk.orderBy("createdAtMs", "desc"), firebaseSdk.limit(30));
+        communityPostsUnsubscribe = firebaseSdk.onSnapshot(postsQuery, snapshot => {
+          communityPosts = snapshot.docs.map(normalizePostSnapshot);
+          syncPostChildListeners();
+          renderCommunityPage();
+        }, () => { communityPosts = []; renderCommunityFeed(); });
       }
 
       function requestRowMarkup(request, incoming) {
@@ -8553,24 +9130,58 @@
       }
 
       function activateCommunityTab(tab) {
-        activeCommunityTab = ["members", "requests", "friends", "messages"].includes(tab) ? tab : "members";
+        activeCommunityTab = ["feed", "members", "requests", "friends", "messages"].includes(tab) ? tab : "feed";
         document.querySelectorAll("[data-community-tab]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.communityTab === activeCommunityTab)));
         document.querySelectorAll("[data-community-panel]").forEach(panel => {
           const active = panel.dataset.communityPanel === activeCommunityTab;
           panel.classList.toggle("is-active", active);
           panel.hidden = !active;
         });
+        const sections = {
+          feed: ["Communauté", "Fil public", "Les dernières publications de la communauté Sprite Locker."],
+          members: ["Annuaire", adminAccess ? "Tous les membres" : "Membres publics", adminAccess ? "Recherche et modération des profils publics et privés." : "Découvre les collectionneurs qui ont choisi un profil public."],
+          requests: ["Relations", "Demandes d’ami", "Accepte, refuse ou annule une demande en attente."],
+          friends: ["Relations", "Mes amis", "Retrouve les membres avec lesquels tu peux discuter."],
+          messages: ["Messagerie privée", "Conversations", "Un espace privé inspiré de Messenger, réservé aux amis acceptés."]
+        };
+        const copy = sections[activeCommunityTab];
+        document.getElementById("communitySectionKicker").textContent = copy[0];
+        document.getElementById("communitySectionTitle").textContent = copy[1];
+        document.getElementById("communitySectionCopy").textContent = copy[2];
+        if (activePage === "community") {
+          const primaryNavigationTarget = activeCommunityTab === "feed" ? "community/feed" : "community/members";
+          document.querySelectorAll("[data-page-target]").forEach(link => {
+            if (link.dataset.pageTarget === primaryNavigationTarget) link.setAttribute("aria-current", "page");
+            else link.removeAttribute("aria-current");
+          });
+          const routeHash = `#community/${activeCommunityTab}`;
+          if (location.hash !== routeHash) history.replaceState({ page: "community" }, "", routeHash);
+        }
       }
 
       function renderCommunityPage() {
         if (!document.getElementById("communityPage")) return;
         const connected = Boolean(firebaseUser);
         document.getElementById("communityAuthNotice").hidden = connected;
-        document.getElementById("communityPrivacyNotice").hidden = !connected || (!profileSettings.private && profileSettings.privacyChoiceMade);
-        document.getElementById("communityMemberCount").textContent = String(publicMembers.length);
+        document.getElementById("communityPrivacyNotice").hidden = !connected || socialProfileIsPublic();
+        const privacyNotice = document.getElementById("communityPrivacyNotice");
+        if (connected && activeModeration.blocked) {
+          privacyNotice.querySelector("strong").textContent = "Fonctions sociales suspendues";
+          privacyNotice.querySelector("p").textContent = activeModeration.reason ? `Motif : ${activeModeration.reason}` : "Un administrateur a suspendu tes fonctions sociales.";
+        } else {
+          privacyNotice.querySelector("strong").textContent = "Fonctions sociales verrouillées";
+          privacyNotice.querySelector("p").textContent = "Ton profil est privé. Tu peux consulter le fil, mais tu dois le rendre public pour publier, commenter, réagir, ajouter des amis ou envoyer des messages.";
+        }
+        document.getElementById("communityPostCount").textContent = String(communityPosts.length);
+        document.getElementById("communityMemberCount").textContent = String(adminAccess ? adminMembers.length : publicMembers.length);
         document.getElementById("communityRequestCount").textContent = String(incomingFriendRequests.filter(request => request.status === "pending").length);
         document.getElementById("communityFriendCount").textContent = String(acceptedFriendships().length);
+        const selfCard = document.getElementById("socialSelfCard");
+        selfCard.innerHTML = connected ? `<span class="social-avatar">${socialAvatarInner(profileSettings)}</span><div><strong>${esc(profileSettings.pseudo)}</strong><small>${socialProfileIsPublic() ? "Profil public · fonctions actives" : (activeModeration.blocked ? "Compte social suspendu" : "Profil privé · lecture seule")}</small></div>` : `<span class="social-avatar">SL</span><div><strong>Mode visiteur</strong><small>Lecture uniquement</small></div>`;
+        document.getElementById("postComposerAvatar").innerHTML = socialAvatarInner(profileSettings);
+        document.getElementById("postComposer").classList.toggle("is-locked", connected && !socialProfileIsPublic());
         activateCommunityTab(activeCommunityTab);
+        renderCommunityFeed();
         renderMemberDirectory();
         renderFriendRequests();
         renderFriends();
@@ -8601,9 +9212,30 @@
         });
       }
 
+      function restartAdminMembersListener() {
+        if (adminMembersUnsubscribe) adminMembersUnsubscribe();
+        adminMembersUnsubscribe = null;
+        adminMembers = [];
+        if (!adminAccess || !firebaseSdk || !firebaseDb) {
+          renderCommunityPage();
+          return;
+        }
+        adminMembersUnsubscribe = firebaseSdk.onSnapshot(firebaseSdk.query(firebaseSdk.collection(firebaseDb, "spriteLockerMembers"), firebaseSdk.orderBy("updatedAtMs", "desc"), firebaseSdk.limit(500)), snapshot => {
+          adminMembers = snapshot.docs.map(memberDoc => {
+            const value = memberDoc.data() || {};
+            return { ...normalizeSocialProfile({ ...value, ownerUid: value.uid || memberDoc.id }), ownerUid: String(value.uid || memberDoc.id), uid: String(value.uid || memberDoc.id), private: value.private !== false, privacyChoiceMade: value.privacyChoiceMade === true };
+          }).sort((a, b) => a.pseudo.localeCompare(b.pseudo, APP_LOCALE));
+          renderCommunityPage();
+        }, () => { adminMembers = []; renderCommunityPage(); });
+      }
+
       function stopSocialListeners() {
-        [communityProfilesUnsubscribe, outgoingRequestsUnsubscribe, incomingRequestsUnsubscribe, activeChatUnsubscribe].forEach(unsubscribe => { if (typeof unsubscribe === "function") unsubscribe(); });
+        [communityProfilesUnsubscribe, communityPostsUnsubscribe, adminMembersUnsubscribe, moderationUnsubscribe, outgoingRequestsUnsubscribe, incomingRequestsUnsubscribe, activeChatUnsubscribe].forEach(unsubscribe => { if (typeof unsubscribe === "function") unsubscribe(); });
+        stopPostChildListeners();
         communityProfilesUnsubscribe = null;
+        communityPostsUnsubscribe = null;
+        adminMembersUnsubscribe = null;
+        moderationUnsubscribe = null;
         outgoingRequestsUnsubscribe = null;
         incomingRequestsUnsubscribe = null;
         activeChatUnsubscribe = null;
@@ -8611,11 +9243,16 @@
         activeConversationId = "";
         outgoingFriendRequests = [];
         incomingFriendRequests = [];
+        communityPosts = [];
+        adminMembers = [];
+        activeModeration = { blocked: false, reason: "" };
       }
 
       function startSocialListeners() {
         if (!firebaseSdk || !firebaseDb) return;
         restartCommunityProfilesListener();
+        startCommunityPostsListener();
+        restartAdminMembersListener();
         if (outgoingRequestsUnsubscribe) outgoingRequestsUnsubscribe();
         if (incomingRequestsUnsubscribe) incomingRequestsUnsubscribe();
         outgoingRequestsUnsubscribe = null;
@@ -8653,12 +9290,7 @@
       }
 
       async function sendFriendRequest(memberUid) {
-        if (!await requireSocialAccount()) return;
-        if (profileSettings.private || !profileSettings.privacyChoiceMade) {
-          showToast("Rends d’abord ton profil public pour ajouter des amis");
-          showPage("profile");
-          return;
-        }
+        if (!await ensurePublicSocialAccess("ajouter un membre en ami")) return;
         const member = publicMembers.find(item => item.ownerUid === memberUid);
         if (!member || memberUid === firebaseUser.uid) return;
         if (relationForMember(memberUid)) return;
@@ -8681,7 +9313,9 @@
       }
 
       async function respondToFriendRequest(requestId, accepted) {
-        if (!await requireSocialAccount()) return;
+        if (accepted) {
+          if (!await ensurePublicSocialAccess("accepter une demande d’ami")) return;
+        } else if (!await requireSocialAccount()) return;
         const request = incomingFriendRequests.find(item => item.id === requestId && item.status === "pending");
         if (!request) return;
         try {
@@ -8712,7 +9346,8 @@
         renderChatMessages();
       }
 
-      function openConversation(requestId) {
+      async function openConversation(requestId) {
+        if (!await ensurePublicSocialAccess("ouvrir ou envoyer des messages")) return;
         const friendship = acceptedFriendships().find(item => item.request.id === requestId);
         if (!friendship || !firebaseSdk || !firebaseDb || !firebaseUser) {
           showToast("Cette conversation n’est disponible qu’entre amis");
@@ -8735,6 +9370,7 @@
       }
 
       async function sendChatMessage() {
+        if (!await ensurePublicSocialAccess("envoyer un message")) return;
         if (!firebaseUser || !activeConversationId || !firebaseSdk || !firebaseDb) return;
         const friendship = acceptedFriendships().find(item => item.request.id === activeConversationId);
         const input = document.getElementById("chatInput");
@@ -8749,6 +9385,133 @@
           input.value = text;
           showToast(friendlyFirebaseError(error));
         }
+      }
+
+      async function createCommunityPost(body) {
+        if (!await ensurePublicSocialAccess("publier sur le fil public")) return false;
+        const text = String(body || "").trim().slice(0, 1500);
+        if (!text) return false;
+        try {
+          const now = Date.now();
+          const reference = firebaseSdk.doc(firebaseSdk.collection(firebaseDb, "spriteLockerPosts"));
+          await firebaseSdk.setDoc(reference, { authorUid: firebaseUser.uid, authorProfile: socialProfileSnapshot(), body: text, status: "published", createdAt: firebaseSdk.serverTimestamp(), createdAtMs: now, updatedAt: firebaseSdk.serverTimestamp(), updatedAtMs: now });
+          showToast("Publication ajoutée au fil public");
+          return true;
+        } catch (error) { showToast(friendlyFirebaseError(error)); return false; }
+      }
+
+      async function createPostComment(postId, body) {
+        if (!await ensurePublicSocialAccess("répondre à une publication")) return false;
+        const text = String(body || "").trim().slice(0, 700);
+        if (!text || !communityPosts.some(post => post.id === postId)) return false;
+        try {
+          const now = Date.now();
+          const reference = firebaseSdk.doc(firebaseSdk.collection(firebaseDb, "spriteLockerPosts", postId, "comments"));
+          await firebaseSdk.setDoc(reference, { authorUid: firebaseUser.uid, authorProfile: socialProfileSnapshot(), body: text, createdAt: firebaseSdk.serverTimestamp(), createdAtMs: now, updatedAt: firebaseSdk.serverTimestamp(), updatedAtMs: now });
+          return true;
+        } catch (error) { showToast(friendlyFirebaseError(error)); return false; }
+      }
+
+      async function togglePostReaction(postId, type) {
+        if (!await ensurePublicSocialAccess("réagir à une publication")) return;
+        if (!["like", "love", "fire"].includes(type)) return;
+        const reference = firebaseSdk.doc(firebaseDb, "spriteLockerPosts", postId, "reactions", firebaseUser.uid);
+        try {
+          const current = await firebaseSdk.getDoc(reference);
+          if (current.exists() && current.data().type === type) await firebaseSdk.deleteDoc(reference);
+          else await firebaseSdk.setDoc(reference, { userUid: firebaseUser.uid, type, createdAt: firebaseSdk.serverTimestamp(), createdAtMs: Date.now() });
+        } catch (error) { showToast(friendlyFirebaseError(error)); }
+      }
+
+      function openSocialEditor(context, body, title = "") {
+        socialEditorContext = context;
+        const dialog = document.getElementById("socialContentEditor");
+        const titleField = document.getElementById("socialEditorTitleField");
+        const patchMode = context && (context.kind === "patch" || context.kind === "draftPatch");
+        titleField.hidden = !patchMode;
+        document.getElementById("socialEditorTitle").value = title;
+        document.getElementById("socialEditorBody").value = body;
+        document.getElementById("socialContentEditorTitle").textContent = patchMode ? "Modifier le Patch Note" : (context.kind === "comment" ? "Modifier le commentaire" : "Modifier la publication");
+        if (!dialog.open) dialog.showModal();
+      }
+
+      async function saveSocialEditor() {
+        if (!socialEditorContext || !firebaseSdk || !firebaseDb) return;
+        const body = document.getElementById("socialEditorBody").value.trim();
+        if (!body) return showToast("Le contenu ne peut pas être vide");
+        const context = socialEditorContext;
+        try {
+          if (context.kind === "post") {
+            await firebaseSdk.updateDoc(firebaseSdk.doc(firebaseDb, "spriteLockerPosts", context.postId), { body: body.slice(0, 1500), updatedAt: firebaseSdk.serverTimestamp(), updatedAtMs: Date.now() });
+          } else if (context.kind === "comment") {
+            await firebaseSdk.updateDoc(firebaseSdk.doc(firebaseDb, "spriteLockerPosts", context.postId, "comments", context.commentId), { body: body.slice(0, 700), updatedAt: firebaseSdk.serverTimestamp(), updatedAtMs: Date.now() });
+          } else if (context.kind === "patch" && adminAccess) {
+            const title = document.getElementById("socialEditorTitle").value.trim().slice(0, 100) || "Mise à jour Sprite Locker";
+            const notes = [...(adminContent.patchNotes || [])];
+            if (!notes[context.index]) return;
+            notes[context.index] = { ...notes[context.index], title, body: body.slice(0, 1800), updatedAtMs: Date.now() };
+            adminDraft = normalizeAdminContent({ ...adminContent, patchNotes: notes, updatedAtMs: Date.now() });
+            adminDraftDirty = true;
+            await publishAdminContent();
+          } else if (context.kind === "draftPatch" && adminAccess) {
+            const title = document.getElementById("socialEditorTitle").value.trim().slice(0, 100) || "Mise à jour Sprite Locker";
+            if (!adminDraft.patchNotes[context.index]) return;
+            adminDraft.patchNotes[context.index] = { ...adminDraft.patchNotes[context.index], title, body: body.slice(0, 1800), updatedAtMs: Date.now() };
+            markAdminDraft("Patch Note modifié dans le brouillon");
+          }
+          document.getElementById("socialContentEditor").close();
+          socialEditorContext = null;
+          showToast("Modification enregistrée");
+        } catch (error) { showToast(friendlyFirebaseError(error)); }
+      }
+
+      async function deleteSocialContent(kind, postId, commentId = "") {
+        if (!firebaseUser || !firebaseSdk || !firebaseDb) return;
+        if (!window.confirm("Confirmer la suppression définitive de ce contenu ?")) return;
+        try {
+          const reference = kind === "comment" ? firebaseSdk.doc(firebaseDb, "spriteLockerPosts", postId, "comments", commentId) : firebaseSdk.doc(firebaseDb, "spriteLockerPosts", postId);
+          await firebaseSdk.deleteDoc(reference);
+          showToast(kind === "comment" ? "Commentaire supprimé" : "Publication supprimée");
+        } catch (error) { showToast(friendlyFirebaseError(error)); }
+      }
+
+      async function openMemberModeration(uid) {
+        if (!adminAccess || !firebaseSdk || !firebaseDb) return;
+        const member = adminMembers.find(item => item.ownerUid === uid) || publicMembers.find(item => item.ownerUid === uid);
+        if (!member) return;
+        moderationTargetUid = uid;
+        document.getElementById("moderationAvatar").innerHTML = socialAvatarInner(member);
+        document.getElementById("memberModerationTitle").textContent = member.pseudo;
+        document.getElementById("moderationHandle").textContent = `@${member.handle} · ${member.private ? "profil privé" : "profil public"}`;
+        try {
+          const snapshot = await firebaseSdk.getDoc(firebaseSdk.doc(firebaseDb, "spriteLockerModeration", uid));
+          const value = snapshot.exists() ? snapshot.data() : {};
+          document.getElementById("moderationReason").value = String(value.reason || "");
+          const status = document.getElementById("moderationStatus");
+          status.textContent = value.blocked === true ? "Fonctions sociales suspendues" : "Compte social actif";
+          status.classList.toggle("is-blocked", value.blocked === true);
+        } catch (_) {}
+        const dialog = document.getElementById("memberModerationDialog");
+        if (!dialog.open) dialog.showModal();
+      }
+
+      async function applyMemberModeration(action) {
+        if (!adminAccess || !moderationTargetUid || !firebaseSdk || !firebaseDb) return;
+        if (action === "close") return document.getElementById("memberModerationDialog").close();
+        const member = adminMembers.find(item => item.ownerUid === moderationTargetUid) || publicMembers.find(item => item.ownerUid === moderationTargetUid);
+        if (!member) return;
+        const reason = document.getElementById("moderationReason").value.trim().slice(0, 300);
+        try {
+          if (action === "block" || action === "unblock") {
+            await firebaseSdk.setDoc(firebaseSdk.doc(firebaseDb, "spriteLockerModeration", moderationTargetUid), { blocked: action === "block", reason: action === "block" ? reason : "", updatedBy: firebaseUser.uid, updatedAt: firebaseSdk.serverTimestamp(), updatedAtMs: Date.now() });
+          }
+          if (action === "block" || action === "hide-profile") {
+            if (member.handle) await firebaseSdk.deleteDoc(firebaseSdk.doc(firebaseDb, "spriteLockerProfiles", member.handle)).catch(() => {});
+            await firebaseSdk.setDoc(firebaseSdk.doc(firebaseDb, "spriteLockerMembers", moderationTargetUid), { private: true, updatedAt: firebaseSdk.serverTimestamp(), updatedAtMs: Date.now() }, { merge: true });
+          }
+          document.getElementById("memberModerationDialog").close();
+          showToast(action === "unblock" ? "Membre réactivé" : (action === "hide-profile" ? "Profil public masqué" : "Fonctions sociales suspendues"));
+        } catch (error) { showToast(friendlyFirebaseError(error)); }
       }
 
       async function copyText(value) {
@@ -8864,10 +9627,11 @@
           feed.className = "published-patch-feed";
           document.getElementById("patchNotesPage").prepend(feed);
         }
-        feed.innerHTML = [...notes].sort((a, b) => String(b.date).localeCompare(String(a.date))).map(note => `
+        feed.innerHTML = notes.map((note, index) => ({ note, index })).sort((a, b) => String(b.note.date).localeCompare(String(a.note.date))).map(({ note, index }) => `
           <article class="patch-entry custom-patch-entry">
             <header class="patch-simple-head"><div><span class="patch-kicker">Patch Note publié</span><h1>${esc(note.title || "Mise à jour Sprite Locker")}</h1></div><time class="patch-date">${esc(new Date(note.date || Date.now()).toLocaleString(APP_LOCALE, { dateStyle: "long", timeStyle: "short" }))}</time></header>
             <section class="patch-card"><ul class="patch-list">${String(note.body || "").split(/\n+/).filter(Boolean).map(line => `<li>${esc(line)}</li>`).join("")}</ul></section>
+            ${adminAccess ? `<div class="patch-admin-actions"><button type="button" data-patch-admin-action="edit" data-patch-index="${index}"><span aria-hidden="true">✎</span>Modifier</button><button class="is-danger" type="button" data-patch-admin-action="delete" data-patch-index="${index}"><span aria-hidden="true">×</span>Supprimer</button></div>` : ""}
           </article>`).join("");
       }
 
@@ -8890,6 +9654,9 @@
       function setAdminAccess(allowed) {
         adminAccess = Boolean(allowed);
         document.querySelectorAll("[data-admin-link]").forEach(link => { link.hidden = !adminAccess; });
+        restartAdminMembersListener();
+        renderPublishedPatchNotes(adminContent.patchNotes || []);
+        renderCommunityPage();
         renderAdminAccess();
       }
 
@@ -8897,7 +9664,7 @@
         if (!user || !firebaseSdk || !firebaseDb) return setAdminAccess(false);
         try {
           const snapshot = await firebaseSdk.getDoc(firebaseSdk.doc(firebaseDb, "spriteLockerAdmins", user.uid));
-          setAdminAccess(snapshot.exists() && snapshot.data().active !== false);
+          setAdminAccess(snapshot.exists() && snapshot.data().active === true);
         } catch (_) {
           setAdminAccess(false);
         }
@@ -8972,6 +9739,57 @@
           ...(adminDraft.patchNotes || []).map(item => ({ title: item.title, type: "Patch Note" }))
         ];
         history.innerHTML = items.length ? items.slice().reverse().map(item => `<article><strong>${esc(item.title)}</strong><span>${esc(item.type)} · brouillon</span></article>`).join("") : "";
+        renderAdminContentManager();
+        renderAdminPatchQuickList();
+      }
+
+      function renderAdminContentManager() {
+        const manager = document.getElementById("adminContentManager");
+        if (!manager) return;
+        const content = adminDraft || normalizeAdminContent();
+        const group = (title, items, type) => `<section class="admin-manage-group"><h3>${esc(title)}</h3><div class="admin-manage-list">${items.length ? items.map((item, index) => {
+          const label = type === "override" ? item[0] : (item.title || item.fr || item.id || `Élément ${index + 1}`);
+          const detail = type === "patch" ? (item.date || "Date non définie") : (type === "variant" ? localizedVariant(item.variant) : type === "override" ? "Correction personnalisée" : "Contenu du catalogue");
+          const editButton = type === "patch" ? `<button type="button" data-admin-manage-action="edit" data-admin-manage-type="patch" data-admin-manage-index="${index}">Modifier</button>` : "";
+          return `<article class="admin-manage-row"><div><strong>${esc(label)}</strong><small>${esc(detail)}</small></div><div class="admin-manage-actions">${editButton}<button class="is-danger" type="button" data-admin-manage-action="delete" data-admin-manage-type="${type}" data-admin-manage-index="${index}"${type === "override" ? ` data-admin-manage-key="${esc(item[0])}"` : ""}>Supprimer</button></div></article>`;
+        }).join("") : `<div class="community-empty"><strong>Aucun contenu</strong></div>`}</div></section>`;
+        manager.innerHTML = [
+          group("Patch Notes", content.patchNotes || [], "patch"),
+          group("Esprits ajoutés", content.additions || [], "addition"),
+          group("Variantes ajoutées", content.variants || [], "variant"),
+          group("Corrections personnalisées", Object.entries(content.overrides || {}), "override")
+        ].join("");
+      }
+
+      function renderAdminPatchQuickList() {
+        const list = document.getElementById("adminPatchQuickList");
+        if (!list) return;
+        const notes = adminDraft && Array.isArray(adminDraft.patchNotes) ? adminDraft.patchNotes : [];
+        list.innerHTML = notes.length ? notes.map((note, index) => {
+          const parsedDate = new Date(note.date || note.createdAtMs || Date.now());
+          const dateLabel = Number.isNaN(parsedDate.getTime()) ? "Date non définie" : parsedDate.toLocaleString(APP_LOCALE, { dateStyle: "medium", timeStyle: "short" });
+          const published = (adminContent.patchNotes || []).some(publishedNote => publishedNote.id && publishedNote.id === note.id);
+          return `<article class="admin-patch-quick-row">
+            <div><strong>${esc(note.title || "Mise à jour Sprite Locker")}</strong><small>${esc(dateLabel)} · ${published ? "publié" : "brouillon à publier"}</small></div>
+            <div class="admin-patch-quick-actions"><button type="button" data-admin-manage-action="edit" data-admin-manage-type="patch" data-admin-manage-index="${index}"><span aria-hidden="true">✎</span>Modifier</button><button class="is-danger" type="button" data-admin-manage-action="delete" data-admin-manage-type="patch" data-admin-manage-index="${index}"><span aria-hidden="true">×</span>Supprimer</button></div>
+          </article>`;
+        }).join("") : `<div class="community-empty"><span aria-hidden="true">▤</span><strong>Aucun Patch Note</strong><p>Les Patch Notes ajoutés apparaîtront ici avec leurs boutons de gestion.</p></div>`;
+      }
+
+      function manageAdminContent(action, type, index, key) {
+        if (!adminAccess) return;
+        if (action === "edit" && type === "patch") {
+          const note = (adminDraft.patchNotes || [])[index];
+          if (note) openSocialEditor({ kind: "draftPatch", index }, note.body || "", note.title || "");
+          return;
+        }
+        if (action !== "delete" || !window.confirm("Supprimer cet élément du contenu publié ?")) return;
+        if (type === "patch") adminDraft.patchNotes.splice(index, 1);
+        if (type === "addition") adminDraft.additions.splice(index, 1);
+        if (type === "variant") adminDraft.variants.splice(index, 1);
+        if (type === "override" && key) delete adminDraft.overrides[key];
+        markAdminDraft("Suppression ajoutée au brouillon");
+        showToast(type === "patch" ? "Patch Note supprimé du brouillon · clique sur Publier" : "Suppression prête à être publiée");
       }
 
       function slugForAdmin(value) {
@@ -9159,6 +9977,34 @@
         if (action === "remove-friend") deleteFriendRequest(button.dataset.requestId, "Ami retiré");
         if (action === "message") openConversation(button.dataset.requestId);
         if (action === "show-requests") activateCommunityTab("requests");
+        if (action === "react") togglePostReaction(button.dataset.postId, button.dataset.reaction);
+        if (action === "focus-comment") [...document.querySelectorAll("[data-comment-form]")].find(form => form.dataset.postId === button.dataset.postId)?.querySelector("input")?.focus();
+        if (action === "open-member-profile" && button.dataset.memberHandle) showPage(`profile/${button.dataset.memberHandle}`);
+        if (action === "edit-post") {
+          const post = communityPosts.find(item => item.id === button.dataset.postId);
+          if (post) openSocialEditor({ kind: "post", postId: post.id }, post.body);
+        }
+        if (action === "delete-post") deleteSocialContent("post", button.dataset.postId);
+        if (action === "edit-comment") {
+          const comment = (postComments.get(button.dataset.postId) || []).find(item => item.id === button.dataset.commentId);
+          if (comment) openSocialEditor({ kind: "comment", postId: button.dataset.postId, commentId: comment.id }, comment.body);
+        }
+        if (action === "delete-comment") deleteSocialContent("comment", button.dataset.postId, button.dataset.commentId);
+        if (action === "moderate-member") openMemberModeration(button.dataset.memberUid);
+      });
+
+      document.getElementById("communityPage").addEventListener("submit", async event => {
+        const commentForm = event.target.closest("[data-comment-form]");
+        if (!commentForm) return;
+        event.preventDefault();
+        const input = commentForm.querySelector("input");
+        if (await createPostComment(commentForm.dataset.postId, input.value)) input.value = "";
+      });
+
+      document.getElementById("postComposer").addEventListener("submit", async event => {
+        event.preventDefault();
+        const input = document.getElementById("postComposerInput");
+        if (await createCommunityPost(input.value)) input.value = "";
       });
 
       document.getElementById("communityConnectBtn").addEventListener("click", connectGoogleAccount);
@@ -9166,6 +10012,20 @@
       document.getElementById("chatForm").addEventListener("submit", event => {
         event.preventDefault();
         sendChatMessage();
+      });
+
+      document.getElementById("socialAccessDialog").addEventListener("click", event => {
+        if (event.target.closest("[data-social-modal-close]") || event.target.closest("[data-page-target]")) document.getElementById("socialAccessDialog").close();
+      });
+      document.getElementById("memberModerationDialog").addEventListener("click", event => {
+        const button = event.target.closest("[data-moderation-action]");
+        if (button) applyMemberModeration(button.dataset.moderationAction);
+      });
+      document.getElementById("socialContentEditor").addEventListener("click", event => {
+        const button = event.target.closest("[data-editor-action]");
+        if (!button) return;
+        if (button.dataset.editorAction === "close") { socialEditorContext = null; document.getElementById("socialContentEditor").close(); }
+        if (button.dataset.editorAction === "save") saveSocialEditor();
       });
 
       document.getElementById("profileForm").addEventListener("submit", event => {
@@ -9307,6 +10167,25 @@
       document.getElementById("adminPreviewBtn").addEventListener("click", () => applyAdminContent(adminDraft, { announce: true }));
       document.getElementById("adminPublishBtn").addEventListener("click", publishAdminContent);
       document.getElementById("adminConnectBtn").addEventListener("click", connectGoogleAccount);
+      document.getElementById("adminWorkspace").addEventListener("click", event => {
+        const button = event.target.closest("[data-admin-manage-action]");
+        if (button) manageAdminContent(button.dataset.adminManageAction, button.dataset.adminManageType, Number(button.dataset.adminManageIndex), button.dataset.adminManageKey || "");
+      });
+      document.getElementById("patchNotesPage").addEventListener("click", async event => {
+        const button = event.target.closest("[data-patch-admin-action]");
+        if (!button || !adminAccess) return;
+        const index = Number(button.dataset.patchIndex);
+        const note = (adminContent.patchNotes || [])[index];
+        if (!note) return;
+        if (button.dataset.patchAdminAction === "edit") openSocialEditor({ kind: "patch", index }, note.body || "", note.title || "");
+        if (button.dataset.patchAdminAction === "delete" && window.confirm("Supprimer définitivement ce Patch Note ?")) {
+          const notes = (adminContent.patchNotes || []).filter((_, noteIndex) => noteIndex !== index);
+          adminDraft = normalizeAdminContent({ ...adminContent, patchNotes: notes, updatedAtMs: Date.now() });
+          adminDraftDirty = true;
+          await publishAdminContent();
+          showToast("Patch Note supprimé");
+        }
+      });
 
       authToggleButton.addEventListener("click", () => {
         if (firebaseUser || (firebaseAuth && firebaseAuth.currentUser)) disconnectGoogleAccount();
@@ -9526,6 +10405,7 @@
       renderAdminAccess();
       document.getElementById("adminPatchForm").elements.date.value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16);
       applyStaticTranslations();
+      setupMobileDockSwipe();
       searchInput.placeholder = APP_LANGUAGE === "fr" ? "Nom, capacité, variante, rareté, bouclier, vitesse…" : "Name, ability, variant, rarity, shield, speed…";
       showPage(location.hash.slice(1), { updateHash: false });
       updateAccountInterface(null);
