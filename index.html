@@ -4145,8 +4145,6 @@
     @keyframes page-in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
     .topbar-links a[aria-current="page"] { border-color: rgba(247,237,56,.38); background: rgba(247,237,56,.11); color: var(--yellow); }
     .mobile-dock-item[aria-current="page"] { border-color: rgba(247,237,56,.42); background: linear-gradient(145deg, rgba(247,237,56,.18), rgba(36,169,255,.12)); color: var(--yellow); }
-    html[data-app-page="inventory"] .chips { display: none; }
-    html[data-app-page="inventory"] .tools-panel { margin-top: 8px; }
     .page-empty-note { display: none; }
     #dialogNext { grid-column: 1 / -1; }
 
@@ -4818,7 +4816,7 @@
 
     .guide-toolbar {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(7, minmax(0, 1fr));
       gap: 8px;
       margin-bottom: 12px;
       padding: 7px;
@@ -4826,23 +4824,53 @@
       border-radius: 17px;
       background: rgba(11, 16, 38, .78);
     }
-    .guide-toolbar button { display: flex; min-height: 50px; padding: 8px; align-items: center; justify-content: center; gap: 7px; border: 0; border-radius: 11px; background: transparent; color: #98a4c4; font-size: .67rem; font-weight: 900; cursor: pointer; }
+    .guide-toolbar button { display: flex; min-width: 0; min-height: 50px; padding: 8px 6px; align-items: center; justify-content: center; gap: 6px; border: 0; border-radius: 11px; background: transparent; color: #98a4c4; font-size: .64rem; font-weight: 900; cursor: pointer; }
     .guide-toolbar button span { color: var(--accent); font-size: 1rem; }
-    .guide-toolbar button[aria-selected="true"] { background: rgba(var(--accent-rgb), .14); box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), .32); color: #fff; }
+    .guide-toolbar button b { display: grid; min-width: 21px; height: 21px; padding: 0 5px; place-items: center; border-radius: 999px; background: rgba(255,255,255,.07); color: #8693b4; font-size: .48rem; }
+    .guide-toolbar button[aria-pressed="true"] { background: rgba(var(--accent-rgb), .14); box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), .32); color: #fff; }
+    .guide-toolbar button[aria-pressed="true"] b { background: var(--accent); color: #06101c; }
     .guide-summary { display: flex; margin: 18px 0 13px; align-items: center; justify-content: space-between; gap: 16px; }
     .guide-summary > div { display: flex; align-items: center; gap: 12px; }
     .guide-summary > div > span { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 12px; background: rgba(var(--accent-rgb), .13); color: var(--accent); font-size: 1.25rem; }
     .guide-summary strong { display: block; font-family: var(--display, "Barlow Condensed", sans-serif); font-size: 1.45rem; font-style: italic; text-transform: uppercase; }
     .guide-summary p { margin: 1px 0 0; color: var(--feature-muted); font-size: .68rem; }
     .guide-summary > span { padding: 7px 10px; border-radius: 999px; background: rgba(255,255,255,.06); color: #b9c3df; font-size: .62rem; font-weight: 850; }
-    .guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    .guide-card { position: relative; display: grid; min-height: 166px; padding: 18px 16px 16px 144px; overflow: hidden; align-content: center; border: 1px solid var(--feature-line); border-radius: 18px; background: linear-gradient(140deg, rgba(22,29,63,.96), rgba(9,14,34,.97)); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
-    .guide-card img { position: absolute; bottom: -18px; left: 1px; width: 142px; height: 142px; object-fit: contain; filter: drop-shadow(0 12px 18px rgba(0,0,0,.36)); }
-    .guide-card .badge { position: static; width: fit-content; margin-bottom: 8px; }
-    .guide-card h3 { margin: 0; font-family: var(--display, "Barlow Condensed", sans-serif); font-size: 1.25rem; font-style: italic; line-height: .95; text-transform: uppercase; }
-    .guide-card p { display: -webkit-box; margin: 7px 0 0; overflow: hidden; color: var(--feature-muted); font-size: .64rem; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
-    .guide-card button { position: absolute; inset: 0; border: 0; background: transparent; cursor: pointer; }
-    .guide-card:hover { border-color: rgba(var(--accent-rgb), .38); transform: translateY(-2px); }
+    .guide-integrity { display: grid; margin: 0 0 20px; padding: 13px; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(240px, 1.7fr); align-items: stretch; gap: 8px; border: 1px solid var(--feature-line); border-radius: 17px; background: rgba(8,13,31,.64); }
+    .guide-integrity > div { display: grid; min-height: 64px; padding: 9px 11px; align-content: center; border-radius: 11px; background: rgba(255,255,255,.035); }
+    .guide-integrity strong { color: #fff; font-family: var(--display, sans-serif); font-size: 1.45rem; font-style: italic; line-height: .9; }
+    .guide-integrity span { margin-top: 5px; color: #8895b5; font-size: .52rem; font-weight: 850; letter-spacing: .04em; text-transform: uppercase; }
+    .guide-integrity p { display: flex; margin: 0; padding: 10px 13px; align-items: center; border-left: 2px solid var(--accent); color: #9da9c8; font-size: .61rem; line-height: 1.5; }
+    .guide-grid { display: grid; gap: 22px; }
+    .guide-category-section { display: grid; gap: 11px; }
+    .guide-category-head { display: flex; padding: 0 3px 9px; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid color-mix(in srgb, var(--guide-color) 28%, transparent); }
+    .guide-category-title { display: flex; min-width: 0; align-items: center; gap: 10px; }
+    .guide-category-title > span { display: grid; width: 35px; height: 35px; flex: 0 0 35px; place-items: center; border-radius: 10px; background: color-mix(in srgb, var(--guide-color) 14%, transparent); color: var(--guide-color); font-size: 1rem; }
+    .guide-category-title h2 { margin: 0; font-family: var(--display, sans-serif); font-size: 1.45rem; font-style: italic; line-height: .95; text-transform: uppercase; }
+    .guide-category-title p { margin: 3px 0 0; color: #8491b1; font-size: .57rem; }
+    .guide-category-head > span { flex: 0 0 auto; padding: 6px 9px; border-radius: 999px; background: color-mix(in srgb, var(--guide-color) 12%, transparent); color: var(--guide-color); font-size: .54rem; font-weight: 900; }
+    .guide-card { position: relative; display: grid; min-width: 0; min-height: 258px; grid-template-columns: 136px minmax(0, 1fr); overflow: hidden; border: 1px solid color-mix(in srgb, var(--guide-color) 18%, var(--feature-line)); border-radius: 18px; background: linear-gradient(140deg, color-mix(in srgb, var(--guide-color) 8%, rgba(22,29,63,.97)), rgba(8,13,32,.98) 54%); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+    .guide-card-media { position: relative; display: grid; min-width: 0; padding: 15px 10px; place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--guide-color) 24%, transparent), transparent 62%); }
+    .guide-card-media::after { position: absolute; right: 0; width: 1px; height: 74%; content: ""; background: linear-gradient(transparent, color-mix(in srgb, var(--guide-color) 35%, transparent), transparent); }
+    .guide-card-media img { width: 124px; height: 124px; object-fit: contain; filter: drop-shadow(0 13px 18px rgba(0,0,0,.42)); }
+    .guide-category-badge { position: absolute; right: 9px; bottom: 9px; left: 9px; padding: 6px 7px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--guide-color) 35%, transparent); border-radius: 8px; background: rgba(5,9,24,.78); color: var(--guide-color); font-size: .46rem; font-weight: 950; letter-spacing: .055em; text-align: center; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; backdrop-filter: blur(8px); }
+    .guide-card-content { display: grid; min-width: 0; padding: 14px; align-content: start; }
+    .guide-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .guide-card .badge { position: static; width: fit-content; margin: 0; }
+    .guide-card-en { overflow: hidden; color: #7784a5; font-size: .48rem; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+    .guide-card h3 { margin: 8px 0 0; font-family: var(--display, "Barlow Condensed", sans-serif); font-size: 1.3rem; font-style: italic; line-height: .95; text-transform: uppercase; }
+    .guide-ability { margin: 7px 0 0; color: #aeb9d7; font-size: .61rem; line-height: 1.45; }
+    .guide-level-block { margin-top: 11px; padding-top: 9px; border-top: 1px solid rgba(255,255,255,.07); }
+    .guide-level-caption { display: block; margin-bottom: 6px; color: #7f8cab; font-size: .45rem; font-weight: 900; letter-spacing: .055em; text-transform: uppercase; }
+    .guide-level-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+    .guide-level { display: grid; min-width: 0; min-height: 41px; padding: 5px 3px; place-content: center; border: 1px solid rgba(255,255,255,.07); border-radius: 7px; background: rgba(255,255,255,.035); text-align: center; }
+    .guide-level b { color: var(--guide-color); font-size: .39rem; letter-spacing: .04em; text-transform: uppercase; }
+    .guide-level span { margin-top: 3px; color: #edf1ff; font-size: .46rem; font-weight: 850; line-height: 1.15; }
+    .guide-note { margin: 9px 0 0; padding: 7px 8px; border-left: 2px solid var(--guide-color); border-radius: 0 7px 7px 0; background: color-mix(in srgb, var(--guide-color) 7%, transparent); color: #909dbc; font-size: .5rem; line-height: 1.4; }
+    .guide-card-footer { display: flex; margin-top: 11px; padding-top: 9px; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid rgba(255,255,255,.07); }
+    .guide-cost { color: #7885a6; font-size: .46rem; font-weight: 800; }
+    .guide-cost strong { display: block; margin-top: 2px; color: #dce4fa; font-size: .56rem; }
+    .guide-detail-btn { min-height: 31px; padding: 0 10px; border: 1px solid color-mix(in srgb, var(--guide-color) 32%, transparent); border-radius: 8px; background: color-mix(in srgb, var(--guide-color) 10%, transparent); color: var(--guide-color); font-size: .48rem; font-weight: 950; cursor: pointer; }
+    .guide-card:hover { border-color: color-mix(in srgb, var(--guide-color) 55%, transparent); box-shadow: 0 16px 32px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.06); transform: translateY(-2px); }
 
     .settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .setting-card { display: grid; padding: 20px; grid-template-columns: 46px minmax(0, 1fr); align-items: start; gap: 14px; }
@@ -4890,12 +4918,13 @@
     .admin-guard-state { display: inline-flex; padding: 8px 11px; align-items: center; gap: 7px; border: 1px solid rgba(255,214,74,.2); border-radius: 999px; background: rgba(255,214,74,.08); color: #ffdc6b; font-size: .61rem; font-weight: 900; white-space: nowrap; }
     .admin-guard-state.is-ready { border-color: rgba(69,229,154,.2); background: rgba(69,229,154,.08); color: #72efb3; }
     .admin-workspace { display: grid; gap: 12px; }
-    .admin-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; padding: 6px; border: 1px solid var(--feature-line); border-radius: 14px; background: rgba(8,13,32,.76); }
+    .admin-tabs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; padding: 6px; border: 1px solid var(--feature-line); border-radius: 14px; background: rgba(8,13,32,.76); }
     .admin-tabs button { min-height: 42px; border: 0; border-radius: 9px; background: transparent; color: #8b97b7; font-size: .64rem; font-weight: 900; cursor: pointer; }
     .admin-tabs button[aria-selected="true"] { background: rgba(var(--accent-rgb), .15); color: #fff; }
     .admin-form { display: none; padding: 23px; }
     .admin-form.is-active { display: block; }
     .admin-form .feature-primary { margin-top: 18px; }
+    #adminVariantEditForm input[type="color"] { min-height: 48px; padding: 4px; cursor: pointer; }
     .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 13px; }
     .field-span { grid-column: 1 / -1; }
     .admin-publish-bar { position: sticky; z-index: 8; bottom: calc(76px + env(safe-area-inset-bottom)); display: grid; padding: 14px; grid-template-columns: 1fr auto auto; align-items: center; gap: 9px; border: 1px solid rgba(var(--accent-rgb), .26); border-radius: 15px; background: rgba(9,14,34,.94); box-shadow: 0 16px 45px rgba(0,0,0,.4); backdrop-filter: blur(18px); }
@@ -4921,7 +4950,8 @@
 
     @media (max-width: 960px) {
       .topbar-links a { padding-inline: 7px; font-size: .56rem; }
-      .guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .guide-integrity { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .guide-integrity p { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.06); border-left: 0; }
     }
     @media (max-width: 760px) {
       .feature-page { padding: 12px 0 34px; }
@@ -4929,7 +4959,7 @@
       .feature-hero h1 { font-size: clamp(2.25rem, 12vw, 3.5rem); }
       .feature-hero p { font-size: .76rem; }
       .feature-hero-orb { display: none; }
-      .guide-toolbar { grid-template-columns: repeat(3, 1fr); }
+      .guide-toolbar { grid-template-columns: repeat(4, 1fr); }
       .settings-grid { grid-template-columns: 1fr; }
       .setting-wide, .admin-entry { grid-column: auto; }
       .background-picker { grid-template-columns: repeat(2, 1fr); }
@@ -4940,10 +4970,27 @@
     }
     @media (max-width: 560px) {
       .guide-toolbar { gap: 5px; padding: 5px; }
-      .guide-toolbar button { min-height: 44px; font-size: .55rem; }
-      .guide-grid { grid-template-columns: 1fr; }
-      .guide-card { min-height: 146px; padding-left: 132px; }
-      .guide-card img { width: 128px; height: 128px; }
+      .guide-toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .guide-toolbar button { min-height: 43px; font-size: .54rem; }
+      .guide-toolbar button:first-child { grid-column: 1 / -1; }
+      .guide-summary { align-items: flex-start; }
+      .guide-summary > span { margin-top: 4px; font-size: .52rem; }
+      .guide-integrity { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px; gap: 5px; }
+      .guide-integrity > div { min-height: 58px; padding: 7px; text-align: center; }
+      .guide-integrity strong { font-size: 1.2rem; }
+      .guide-integrity span { font-size: .4rem; }
+      .guide-category-title p { display: none; }
+      .guide-card { min-height: 248px; grid-template-columns: 102px minmax(0, 1fr); }
+      .guide-card-media { padding: 12px 6px; }
+      .guide-card-media img { width: 94px; height: 94px; }
+      .guide-category-badge { right: 6px; bottom: 7px; left: 6px; padding-inline: 4px; font-size: .38rem; }
+      .guide-card-content { padding: 12px 10px; }
+      .guide-card h3 { font-size: 1.08rem; }
+      .guide-ability { font-size: .56rem; }
+      .guide-level-grid { grid-template-columns: repeat(5, minmax(66px, 1fr)); overflow-x: auto; padding-bottom: 3px; scrollbar-width: thin; }
+      .guide-level { min-height: 39px; }
+      .guide-card-footer { align-items: flex-end; }
+      .guide-detail-btn { padding: 0 8px; }
       .setting-card, .admin-form { padding: 17px; }
       .form-grid { grid-template-columns: 1fr; }
       .field-span { grid-column: auto; }
@@ -5069,9 +5116,401 @@
     }
     html[data-background] body { background: var(--theme-body); background-attachment: fixed; }
     html[data-background] :is(.topbar, .mobile-dock) { border-color: rgba(var(--accent-rgb), .2); background: color-mix(in srgb, var(--theme-surface) 92%, transparent); box-shadow: 0 18px 50px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.06); }
-    html[data-background] :is(.sync-card, .progress-wrap, .stat, .variant-overview, .toolbar, .panel-card, .guide-summary, .guide-card, .admin-publish-bar, .admin-history article, .admin-manage-row, .admin-patch-quick-row, .patch-entry, .patch-card, dialog) { border-color: rgba(var(--accent-rgb), .16); background: linear-gradient(145deg, color-mix(in srgb, var(--theme-surface-2) 90%, transparent), color-mix(in srgb, var(--theme-deep) 94%, transparent)); }
+    html[data-background] :is(.sync-card, .progress-wrap, .stat, .variant-overview, .toolbar, .panel-card, .guide-summary, .guide-integrity, .guide-card, .admin-publish-bar, .admin-history article, .admin-manage-row, .admin-patch-quick-row, .patch-entry, .patch-card, dialog) { border-color: rgba(var(--accent-rgb), .16); background: linear-gradient(145deg, color-mix(in srgb, var(--theme-surface-2) 90%, transparent), color-mix(in srgb, var(--theme-deep) 94%, transparent)); }
     html[data-background] :is(.feature-hero, .patch-simple-head) { border-color: rgba(var(--accent-rgb), .22); background: radial-gradient(circle at 88% 8%, rgba(var(--accent-rgb), .19), transparent 23rem), linear-gradient(135deg, color-mix(in srgb, var(--theme-surface-2) 92%, transparent), color-mix(in srgb, var(--theme-deep) 96%, transparent)); }
     html[data-background] :is(.topbar-links a[aria-current="page"], .mobile-dock-item[aria-current="page"], .admin-tabs button[aria-selected="true"], .segmented button[aria-pressed="true"]) { border-color: rgba(var(--accent-rgb), .42); background: rgba(var(--accent-rgb), .15); color: var(--accent); }
+
+    /* Échelle de lecture confortable sur ordinateur. */
+    @media (min-width: 1000px) {
+      html { font-size: 18px; }
+      .app { width: min(1480px, 100%); padding-inline: clamp(20px, 2.7vw, 42px); }
+      .topbar { min-height: 88px; padding-block: 15px; }
+      .brand { gap: 13px; }
+      .brand-mark { width: 48px; height: 48px; font-size: 1.6rem; }
+      .brand-copy strong { font-size: 1.25rem; }
+      .brand-copy small { font-size: .66rem; }
+      .topbar-links { gap: 6px; }
+      .topbar-links a { min-height: 42px; padding: 10px 13px; font-size: .67rem; }
+      .feature-page { padding-block: 32px 58px; }
+      .feature-hero { min-height: 220px; }
+      .feature-hero p { font-size: 1rem; }
+      .guide-toolbar button { min-height: 58px; font-size: .68rem; }
+      .guide-grid { gap: 28px; }
+      .guide-card { min-height: 300px; grid-template-columns: 162px minmax(0, 1fr); }
+      .guide-card-media img { width: 146px; height: 146px; }
+      .guide-card-content { padding: 18px; }
+      .guide-card h3 { font-size: 1.42rem; }
+      .guide-ability { font-size: .68rem; line-height: 1.55; }
+      .guide-level { min-height: 49px; }
+      .guide-level b { font-size: .43rem; }
+      .guide-level span { font-size: .52rem; }
+      .guide-detail-btn { min-height: 37px; padding-inline: 13px; }
+    }
+
+    @media (min-width: 1500px) {
+      html { font-size: 19px; }
+    }
+
+    /* Le Guide mobile reste intégralement dans la largeur de l'écran. */
+    @media (max-width: 560px) {
+      #guidePage { padding-bottom: 132px; overflow-x: clip; }
+      .guide-grid, .guide-category-section { min-width: 0; }
+      .guide-card {
+        min-width: 0;
+        min-height: 0;
+        grid-template-columns: minmax(0, 1fr);
+        overflow: hidden;
+      }
+      .guide-card-media { min-height: 158px; padding: 13px; }
+      .guide-card-media::after {
+        right: 12%;
+        bottom: 0;
+        width: 76%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--guide-color) 42%, transparent), transparent);
+      }
+      .guide-card-media img { width: 128px; height: 128px; }
+      .guide-category-badge {
+        right: 12px;
+        bottom: 11px;
+        left: auto;
+        max-width: calc(100% - 24px);
+        padding: 6px 10px;
+        font-size: .47rem;
+      }
+      .guide-card-content { min-width: 0; padding: 16px; overflow: visible; }
+      .guide-card-top { align-items: flex-start; }
+      .guide-card-en { max-width: 54%; font-size: .55rem; }
+      .guide-card h3 { margin-top: 10px; font-size: 1.48rem; line-height: 1; }
+      .guide-ability {
+        width: 100%;
+        margin-top: 9px;
+        overflow: visible;
+        font-size: .76rem;
+        line-height: 1.58;
+        overflow-wrap: anywhere;
+        white-space: normal;
+      }
+      .guide-level-block { margin-top: 14px; padding-top: 12px; }
+      .guide-level-caption { margin-bottom: 8px; font-size: .54rem; line-height: 1.4; }
+      .guide-level-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 0;
+        overflow: visible;
+      }
+      .guide-level { min-width: 0; min-height: 54px; padding: 7px 5px; }
+      .guide-level:nth-child(5) { grid-column: 1 / -1; }
+      .guide-level b { font-size: .52rem; }
+      .guide-level span { font-size: .65rem; }
+      .guide-note { font-size: .64rem; line-height: 1.5; }
+      .guide-card-footer { margin-top: 14px; padding-top: 12px; align-items: center; }
+      .guide-cost { min-width: 0; font-size: .54rem; }
+      .guide-cost strong { font-size: .68rem; line-height: 1.3; }
+      .guide-detail-btn { min-height: 38px; padding-inline: 11px; flex: 0 0 auto; font-size: .57rem; }
+    }
+
+    /* Catalogue regroupé par esprit, avec variantes glissables. */
+    html[data-card-size="small"] { --family-tile-width: 124px; --family-visual-width: 114px; --family-visual-height: 104px; --guide-slide-width: 430px; }
+    html[data-card-size="medium"] { --family-tile-width: 142px; --family-visual-width: 132px; --family-visual-height: 119px; --guide-slide-width: 510px; }
+    html[data-card-size="large"] { --family-tile-width: 168px; --family-visual-width: 156px; --family-visual-height: 140px; --guide-slide-width: 590px; }
+    #spriteGrid.family-collection-grid {
+      display: grid;
+      min-width: 0;
+      margin-top: 18px;
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: var(--catalog-gap, 14px) !important;
+    }
+    .family-row {
+      position: relative;
+      min-width: 0;
+      padding: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(var(--accent-rgb), .23);
+      border-left: 5px solid var(--accent);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(var(--accent-rgb), .14), transparent 24rem),
+        linear-gradient(135deg, color-mix(in srgb, var(--theme-surface-2, #182044) 92%, transparent), color-mix(in srgb, var(--theme-deep, #050817) 96%, transparent));
+      box-shadow: 0 16px 42px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.055), -12px 0 32px rgba(var(--accent-rgb), .08);
+    }
+    .family-row::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      opacity: .23;
+      background-image: linear-gradient(rgba(var(--accent-rgb), .09) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--accent-rgb), .09) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, #000, transparent 70%);
+      mask-image: linear-gradient(90deg, #000, transparent 70%);
+    }
+    .family-row-head,
+    .family-row-progress,
+    .family-row-body { position: relative; z-index: 1; }
+    .family-row-head { display: flex; min-width: 0; align-items: center; justify-content: space-between; gap: 16px; }
+    .family-row-title { display: flex; min-width: 0; align-items: center; gap: 10px; }
+    .family-row-title > i { width: 11px; height: 11px; flex: 0 0 11px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px rgba(var(--accent-rgb), .1), 0 0 18px var(--accent); }
+    .family-row-title h3 { min-width: 0; margin: 0; font-family: var(--display, sans-serif); font-size: 1.72rem; font-style: italic; line-height: .95; text-transform: uppercase; }
+    .family-row-title button { display: grid; width: 29px; height: 29px; flex: 0 0 29px; padding: 0; place-items: center; border: 2px solid #7180a5; border-radius: 50%; background: rgba(6,10,27,.5); color: #9aa7c8; font-family: Georgia, serif; font-size: .78rem; font-weight: 900; cursor: pointer; }
+    .family-row-count { display: grid; flex: 0 0 auto; justify-items: end; }
+    .family-row-count strong { color: #c7d2ee; font-family: var(--display, sans-serif); font-size: 1.35rem; font-style: italic; line-height: 1; }
+    .family-row-count span { margin-top: 4px; color: #7481a2; font-size: .48rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .family-row-progress { height: 3px; margin: 13px 0 15px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.07); }
+    .family-row-progress i { display: block; width: var(--family-progress); height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), #61ebde); box-shadow: 0 0 12px rgba(var(--accent-rgb), .55); transition: width .24s ease; }
+    .family-row-body { display: grid; min-width: 0; grid-template-columns: 126px minmax(0, 1fr); align-items: center; gap: 17px; }
+    .family-preview {
+      display: grid;
+      width: 126px;
+      height: 126px;
+      padding: 9px;
+      place-items: center;
+      border: 2px solid rgba(var(--accent-rgb), .68);
+      border-radius: 17px;
+      background: radial-gradient(circle, rgba(var(--accent-rgb), .14), rgba(4,9,25,.82) 70%);
+      box-shadow: 0 0 28px rgba(var(--accent-rgb), .12), inset 0 1px 0 rgba(255,255,255,.08);
+      cursor: pointer;
+    }
+    .family-preview img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 13px rgba(0,0,0,.42)); }
+    .family-preview img.is-loading,
+    .family-variant-visual img.is-loading { opacity: 0; }
+    .family-preview img.is-loaded,
+    .family-variant-visual img.is-loaded { opacity: 1; transition: opacity .2s ease; }
+    .family-variants-shell { position: relative; min-width: 0; }
+    .family-variants-shell::after { position: absolute; z-index: 3; top: 0; right: 0; bottom: 0; width: 42px; content: ""; opacity: 1; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--theme-deep, #050817) 92%, transparent)); pointer-events: none; transition: opacity .18s ease; }
+    .family-variants-shell:has(.family-variants-track[data-at-end="true"])::after { opacity: 0; }
+    .family-variants-track {
+      display: flex;
+      min-width: 0;
+      padding: 2px 48px 5px 2px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: clamp(7px, var(--catalog-gap, 14px), 16px);
+      scroll-behavior: smooth;
+      scroll-padding-inline: 2px 48px;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+      touch-action: pan-x pan-y;
+      -webkit-overflow-scrolling: touch;
+    }
+    .family-variants-track::-webkit-scrollbar { display: none; }
+    .family-variant-tile { position: relative; display: grid; width: var(--family-tile-width, 142px); min-width: var(--family-tile-width, 142px); padding: 5px; flex: 0 0 var(--family-tile-width, 142px); justify-items: center; scroll-snap-align: start; }
+    .family-variant-visual {
+      position: relative;
+      display: grid;
+      width: var(--family-visual-width, 132px);
+      height: var(--family-visual-height, 119px);
+      padding: 9px;
+      overflow: hidden;
+      place-items: center;
+      border: 2px solid rgba(124,140,181,.32);
+      border-radius: 13px;
+      background: linear-gradient(145deg, rgba(40,49,89,.82), rgba(10,16,41,.94));
+      clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+      cursor: pointer;
+      transition: border-color .18s ease, background .18s ease, transform .18s ease;
+    }
+    .family-variant-visual img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(1) brightness(.5) opacity(.58) drop-shadow(0 8px 10px rgba(0,0,0,.42)); transition: filter .2s ease, opacity .2s ease, transform .2s ease; }
+    .family-variant-tile.is-owned .family-variant-visual { border-color: color-mix(in srgb, var(--variant-color) 62%, rgba(255,255,255,.2)); background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--variant-color) 17%, transparent), rgba(8,14,36,.92) 72%); box-shadow: 0 0 20px color-mix(in srgb, var(--variant-color) 13%, transparent); }
+    .family-variant-tile.is-owned .family-variant-visual img { filter: drop-shadow(0 9px 11px rgba(0,0,0,.44)); }
+    .family-variant-lock { position: absolute; display: grid; width: 37px; height: 37px; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: rgba(8,13,32,.76); box-shadow: 0 8px 18px rgba(0,0,0,.35); color: #d7dded; backdrop-filter: blur(6px); }
+    .family-variant-lock svg { width: 21px; height: 21px; }
+    .family-variant-mastered { position: absolute; top: 7px; right: 11px; display: grid; width: 25px; height: 25px; place-items: center; border: 1px solid rgba(255,225,67,.42); border-radius: 50%; background: rgba(25,21,4,.86); box-shadow: 0 0 13px rgba(255,223,45,.3); color: #ffe642; font-size: .64rem; }
+    .family-variant-name { width: 100%; min-height: 30px; margin-top: 7px; color: var(--variant-color); font-family: var(--display, sans-serif); font-size: .71rem; font-style: italic; line-height: 1.05; text-align: center; text-transform: uppercase; overflow-wrap: anywhere; }
+    .family-variant-action { display: inline-flex; min-width: 86px; min-height: 27px; padding: 4px 8px; align-items: center; justify-content: center; gap: 5px; border: 1px solid rgba(var(--accent-rgb), .28); border-radius: 8px; background: rgba(var(--accent-rgb), .1); color: #91a0c4; font-size: .47rem; font-weight: 950; cursor: pointer; text-transform: uppercase; }
+    .family-variant-action span { display: grid; width: 15px; height: 15px; place-items: center; border-radius: 4px; background: rgba(var(--accent-rgb), .18); color: var(--accent); }
+    .family-variant-tile.is-owned .family-variant-action { border-color: rgba(67,232,156,.35); background: rgba(67,232,156,.14); color: #74efb3; }
+    .family-variant-tile.is-owned .family-variant-action span { background: rgba(67,232,156,.22); color: #83f8bf; }
+    .family-scroll-controls { position: absolute; z-index: 5; top: -40px; right: 0; display: flex; gap: 5px; }
+    .family-scroll-controls button { display: grid; width: 31px; height: 31px; padding: 0; place-items: center; border: 1px solid rgba(var(--accent-rgb), .26); border-radius: 9px; background: color-mix(in srgb, var(--theme-surface, #111832) 94%, transparent); color: #b8c3df; font-size: 1.2rem; cursor: pointer; }
+    .family-scroll-controls button:hover { border-color: var(--accent); color: #fff; }
+    @media (hover: hover) and (pointer: fine) {
+      .family-variant-visual:hover { border-color: var(--variant-color); transform: translateY(-2px); }
+      .family-variant-visual:hover img { transform: scale(1.06); }
+    }
+
+    @media (max-width: 700px) {
+      html[data-card-size="small"] { --family-tile-width: 94px; --family-visual-width: 88px; --family-visual-height: 82px; }
+      html[data-card-size="medium"] { --family-tile-width: 104px; --family-visual-width: 98px; --family-visual-height: 91px; }
+      html[data-card-size="large"] { --family-tile-width: 120px; --family-visual-width: 112px; --family-visual-height: 104px; }
+      #spriteGrid.family-collection-grid { margin-top: 12px; gap: 9px !important; }
+      .family-row { padding: 13px 11px 12px; border-left-width: 4px; border-radius: 17px; }
+      .family-row-head { gap: 8px; }
+      .family-row-title { gap: 7px; }
+      .family-row-title > i { width: 8px; height: 8px; flex-basis: 8px; box-shadow: 0 0 0 4px rgba(var(--accent-rgb), .09), 0 0 14px var(--accent); }
+      .family-row-title h3 { font-size: 1.35rem; line-height: 1; }
+      .family-row-title button { width: 25px; height: 25px; flex-basis: 25px; font-size: .67rem; }
+      .family-row-count strong { font-size: 1.08rem; }
+      .family-row-count span { font-size: .39rem; }
+      .family-row-progress { margin: 10px 0 12px; }
+      .family-row-body { grid-template-columns: 82px minmax(0, 1fr); gap: 8px; }
+      .family-preview { width: 82px; height: 92px; padding: 7px; border-radius: 13px; }
+      .family-variants-track { padding: 2px 27px 4px 1px; gap: clamp(6px, var(--catalog-gap, 10px), 12px); scroll-snap-type: x mandatory; }
+      .family-variant-tile { padding: 3px; }
+      .family-variant-visual { padding: 6px; border-radius: 11px; }
+      .family-variant-lock { width: 31px; height: 31px; }
+      .family-variant-lock svg { width: 18px; height: 18px; }
+      .family-variant-mastered { top: 5px; right: 8px; width: 22px; height: 22px; font-size: .56rem; }
+      .family-variant-name { min-height: 25px; margin-top: 6px; font-size: .62rem; }
+      .family-variant-action { min-width: 79px; min-height: 25px; padding-inline: 6px; font-size: .42rem; }
+      .family-scroll-controls { display: none; }
+      .family-variants-shell::after { width: 28px; }
+    }
+    @media (max-width: 360px) {
+      .family-row { padding-inline: 9px; }
+      .family-row-title h3 { font-size: 1.18rem; }
+      .family-row-body { grid-template-columns: 72px minmax(0, 1fr); gap: 6px; }
+      .family-preview { width: 72px; height: 84px; }
+      html[data-card-size="small"] { --family-tile-width: 88px; --family-visual-width: 82px; --family-visual-height: 77px; }
+      html[data-card-size="medium"] { --family-tile-width: 96px; --family-visual-width: 90px; --family-visual-height: 85px; }
+      html[data-card-size="large"] { --family-tile-width: 108px; --family-visual-width: 102px; --family-visual-height: 95px; }
+    }
+
+    /* Guide regroupé par catégorie d'utilité, avec carrousels horizontaux. */
+    #guidePage .guide-grid { display: grid; min-width: 0; gap: var(--catalog-gap, 16px); }
+    #guidePage .guide-category-section {
+      position: relative;
+      display: grid;
+      min-width: 0;
+      padding: 18px;
+      gap: 0;
+      overflow: hidden;
+      scroll-margin-top: 108px;
+      border: 1px solid color-mix(in srgb, var(--guide-color) 28%, rgba(var(--accent-rgb), .15));
+      border-left: 5px solid var(--guide-color);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 8% 50%, color-mix(in srgb, var(--guide-color) 13%, transparent), transparent 25rem),
+        linear-gradient(135deg, color-mix(in srgb, var(--theme-surface-2, #182044) 92%, transparent), color-mix(in srgb, var(--theme-deep, #050817) 96%, transparent));
+      box-shadow: 0 16px 42px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.055), -12px 0 32px color-mix(in srgb, var(--guide-color) 8%, transparent);
+    }
+    #guidePage .guide-category-section::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      opacity: .2;
+      background-image: linear-gradient(color-mix(in srgb, var(--guide-color) 9%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--guide-color) 9%, transparent) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, #000, transparent 72%);
+      mask-image: linear-gradient(90deg, #000, transparent 72%);
+    }
+    #guidePage .guide-category-head,
+    #guidePage .guide-carousel-shell { position: relative; z-index: 1; }
+    #guidePage .guide-category-head { padding: 0 0 13px; border-bottom-color: color-mix(in srgb, var(--guide-color) 30%, transparent); }
+    #guidePage .guide-category-title > span { box-shadow: 0 0 18px color-mix(in srgb, var(--guide-color) 24%, transparent); }
+    #guidePage .guide-category-title h2 { font-size: 1.62rem; }
+    #guidePage .guide-category-title p { display: block; max-width: 660px; font-size: .63rem; line-height: 1.45; }
+    #guidePage .guide-category-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 9px; }
+    #guidePage .guide-category-count { padding: 7px 10px; border-radius: 999px; background: color-mix(in srgb, var(--guide-color) 13%, transparent); color: var(--guide-color); font-size: .55rem; font-weight: 900; white-space: nowrap; }
+    #guidePage .guide-scroll-controls { display: flex; gap: 5px; }
+    #guidePage .guide-scroll-controls button {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, var(--guide-color) 30%, transparent);
+      border-radius: 9px;
+      background: color-mix(in srgb, var(--theme-surface, #111832) 94%, transparent);
+      color: #c8d1e8;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    #guidePage .guide-scroll-controls button:hover { border-color: var(--guide-color); color: #fff; }
+    #guidePage .guide-carousel-shell { min-width: 0; }
+    #guidePage .guide-carousel-shell::after {
+      position: absolute;
+      z-index: 4;
+      top: 12px;
+      right: 0;
+      bottom: 5px;
+      width: 48px;
+      content: "";
+      opacity: 1;
+      background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--theme-deep, #050817) 92%, transparent));
+      pointer-events: none;
+      transition: opacity .18s ease;
+    }
+    #guidePage .guide-carousel-shell:has(.guide-category-track[data-at-end="true"])::after { opacity: 0; }
+    #guidePage .guide-category-track {
+      display: flex;
+      min-width: 0;
+      padding: 15px 50px 6px 2px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      align-items: stretch;
+      gap: clamp(10px, var(--catalog-gap, 14px), 18px);
+      scroll-behavior: smooth;
+      scroll-padding-inline: 2px 50px;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+      touch-action: pan-x pan-y;
+      -webkit-overflow-scrolling: touch;
+    }
+    #guidePage .guide-category-track::-webkit-scrollbar { display: none; }
+    #guidePage .guide-category-track:focus-visible { outline: 2px solid var(--guide-color); outline-offset: 3px; border-radius: 14px; }
+    #guidePage .guide-card {
+      width: min(var(--guide-slide-width, 510px), calc(100vw - 80px));
+      min-width: min(var(--guide-slide-width, 510px), calc(100vw - 80px));
+      min-height: 300px;
+      flex: 0 0 min(var(--guide-slide-width, 510px), calc(100vw - 80px));
+      align-self: stretch;
+      grid-template-columns: minmax(136px, 31%) minmax(0, 1fr);
+      scroll-snap-align: start;
+    }
+    #guidePage .guide-card-content { min-width: 0; overflow: visible; }
+    #guidePage .guide-ability,
+    #guidePage .guide-note { overflow: visible; overflow-wrap: anywhere; white-space: normal; }
+
+    @media (max-width: 700px) {
+      html[data-card-size="small"] { --guide-slide-width: calc(100vw - 82px); }
+      html[data-card-size="medium"] { --guide-slide-width: calc(100vw - 62px); }
+      html[data-card-size="large"] { --guide-slide-width: calc(100vw - 44px); }
+      #guidePage .guide-toolbar {
+        display: flex;
+        padding: 6px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        justify-content: flex-start;
+        gap: 6px;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch;
+      }
+      #guidePage .guide-toolbar::-webkit-scrollbar { display: none; }
+      #guidePage .guide-toolbar button { min-width: 108px; min-height: 45px; flex: 0 0 auto; scroll-snap-align: start; }
+      #guidePage .guide-toolbar button:first-child { grid-column: auto; }
+      #guidePage .guide-summary { align-items: stretch; flex-direction: column; gap: 10px; }
+      #guidePage .guide-summary > span { align-self: flex-start; }
+      #guidePage .guide-grid { gap: 10px; }
+      #guidePage .guide-category-section { padding: 13px 11px 12px; border-left-width: 4px; border-radius: 17px; scroll-margin-top: 86px; }
+      #guidePage .guide-category-head { padding-bottom: 10px; align-items: flex-start; gap: 8px; }
+      #guidePage .guide-category-title { align-items: flex-start; gap: 8px; }
+      #guidePage .guide-category-title > span { width: 31px; height: 31px; flex-basis: 31px; }
+      #guidePage .guide-category-title h2 { font-size: 1.34rem; }
+      #guidePage .guide-category-title p { margin-top: 4px; font-size: .57rem; line-height: 1.42; }
+      #guidePage .guide-category-actions { padding-top: 1px; }
+      #guidePage .guide-category-count { padding: 6px 8px; font-size: .47rem; }
+      #guidePage .guide-scroll-controls { display: none; }
+      #guidePage .guide-category-track { padding: 12px 28px 5px 0; gap: clamp(8px, var(--catalog-gap, 10px), 12px); scroll-padding-inline: 0 28px; scroll-snap-type: x mandatory; }
+      #guidePage .guide-carousel-shell::after { top: 10px; bottom: 4px; width: 29px; }
+      #guidePage .guide-card {
+        width: var(--guide-slide-width);
+        min-width: var(--guide-slide-width);
+        min-height: 0;
+        flex-basis: var(--guide-slide-width);
+        grid-template-columns: minmax(0, 1fr);
+      }
+      #guidePage .guide-card-media { min-height: 158px; }
+      #guidePage .guide-card-content { padding: 16px; }
+      #guidePage .guide-ability { font-size: .76rem; line-height: 1.58; }
+      #guidePage .guide-level-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
+      #guidePage .guide-level:nth-child(5) { grid-column: 1 / -1; }
+    }
 
     @media (max-width: 700px) {
       .mobile-dock { overflow-x: scroll !important; overflow-y: hidden !important; scroll-snap-type: x proximity !important; touch-action: pan-x !important; cursor: grab; }
@@ -5094,7 +5533,6 @@
         <div class="topbar-links" aria-label="Accès rapides">
           <a href="#home" data-page-target="home">Accueil</a>
           <a href="#catalog" data-page-target="catalog">Catalogue</a>
-          <a href="#inventory" data-page-target="inventory">Inventaire</a>
           <a href="#guide" data-page-target="guide">Guide</a>
           <a href="#settings" data-page-target="settings">Réglages</a>
           <a href="#patch-notes" data-page-target="patch-notes">Patch Notes</a>
@@ -5285,17 +5723,24 @@
         </div>
         <div class="feature-hero-orb" aria-hidden="true">✦</div>
       </header>
-      <div class="guide-toolbar" role="tablist" aria-label="Catégories de capacités">
-        <button type="button" data-guide-category="healing" aria-selected="true"><span>＋</span>Soins</button>
-        <button type="button" data-guide-category="mobility" aria-selected="false"><span>➜</span>Mobilité</button>
-        <button type="button" data-guide-category="defense" aria-selected="false"><span>◆</span>Défense</button>
-        <button type="button" data-guide-category="loot" aria-selected="false"><span>⬡</span>Butin</button>
-        <button type="button" data-guide-category="combat" aria-selected="false"><span>✦</span>Combat</button>
-        <button type="button" data-guide-category="squad" aria-selected="false"><span>●</span>Escouade</button>
+      <div class="guide-toolbar" role="toolbar" aria-label="Accès rapide aux catégories de capacités">
+        <button type="button" data-guide-category="all" aria-pressed="true"><span aria-hidden="true">◎</span>Tous <b data-guide-count="all">24</b></button>
+        <button type="button" data-guide-category="healing" aria-pressed="false"><span aria-hidden="true">＋</span>Soins <b data-guide-count="healing">3</b></button>
+        <button type="button" data-guide-category="mobility" aria-pressed="false"><span aria-hidden="true">➜</span>Mobilité <b data-guide-count="mobility">5</b></button>
+        <button type="button" data-guide-category="defense" aria-pressed="false"><span aria-hidden="true">◆</span>Défense <b data-guide-count="defense">3</b></button>
+        <button type="button" data-guide-category="loot" aria-pressed="false"><span aria-hidden="true">⬡</span>Butin <b data-guide-count="loot">5</b></button>
+        <button type="button" data-guide-category="combat" aria-pressed="false"><span aria-hidden="true">✦</span>Combat <b data-guide-count="combat">4</b></button>
+        <button type="button" data-guide-category="squad" aria-pressed="false"><span aria-hidden="true">●</span>Escouade <b data-guide-count="squad">4</b></button>
       </div>
       <div class="guide-summary">
-        <div><span id="guideCategoryIcon" aria-hidden="true">＋</span><div><strong id="guideCategoryTitle">Soins</strong><p id="guideCategoryCopy">Récupération de PV, de bouclier et survie.</p></div></div>
-        <span id="guideResultCount">0 esprit</span>
+        <div><span id="guideCategoryIcon" aria-hidden="true">◎</span><div><strong id="guideCategoryTitle">Toutes les catégories</strong><p id="guideCategoryCopy">Chaque esprit apparaît une seule fois. Fais glisser chaque rangée vers la droite pour tout découvrir.</p></div></div>
+        <span id="guideResultCount">24 esprits uniques</span>
+      </div>
+      <div class="guide-integrity" aria-label="Résumé du classement">
+        <div><strong id="guideFamilyCount">24</strong><span>familles classées</span></div>
+        <div><strong>1</strong><span>catégorie par esprit</span></div>
+        <div><strong id="guideCategoryCount">6</strong><span>catégories précises</span></div>
+        <p>Capacités, paliers et coûts de rappel vérifiés pour Fortnite v41.30. Les variantes restent dans la catégorie de leur esprit de base.</p>
       </div>
       <div class="guide-grid" id="guideGrid"></div>
     </section>
@@ -5356,6 +5801,7 @@
           <button type="button" data-admin-tab="spirit" aria-selected="true">Nouvel esprit</button>
           <button type="button" data-admin-tab="edit" aria-selected="false">Modifier</button>
           <button type="button" data-admin-tab="variant" aria-selected="false">Nouvelle variante</button>
+          <button type="button" data-admin-tab="variant-edit" aria-selected="false">Modifier les variantes</button>
           <button type="button" data-admin-tab="patch" aria-selected="false">Patch Note</button>
           <button type="button" data-admin-tab="manage" aria-selected="false">Gérer / supprimer</button>
         </nav>
@@ -5374,6 +5820,18 @@
           <div class="form-grid"><label class="field-label">Famille d’esprit<select name="familyKey" id="adminVariantFamily" required></select></label><label class="field-label">Variante<select name="variant" class="admin-variant-select" required></select></label><label class="field-label field-span">URL de l’image<input name="image" required type="url" placeholder="https://…"></label><label class="field-label">Date de sortie<input name="releaseDate" type="date"></label></div>
           <button class="feature-primary" type="submit">Ajouter la variante</button>
         </form>
+        <form class="panel-card admin-form" id="adminVariantEditForm" data-admin-panel="variant-edit">
+          <div class="panel-heading"><div><span>Types de variantes</span><h2>Modifier une variante existante</h2></div><span class="panel-status">Modification globale</span></div>
+          <div class="form-grid">
+            <label class="field-label field-span">Variante à modifier<select name="variantKey" id="adminVariantEditSelect" class="admin-variant-select" required></select><small>Le changement s’appliquera aux filtres, badges, recherches et fiches de toutes les pages.</small></label>
+            <label class="field-label">Nom français<input name="fr" required maxlength="40"></label>
+            <label class="field-label">Nom anglais<input name="en" required maxlength="40"></label>
+            <label class="field-label">Couleur de la variante<input name="color" type="color" required></label>
+            <label class="field-label field-span">Bonus de variante en français<textarea name="effectFr" required maxlength="500" rows="4"></textarea></label>
+            <label class="field-label field-span">Bonus de variante en anglais<textarea name="effectEn" required maxlength="500" rows="4"></textarea></label>
+          </div>
+          <button class="feature-primary" type="submit">Enregistrer la variante</button>
+        </form>
         <form class="panel-card admin-form" id="adminPatchForm" data-admin-panel="patch">
           <div class="panel-heading"><div><span>Actualité</span><h2>Publier un Patch Note</h2></div></div>
           <div class="form-grid"><label class="field-label field-span">Titre<input name="title" required maxlength="100"></label><label class="field-label field-span">Contenu<textarea name="body" required maxlength="1800" rows="7" placeholder="Une ligne par nouveauté…"></textarea></label><label class="field-label">Date de publication<input name="date" required type="datetime-local"></label></div>
@@ -5385,7 +5843,7 @@
         </form>
         <section class="panel-card admin-form" id="adminManagePanel" data-admin-panel="manage">
           <div class="panel-heading"><div><span>Gestion complète</span><h2>Modifier ou supprimer le contenu</h2></div></div>
-          <p class="admin-manage-copy">Gère les Patch Notes, ajouts, variantes et corrections publiés. Les changements sont ajoutés au brouillon avant publication.</p>
+          <p class="admin-manage-copy">Gère les Patch Notes, les esprits ajoutés, les types de variantes, leurs noms, bonus et couleurs, ainsi que les corrections publiées. Les changements sont ajoutés au brouillon avant publication.</p>
           <div class="admin-content-manager" id="adminContentManager"></div>
         </section>
         <section class="admin-publish-bar"><div><span>Brouillon global</span><strong id="adminDraftStatus">Aucune modification</strong></div><button id="adminPreviewBtn" type="button">Aperçu local</button><button class="feature-primary" id="adminPublishBtn" type="button">Publier sur Sprite Locker</button></section>
@@ -5452,10 +5910,6 @@
     <a class="mobile-dock-item" href="#catalog" data-page-target="catalog">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5.5h16v13H4z"></path><path d="M8 5.5v13M16 5.5v13M4 12h16"></path></svg>
       <span>Catalogue</span>
-    </a>
-    <a class="mobile-dock-item" href="#inventory" data-page-target="inventory">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5Z"></path><path d="m4.5 7.5 7.5 4 7.5-4M12 12v9"></path></svg>
-      <span>Inventaire</span>
     </a>
     <a class="mobile-dock-item" href="#guide" data-page-target="guide">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5.5h6a3 3 0 0 1 3 3v10H7a3 3 0 0 0-3 3z"></path><path d="M20 5.5h-4a3 3 0 0 0-3 3v10h4a3 3 0 0 1 3 3z"></path></svg>
@@ -5639,9 +6093,7 @@
           progressByVariant: "Progression par variante",
           fiveCollections: "8 collections à compléter",
           variantCompleted: "Variante {variant} complétée",
-          inventory: "Inventaire",
           catalogNav: "Catalogue",
-          inventoryNav: "Inventaire",
           patchNotesNav: "Patch Notes",
           patchKicker: "Mise à jour v41.30",
           patchTitleHtml: "Le casier passe à <span>109 esprits</span>",
@@ -5666,12 +6118,7 @@
           patchNoticeTitle: "Contenu encore non sorti",
           patchNoticeCopy: "Ironmouse et l’Esprit sinistre Gemme ne sont pas encore récupérables : ils seront ajoutés dès leur sortie officielle.",
           patchCatalogButton: "Voir le catalogue",
-          patchInventoryButton: "Ouvrir mon inventaire",
           catalogTitle: "Tous les esprits",
-          inventoryTitle: "Mon inventaire",
-          inventoryOnly: "Esprits possédés",
-          inventoryEmptyTitle: "Ton inventaire est vide",
-          inventoryEmptyCopy: "Ajoute des esprits depuis le catalogue pour les retrouver ici.",
           spiritLocker: "Le casier des esprits",
           shown: "affichés",
           fullCatalog: "Catalogue complet",
@@ -5682,7 +6129,6 @@
           backupOptions: "Sauvegarde et options",
           collectionStatus: "État de collection",
           all: "Tous",
-          ownedFilter: "✓ Possédés",
           missingFilter: "Manquants",
           masteredFilter: "★ Maîtrisés",
           filterVariant: "Filtrer par variante",
@@ -5852,9 +6298,7 @@
           progressByVariant: "Progress by variant",
           fiveCollections: "8 collections to complete",
           variantCompleted: "{variant} variant completion",
-          inventory: "Inventory",
           catalogNav: "Catalog",
-          inventoryNav: "Inventory",
           patchNotesNav: "Patch Notes",
           patchKicker: "Update v41.30",
           patchTitleHtml: "The Locker grows to <span>109 Sprites</span>",
@@ -5879,12 +6323,7 @@
           patchNoticeTitle: "Still unreleased",
           patchNoticeCopy: "Ironmouse and Gem Grim are not obtainable yet. They will be added as soon as they officially release.",
           patchCatalogButton: "View catalog",
-          patchInventoryButton: "Open my inventory",
           catalogTitle: "All Sprites",
-          inventoryTitle: "My inventory",
-          inventoryOnly: "Owned Sprites",
-          inventoryEmptyTitle: "Your inventory is empty",
-          inventoryEmptyCopy: "Add Sprites from the catalog to find them here.",
           spiritLocker: "The Sprite Locker",
           shown: "shown",
           fullCatalog: "Full catalog",
@@ -5895,7 +6334,6 @@
           backupOptions: "Backup and options",
           collectionStatus: "Collection status",
           all: "All",
-          ownedFilter: "✓ Owned",
           missingFilter: "Missing",
           masteredFilter: "★ Mastered",
           filterVariant: "Filter by variant",
@@ -6422,6 +6860,134 @@
         }
       ];
 
+      /*
+       * Classement éditorial du Guide — une seule catégorie principale par famille.
+       * Les paliers correspondent aux valeurs affichées en jeu pour les niveaux 1 à 5.
+       */
+      const guideProfiles = Object.freeze({
+        batman: {
+          category: "mobility", summonCost: 6750,
+          ability: { fr: "Permet de s’élancer dans les airs puis de déployer la Bat-Cape.", en: "Launches you into the air, then deploys the Bat-Cape." },
+          note: { fr: "Effet fixe : aucune progression chiffrée par niveau n’est publiée.", en: "Fixed effect: no numerical level scaling is published." }
+        },
+        water: {
+          category: "healing", summonCost: 100,
+          ability: { fr: "Régénère le bouclier lorsque tu te tiens dans l’eau, pour toi et les membres proches de ton escouade.", en: "Regenerates Shield while you stand in water for you and nearby squad members." },
+          levelCaption: { fr: "Bouclier par pulsation", en: "Shield per tick" }, levels: ["2", "3", "4", "5", "6"]
+        },
+        earth: {
+          category: "loot", summonCost: 100,
+          ability: { fr: "Donne une chance de trouver du butin rare supplémentaire en ouvrant un coffre.", en: "Grants a chance to find additional rare loot when opening a chest." },
+          levelCaption: { fr: "Chance de butin supplémentaire", en: "Extra loot chance" }, levels: ["10 %", "12,5 %", "15 %", "17,5 %", "20 %"]
+        },
+        fire: {
+          category: "combat", summonCost: 100,
+          ability: { fr: "Déclenche une explosion de feu après avoir infligé suffisamment de dégâts à un adversaire.", en: "Triggers a fiery burst after dealing enough damage to an enemy." },
+          levelCaption: { fr: "Dégâts requis pour déclencher", en: "Damage required to trigger" }, levels: ["150", "125", "100", "75", "50"]
+        },
+        duck: {
+          category: "healing", summonCost: 2700,
+          ability: { fr: "Régénère le bouclier lorsque tu utilises une emote ou que tu participes à un Jam.", en: "Regenerates Shield while you emote or Jam." },
+          levelCaption: { fr: "Bouclier par pulsation", en: "Shield per tick" }, levels: ["2", "3", "4", "6", "8"]
+        },
+        ghost: {
+          category: "defense", summonCost: 2700,
+          ability: { fr: "Accorde le camouflage pendant une courte durée après un rechargement.", en: "Grants Cloak for a short duration after reloading." },
+          levelCaption: { fr: "Durée du camouflage", en: "Cloak duration" }, levels: ["3 s", "3,5 s", "4 s", "4,5 s", "5 s"]
+        },
+        dream: {
+          category: "loot", summonCost: 4500,
+          ability: { fr: "Accorde un objet aléatoire à chaque niveau et libère du butin légendaire au niveau maximal.", en: "Grants a random item at each level and bursts with Legendary loot at max level." },
+          note: { fr: "La valeur du butin augmente à chaque niveau. Aucun tableau chiffré officiel n’est publié.", en: "Loot value increases at every level. No official numerical table is published." }
+        },
+        demon: {
+          category: "healing", summonCost: 2700,
+          ability: { fr: "Rend des PV et du bouclier à chaque élimination.", en: "Restores Health and Shield with each elimination." },
+          levelCaption: { fr: "Soin par élimination", en: "Healing per elimination" }, levels: ["10", "15", "20", "25", "30"]
+        },
+        punk: {
+          category: "combat", summonCost: 4500,
+          ability: { fr: "Peut ne rien accorder… ou déclencher un bonus aléatoire pouvant aller jusqu’aux munitions illimitées.", en: "May grant nothing… or trigger a random bonus that can include unlimited ammo." },
+          note: { fr: "Effet aléatoire : aucune probabilité officielle par niveau n’est publiée.", en: "Random effect: no official per-level probability is published." }
+        },
+        king: {
+          category: "combat", summonCost: 2700,
+          ability: { fr: "Augmente les dégâts infligés avec la pioche.", en: "Increases damage dealt with your Pickaxe." },
+          levelCaption: { fr: "Dégâts bonus de pioche", en: "Bonus Pickaxe damage" }, levels: ["+30", "+40", "+60", "+80", "+120"]
+        },
+        vini: {
+          category: "combat", summonCost: 6750,
+          ability: { fr: "Après un sprint, la glissade devient destructrice. Percuter un ennemi augmente aussi la cadence de tir et la vitesse de rechargement.", en: "After sprinting, sliding becomes destructive. Slide-kicking an enemy also boosts fire rate and reload speed." },
+          levelCaption: { fr: "Dégâts de glissade · cadence", en: "Slide damage · fire rate" }, levels: ["40 · +10 %", "45 · +20 %", "50 · +30 %", "55 · +40 %", "60 · +50 %"]
+        },
+        "burnt-peanut": {
+          category: "loot", summonCost: 6750,
+          ability: { fr: "Après une élimination, peut faire apparaître du butin supplémentaire, parfois mythique au niveau maximal.", en: "After an elimination, can spawn extra loot, sometimes Mythic at max level." },
+          levelCaption: { fr: "Chance de butin supplémentaire", en: "Extra loot chance" }, levels: ["20 %", "30 %", "40 %", "50 %", "60 %"],
+          note: { fr: "Au niveau 5 : 10 % de chance que le butin supplémentaire soit mythique.", en: "At Level 5: a 10% chance for the extra loot to be Mythic." }
+        },
+        "zero-point": {
+          category: "defense", summonCost: 6750,
+          ability: { fr: "Crée une mini bulle protectrice lorsque tu utilises sur toi un objet de soin, hors éclaboussures et grenades.", en: "Spawns a Shield Bubble Jr. when you use a healing item on yourself, excluding splashes and grenades." },
+          levelCaption: { fr: "Durée de la bulle", en: "Bubble duration" }, levels: ["6 s", "7 s", "8 s", "9 s", "10 s"]
+        },
+        fishy: {
+          category: "mobility", summonCost: 1800,
+          ability: { fr: "Augmente fortement la vitesse de nage et accorde brièvement un bonus de déplacement après avoir subi des dégâts.", en: "Greatly increases swim speed and briefly boosts movement speed after taking damage." },
+          levelCaption: { fr: "Nage · déplacement", en: "Swim · movement" }, levels: ["+25 % · +10 %", "+50 % · +20 %", "+100 % · +30 %", "+150 % · +40 %", "+200 % · +50 %"]
+        },
+        striker: {
+          category: "mobility", summonCost: 2700,
+          ability: { fr: "Accorde Surmultiplication après un rétablissement, un franchissement ou une course murale.", en: "Grants Overdrive after mantling, hurdling, or wall scrambling." },
+          levelCaption: { fr: "Durée de Surmultiplication", en: "Overdrive duration" }, levels: ["6 s", "7 s", "8 s", "9 s", "10 s"]
+        },
+        aura: {
+          category: "mobility", summonCost: 2700,
+          ability: { fr: "Accorde une charge de roche antigravité après avoir infligé suffisamment de dégâts à des ennemis.", en: "Grants a Shock Rock charge after dealing enough damage to enemies." },
+          levelCaption: { fr: "Dégâts requis pour la charge", en: "Damage required for a charge" }, levels: ["175", "150", "125", "100", "75"]
+        },
+        boss: {
+          category: "defense", summonCost: 4500,
+          ability: { fr: "Augmente simultanément le maximum de PV et de bouclier.", en: "Increases both your maximum Health and Shield." },
+          levelCaption: { fr: "Maximum de PV et bouclier", en: "Max Health and Shield" }, levels: ["+5 / +5", "+10 / +10", "+15 / +15", "+20 / +20", "+25 / +25"]
+        },
+        grim: {
+          category: "squad", summonCost: 6750,
+          ability: { fr: "Marque automatiquement les joueurs qui t’infligent des dégâts.", en: "Automatically marks players who damage you." },
+          levelCaption: { fr: "Durée du marquage", en: "Mark duration" }, levels: ["3 s", "3,5 s", "4 s", "4,5 s", "5 s"]
+        },
+        air: {
+          category: "mobility", summonCost: 1800,
+          ability: { fr: "Augmente la vitesse de sprint et la hauteur de saut, tout en annulant les dégâts de chute.", en: "Increases sprint speed and jump height while nullifying fall damage." },
+          note: { fr: "La hauteur de saut augmente à chaque niveau. Les valeurs exactes ne sont pas publiées.", en: "Jump height increases at every level. Exact values are not published." }
+        },
+        seven: {
+          category: "squad", summonCost: 4500,
+          ability: { fr: "Rend visibles pour l’escouade les traces laissées par les joueurs ennemis.", en: "Makes enemy player foot trails visible to your Squad." },
+          levelCaption: { fr: "Durée des traces visibles", en: "Visible foot-trail duration" }, levels: ["10 s", "15 s", "20 s", "25 s", "30 s"]
+        },
+        pollo: {
+          category: "squad", summonCost: 6750,
+          ability: { fr: "Après une élimination, régénère progressivement le bouclier du joueur et des membres proches de son escouade.", en: "After an elimination, gradually restores Shield for you and nearby squad members." },
+          levelCaption: { fr: "Durée de régénération", en: "Regeneration duration" }, levels: ["6 s", "7 s", "8 s", "9 s", "10 s"]
+        },
+        "john-wick": {
+          category: "squad", summonCost: 6750,
+          ability: { fr: "Mettre un joueur K.-O. révèle les autres adversaires à proximité.", en: "Knocking a player reveals other nearby opponents." },
+          levelCaption: { fr: "Durée du marquage", en: "Mark duration" }, levels: ["3 s", "3,5 s", "4 s", "4,5 s", "5 s"]
+        },
+        llama: {
+          category: "loot", summonCost: 4500,
+          ability: { fr: "Ouvrir une boîte de munitions peut améliorer l’une de tes armes.", en: "Opening an ammo box can upgrade one of your weapons." },
+          levelCaption: { fr: "Chance d’amélioration", en: "Upgrade chance" }, levels: ["5 %", "10 %", "15 %", "17 %", "20 %"]
+        },
+        peely: {
+          category: "loot", summonCost: 4500,
+          ability: { fr: "Émet une détection des joueurs transportant des esprits rares à proximité, mais te marque aussi sur la carte.", en: "Pings nearby players carrying rare Sprites, but also marks you on the map." },
+          levelCaption: { fr: "Rayon de détection", en: "Ping radius" }, levels: ["40 m", "50 m", "60 m", "70 m", "80 m"]
+        }
+      });
+
       const rarityLabels = {
         fr: { rare: "Rare", epic: "Épique", legendary: "Légendaire", mythic: "Mythique" },
         en: { rare: "Rare", epic: "Epic", legendary: "Legendary", mythic: "Mythic" }
@@ -6444,6 +7010,7 @@
       families.forEach((family, familyIndex) => {
         Object.entries(family.images).forEach(([variant, filename], variantIndex) => {
           const v = variants[variant];
+          const guideProfile = guideProfiles[family.key] || null;
           sprites.push({
             id: `${family.key}-${variant}`,
             catalogNumber: sprites.length + 1,
@@ -6455,7 +7022,9 @@
             en: variant === "base" ? family.en : `${v.en} ${family.en}`,
             aliases: family.aliases || [],
             rarity: family.rarity,
-            effect: family.effect,
+            effect: guideProfile?.ability || family.effect,
+            guideCategory: guideProfile?.category || "combat",
+            guideProfile,
             image: IMAGE_ROOT + filename
           });
         });
@@ -6528,6 +7097,15 @@
         };
       });
 
+      function populateVariantFilterOptions() {
+        const selectedValue = variantFilter.value || "all";
+        variantFilter.innerHTML = [
+          `<option value="all">${esc(t("allVariants"))}</option>`,
+          ...Object.keys(variants).map(key => `<option value="${esc(key)}">${esc(localizedVariant(key))}</option>`)
+        ].join("");
+        variantFilter.value = selectedValue === "all" || variants[selectedValue] ? selectedValue : "all";
+      }
+
       function applyStaticTranslations() {
         const setText = (selector, key) => {
           const element = document.querySelector(selector);
@@ -6566,11 +7144,10 @@
         const quickLinks = document.querySelectorAll(".topbar-links a");
         if (quickLinks[0]) quickLinks[0].textContent = t("home");
         if (quickLinks[1]) quickLinks[1].textContent = t("catalogNav");
-        if (quickLinks[2]) quickLinks[2].textContent = t("inventoryNav");
-        if (quickLinks[3]) quickLinks[3].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
-        if (quickLinks[4]) quickLinks[4].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
-        if (quickLinks[5]) quickLinks[5].textContent = t("patchNotesNav");
-        if (quickLinks[6]) quickLinks[6].textContent = "Admin";
+        if (quickLinks[2]) quickLinks[2].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
+        if (quickLinks[3]) quickLinks[3].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
+        if (quickLinks[4]) quickLinks[4].textContent = t("patchNotesNav");
+        if (quickLinks[5]) quickLinks[5].textContent = "Admin";
         const heroTitle = document.querySelector(".hero-text h1");
         if (heroTitle) heroTitle.innerHTML = t("heroTitleHtml");
 
@@ -6625,8 +7202,7 @@
         });
 
         variantFilter.setAttribute("aria-label", t("filterVariant"));
-        setOption("variantFilter", "all", "allVariants");
-        Object.keys(variants).forEach(key => setOption("variantFilter", key, key));
+        populateVariantFilterOptions();
         rarityFilter.setAttribute("aria-label", t("filterRarity"));
         setOption("rarityFilter", "all", "allRarities");
         Object.keys(rarityLabels.en).forEach(key => setOption("rarityFilter", key, key));
@@ -6644,11 +7220,10 @@
         const mobileLabels = document.querySelectorAll(".mobile-dock-item span");
         if (mobileLabels[0]) mobileLabels[0].textContent = t("home");
         if (mobileLabels[1]) mobileLabels[1].textContent = t("catalogNav");
-        if (mobileLabels[2]) mobileLabels[2].textContent = t("inventoryNav");
-        if (mobileLabels[3]) mobileLabels[3].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
-        if (mobileLabels[4]) mobileLabels[4].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
-        if (mobileLabels[5]) mobileLabels[5].textContent = t("patchNotesNav");
-        if (mobileLabels[6]) mobileLabels[6].textContent = "Admin";
+        if (mobileLabels[2]) mobileLabels[2].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
+        if (mobileLabels[3]) mobileLabels[3].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
+        if (mobileLabels[4]) mobileLabels[4].textContent = t("patchNotesNav");
+        if (mobileLabels[5]) mobileLabels[5].textContent = "Admin";
         setAttribute("#topBtn", "aria-label", "backToTop");
 
         setText("#patchKicker", "patchKicker");
@@ -6674,8 +7249,7 @@
           ["#patchAppFilters", "patchAppFilters"],
           ["#patchNoticeTitle", "patchNoticeTitle"],
           ["#patchNoticeCopy", "patchNoticeCopy"],
-          ["#patchCatalogButton", "patchCatalogButton"],
-          ["#patchInventoryButton", "patchInventoryButton"]
+          ["#patchCatalogButton", "patchCatalogButton"]
         ].forEach(([selector, key]) => setText(selector, key));
         const patchDateText = document.getElementById("patchDateText");
         if (patchDateText) {
@@ -6890,21 +7464,21 @@
 
       function normalizedPage(value) {
         const route = String(value || "").split("/")[0];
-        return ["home", "catalog", "inventory", "guide", "settings", "admin", "patch-notes"].includes(route) ? route : "home";
+        if (route === "inventory") return "catalog";
+        return ["home", "catalog", "guide", "settings", "admin", "patch-notes"].includes(route) ? route : "home";
       }
 
       function updateCollectionPageCopy() {
-        const inventoryPage = activePage === "inventory";
         const kicker = document.querySelector(".collection-area .section-kicker");
-        if (kicker) kicker.textContent = t(inventoryPage ? "inventoryNav" : "catalogNav");
-        document.getElementById("collectionTitle").textContent = t(inventoryPage ? "inventoryTitle" : "catalogTitle");
-        document.getElementById("activeHint").textContent = t(inventoryPage ? "inventoryOnly" : "fullCatalog");
+        if (kicker) kicker.textContent = t("catalogNav");
+        document.getElementById("collectionTitle").textContent = t("catalogTitle");
+        document.getElementById("activeHint").textContent = t("fullCatalog");
       }
 
       function showPage(page, { updateHash = true } = {}) {
         activePage = normalizedPage(String(page || "home").replace(/^#/, ""));
         const homeVisible = activePage === "home";
-        const collectionVisible = activePage === "catalog" || activePage === "inventory";
+        const collectionVisible = activePage === "catalog";
         const patchNotesVisible = activePage === "patch-notes";
         const guideVisible = activePage === "guide";
         const settingsVisible = activePage === "settings";
@@ -6929,7 +7503,7 @@
           mobileDock.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
         }
 
-        statusFilter = activePage === "inventory" ? "owned" : "all";
+        statusFilter = "all";
         document.querySelectorAll("[data-status]").forEach(button => {
           button.setAttribute("aria-selected", String(activePage === "catalog" && button.dataset.status === "all"));
         });
@@ -6951,6 +7525,7 @@
 
         const nextHash = `#${activePage}`;
         if (updateHash && location.hash !== nextHash) history.pushState({ page: activePage }, "", nextHash);
+        else if (!updateHash && location.hash !== nextHash) history.replaceState({ page: activePage }, "", nextHash);
         if (typeof window.scrollTo === "function") window.scrollTo({ top: 0, behavior: "auto" });
       }
 
@@ -7017,7 +7592,6 @@
           const matchesVariant = selectedVariant === "all" || sprite.variant === selectedVariant;
           const matchesRarity = selectedRarity === "all" || sprite.rarity === selectedRarity;
           const matchesStatus = statusFilter === "all" ||
-            (statusFilter === "owned" && entry.owned) ||
             (statusFilter === "missing" && !entry.owned) ||
             (statusFilter === "mastered" && entry.mastered);
           return { sprite, searchScore, visible: searchScore > 0 && matchesVariant && matchesRarity && matchesStatus };
@@ -7036,6 +7610,82 @@
 
         result.sort((a, b) => (query ? b.searchScore - a.searchScore : 0) || compareBySelectedSort(a, b));
         return result.map(item => item.sprite);
+      }
+
+      function familyVariantTileTemplate(sprite, imageIndex) {
+        const entry = state[sprite.id] || blankEntry();
+        const variant = variants[sprite.variant];
+        const name = localizedName(sprite);
+        const immediateImage = imageIndex < 12;
+        return `
+          <article class="family-variant-tile${entry.owned ? " is-owned" : " is-missing"}${entry.mastered ? " is-mastered" : ""}" data-id="${esc(sprite.id)}" data-variant="${esc(sprite.variant)}" style="--variant-color:${variant.color}">
+            <button class="family-variant-visual" type="button" data-action="details" data-id="${esc(sprite.id)}" aria-label="${esc(t("viewDetails", { name }))}">
+              <img ${immediateImage ? `src="${sprite.image}"` : `data-src="${sprite.image}"`} class="${immediateImage ? "is-loading" : "is-pending"}" alt="${esc(`${name} · ${localizedVariant(sprite.variant)}`)}" width="240" height="240" loading="${immediateImage ? "eager" : "lazy"}" decoding="async" fetchpriority="${imageIndex < 4 ? "high" : "low"}" referrerpolicy="no-referrer">
+              <span class="family-variant-lock"${entry.owned ? " hidden" : ""} aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="10" width="14" height="11" rx="3"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
+              <span class="family-variant-mastered"${entry.mastered ? "" : " hidden"} aria-hidden="true">★</span>
+            </button>
+            <strong class="family-variant-name">${esc(localizedVariant(sprite.variant))}</strong>
+            <button class="family-variant-action" type="button" data-action="owned" data-id="${esc(sprite.id)}" aria-pressed="${entry.owned}" aria-label="${esc(entry.owned ? t("removeFromLocker") : t("addToLocker"))} : ${esc(name)}"><span aria-hidden="true">${entry.owned ? "✓" : "+"}</span>${entry.owned ? t("inLocker") : t("addShort")}</button>
+          </article>`;
+      }
+
+      function familyRowTemplate(familySprites, rowIndex, imageOffset) {
+        const familyKey = familySprites[0].familyKey;
+        const allFamilySprites = sprites.filter(sprite => sprite.familyKey === familyKey).sort((a, b) => a.variantIndex - b.variantIndex);
+        const representative = allFamilySprites.find(sprite => sprite.variant === "base") || allFamilySprites[0] || familySprites[0];
+        const familyName = localizedName(representative);
+        const ownedCount = allFamilySprites.filter(sprite => (state[sprite.id] || blankEntry()).owned).length;
+        const totalCount = allFamilySprites.length;
+        const progress = totalCount ? Math.round((ownedCount / totalCount) * 100) : 0;
+        const trackId = `family-track-${String(familyKey).replace(/[^a-z0-9_-]/gi, "-")}`;
+        return `
+          <section class="family-row" data-family="${esc(familyKey)}" data-row-index="${rowIndex}" style="--family-glow:${rarityGlow[representative.rarity]};--family-progress:${progress}%">
+            <header class="family-row-head">
+              <div class="family-row-title"><i aria-hidden="true"></i><h3>${esc(familyName)}</h3><button type="button" data-action="details" data-id="${esc(representative.id)}" aria-label="${esc(t("informationAbout", { name: familyName }))}">i</button></div>
+              <div class="family-row-count"><strong>${ownedCount}/${totalCount}</strong><span>${APP_LANGUAGE === "fr" ? "variantes" : "variants"}</span></div>
+            </header>
+            <div class="family-row-progress" role="progressbar" aria-label="${esc(familyName)}" aria-valuemin="0" aria-valuemax="${totalCount}" aria-valuenow="${ownedCount}"><i></i></div>
+            <div class="family-row-body">
+              <button class="family-preview" type="button" data-action="details" data-id="${esc(representative.id)}" aria-label="${esc(t("viewDetails", { name: familyName }))}"><img ${rowIndex < 6 ? `src="${representative.image}"` : `data-src="${representative.image}"`} class="${rowIndex < 6 ? "is-loading" : "is-pending"}" alt="${esc(familyName)}" width="260" height="260" loading="${rowIndex < 6 ? "eager" : "lazy"}" decoding="async" referrerpolicy="no-referrer"></button>
+              <div class="family-variants-shell">
+                <div class="family-variants-track" id="${esc(trackId)}" tabindex="0" aria-label="${esc(`${familyName} · ${APP_LANGUAGE === "fr" ? "variantes, fais glisser vers la droite" : "variants, swipe right"}`)}">
+                  ${familySprites.map((sprite, index) => familyVariantTileTemplate(sprite, imageOffset + index)).join("")}
+                </div>
+                <div class="family-scroll-controls" aria-hidden="false">
+                  <button type="button" data-action="scroll-family" data-direction="-1" aria-controls="${esc(trackId)}" aria-label="${APP_LANGUAGE === "fr" ? "Variantes précédentes" : "Previous variants"}">‹</button>
+                  <button type="button" data-action="scroll-family" data-direction="1" aria-controls="${esc(trackId)}" aria-label="${APP_LANGUAGE === "fr" ? "Variantes suivantes" : "Next variants"}">›</button>
+                </div>
+              </div>
+            </div>
+          </section>`;
+      }
+
+      function groupedVisibleSpriteRows(visibleSprites) {
+        const groups = new Map();
+        visibleSprites.forEach(sprite => {
+          if (!groups.has(sprite.familyKey)) groups.set(sprite.familyKey, []);
+          groups.get(sprite.familyKey).push(sprite);
+        });
+        return [...groups.values()].map(group => group.sort((a, b) => a.variantIndex - b.variantIndex));
+      }
+
+      function setupFamilyVariantCarousels() {
+        grid.querySelectorAll(".family-variants-track").forEach(track => {
+          const updateEdges = () => {
+            track.dataset.atStart = String(track.scrollLeft <= 2);
+            track.dataset.atEnd = String(track.scrollLeft + track.clientWidth >= track.scrollWidth - 2);
+          };
+          track.addEventListener("scroll", updateEdges, { passive: true });
+          track.addEventListener("wheel", event => {
+            if (track.scrollWidth <= track.clientWidth || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+            const atStart = track.scrollLeft <= 1;
+            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+            if ((event.deltaY < 0 && atStart) || (event.deltaY > 0 && atEnd)) return;
+            event.preventDefault();
+            track.scrollLeft += event.deltaY;
+          }, { passive: false });
+          updateEdges();
+        });
       }
 
       function settleSpriteImage(image, loaded) {
@@ -7082,7 +7732,7 @@
           spriteImageObserver.disconnect();
           spriteImageObserver = null;
         }
-        const images = [...grid.querySelectorAll(".sprite-image img")];
+        const images = [...grid.querySelectorAll(".sprite-image img, .family-preview img, .family-variant-visual img")];
         images.filter(image => image.hasAttribute("src")).forEach(trackSpriteImage);
         const pending = images.filter(image => image.dataset.src);
         if (!pending.length) return;
@@ -7153,13 +7803,39 @@
       }
 
       function updateRenderedCard(id) {
-        const card = grid.querySelector(`.sprite-card[data-id="${id}"]`);
-        if (!card) {
+        const tile = grid.querySelector(`.family-variant-tile[data-id="${id}"]`);
+        if (!tile) {
           updateStats();
           return;
         }
         const sprite = sprites.find(item => item.id === id);
-        if (sprite) syncSpriteCardState(card, sprite);
+        if (!sprite) return;
+        const entry = state[id] || blankEntry();
+        tile.classList.toggle("is-owned", entry.owned);
+        tile.classList.toggle("is-missing", !entry.owned);
+        tile.classList.toggle("is-mastered", entry.mastered);
+        const lock = tile.querySelector(".family-variant-lock");
+        const mastery = tile.querySelector(".family-variant-mastered");
+        const action = tile.querySelector(".family-variant-action");
+        if (lock) lock.hidden = entry.owned;
+        if (mastery) mastery.hidden = !entry.mastered;
+        if (action) {
+          action.setAttribute("aria-pressed", String(entry.owned));
+          action.setAttribute("aria-label", `${entry.owned ? t("removeFromLocker") : t("addToLocker")} : ${localizedName(sprite)}`);
+          action.innerHTML = `<span aria-hidden="true">${entry.owned ? "✓" : "+"}</span>${entry.owned ? t("inLocker") : t("addShort")}`;
+        }
+        const row = tile.closest(".family-row");
+        if (row) {
+          const familySprites = sprites.filter(item => item.familyKey === sprite.familyKey);
+          const ownedCount = familySprites.filter(item => (state[item.id] || blankEntry()).owned).length;
+          const count = row.querySelector(".family-row-count strong");
+          const progress = row.querySelector(".family-row-progress");
+          if (count) count.textContent = `${ownedCount}/${familySprites.length}`;
+          if (progress) {
+            progress.setAttribute("aria-valuenow", String(ownedCount));
+            progress.querySelector("i").style.width = `${familySprites.length ? Math.round(ownedCount / familySprites.length * 100) : 0}%`;
+          }
+        }
         updateStats();
       }
 
@@ -7187,19 +7863,22 @@
         if (spriteImageObserver) spriteImageObserver.disconnect();
         const visible = getVisibleSprites();
         if (visible.length) {
-          const fragment = document.createDocumentFragment();
-          visible.forEach((sprite, index) => fragment.appendChild(spriteCardElement(sprite, index)));
-          grid.replaceChildren(fragment);
+          const groups = groupedVisibleSpriteRows(visible);
+          let imageOffset = 0;
+          grid.classList.add("family-collection-grid");
+          grid.innerHTML = groups.map((group, index) => {
+            const row = familyRowTemplate(group, index, imageOffset);
+            imageOffset += group.length;
+            return row;
+          }).join("");
+          setupFamilyVariantCarousels();
         } else {
-          const emptyTitle = activePage === "inventory" ? t("inventoryEmptyTitle") : t("emptyTitle");
-          const emptyCopy = activePage === "inventory" ? t("inventoryEmptyCopy") : t("emptyCopy");
-          grid.innerHTML = `<div class="empty-state"><strong>${emptyTitle}</strong>${emptyCopy}</div>`;
+          grid.classList.add("family-collection-grid");
+          grid.innerHTML = `<div class="empty-state"><strong>${t("emptyTitle")}</strong>${t("emptyCopy")}</div>`;
         }
 
         document.getElementById("resultCount").textContent = visible.length;
-        document.getElementById("activeHint").textContent = activePage === "inventory"
-          ? t("inventoryOnly")
-          : (visible.length === sprites.length ? t("fullCatalog") : t("filtersActive"));
+        document.getElementById("activeHint").textContent = visible.length === sprites.length ? t("fullCatalog") : t("filtersActive");
         updateStats();
         setupProgressiveSpriteImages();
       }
@@ -7906,30 +8585,32 @@
       const DEFAULT_APPEARANCE = Object.freeze({ accent: "#24a9ff", background: "night", cardSize: "medium", density: "balanced", reducedMotion: false });
       const capabilityMeta = {
         healing: {
-          label: "Soins", icon: "＋", copy: "Récupération de PV, de bouclier et survie.",
+          label: "Soins", icon: "＋", color: "#4fe29a", copy: "Régénération directe de PV ou de bouclier.",
           terms: ["soin", "soins", "sante", "pv", "bouclier", "regenere", "rend des", "heal", "health", "shield", "restore", "regenerates"]
         },
         mobility: {
-          label: "Mobilité", icon: "➜", copy: "Vitesse, sauts, glissades et déplacements.",
+          label: "Mobilité", icon: "➜", color: "#57d9ff", copy: "Vitesse, sauts, glissades et déplacements.",
           terms: ["vitesse", "sprint", "saut", "glissade", "nage", "air", "envol", "surmultiplication", "movement", "speed", "jump", "slide", "swim", "launch", "overdrive", "mantling"]
         },
         defense: {
-          label: "Défense", icon: "◆", copy: "Protection, discrétion et réduction des dégâts.",
+          label: "Défense", icon: "◆", color: "#8f9dff", copy: "Protection, camouflage et résistance personnelle.",
           terms: ["protect", "protection", "bulle", "invisible", "degats de chute", "maximum de pv", "maximum health", "fall damage", "bubble", "invisible", "preventing fall"]
         },
         loot: {
-          label: "Butin", icon: "⬡", copy: "Coffres, objets, munitions et récompenses.",
+          label: "Butin", icon: "⬡", color: "#ffd15c", copy: "Objets, améliorations et récompenses supplémentaires.",
           terms: ["butin", "coffre", "munitions", "objet aleatoire", "rare", "loot", "chest", "ammo", "random item", "spawn extra"]
         },
         combat: {
-          label: "Combat", icon: "✦", copy: "Dégâts, éliminations et puissance offensive.",
+          label: "Combat", icon: "✦", color: "#ff6f87", copy: "Dégâts, cadence et puissance offensive.",
           terms: ["degats", "elimination", "cadence de tir", "rechargement", "pioche", "explosion", "ennemi", "adversaire", "damage", "elimination", "fire rate", "reload", "pickaxe", "opponent", "enemy"]
         },
         squad: {
-          label: "Soutien d’escouade", icon: "●", copy: "Informations et bonus utiles à toute l’équipe.",
+          label: "Soutien d’escouade", icon: "●", color: "#c48cff", copy: "Repérage et avantages utiles à l’équipe.",
           terms: ["escouade", "allie", "traces de pas", "chaque autre esprit", "squad", "teammate", "footsteps", "every other carried"]
         }
       };
+
+      const GUIDE_CATEGORY_ORDER = ["healing", "mobility", "defense", "loot", "combat", "squad"];
 
       const searchDocumentCache = new Map();
 
@@ -7942,7 +8623,9 @@
         squad: ["soutien", "escouade", "equipe", "squad", "team support"]
       };
 
-      let guideCategory = "healing";
+      let guideCategory = "all";
+      let guideFamilyTotal = 0;
+      let guideCategoryCounts = Object.fromEntries(GUIDE_CATEGORY_ORDER.map(category => [category, 0]));
       let appearanceSettings = loadAppearanceSettings();
       let adminAccess = false;
       let adminContent = loadAdminContent();
@@ -7968,6 +8651,7 @@
           additions: Array.isArray(value.additions) ? value.additions : [],
           variants: Array.isArray(value.variants) ? value.variants : [],
           overrides: value.overrides && typeof value.overrides === "object" ? value.overrides : {},
+          variantOverrides: value.variantOverrides && typeof value.variantOverrides === "object" ? value.variantOverrides : {},
           patchNotes: Array.isArray(value.patchNotes) ? value.patchNotes : [],
           updatedAtMs: Math.max(0, Number(value.updatedAtMs) || 0)
         };
@@ -8023,10 +8707,12 @@
       }
 
       function spriteCapabilityKeys(sprite) {
+        if (GUIDE_CATEGORY_ORDER.includes(sprite.guideCategory)) return [sprite.guideCategory];
         const haystack = [sprite.fr, sprite.en, sprite.effect?.fr, sprite.effect?.en].filter(Boolean).join(" ");
-        return Object.entries(capabilityMeta)
+        const detected = Object.entries(capabilityMeta)
           .filter(([, meta]) => meta.terms.some(term => containsNormalizedPhrase(haystack, term)))
           .map(([key]) => key);
+        return [detected[0] || "combat"];
       }
 
       function searchStem(token) {
@@ -8162,27 +8848,166 @@
         });
       }
 
+      function localizedGuideValue(value) {
+        if (!value) return "";
+        if (typeof value === "string") return value;
+        return value[APP_LANGUAGE] || value.fr || value.en || "";
+      }
+
+      function guideProfileFor(sprite) {
+        const profile = sprite.guideProfile || guideProfiles[sprite.familyKey];
+        if (profile) return profile;
+        return {
+          category: GUIDE_CATEGORY_ORDER.includes(sprite.guideCategory) ? sprite.guideCategory : "combat",
+          summonCost: null,
+          ability: sprite.effect,
+          note: {
+            fr: "Les paliers détaillés de cet esprit ajouté par l’administration ne sont pas encore renseignés.",
+            en: "Detailed level values for this admin-added Sprite have not been entered yet."
+          }
+        };
+      }
+
+      function guideCardTemplate(sprite, profile, meta) {
+        const levels = Array.isArray(profile.levels) ? profile.levels.slice(0, 5) : [];
+        const levelBlock = levels.length === 5 ? `
+          <div class="guide-level-block">
+            <span class="guide-level-caption">${esc(localizedGuideValue(profile.levelCaption))}</span>
+            <div class="guide-level-grid" aria-label="Progression des niveaux 1 à 5">
+              ${levels.map((value, index) => `<span class="guide-level"><b>Niv. ${index + 1}</b><span>${esc(value)}</span></span>`).join("")}
+            </div>
+          </div>` : "";
+        const note = localizedGuideValue(profile.note);
+        const cost = Number.isFinite(profile.summonCost)
+          ? new Intl.NumberFormat(APP_LOCALE).format(profile.summonCost)
+          : (APP_LANGUAGE === "fr" ? "Non renseigné" : "Not listed");
+        return `
+          <article class="guide-card" data-guide-family="${esc(sprite.familyKey)}" data-guide-card-category="${esc(profile.category)}" style="--guide-color:${meta.color}">
+            <div class="guide-card-media">
+              <img src="${esc(sprite.image)}" alt="${esc(localizedName(sprite))}" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+              <span class="guide-category-badge">${esc(meta.label)}</span>
+            </div>
+            <div class="guide-card-content">
+              <div class="guide-card-top">
+                <span class="badge ${sprite.rarity}">${rarityLabel(sprite.rarity)}</span>
+                <span class="guide-card-en">${esc(sprite.en)}</span>
+              </div>
+              <h3>${esc(localizedName(sprite))}</h3>
+              <p class="guide-ability">${esc(localizedGuideValue(profile.ability) || localizedEffect(sprite.effect))}</p>
+              ${levelBlock}
+              ${note ? `<p class="guide-note">${esc(note)}</p>` : ""}
+              <div class="guide-card-footer">
+                <span class="guide-cost">${APP_LANGUAGE === "fr" ? "Coût de rappel" : "Summon cost"}<strong>${esc(cost)} ${APP_LANGUAGE === "fr" ? "Poussières" : "Dust"}</strong></span>
+                <button class="guide-detail-btn" type="button" data-guide-sprite="${esc(sprite.id)}">${APP_LANGUAGE === "fr" ? "Voir les détails" : "View details"}</button>
+              </div>
+            </div>
+          </article>`;
+      }
+
+      function updateGuideOverview(category = "all") {
+        guideCategory = category === "all" || GUIDE_CATEGORY_ORDER.includes(category) ? category : "all";
+        const selectedMeta = guideCategory === "all"
+          ? {
+              icon: "◎",
+              label: APP_LANGUAGE === "fr" ? "Toutes les catégories" : "All categories",
+              copy: APP_LANGUAGE === "fr"
+                ? "Chaque esprit apparaît une seule fois. Fais glisser chaque rangée vers la droite pour tout découvrir."
+                : "Every Sprite appears once. Swipe each row to the right to explore them all."
+            }
+          : capabilityMeta[guideCategory];
+        const visibleCount = guideCategory === "all" ? guideFamilyTotal : (guideCategoryCounts[guideCategory] || 0);
+
+        document.getElementById("guideCategoryIcon").textContent = selectedMeta.icon;
+        document.getElementById("guideCategoryTitle").textContent = selectedMeta.label;
+        document.getElementById("guideCategoryCopy").textContent = selectedMeta.copy;
+        document.getElementById("guideResultCount").textContent = `${visibleCount} ${APP_LANGUAGE === "fr" ? `esprit${visibleCount > 1 ? "s" : ""} unique${visibleCount > 1 ? "s" : ""}` : `unique Sprite${visibleCount > 1 ? "s" : ""}`}`;
+        document.querySelectorAll("[data-guide-category]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.guideCategory === guideCategory)));
+      }
+
+      function setupGuideCarousels() {
+        document.querySelectorAll(".guide-category-track").forEach(track => {
+          const updateEdges = () => {
+            track.dataset.atStart = String(track.scrollLeft <= 2);
+            track.dataset.atEnd = String(track.scrollLeft + track.clientWidth >= track.scrollWidth - 2);
+          };
+          const slide = direction => track.scrollBy({
+            left: direction * Math.max(260, track.clientWidth * .78),
+            behavior: appearanceSettings.reducedMotion ? "auto" : "smooth"
+          });
+          track.addEventListener("scroll", updateEdges, { passive: true });
+          track.addEventListener("wheel", event => {
+            if (track.scrollWidth <= track.clientWidth || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+            const atStart = track.scrollLeft <= 1;
+            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+            if ((event.deltaY < 0 && atStart) || (event.deltaY > 0 && atEnd)) return;
+            event.preventDefault();
+            track.scrollBy({ left: event.deltaY, behavior: "auto" });
+          }, { passive: false });
+          track.addEventListener("keydown", event => {
+            if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+            event.preventDefault();
+            slide(event.key === "ArrowRight" ? 1 : -1);
+          });
+          track._guideSlide = slide;
+          requestAnimationFrame(updateEdges);
+        });
+      }
+
       function renderGuide() {
-        const meta = capabilityMeta[guideCategory] || capabilityMeta.healing;
-        const matches = representativeSprites().filter(sprite => spriteCapabilityKeys(sprite).includes(guideCategory));
-        document.getElementById("guideCategoryIcon").textContent = meta.icon;
-        document.getElementById("guideCategoryTitle").textContent = meta.label;
-        document.getElementById("guideCategoryCopy").textContent = meta.copy;
-        document.getElementById("guideResultCount").textContent = `${matches.length} esprit${matches.length > 1 ? "s" : ""}`;
-        document.querySelectorAll("[data-guide-category]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.guideCategory === guideCategory)));
-        document.getElementById("guideGrid").innerHTML = matches.length ? matches.map(sprite => `
-          <article class="guide-card" style="--variant-color:${variants[sprite.variant].color}">
-            <img src="${esc(sprite.image)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-            <span class="badge ${sprite.rarity}">${rarityLabel(sprite.rarity)}</span>
-            <h3>${esc(localizedName(sprite))}</h3>
-            <p>${esc(localizedEffect(sprite.effect))}</p>
-            <button type="button" data-guide-sprite="${esc(sprite.id)}" aria-label="Voir ${esc(localizedName(sprite))}"></button>
-          </article>`).join("") : `<div class="empty-state"><strong>Aucun esprit dans cette catégorie</strong>Le guide sera enrichi avec les prochaines sorties.</div>`;
+        if (guideCategory !== "all" && !GUIDE_CATEGORY_ORDER.includes(guideCategory)) guideCategory = "all";
+        const familiesInGuide = representativeSprites().map(sprite => ({ sprite, profile: guideProfileFor(sprite) }));
+        guideFamilyTotal = familiesInGuide.length;
+        guideCategoryCounts = Object.fromEntries(GUIDE_CATEGORY_ORDER.map(category => [category, 0]));
+        familiesInGuide.forEach(({ profile }) => {
+          const category = GUIDE_CATEGORY_ORDER.includes(profile.category) ? profile.category : "combat";
+          guideCategoryCounts[category]++;
+        });
+
+        document.getElementById("guideFamilyCount").textContent = guideFamilyTotal;
+        document.getElementById("guideCategoryCount").textContent = GUIDE_CATEGORY_ORDER.length;
+        document.querySelectorAll("[data-guide-count]").forEach(output => {
+          output.textContent = output.dataset.guideCount === "all" ? guideFamilyTotal : (guideCategoryCounts[output.dataset.guideCount] || 0);
+        });
+
+        document.getElementById("guideGrid").innerHTML = GUIDE_CATEGORY_ORDER.map(category => {
+          const meta = capabilityMeta[category];
+          const entries = familiesInGuide
+            .filter(({ profile }) => profile.category === category)
+            .sort((left, right) => localizedName(left.sprite).localeCompare(localizedName(right.sprite), APP_LOCALE));
+          if (!entries.length) return "";
+          const trackId = `guide-track-${category}`;
+          return `
+            <section class="guide-category-section" data-guide-section="${category}" style="--guide-color:${meta.color}" aria-labelledby="guide-section-${category}">
+              <header class="guide-category-head">
+                <div class="guide-category-title"><span aria-hidden="true">${meta.icon}</span><div><h2 id="guide-section-${category}">${esc(meta.label)}</h2><p>${esc(meta.copy)}</p></div></div>
+                <div class="guide-category-actions">
+                  <span class="guide-category-count">${entries.length} ${APP_LANGUAGE === "fr" ? `esprit${entries.length > 1 ? "s" : ""}` : `Sprite${entries.length > 1 ? "s" : ""}`}</span>
+                  <div class="guide-scroll-controls">
+                    <button type="button" data-guide-scroll="-1" aria-controls="${trackId}" aria-label="${APP_LANGUAGE === "fr" ? "Esprits précédents" : "Previous Sprites"}">‹</button>
+                    <button type="button" data-guide-scroll="1" aria-controls="${trackId}" aria-label="${APP_LANGUAGE === "fr" ? "Esprits suivants" : "Next Sprites"}">›</button>
+                  </div>
+                </div>
+              </header>
+              <div class="guide-carousel-shell">
+                <div class="guide-category-track" id="${trackId}" tabindex="0" aria-label="${esc(`${meta.label} · ${APP_LANGUAGE === "fr" ? "fais glisser vers la droite" : "swipe right"}`)}">
+                  ${entries.map(({ sprite, profile }) => guideCardTemplate(sprite, profile, meta)).join("")}
+                </div>
+              </div>
+            </section>`;
+        }).join("");
+        setupGuideCarousels();
+        updateGuideOverview(guideCategory);
       }
 
       const baseSpriteSnapshot = new Map(sprites.map(sprite => [sprite.id, {
         fr: sprite.fr, en: sprite.en, rarity: sprite.rarity, effect: sprite.effect,
         image: sprite.image, releaseDate: sprite.releaseDate || ""
+      }]));
+      const baseVariantSnapshot = Object.fromEntries(Object.entries(variants).map(([key, variant]) => [key, {
+        fr: variant.fr,
+        en: variant.en,
+        color: variant.color,
+        effect: { fr: variant.effect.fr, en: variant.effect.en }
       }]));
       const adminManagedSpriteIds = new Set();
 
@@ -8238,6 +9063,8 @@
           aliases: Array.isArray(item.aliases) ? item.aliases : [],
           rarity: rarityRank[item.rarity] ? item.rarity : (fallback.rarity || "rare"),
           effect: { fr: effectText, en: String(item.effectEn || fallback.effect && fallback.effect.en || effectText).slice(0, 500) },
+          guideCategory: GUIDE_CATEGORY_ORDER.includes(item.guideCategory) ? item.guideCategory : (fallback.guideCategory || "combat"),
+          guideProfile: fallback.guideProfile || null,
           image: String(item.image || fallback.image || ""),
           releaseDate: String(item.releaseDate || "")
         };
@@ -8249,9 +9076,36 @@
           if (index >= 0) sprites.splice(index, 1);
         });
         adminManagedSpriteIds.clear();
+
+        Object.entries(baseVariantSnapshot).forEach(([key, snapshot]) => {
+          Object.assign(variants[key], {
+            fr: snapshot.fr,
+            en: snapshot.en,
+            color: snapshot.color,
+            effect: { fr: snapshot.effect.fr, en: snapshot.effect.en }
+          });
+        });
+        Object.entries(content.variantOverrides || {}).forEach(([key, override]) => {
+          if (!variants[key] || !override || typeof override !== "object") return;
+          const fallback = baseVariantSnapshot[key];
+          const color = /^#[0-9a-f]{6}$/i.test(String(override.color || "")) ? String(override.color).toLowerCase() : fallback.color;
+          Object.assign(variants[key], {
+            fr: String(override.fr || fallback.fr).trim().slice(0, 40) || fallback.fr,
+            en: String(override.en || fallback.en).trim().slice(0, 40) || fallback.en,
+            color,
+            effect: {
+              fr: String(override.effectFr || fallback.effect.fr).trim().slice(0, 500) || fallback.effect.fr,
+              en: String(override.effectEn || fallback.effect.en).trim().slice(0, 500) || fallback.effect.en
+            }
+          });
+        });
+
         baseSpriteSnapshot.forEach((snapshot, id) => {
           const sprite = sprites.find(item => item.id === id);
-          if (sprite) Object.assign(sprite, snapshot);
+          if (!sprite) return;
+          Object.assign(sprite, snapshot);
+          const family = families.find(item => item.key === sprite.familyKey);
+          if (family && sprite.variant !== "base") sprite.en = `${variants[sprite.variant].en} ${family.en}`;
         });
 
         const additions = [...(content.additions || [])];
@@ -8289,8 +9143,9 @@
           if (!state[sprite.id]) state[sprite.id] = blankEntry();
         });
         renderPublishedPatchNotes(content.patchNotes || []);
+        populateVariantFilterOptions();
         populateAdminSelectors();
-        if (activePage === "catalog" || activePage === "inventory") render();
+        if (activePage === "catalog") render();
         if (activePage === "guide") renderGuide();
         updateStats();
         if (announce) showToast("Aperçu du catalogue appliqué");
@@ -8383,6 +9238,7 @@
         const familyOptions = representativeSprites().map(sprite => `<option value="${esc(sprite.familyKey)}">${esc(sprite.fr)}</option>`).join("");
         const family = document.getElementById("adminVariantFamily");
         if (family) family.innerHTML = familyOptions;
+        fillAdminVariantEditForm();
       }
 
       function fillAdminEditForm() {
@@ -8398,6 +9254,28 @@
         form.elements.releaseDate.value = sprite.releaseDate || "";
       }
 
+      function fillAdminVariantEditForm() {
+        const form = document.getElementById("adminVariantEditForm");
+        if (!form) return;
+        const key = form.elements.variantKey.value;
+        const fallback = baseVariantSnapshot[key];
+        if (!fallback) return;
+        const override = adminDraft && adminDraft.variantOverrides && adminDraft.variantOverrides[key] || {};
+        form.elements.fr.value = override.fr || fallback.fr;
+        form.elements.en.value = override.en || fallback.en;
+        form.elements.color.value = /^#[0-9a-f]{6}$/i.test(String(override.color || "")) ? String(override.color).toLowerCase() : fallback.color;
+        form.elements.effectFr.value = override.effectFr || fallback.effect.fr;
+        form.elements.effectEn.value = override.effectEn || fallback.effect.en;
+      }
+
+      function activateAdminTab(tab) {
+        const selected = document.querySelector(`[data-admin-tab="${tab}"]`);
+        if (!selected) return;
+        document.querySelectorAll("[data-admin-tab]").forEach(item => item.setAttribute("aria-selected", String(item === selected)));
+        document.querySelectorAll("[data-admin-panel]").forEach(panel => panel.classList.toggle("is-active", panel.dataset.adminPanel === tab));
+        if (tab === "variant-edit") fillAdminVariantEditForm();
+      }
+
       function markAdminDraft(message) {
         adminDraft.updatedAtMs = Date.now();
         adminDraftDirty = true;
@@ -8409,11 +9287,38 @@
       function renderAdminHistory() {
         const history = document.getElementById("adminHistory");
         if (!history) return;
+        const changedArrayItems = (draftItems, publishedItems, type, titleFor) => {
+          const publishedById = new Map((publishedItems || []).map((item, index) => [item.id || `${type}-${index}`, item]));
+          return (draftItems || []).flatMap((item, index) => {
+            const id = item.id || `${type}-${index}`;
+            const published = publishedById.get(id);
+            return JSON.stringify(item) !== JSON.stringify(published) ? [{ title: titleFor(item), type }] : [];
+          });
+        };
+        const changedObjectItems = (draftObject, publishedObject, type, titleFor) => Object.entries(draftObject || {}).flatMap(([key, value]) =>
+          JSON.stringify(value) !== JSON.stringify((publishedObject || {})[key]) ? [{ title: titleFor(key, value), type }] : []
+        );
+        const deletedArrayItems = (draftItems, publishedItems, type, titleFor) => {
+          const draftIds = new Set((draftItems || []).map((item, index) => item.id || `${type}-${index}`));
+          return (publishedItems || []).flatMap((item, index) => {
+            const id = item.id || `${type}-${index}`;
+            return draftIds.has(id) ? [] : [{ title: titleFor(item), type: `${type} supprimé` }];
+          });
+        };
+        const deletedObjectItems = (draftObject, publishedObject, type, titleFor) => Object.keys(publishedObject || {}).flatMap(key =>
+          Object.prototype.hasOwnProperty.call(draftObject || {}, key) ? [] : [{ title: titleFor(key, publishedObject[key]), type: `${type} supprimé` }]
+        );
         const items = [
-          ...(adminDraft.additions || []).map(item => ({ title: item.fr, type: "Nouvel esprit" })),
-          ...(adminDraft.variants || []).map(item => ({ title: `${item.fr || item.familyKey} · ${localizedVariant(item.variant)}`, type: "Variante" })),
-          ...Object.entries(adminDraft.overrides || {}).map(([id]) => ({ title: localizedName(sprites.find(sprite => sprite.id === id) || { fr: id, en: id }), type: "Correction" })),
-          ...(adminDraft.patchNotes || []).map(item => ({ title: item.title, type: "Patch Note" }))
+          ...changedArrayItems(adminDraft.additions, adminContent.additions, "Nouvel esprit", item => item.fr),
+          ...changedArrayItems(adminDraft.variants, adminContent.variants, "Variante", item => `${item.fr || item.familyKey} · ${localizedVariant(item.variant)}`),
+          ...changedObjectItems(adminDraft.overrides, adminContent.overrides, "Correction", id => localizedName(sprites.find(sprite => sprite.id === id) || { fr: id, en: id })),
+          ...changedObjectItems(adminDraft.variantOverrides, adminContent.variantOverrides, "Type de variante", (key, override) => override.fr || localizedVariant(key)),
+          ...changedArrayItems(adminDraft.patchNotes, adminContent.patchNotes, "Patch Note", item => item.title),
+          ...deletedArrayItems(adminDraft.additions, adminContent.additions, "Esprit", item => item.fr),
+          ...deletedArrayItems(adminDraft.variants, adminContent.variants, "Variante", item => `${item.fr || item.familyKey} · ${localizedVariant(item.variant)}`),
+          ...deletedObjectItems(adminDraft.overrides, adminContent.overrides, "Correction", id => localizedName(sprites.find(sprite => sprite.id === id) || { fr: id, en: id })),
+          ...deletedObjectItems(adminDraft.variantOverrides, adminContent.variantOverrides, "Type de variante", (key, override) => override.fr || localizedVariant(key)),
+          ...deletedArrayItems(adminDraft.patchNotes, adminContent.patchNotes, "Patch Note", item => item.title)
         ];
         history.innerHTML = items.length ? items.slice().reverse().map(item => `<article><strong>${esc(item.title)}</strong><span>${esc(item.type)} · brouillon</span></article>`).join("") : "";
         renderAdminContentManager();
@@ -8425,15 +9330,20 @@
         if (!manager) return;
         const content = adminDraft || normalizeAdminContent();
         const group = (title, items, type) => `<section class="admin-manage-group"><h3>${esc(title)}</h3><div class="admin-manage-list">${items.length ? items.map((item, index) => {
-          const label = type === "override" ? item[0] : (item.title || item.fr || item.id || `Élément ${index + 1}`);
-          const detail = type === "patch" ? (item.date || "Date non définie") : (type === "variant" ? localizedVariant(item.variant) : type === "override" ? "Correction personnalisée" : "Contenu du catalogue");
-          const editButton = type === "patch" ? `<button type="button" data-admin-manage-action="edit" data-admin-manage-type="patch" data-admin-manage-index="${index}">Modifier</button>` : "";
-          return `<article class="admin-manage-row"><div><strong>${esc(label)}</strong><small>${esc(detail)}</small></div><div class="admin-manage-actions">${editButton}<button class="is-danger" type="button" data-admin-manage-action="delete" data-admin-manage-type="${type}" data-admin-manage-index="${index}"${type === "override" ? ` data-admin-manage-key="${esc(item[0])}"` : ""}>Supprimer</button></div></article>`;
+          const keyed = type === "override" || type === "variantMeta";
+          const key = keyed ? item[0] : "";
+          const value = keyed ? item[1] : item;
+          const label = type === "variantMeta" ? (value.fr || localizedVariant(key)) : type === "override" ? key : (value.title || value.fr || value.id || `Élément ${index + 1}`);
+          const detail = type === "patch" ? (value.date || "Date non définie") : type === "variant" ? localizedVariant(value.variant) : type === "variantMeta" ? `Noms, bonus et couleur · ${value.color || baseVariantSnapshot[key]?.color || "#ffffff"}` : type === "override" ? "Correction personnalisée" : "Contenu du catalogue";
+          const canEdit = type === "patch" || type === "variantMeta";
+          const editButton = canEdit ? `<button type="button" data-admin-manage-action="edit" data-admin-manage-type="${type}" data-admin-manage-index="${index}"${key ? ` data-admin-manage-key="${esc(key)}"` : ""}>Modifier</button>` : "";
+          return `<article class="admin-manage-row"><div><strong>${esc(label)}</strong><small>${esc(detail)}</small></div><div class="admin-manage-actions">${editButton}<button class="is-danger" type="button" data-admin-manage-action="delete" data-admin-manage-type="${type}" data-admin-manage-index="${index}"${key ? ` data-admin-manage-key="${esc(key)}"` : ""}>Supprimer</button></div></article>`;
         }).join("") : `<div class="empty-state"><strong>Aucun contenu</strong></div>`}</div></section>`;
         manager.innerHTML = [
           group("Patch Notes", content.patchNotes || [], "patch"),
           group("Esprits ajoutés", content.additions || [], "addition"),
           group("Variantes ajoutées", content.variants || [], "variant"),
+          group("Types de variantes modifiés", Object.entries(content.variantOverrides || {}), "variantMeta"),
           group("Corrections personnalisées", Object.entries(content.overrides || {}), "override")
         ].join("");
       }
@@ -8460,11 +9370,20 @@
           if (note) openPatchNoteEditor({ kind: "draftPatch", index }, note.body || "", note.title || "");
           return;
         }
+        if (action === "edit" && type === "variantMeta" && baseVariantSnapshot[key]) {
+          activateAdminTab("variant-edit");
+          const select = document.getElementById("adminVariantEditSelect");
+          select.value = key;
+          fillAdminVariantEditForm();
+          document.getElementById("adminVariantEditForm").scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
         if (action !== "delete" || !window.confirm("Supprimer cet élément du contenu publié ?")) return;
         if (type === "patch") adminDraft.patchNotes.splice(index, 1);
         if (type === "addition") adminDraft.additions.splice(index, 1);
         if (type === "variant") adminDraft.variants.splice(index, 1);
         if (type === "override" && key) delete adminDraft.overrides[key];
+        if (type === "variantMeta" && key) delete adminDraft.variantOverrides[key];
         markAdminDraft("Suppression ajoutée au brouillon");
         showToast(type === "patch" ? "Patch Note supprimé du brouillon · clique sur Publier" : "Suppression prête à être publiée");
       }
@@ -8491,13 +9410,15 @@
             publishedBy: firebaseUser.uid
           });
           adminContent = normalizeAdminContent(adminDraft);
+          adminDraft = normalizeAdminContent(adminContent);
           try {
             localStorage.setItem(ADMIN_CONTENT_KEY, JSON.stringify(adminContent));
             localStorage.removeItem(ADMIN_DRAFT_KEY);
           } catch (_) {}
           adminDraftDirty = false;
-          document.getElementById("adminDraftStatus").textContent = "Publié à l’instant";
+          document.getElementById("adminDraftStatus").textContent = "Aucun brouillon · publication réussie";
           applyAdminContent(adminContent);
+          renderAdminHistory();
           showToast("Catalogue Sprite Locker publié");
         } catch (error) {
           showToast(friendlyFirebaseError(error));
@@ -8507,11 +9428,20 @@
       document.querySelector(".guide-toolbar").addEventListener("click", event => {
         const button = event.target.closest("[data-guide-category]");
         if (!button) return;
-        guideCategory = button.dataset.guideCategory;
-        renderGuide();
+        updateGuideOverview(button.dataset.guideCategory);
+        const target = guideCategory === "all"
+          ? document.getElementById("guideGrid")
+          : document.querySelector(`[data-guide-section="${guideCategory}"]`);
+        if (target) target.scrollIntoView({ behavior: appearanceSettings.reducedMotion ? "auto" : "smooth", block: "start" });
       });
 
       document.getElementById("guideGrid").addEventListener("click", event => {
+        const scrollButton = event.target.closest("[data-guide-scroll]");
+        if (scrollButton) {
+          const track = document.getElementById(scrollButton.getAttribute("aria-controls"));
+          if (track && typeof track._guideSlide === "function") track._guideSlide(Number(scrollButton.dataset.guideScroll) || 1);
+          return;
+        }
         const button = event.target.closest("[data-guide-sprite]");
         if (button) openDetails(button.dataset.guideSprite);
       });
@@ -8567,11 +9497,11 @@
       document.querySelector(".admin-tabs").addEventListener("click", event => {
         const button = event.target.closest("[data-admin-tab]");
         if (!button) return;
-        document.querySelectorAll("[data-admin-tab]").forEach(item => item.setAttribute("aria-selected", String(item === button)));
-        document.querySelectorAll("[data-admin-panel]").forEach(panel => panel.classList.toggle("is-active", panel.dataset.adminPanel === button.dataset.adminTab));
+        activateAdminTab(button.dataset.adminTab);
       });
 
       document.getElementById("adminEditSprite").addEventListener("change", fillAdminEditForm);
+      document.getElementById("adminVariantEditSelect").addEventListener("change", fillAdminVariantEditForm);
       document.getElementById("adminSpiritForm").addEventListener("submit", event => {
         event.preventDefault();
         const data = Object.fromEntries(new FormData(event.currentTarget));
@@ -8605,6 +9535,24 @@
         markAdminDraft(`Variante ${localizedVariant(data.variant)} ajoutée`);
         event.currentTarget.reset();
         showToast("Variante ajoutée au brouillon");
+      });
+      document.getElementById("adminVariantEditForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const data = Object.fromEntries(new FormData(event.currentTarget));
+        const key = data.variantKey;
+        if (!baseVariantSnapshot[key]) return showToast("Variante introuvable");
+        const color = String(data.color || "").toLowerCase();
+        if (!/^#[0-9a-f]{6}$/.test(color)) return showToast("La couleur de variante est invalide");
+        adminDraft.variantOverrides[key] = {
+          fr: String(data.fr || "").trim().slice(0, 40),
+          en: String(data.en || "").trim().slice(0, 40),
+          color,
+          effectFr: String(data.effectFr || "").trim().slice(0, 500),
+          effectEn: String(data.effectEn || "").trim().slice(0, 500),
+          updatedAtMs: Date.now()
+        };
+        markAdminDraft(`Variante ${adminDraft.variantOverrides[key].fr} modifiée`);
+        showToast("Modification de variante ajoutée au brouillon");
       });
       document.getElementById("adminPatchForm").addEventListener("submit", event => {
         event.preventDefault();
@@ -8660,6 +9608,14 @@
       grid.addEventListener("click", event => {
         const target = event.target.closest("[data-action]");
         if (!target) return;
+        if (target.dataset.action === "scroll-family") {
+          const track = document.getElementById(target.getAttribute("aria-controls"));
+          if (track) {
+            const direction = Number(target.dataset.direction) || 1;
+            track.scrollBy({ left: direction * Math.max(220, track.clientWidth * .72), behavior: "smooth" });
+          }
+          return;
+        }
         const id = target.dataset.id;
         if (target.dataset.action === "details") {
           openDetails(id);
