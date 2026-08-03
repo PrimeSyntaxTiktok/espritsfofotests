@@ -6092,37 +6092,37 @@
       <article class="patch-entry">
         <header class="patch-simple-head">
           <div>
-            <span class="patch-kicker" id="patchKicker">Mise à jour v41.30</span>
-            <h1 id="patchNotesTitle">Le casier passe à <span>109 esprits</span></h1>
+            <span class="patch-kicker" id="patchKicker">Mise à jour v41.35</span>
+            <h1 id="patchNotesTitle">Nouvelle interface <span>Catalogue & Guide</span></h1>
           </div>
-          <time class="patch-date" id="patchDate" datetime="2026-08-01T17:23:00+02:00">
-            <span id="patchDateText">1 août 2026 à 17:23 · heure de Paris</span>
+          <time class="patch-date" id="patchDate" datetime="2026-08-04T00:00:00+02:00">
+            <span id="patchDateText">4 août 2026 · heure de Paris</span>
           </time>
         </header>
 
         <div class="patch-grid">
           <section class="patch-card">
-            <h2 id="patchNewTitle">Nouveaux esprits</h2>
+            <h2 id="patchNewTitle">Nouvelle Interface (Cartes &amp; Slide)</h2>
             <ul class="patch-list">
-              <li id="patchNewJohn">Esprit John Wick ajouté au catalogue.</li>
-              <li id="patchNewLlama">Esprit lama veinard ajouté avec 5 versions.</li>
-              <li id="patchNewPeely">Esprit de Banane dénicheur ajouté avec 5 versions.</li>
+              <li id="patchNewJohn">Chaque esprit possède désormais sa propre carte dédiée.</li>
+              <li id="patchNewLlama">Fais glisser de gauche à droite sur la carte pour voir toutes ses variantes.</li>
+              <li id="patchNewPeely">Vue claire sur la maîtrise, le nombre de variantes et la progression.</li>
             </ul>
           </section>
           <section class="patch-card">
-            <h2 id="patchVariantsTitle">Variantes ajoutées</h2>
+            <h2 id="patchVariantsTitle">Correctifs &amp; Navigation PC</h2>
             <ul class="patch-list">
-              <li id="patchVariantsQuack">4 variantes Canardesques : Eau, Terre, Feu et Point Zéro.</li>
-              <li id="patchVariantsZero">Point Zéro reçoit les variantes Holofoil et Cube.</li>
-              <li id="patchVariantsRare">Faucheuse Holofoil et Lama veinard Gemme rejoignent la collection.</li>
+              <li id="patchVariantsQuack">Repositionnement des flèches de défilement (‹ ›) dans l’en-tête de carte.</li>
+              <li id="patchVariantsZero">Résolution du chevauchement avec le texte du nombre de variantes sur PC.</li>
+              <li id="patchVariantsRare">Navigation fluide et lisibilité optimale sur tous les écrans.</li>
             </ul>
           </section>
           <section class="patch-card">
-            <h2 id="patchAppTitle">Application améliorée</h2>
+            <h2 id="patchAppTitle">Améliorations PWA</h2>
             <ul class="patch-list">
-              <li id="patchAppLevels">La gestion des niveaux a été entièrement supprimée.</li>
-              <li id="patchAppData">Tes possessions, maîtrises et notes existantes restent conservées.</li>
-              <li id="patchAppFilters">Les filtres, statistiques, images et textes français/anglais sont à jour.</li>
+              <li id="patchAppLevels">Installation automatique instantanée sur tous les navigateurs compatibles.</li>
+              <li id="patchAppFilters">Affichage du logo garanti dans la bannière d’installation.</li>
+              <li id="patchAppData">Guide interactif d’installation étape par étape pour Safari sur iOS.</li>
             </ul>
           </section>
         </div>
@@ -6312,7 +6312,7 @@
       const VISITOR_HOUR_KEY = "sprite-locker-visitor-hour";
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
-      const PATCH_RELEASED_AT = "2026-08-01T17:23:00+02:00";
+      const PATCH_RELEASED_AT = "2026-08-04T00:00:00+02:00";
       const PWA_VERSION = "2026-08-03-v2";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
@@ -6401,26 +6401,26 @@
           variantCompleted: "Variante {variant} complétée",
           catalogNav: "Catalogue",
           patchNotesNav: "Patch Notes",
-          patchKicker: "Mise à jour v41.30",
-          patchTitleHtml: "Le casier passe à <span>109 esprits</span>",
-          patchLead: "La collection vient de recevoir sa plus grosse mise à jour : de nouveaux esprits, de nouvelles variantes et une gestion du casier plus simple.",
+          patchKicker: "Mise à jour v41.35",
+          patchTitleHtml: "Nouvelle interface <span>Catalogue &amp; Guide</span>",
+          patchLead: "La collection s’enrichit d’une toute nouvelle interface par cartes interactives et d’une meilleure expérience sur mobile et PC.",
           parisTime: "heure de Paris",
           patchSummaryAria: "Résumé de la mise à jour",
           patchMetricTotal: "Versions récupérables",
           patchMetricAdded: "Nouveaux ajouts",
           patchMetricFamilies: "Familles d’esprits",
-          patchNewTitle: "Nouveaux esprits",
-          patchNewJohn: "Esprit John Wick ajouté au catalogue.",
-          patchNewLlama: "Esprit lama veinard ajouté avec 5 versions.",
-          patchNewPeely: "Esprit de Banane dénicheur ajouté avec 5 versions.",
-          patchVariantsTitle: "Variantes ajoutées",
-          patchVariantsQuack: "4 variantes Canardesques : Eau, Terre, Feu et Point Zéro.",
-          patchVariantsZero: "Point Zéro reçoit les variantes Holofoil et Cube.",
-          patchVariantsRare: "Faucheuse Holofoil et Lama veinard Gemme rejoignent la collection.",
-          patchAppTitle: "Application améliorée",
-          patchAppLevels: "La gestion des niveaux a été entièrement supprimée.",
-          patchAppData: "Tes possessions, maîtrises et notes existantes restent conservées.",
-          patchAppFilters: "Les filtres, statistiques, images et textes français/anglais sont à jour.",
+          patchNewTitle: "Nouvelle Interface (Cartes &amp; Slide)",
+          patchNewJohn: "Chaque esprit possède désormais sa propre carte dédiée.",
+          patchNewLlama: "Fais glisser de gauche à droite sur la carte pour voir toutes ses variantes.",
+          patchNewPeely: "Vue claire sur la maîtrise, le nombre de variantes et la progression.",
+          patchVariantsTitle: "Correctifs &amp; Navigation PC",
+          patchVariantsQuack: "Repositionnement des flèches de défilement (‹ ›) dans l’en-tête de carte.",
+          patchVariantsZero: "Résolution du chevauchement avec le texte du nombre de variantes sur PC.",
+          patchVariantsRare: "Navigation fluide et lisibilité optimale sur tous les écrans.",
+          patchAppTitle: "Améliorations PWA",
+          patchAppLevels: "Installation automatique instantanée sur tous les navigateurs compatibles.",
+          patchAppData: "Affichage du logo garanti dans la bannière d’installation.",
+          patchAppFilters: "Guide interactif d’installation étape par étape pour Safari sur iOS.",
           patchNoticeTitle: "Contenu encore non sorti",
           patchNoticeCopy: "Ironmouse et les variantes Gemme encore signalées comme non sorties ne sont pas ajoutés au total : ils rejoindront le catalogue dès leur disponibilité officielle.",
           patchCatalogButton: "Voir le catalogue",
@@ -6606,26 +6606,26 @@
           variantCompleted: "{variant} variant completion",
           catalogNav: "Catalog",
           patchNotesNav: "Patch Notes",
-          patchKicker: "Update v41.30",
-          patchTitleHtml: "The Locker grows to <span>109 Sprites</span>",
-          patchLead: "The collection just received its biggest update yet: new Sprites, new variants, and simpler Locker management.",
+          patchKicker: "Update v41.35",
+          patchTitleHtml: "New interface <span>Catalog &amp; Guide</span>",
+          patchLead: "The collection upgrades with a brand-new interactive card interface and an improved experience across mobile and PC.",
           parisTime: "Paris time",
           patchSummaryAria: "Update summary",
           patchMetricTotal: "Obtainable versions",
           patchMetricAdded: "New additions",
           patchMetricFamilies: "Sprite families",
-          patchNewTitle: "New Sprites",
-          patchNewJohn: "John Wick Sprite added to the catalog.",
-          patchNewLlama: "Lootin’ Llama Sprite added with 5 versions.",
-          patchNewPeely: "Peeky Peely Sprite added with 5 versions.",
-          patchVariantsTitle: "New variants",
-          patchVariantsQuack: "4 Quack variants: Water, Earth, Fire, and Zero Point.",
-          patchVariantsZero: "Zero Point gains Holofoil and Cube variants.",
-          patchVariantsRare: "Holofoil Grim and Gem Lootin’ Llama join the collection.",
-          patchAppTitle: "App improvements",
-          patchAppLevels: "Sprite level management has been completely removed.",
-          patchAppData: "Your owned, mastered, and personal note data stays preserved.",
-          patchAppFilters: "Filters, statistics, images, and French/English text are up to date.",
+          patchNewTitle: "New Card &amp; Slide Interface",
+          patchNewJohn: "Each Sprite now has its own dedicated card.",
+          patchNewLlama: "Swipe left to right on the card to view all its variants.",
+          patchNewPeely: "Clear view of mastery, variant count, and overall progress.",
+          patchVariantsTitle: "Fixes &amp; PC Navigation",
+          patchVariantsQuack: "Navigation arrows (‹ ›) repositioned into the card header.",
+          patchVariantsZero: "Fixed arrows overlapping variant count text on PC.",
+          patchVariantsRare: "Smooth navigation and clean readable layout on all screens.",
+          patchAppTitle: "PWA Improvements",
+          patchAppLevels: "Instant automatic PWA installation on supported browsers.",
+          patchAppData: "PWA install banner logo display guaranteed.",
+          patchAppFilters: "Interactive step-by-step installation guide for Safari on iOS.",
           patchNoticeTitle: "Still unreleased",
           patchNoticeCopy: "Ironmouse and the Gem variants still marked unreleased are excluded from the total. They will join the catalog as soon as they officially become available.",
           patchCatalogButton: "View catalog",
