@@ -11249,9 +11249,12 @@
       renderAdminAccess();
       document.getElementById("adminPatchForm").elements.date.value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16);
       async function fetchReviews() {
-        if (!firebaseDb || !firebaseSdk) return;
         const listContainer = document.getElementById("reviewsList");
         if (!listContainer) return;
+        if (!firebaseReady || !firebaseDb || !firebaseSdk) {
+          listContainer.innerHTML = "<p>Connexion au serveur des avis...</p>";
+          return;
+        }
         try {
           const q = firebaseSdk.query(
             firebaseSdk.collection(firebaseDb, "reviews"),
@@ -11266,25 +11269,31 @@
           }
           querySnapshot.forEach(doc => {
             const data = doc.data();
-            const date = data.createdAt ? new Date(data.createdAt.toMillis()).toLocaleDateString() : "";
-            const stars = "⭐".repeat(data.rating) + "☆".repeat(5 - data.rating);
+            const date = data.createdAt ? new Date(data.createdAt.toMillis ? data.createdAt.toMillis() : data.createdAt).toLocaleDateString() : "";
+            const rating = Math.max(1, Math.min(5, Number(data.rating) || 5));
+            const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
+            const safeAuthor = (data.displayName || "Joueur").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const safeText = (data.text || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const authorPhoto = data.photoURL && typeof data.photoURL === "string" && data.photoURL.startsWith("http")
+              ? `<img src="${data.photoURL.replace(/"/g, '&quot;')}" alt="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;">`
+              : "";
             listContainer.innerHTML += `
               <div class="review-card">
                 <div class="review-card-header">
                   <span class="review-card-author">
-                    ${data.photoURL ? `<img src="${data.photoURL}" alt="avatar" style="width:24px;height:24px;border-radius:50%;">` : ""}
-                    ${data.displayName || "Joueur"}
+                    ${authorPhoto}
+                    <span>${safeAuthor}</span>
                   </span>
                   <span class="review-card-date">${date}</span>
                 </div>
-                <div class="review-card-stars">${stars}</div>
-                <div class="review-card-text">${data.text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
+                <div class="review-card-stars" aria-label="${rating} étoiles sur 5">${stars}</div>
+                <div class="review-card-text">${safeText}</div>
               </div>
             `;
           });
         } catch (e) {
           console.error("Erreur de chargement des avis", e);
-          listContainer.innerHTML = "<p>Erreur lors du chargement des avis.</p>";
+          listContainer.innerHTML = "<p>Impossible de charger les avis. Veuillez vérifier la connexion ou les règles Firestore.</p>";
         }
       }
 
@@ -11315,18 +11324,29 @@
         if (form) {
           form.addEventListener("submit", async (e) => {
             e.preventDefault();
-            if (!firebaseUser || !firebaseDb || !firebaseSdk) return;
+            const currentUser = firebaseUser || (firebaseAuth && firebaseAuth.currentUser);
+            if (!currentUser || !firebaseDb || !firebaseSdk) {
+              showToast("Vous devez être connecté avec Google.");
+              return;
+            }
             const text = document.getElementById("reviewTextInput").value.trim();
-            if (!text || currentRating === 0) return;
+            if (!text) {
+              showToast("Veuillez écrire un commentaire.");
+              return;
+            }
+            if (currentRating === 0) {
+              showToast("Veuillez choisir une note (1 à 5 étoiles).");
+              return;
+            }
             
             submitBtn.disabled = true;
             submitBtn.textContent = "Envoi...";
             try {
               const reviewRef = firebaseSdk.doc(firebaseSdk.collection(firebaseDb, "reviews"));
               await firebaseSdk.setDoc(reviewRef, {
-                uid: firebaseUser.uid,
-                displayName: firebaseUser.displayName,
-                photoURL: firebaseUser.photoURL,
+                uid: currentUser.uid,
+                displayName: currentUser.displayName || "Joueur",
+                photoURL: currentUser.photoURL || "",
                 rating: currentRating,
                 text: text,
                 createdAt: firebaseSdk.serverTimestamp()
@@ -11336,12 +11356,13 @@
               stars.forEach(s => s.classList.remove("active"));
               document.getElementById("starRatingInput").classList.remove("is-active");
               showToast("Merci pour votre avis !");
-              fetchReviews();
+              await fetchReviews();
             } catch (error) {
-              console.error(error);
-              showToast("Erreur lors de l'envoi");
+              console.error("Erreur lors de l'envoi de l'avis", error);
+              showToast("Erreur lors de l'envoi de l'avis");
             } finally {
               submitBtn.textContent = "Envoyer l'avis";
+              submitBtn.disabled = false;
             }
           });
         }
