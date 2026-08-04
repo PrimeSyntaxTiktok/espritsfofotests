@@ -4389,6 +4389,7 @@
       border-radius: 18px;
       background: rgba(10, 15, 39, .86);
       box-shadow: 0 18px 50px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .05);
+      margin-bottom: 60px;
     }
     .patch-simple-head {
       display: flex;
@@ -5018,6 +5019,123 @@
 
     .admin-guard-state { display: inline-flex; padding: 8px 11px; align-items: center; gap: 7px; border: 1px solid rgba(255,214,74,.2); border-radius: 999px; background: rgba(255,214,74,.08); color: #ffdc6b; font-size: .61rem; font-weight: 900; white-space: nowrap; }
     .admin-guard-state.is-ready { border-color: rgba(69,229,154,.2); background: rgba(69,229,154,.08); color: #72efb3; }
+    /* --- REVIEWS PAGE --- */
+    .reviews-layout {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .review-submission-glass {
+      background: rgba(10, 15, 39, .86);
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .05);
+      text-align: center;
+    }
+    #reviewAuthGate p {
+      margin-bottom: 15px;
+      color: rgba(255,255,255,.7);
+    }
+    .review-auth-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .review-auth-btn:hover {
+      background: rgba(255,255,255,.1);
+    }
+    #reviewForm {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .star-rating-input {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .star-rating-input button {
+      background: none;
+      border: none;
+      font-size: inherit;
+      padding: 0;
+      cursor: pointer;
+      transition: transform 0.2s;
+      filter: grayscale(1) opacity(0.3);
+    }
+    .star-rating-input button:hover {
+      transform: scale(1.2);
+    }
+    .star-rating-input button.active { filter: none; }
+    #reviewTextInput {
+      width: 100%;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 15px;
+      color: white;
+      font-family: inherit;
+      resize: vertical;
+    }
+    #reviewTextInput:focus {
+      outline: none;
+      border-color: rgba(var(--accent-rgb), 0.5);
+    }
+    .reviews-list-container h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      font-style: italic;
+      color: var(--accent-light);
+    }
+    .reviews-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+    .review-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .review-card-author {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .review-card-stars {
+      letter-spacing: 2px;
+    }
+    .review-card-date {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+
     .admin-workspace { display: grid; gap: 12px; }
     .admin-tabs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; padding: 6px; border: 1px solid var(--feature-line); border-radius: 14px; background: rgba(8,13,32,.76); }
     .admin-tabs button { min-height: 42px; border: 0; border-radius: 9px; background: transparent; color: #8b97b7; font-size: .64rem; font-weight: 900; cursor: pointer; }
@@ -5878,8 +5996,405 @@
       .pwa-cache-progress i { transition: none; }
     }
   </style>
+  <style id="settings-redesign-css">
+    /* Nouveaux styles premium pour la page Paramètres */
+    #settingsPage {
+      padding-top: 2rem;
+    }
+    
+    .settings-hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .settings-hero h1 {
+      font-family: var(--display);
+      font-size: 3rem;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+    
+    .settings-hero h1 span {
+      color: var(--accent);
+      text-shadow: 0 0 20px var(--accent);
+    }
+    
+    .settings-hero p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .settings-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: start;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .settings-preview-panel {
+      perspective: 1000px;
+    }
+    
+    .preview-glass {
+      background: rgba(10, 15, 30, 0.6);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255,255,255,0.05);
+      border-radius: 24px;
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+    }
+    
+    .preview-glass:hover {
+      transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255,255,255,0.05);
+    }
+    
+    .preview-glass h3 {
+      font-family: var(--display);
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .settings-groups {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .settings-group {
+      background: rgba(15, 20, 35, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .settings-group::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    }
+    
+    .group-title {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      color: #fff;
+      margin: 0 0 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .group-title i {
+      font-style: normal;
+      font-size: 1.6rem;
+      filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+    }
+
+    .setting-item {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 20px;
+    }
+    
+    .setting-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    
+    .setting-item-header {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .setting-item-header h4 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin: 0 0 4px 0;
+      font-weight: 600;
+    }
+    
+    .setting-item-header p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* 3D Color Spheres */
+    .color-spheres {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .color-sphere {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      background: radial-gradient(circle at 30% 30%, var(--swatch) 0%, #000 120%);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.4);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .color-sphere:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.5);
+    }
+    
+    .color-sphere[aria-pressed="true"] {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px var(--swatch), inset 0 2px 4px rgba(255,255,255,0.6);
+      border: 2px solid #fff;
+    }
+    
+    .color-sphere[aria-pressed="true"]::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid var(--swatch);
+      opacity: 0.6;
+      animation: pulse-ring 2s infinite;
+    }
+    
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+    
+    /* Background Tiles */
+    .bg-tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+    
+    .bg-tile {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .bg-tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 0;
+    }
+    
+    .bg-tile[aria-pressed="true"] {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(24, 169, 255, 0.3); /* Default fallback */
+      transform: translateY(-2px);
+    }
+    
+    .bg-tile[aria-pressed="true"]::before {
+      opacity: 0.15;
+    }
+    
+    .bg-tile i {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .bg-tile span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Segmented Controls Premium */
+    .segmented-premium {
+      display: flex;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      padding: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+    
+    .segmented-premium button {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 10px 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s;
+      z-index: 1;
+    }
+    
+    .segmented-premium button[aria-pressed="true"] {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Switch Premium */
+    .switch-premium {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.2s;
+    }
+    .switch-premium:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    .switch-premium strong {
+      font-weight: 600;
+      color: #fff;
+    }
+    .switch-premium input {
+      appearance: none;
+      width: 48px;
+      height: 26px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      position: relative;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .switch-premium input::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .switch-premium input:checked {
+      background: var(--accent);
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1), 0 0 10px var(--accent);
+    }
+    .switch-premium input:checked::after {
+      transform: translateX(22px);
+    }
+
+    /* Admin Button */
+    .admin-entry-premium {
+      background: linear-gradient(135deg, rgba(30,10,10,0.6) 0%, rgba(50,20,20,0.6) 100%);
+      border-color: rgba(255, 50, 50, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .admin-entry-premium::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,0,0,0.02) 10px, rgba(255,0,0,0.02) 20px);
+      pointer-events: none;
+    }
+    .admin-btn-premium {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 24px;
+      background: rgba(255, 50, 50, 0.2);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 50, 50, 0.5);
+      border-radius: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .admin-btn-premium:hover {
+      background: rgba(255, 50, 50, 0.4);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(255, 50, 50, 0.5);
+    }
+    
+    #resetAppearance {
+      margin-top: 1.5rem;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #resetAppearance:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    
+    /* Specific ID styling for JS compatibility */
+    #accentColorValue {
+      display: none; /* Hide the hex text value */
+    }
+    #accentColor {
+      position: absolute;
+      opacity: 0;
+      width: 0; height: 0;
+    }
+  </style>
 </head>
 <body>
+  <canvas id="vfxCanvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
   <div class="app" id="top">
     <nav class="topbar" aria-label="Navigation principale">
       <a class="brand" href="#home" data-page-target="home" aria-label="Sprite Locker, accueil">
@@ -5892,6 +6407,7 @@
           <a href="#catalog" data-page-target="catalog">Catalogue</a>
           <a href="#guide" data-page-target="guide">Guide</a>
           <a href="#settings" data-page-target="settings">Réglages</a>
+          <a href="#reviews" data-page-target="reviews">Avis</a>
           <a href="#patch-notes" data-page-target="patch-notes">Patch Notes</a>
           <a href="#admin" data-page-target="admin" data-admin-link hidden>Admin</a>
         </div>
@@ -5930,6 +6446,7 @@
         </div>
         <button class="auth-toggle" id="authToggleBtn" type="button" data-connected="false" disabled><span class="auth-google" aria-hidden="true">G</span><span>Connexion Google</span></button>
       </div>
+
       <div class="hud-grid">
         <div class="progress-wrap" style="--progress:0">
           <div class="progress-copy">
@@ -6008,6 +6525,8 @@
     </section>
     </main>
 
+
+
     <section class="collection-area app-page" id="collectionPage" data-page="collection" aria-labelledby="collectionTitle">
       <div class="collection-heading">
         <div>
@@ -6084,55 +6603,132 @@
     </section>
 
     <section class="feature-page app-page" id="settingsPage" data-page="settings" aria-labelledby="settingsTitle">
-      <header class="feature-hero feature-hero-settings">
-        <div>
-          <span class="feature-eyebrow">Ton casier, ton style</span>
-          <h1 id="settingsTitle">Personnalise <span>Sprite Locker</span></h1>
-          <p>Adapte les couleurs, l’ambiance et la densité du catalogue à ton écran et à tes préférences.</p>
-        </div>
-        <button class="feature-secondary" id="resetAppearance" type="button">Réglages par défaut</button>
+      <header class="settings-hero">
+        <span class="feature-eyebrow">Ton casier, ton style</span>
+        <h1 id="settingsTitle">Personnalise <span>Sprite Locker</span></h1>
+        <p>Ajuste l'interface pour une expérience de collection sur-mesure.</p>
+        <button id="resetAppearance" type="button">Réglages par défaut</button>
       </header>
-      <div class="settings-grid">
-        <section class="panel-card setting-card">
-          <div class="setting-icon">◉</div><div class="setting-copy"><span>Identité visuelle</span><h2>Couleur principale</h2><p>Cette couleur souligne les boutons, les progressions et les éléments actifs.</p></div>
-          <div class="color-setting"><input id="accentColor" type="color" value="#24a9ff" aria-label="Couleur principale"><span id="accentColorValue">#24A9FF</span></div>
-          <div class="preset-colors" id="presetColors"><button type="button" data-color="#24a9ff" style="--swatch:#24a9ff" aria-label="Bleu"></button><button type="button" data-color="#8b5cf6" style="--swatch:#8b5cf6" aria-label="Violet"></button><button type="button" data-color="#14d9a7" style="--swatch:#14d9a7" aria-label="Vert"></button><button type="button" data-color="#ff4d9d" style="--swatch:#ff4d9d" aria-label="Rose"></button><button type="button" data-color="#ffd84a" style="--swatch:#ffd84a" aria-label="Jaune"></button></div>
-        </section>
-        <section class="panel-card setting-card setting-wide">
-          <div class="setting-icon">▧</div><div class="setting-copy"><span>Ambiance</span><h2>Fond Fortnite</h2><p>Choisis une atmosphère sans gêner la lisibilité de ta collection.</p></div>
-          <div class="background-picker" id="backgroundPicker">
-            <button type="button" data-background="night" aria-pressed="true"><i class="bg-night"></i><span>Nuit Royale</span></button>
-            <button type="button" data-background="galaxy" aria-pressed="false"><i class="bg-galaxy"></i><span>Galaxie</span></button>
-            <button type="button" data-background="storm" aria-pressed="false"><i class="bg-storm"></i><span>Tempête</span></button>
-            <button type="button" data-background="zero" aria-pressed="false"><i class="bg-zero"></i><span>Point Zéro</span></button>
+      
+      <div class="settings-layout">
+
+        <div class="settings-groups">
+          
+          <!-- Apparence -->
+          <div class="settings-group">
+            <h3 class="group-title"><i>🎨</i> Apparence</h3>
+            
+            <div class="setting-item">
+              <div class="setting-item-header">
+                <h4>Couleur Principale</h4>
+                <p>Détermine la couleur d'accentuation des boutons et éléments actifs.</p>
+              </div>
+              <div class="color-spheres" id="presetColors">
+                <input id="accentColor" type="color" value="#24a9ff" aria-label="Couleur personnalisée">
+                <span id="accentColorValue">#24A9FF</span>
+                <button type="button" class="color-sphere" data-color="#24a9ff" style="--swatch:#24a9ff" aria-label="Bleu" aria-pressed="true"></button>
+                <button type="button" class="color-sphere" data-color="#8b5cf6" style="--swatch:#8b5cf6" aria-label="Violet" aria-pressed="false"></button>
+                <button type="button" class="color-sphere" data-color="#14d9a7" style="--swatch:#14d9a7" aria-label="Vert" aria-pressed="false"></button>
+                <button type="button" class="color-sphere" data-color="#ff4d9d" style="--swatch:#ff4d9d" aria-label="Rose" aria-pressed="false"></button>
+                <button type="button" class="color-sphere" data-color="#ffd84a" style="--swatch:#ffd84a" aria-label="Jaune" aria-pressed="false"></button>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-item-header">
+                <h4>Ambiance Visuelle</h4>
+                <p>Choisis le fond qui mettra le mieux en valeur ta collection.</p>
+              </div>
+              <div class="bg-tiles" id="backgroundPicker">
+                <button type="button" class="bg-tile" data-background="night" aria-pressed="true">
+                  <i class="bg-night"></i>
+                  <span>Nuit Royale</span>
+                </button>
+                <button type="button" class="bg-tile" data-background="galaxy" aria-pressed="false">
+                  <i class="bg-galaxy"></i>
+                  <span>Galaxie</span>
+                </button>
+                <button type="button" class="bg-tile" data-background="storm" aria-pressed="false">
+                  <i class="bg-storm"></i>
+                  <span>Tempête</span>
+                </button>
+                <button type="button" class="bg-tile" data-background="zero" aria-pressed="false">
+                  <i class="bg-zero"></i>
+                  <span>Point Zéro</span>
+                </button>
+              </div>
+            </div>
           </div>
-        </section>
-        <section class="panel-card setting-card">
-          <div class="setting-icon">▦</div><div class="setting-copy"><span>Catalogue</span><h2>Taille des cartes</h2><p>Ajuste la place accordée à chaque esprit.</p></div>
-          <div class="segmented" id="cardSizePicker"><button type="button" data-card-size="small">Petites</button><button type="button" data-card-size="medium" aria-pressed="true">Standard</button><button type="button" data-card-size="large">Grandes</button></div>
-        </section>
-        <section class="panel-card setting-card">
-          <div class="setting-icon">⌗</div><div class="setting-copy"><span>Espacement</span><h2>Densité de la grille</h2><p>Affiche davantage de cartes ou laisse-les respirer.</p></div>
-          <div class="segmented" id="gridDensityPicker"><button type="button" data-density="dense">Dense</button><button type="button" data-density="balanced" aria-pressed="true">Équilibrée</button><button type="button" data-density="airy">Aérée</button></div>
-        </section>
-        <section class="panel-card setting-card setting-motion">
-          <div class="setting-icon">≈</div><div class="setting-copy"><span>Confort</span><h2>Animations réduites</h2><p>Limite les transitions et les mouvements décoratifs.</p></div>
-          <label class="switch-row compact"><span><strong>Réduire les animations</strong></span><input id="reducedMotion" type="checkbox" role="switch"></label>
-        </section>
-        <section class="panel-card admin-entry" id="adminEntry">
-          <div><span class="feature-eyebrow">Espace protégé</span><h2>Tableau d’administration</h2><p id="adminEntryCopy">Connecte ton compte administrateur pour gérer le catalogue et les Patch Notes.</p></div>
-          <button type="button" data-page-target="admin">Ouvrir l’administration</button>
-        </section>
+
+          <!-- Affichage -->
+          <div class="settings-group">
+            <h3 class="group-title"><i>📱</i> Affichage</h3>
+            
+            <div class="setting-item">
+              <div class="setting-item-header">
+                <h4>Taille des cartes</h4>
+                <p>Ajuste les dimensions des esprits dans le catalogue.</p>
+              </div>
+              <div class="segmented-premium" id="cardSizePicker">
+                <button type="button" data-card-size="small">Petites</button>
+                <button type="button" data-card-size="medium" aria-pressed="true">Standard</button>
+                <button type="button" data-card-size="large">Grandes</button>
+              </div>
+            </div>
+            
+            <div class="setting-item">
+              <div class="setting-item-header">
+                <h4>Densité de la grille</h4>
+                <p>Espacement entre les éléments.</p>
+              </div>
+              <div class="segmented-premium" id="gridDensityPicker">
+                <button type="button" data-density="dense">Dense</button>
+                <button type="button" data-density="balanced" aria-pressed="true">Équilibrée</button>
+                <button type="button" data-density="airy">Aérée</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accessibilité & Admin -->
+          <div class="settings-group">
+            <h3 class="group-title"><i>⚙️</i> Système</h3>
+            
+            <div class="setting-item">
+              <div class="setting-item-header">
+                <h4>Confort Visuel</h4>
+                <p>Limite les mouvements décoratifs et les effets de brillance.</p>
+              </div>
+              <label class="switch-premium">
+                <span><strong>Réduire les animations</strong></span>
+                <input id="reducedMotion" type="checkbox" role="switch">
+              </label>
+            </div>
+          </div>
+          
+          <div class="settings-group admin-entry-premium" id="adminEntry">
+            <div class="setting-item" style="border: none;">
+              <div class="setting-item-header">
+                <span class="feature-eyebrow" style="color:#ff6b6b; margin-bottom:5px;">Espace protégé</span>
+                <h4>Tableau d’administration</h4>
+                <p id="adminEntryCopy" style="color: rgba(255,200,200,0.8);">Gère le catalogue de manière sécurisée.</p>
+              </div>
+              <div>
+                <button class="admin-btn-premium" type="button" data-page-target="admin">Ouvrir l'Administration</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
     <section class="feature-page app-page" id="adminPage" data-page="admin" aria-labelledby="adminTitle">
       <header class="feature-hero feature-hero-admin">
-        <div><span class="feature-eyebrow">Espace privé</span><h1 id="adminTitle">Tableau <span>d’administration</span></h1><p>Publie les nouveautés du catalogue sans modifier manuellement le fichier HTML.</p></div>
+        <div><span class="feature-eyebrow">Espace privé</span><h1 id="adminTitle">Tableau <span>d’administration</span></h1><p>Publie les nouveautés du catalogue sans modifier le code.</p></div>
         <span class="admin-guard-state" id="adminGuardState">Vérification du compte</span>
       </header>
       <div class="admin-locked" id="adminLocked">
-        <span aria-hidden="true">◇</span><h2>Accès administrateur requis</h2><p>Cette page s’ouvre uniquement avec un compte autorisé dans Firebase.</p><button type="button" id="adminConnectBtn">Connexion Google</button>
+        <span class="admin-icon-3d" aria-hidden="true" style="font-size: 2.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.5); display: inline-block; margin-bottom: 15px; filter: drop-shadow(0 0 8px rgba(255, 60, 60, 0.4));">🛡️</span><h2>Accès administrateur requis</h2><p></p><button type="button" id="adminConnectBtn">Connexion Google</button>
       </div>
       <div class="admin-workspace" id="adminWorkspace" hidden>
         <nav class="admin-tabs" role="tablist" aria-label="Outils d’administration">
@@ -6193,11 +6789,50 @@
       <article class="patch-entry">
         <header class="patch-simple-head">
           <div>
+            <span class="patch-kicker">Mise à jour Récente</span>
+            <h1>Refonte Premium <span>UI & VFX</span></h1>
+          </div>
+          <time class="patch-date" datetime="2026-08-05T23:00:00+02:00">
+            <span>5 août 2026 · 23h00 (heure de Paris)</span>
+          </time>
+        </header>
+
+        <div class="patch-grid">
+          <section class="patch-card">
+            <h2>Paramètres "Glassmorphism"</h2>
+            <ul class="patch-list">
+              <li>Refonte totale de la page Réglages avec un design premium tout en transparence (Glassmorphism 3.0).</li>
+              <li>Nouveaux boutons segmentés ultra-fluides pour ajuster la taille des cartes et la densité.</li>
+              <li>Sphères 3D lumineuses pour le choix de la couleur d'accentuation en temps réel.</li>
+              <li>Tuiles de fonds interactives reprenant le dégradé visuel exact.</li>
+            </ul>
+          </section>
+          <section class="patch-card">
+            <h2>VFX et Typographie</h2>
+            <ul class="patch-list">
+              <li>Intégration d'un système de particules d'étoiles 3D ultra-réaliste déclenché lors de la maîtrise.</li>
+              <li>Nouvelle typographie audacieuse "Jeu Vidéo Premium" pour les titres de section.</li>
+              <li>Nouvelle icône de sécurité 3D 🛡️ lumineuse pour l'accès administrateur.</li>
+            </ul>
+          </section>
+          <section class="patch-card">
+            <h2>Qualité de Vie</h2>
+            <ul class="patch-list">
+              <li>L'interface d'administration bénéficie d'une ambiance "Hack Terminal" très sécurisée.</li>
+              <li>Suppression des panneaux inutiles pour recentrer l'interface sur l'essentiel.</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+
+      <article class="patch-entry">
+        <header class="patch-simple-head">
+          <div>
             <span class="patch-kicker" id="patchKicker">Mise à jour v41.35</span>
             <h1 id="patchNotesTitle">Nouvelle interface <span>Catalogue & Guide</span></h1>
           </div>
-          <time class="patch-date" id="patchDate" datetime="2026-08-04T00:00:00+02:00">
-            <span id="patchDateText">4 août 2026 · heure de Paris</span>
+          <time class="patch-date" id="patchDate" datetime="2026-08-04T14:30:00+02:00">
+            <span id="patchDateText">4 août 2026 · 14h30 (heure de Paris)</span>
           </time>
         </header>
 
@@ -6234,7 +6869,45 @@
         </aside>
       </article>
     </section>
+    <section class="feature-page app-page" id="reviewsPage" data-page="reviews" aria-labelledby="reviewsTitle">
+      <header class="feature-hero">
+        <div>
+          <span class="feature-eyebrow">Avis de la communauté</span>
+          <h1 id="reviewsTitle">Livre <span>d'Or</span></h1>
+          <p>Laissez votre avis sur Sprite Locker et découvrez ceux des autres joueurs.</p>
+        </div>
+      </header>
 
+      <div class="reviews-layout">
+        <!-- Zone de soumission -->
+        <div class="review-submission-glass">
+          <div id="reviewAuthGate">
+            <p>Vous devez être connecté avec Google pour laisser un avis.</p>
+            <button class="review-auth-btn" type="button" id="reviewConnectBtn"><span class="auth-google" aria-hidden="true">G</span><span>Connexion Google</span></button>
+          </div>
+          <form id="reviewForm" hidden>
+            <h3>Donnez votre avis</h3>
+            <div class="star-rating-input" id="starRatingInput">
+              <button type="button" data-val="1" aria-label="1 étoile">⭐</button>
+              <button type="button" data-val="2" aria-label="2 étoiles">⭐</button>
+              <button type="button" data-val="3" aria-label="3 étoiles">⭐</button>
+              <button type="button" data-val="4" aria-label="4 étoiles">⭐</button>
+              <button type="button" data-val="5" aria-label="5 étoiles">⭐</button>
+            </div>
+            <textarea id="reviewTextInput" placeholder="Racontez-nous votre expérience avec Sprite Locker..." rows="4" maxlength="500" required></textarea>
+            <button type="submit" id="submitReviewBtn" class="feature-primary" disabled>Envoyer l'avis</button>
+          </form>
+        </div>
+
+        <!-- Liste des avis -->
+        <div class="reviews-list-container">
+          <h3>Avis récents</h3>
+          <div id="reviewsList" class="reviews-list">
+            <p class="reviews-loading">Chargement des avis...</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <footer class="footer">
       <p class="developer-credit"><span class="developer-signal" aria-hidden="true"></span>Développé par <strong>PrimeSyntax</strong> <span aria-hidden="true">.</span></p>
     </footer>
@@ -6256,6 +6929,10 @@
     <a class="mobile-dock-item" href="#settings" data-page-target="settings">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .4 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.4 1.7 1.7 0 0 0-1 1.6v.1h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.4l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .4-1.9 1.7 1.7 0 0 0-1.6-1H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.4-1.9L4.2 7l2.9-2.8.1.1a1.7 1.7 0 0 0 1.9.4 1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.4l.1-.1L19.9 7l-.1.1a1.7 1.7 0 0 0-.4 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
       <span>Réglages</span>
+    </a>
+    <a class="mobile-dock-item" href="#reviews" data-page-target="reviews">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      <span>Avis</span>
     </a>
     <a class="mobile-dock-item" href="#patch-notes" data-page-target="patch-notes">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M14 3v5h5M9 12h7M9 16h7"></path></svg>
@@ -6405,6 +7082,78 @@
     (() => {
       "use strict";
 
+      function createStarExplosion(x, y) {
+        const reducedMotion = document.getElementById("reducedMotion");
+        if (reducedMotion && reducedMotion.checked) return;
+        const canvas = document.getElementById("vfxCanvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        
+        const particles = [];
+        const colors = ['#f7ed38', '#ffd700', '#ffffff', '#49efa0', '#ff007f', '#00e5ff'];
+        
+        for (let i = 0; i < 150; i++) {
+          particles.push({
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 60, // Énorme vitesse horizontale
+            vy: (Math.random() - 0.5) * 60 - 10, // Énorme vitesse verticale vers le haut
+            size: Math.random() * 8 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            life: 1,
+            decay: Math.random() * 0.008 + 0.005, // Disparaît plus lentement
+            rotation: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.4
+          });
+        }
+        
+        function drawStar(cx, cy, spikes, outerRadius, innerRadius, color, rot) {
+          let rot_step = Math.PI / spikes;
+          let r_x = cx, r_y = cy, angle = rot;
+          ctx.beginPath();
+          for (let i = 0; i < spikes; i++) {
+            r_x = cx + Math.cos(angle) * outerRadius;
+            r_y = cy + Math.sin(angle) * outerRadius;
+            ctx.lineTo(r_x, r_y);
+            angle += rot_step;
+            r_x = cx + Math.cos(angle) * innerRadius;
+            r_y = cy + Math.sin(angle) * innerRadius;
+            ctx.lineTo(r_x, r_y);
+            angle += rot_step;
+          }
+          ctx.lineTo(cx + Math.cos(rot) * outerRadius, cy + Math.sin(rot) * outerRadius);
+          ctx.closePath();
+          ctx.fillStyle = color;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = color;
+          ctx.fill();
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          let stillAlive = false;
+          particles.forEach(p => {
+            if (p.life <= 0) return;
+            stillAlive = true;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.35;
+            p.life -= p.decay;
+            p.rotation += p.rotSpeed;
+            ctx.globalAlpha = Math.max(0, p.life);
+            drawStar(p.x, p.y, 5, p.size * 2, p.size, p.color, p.rotation);
+          });
+          if (stillAlive) requestAnimationFrame(animate);
+          else ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        animate();
+      }
+
+
       const IMAGE_ROOT = "https://fortnite.gg/img/x/sprites/icons/";
       const STORAGE_KEY = "prime-fortnite-esprits-v41-20";
       const META_KEY = "prime-fortnite-esprits-v41-20-meta";
@@ -6413,7 +7162,7 @@
       const VISITOR_HOUR_KEY = "sprite-locker-visitor-hour";
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
-      const PATCH_RELEASED_AT = "2026-08-04T00:00:00+02:00";
+      const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
       const PWA_VERSION = "2026-08-03-v2";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
@@ -7549,13 +8298,16 @@
         setAttribute(".brand", "aria-label", "brandHome");
         setText(".brand-copy small", "brandSubtitle");
         setAttribute(".topbar-links", "aria-label", "quickAccess");
-        const quickLinks = document.querySelectorAll(".topbar-links a");
-        if (quickLinks[0]) quickLinks[0].textContent = t("home");
-        if (quickLinks[1]) quickLinks[1].textContent = t("catalogNav");
-        if (quickLinks[2]) quickLinks[2].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
-        if (quickLinks[3]) quickLinks[3].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
-        if (quickLinks[4]) quickLinks[4].textContent = t("patchNotesNav");
-        if (quickLinks[5]) quickLinks[5].textContent = "Admin";
+        document.querySelectorAll(".topbar-links a").forEach(link => {
+          const target = link.dataset.pageTarget;
+          if (target === "home") link.textContent = t("home");
+          else if (target === "catalog") link.textContent = t("catalogNav");
+          else if (target === "guide") link.textContent = "Guide";
+          else if (target === "settings") link.textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
+          else if (target === "reviews") link.textContent = APP_LANGUAGE === "fr" ? "Avis" : "Reviews";
+          else if (target === "patch-notes") link.textContent = t("patchNotesNav");
+          else if (target === "admin") link.textContent = "Admin";
+        });
         const heroTitle = document.querySelector(".hero-text h1");
         if (heroTitle) heroTitle.innerHTML = t("heroTitleHtml");
 
@@ -7625,13 +8377,18 @@
         const developerCredit = document.querySelector(".developer-credit");
         if (developerCredit) developerCredit.innerHTML = `<span class="developer-signal" aria-hidden="true"></span>${t("developedBy")} <strong>PrimeSyntax</strong> <span aria-hidden="true">.</span>`;
         setAttribute(".mobile-dock", "aria-label", "mobileNav");
-        const mobileLabels = document.querySelectorAll(".mobile-dock-item span");
-        if (mobileLabels[0]) mobileLabels[0].textContent = t("home");
-        if (mobileLabels[1]) mobileLabels[1].textContent = t("catalogNav");
-        if (mobileLabels[2]) mobileLabels[2].textContent = APP_LANGUAGE === "fr" ? "Guide" : "Guide";
-        if (mobileLabels[3]) mobileLabels[3].textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
-        if (mobileLabels[4]) mobileLabels[4].textContent = t("patchNotesNav");
-        if (mobileLabels[5]) mobileLabels[5].textContent = "Admin";
+        document.querySelectorAll(".mobile-dock-item").forEach(item => {
+          const target = item.dataset.pageTarget;
+          const span = item.querySelector("span");
+          if (!span) return;
+          if (target === "home") span.textContent = t("home");
+          else if (target === "catalog") span.textContent = t("catalogNav");
+          else if (target === "guide") span.textContent = "Guide";
+          else if (target === "settings") span.textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
+          else if (target === "reviews") span.textContent = APP_LANGUAGE === "fr" ? "Avis" : "Reviews";
+          else if (target === "patch-notes") span.textContent = t("patchNotesNav");
+          else if (target === "admin") span.textContent = "Admin";
+        });
         setAttribute("#topBtn", "aria-label", "backToTop");
 
         setText("#patchKicker", "patchKicker");
@@ -7873,7 +8630,7 @@
       function normalizedPage(value) {
         const route = String(value || "").split("/")[0];
         if (route === "inventory") return "catalog";
-        return ["home", "catalog", "guide", "settings", "admin", "patch-notes"].includes(route) ? route : "home";
+        return ["home", "catalog", "guide", "settings", "admin", "patch-notes", "reviews"].includes(route) ? route : "home";
       }
 
       function updateCollectionPageCopy() {
@@ -7891,6 +8648,7 @@
         const guideVisible = activePage === "guide";
         const settingsVisible = activePage === "settings";
         const adminVisible = activePage === "admin";
+        const reviewsVisible = activePage === "reviews";
 
         document.documentElement.dataset.appPage = activePage;
         document.getElementById("homePage").classList.toggle("is-active", homeVisible);
@@ -7899,6 +8657,9 @@
         document.getElementById("guidePage").classList.toggle("is-active", guideVisible);
         document.getElementById("settingsPage").classList.toggle("is-active", settingsVisible);
         document.getElementById("adminPage").classList.toggle("is-active", adminVisible);
+        if (document.getElementById("reviewsPage")) {
+          document.getElementById("reviewsPage").classList.toggle("is-active", reviewsVisible);
+        }
 
         document.querySelectorAll("[data-page-target]").forEach(link => {
           if (link.dataset.pageTarget === activePage) link.setAttribute("aria-current", "page");
@@ -7926,6 +8687,9 @@
           updateStats();
         } else if (adminVisible) {
           renderAdminAccess();
+          updateStats();
+        } else if (reviewsVisible) {
+          if (typeof fetchReviews === "function") fetchReviews();
           updateStats();
         } else {
           updateStats();
@@ -8632,11 +9396,12 @@
         restorePendingControls(id);
       }
 
-      function confirmAddSprite() {
+      function confirmAddSprite(event) {
         const id = pendingLockerId;
         const sprite = sprites.find(item => item.id === id);
         if (!sprite) return;
         const entry = state[id] || blankEntry();
+        const wasMastered = entry.mastered;
         entry.owned = true;
         entry.mastered = pendingMastered;
         state[id] = touchEntry(entry);
@@ -8646,6 +9411,13 @@
         refreshAfterStateChange(id);
         if (activeDialogId === id && detailDialog.open) syncDialogButtons();
         showToast(t("spriteAddedToast", { name: localizedName(sprite) }));
+        if (pendingMastered && !wasMastered) {
+          if (event && typeof event.clientX === "number" && event.clientX > 0) {
+            createStarExplosion(event.clientX, event.clientY);
+          } else {
+            createStarExplosion(window.innerWidth / 2, window.innerHeight / 2);
+          }
+        }
       }
 
       function confirmRemoveSprite() {
@@ -8785,6 +9557,13 @@
           ? `<span class="auth-power" aria-hidden="true">↪</span><span>${t("signOut")}</span>`
           : `<span class="auth-google" aria-hidden="true">G</span><span>${t("connect")}</span>`;
         authToggleButton.setAttribute("aria-label", t(connected ? "signOutAria" : "signIn"));
+
+        const reviewGate = document.getElementById("reviewAuthGate");
+        const reviewForm = document.getElementById("reviewForm");
+        if (reviewGate && reviewForm) {
+          reviewGate.hidden = connected;
+          reviewForm.hidden = !connected;
+        }
 
         if (!connected) {
           accountAvatar.hidden = true;
@@ -9029,6 +9808,11 @@
             doc: firestoreModule.doc,
             getDoc: firestoreModule.getDoc,
             setDoc: firestoreModule.setDoc,
+            collection: firestoreModule.collection,
+            getDocs: firestoreModule.getDocs,
+            query: firestoreModule.query,
+            orderBy: firestoreModule.orderBy,
+            limit: firestoreModule.limit,
             writeBatch: firestoreModule.writeBatch,
             increment: firestoreModule.increment,
             onSnapshot: firestoreModule.onSnapshot,
@@ -9049,6 +9833,7 @@
 
           firebaseReady = true;
           loadPublishedContent();
+          fetchReviews();
           setTimeout(() => { try { startPublicVisitorCounter(); } catch (_) {} }, 0);
           const hadRedirectPending = redirectWasPending();
           let redirectResult = null;
@@ -9362,6 +10147,7 @@
         color.value = appearanceSettings.accent;
         document.getElementById("accentColorValue").textContent = appearanceSettings.accent.toUpperCase();
         document.getElementById("reducedMotion").checked = appearanceSettings.reducedMotion;
+        document.querySelectorAll("[data-color]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.color.toLowerCase() === appearanceSettings.accent.toLowerCase())));
         document.querySelectorAll("[data-background]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.background === appearanceSettings.background)));
         document.querySelectorAll("[data-card-size]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.cardSize === appearanceSettings.cardSize)));
         document.querySelectorAll("[data-density]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.density === appearanceSettings.density)));
@@ -10400,15 +11186,19 @@
         requestLockerChange(activeDialogId);
       });
 
-      document.getElementById("dialogMastered").addEventListener("click", () => {
+      document.getElementById("dialogMastered").addEventListener("click", (event) => {
         if (!activeDialogId) return;
         const entry = state[activeDialogId] || blankEntry();
         if (!entry.owned) {
           openAddSpriteDialog(activeDialogId, { mastered: true });
         } else {
-          setMastered(activeDialogId, !entry.mastered);
+          const isNewlyMastered = !entry.mastered;
+          setMastered(activeDialogId, isNewlyMastered);
           syncDialogButtons();
           refreshAfterStateChange(activeDialogId);
+          if (isNewlyMastered) {
+            createStarExplosion(event.clientX, event.clientY);
+          }
         }
       });
 
@@ -10458,8 +11248,108 @@
       populateAdminSelectors();
       renderAdminAccess();
       document.getElementById("adminPatchForm").elements.date.value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+      async function fetchReviews() {
+        if (!firebaseDb || !firebaseSdk) return;
+        const listContainer = document.getElementById("reviewsList");
+        if (!listContainer) return;
+        try {
+          const q = firebaseSdk.query(
+            firebaseSdk.collection(firebaseDb, "reviews"),
+            firebaseSdk.orderBy("createdAt", "desc"),
+            firebaseSdk.limit(50)
+          );
+          const querySnapshot = await firebaseSdk.getDocs(q);
+          listContainer.innerHTML = "";
+          if (querySnapshot.empty) {
+            listContainer.innerHTML = "<p>Soyez le premier à donner votre avis !</p>";
+            return;
+          }
+          querySnapshot.forEach(doc => {
+            const data = doc.data();
+            const date = data.createdAt ? new Date(data.createdAt.toMillis()).toLocaleDateString() : "";
+            const stars = "⭐".repeat(data.rating) + "☆".repeat(5 - data.rating);
+            listContainer.innerHTML += `
+              <div class="review-card">
+                <div class="review-card-header">
+                  <span class="review-card-author">
+                    ${data.photoURL ? `<img src="${data.photoURL}" alt="avatar" style="width:24px;height:24px;border-radius:50%;">` : ""}
+                    ${data.displayName || "Joueur"}
+                  </span>
+                  <span class="review-card-date">${date}</span>
+                </div>
+                <div class="review-card-stars">${stars}</div>
+                <div class="review-card-text">${data.text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
+              </div>
+            `;
+          });
+        } catch (e) {
+          console.error("Erreur de chargement des avis", e);
+          listContainer.innerHTML = "<p>Erreur lors du chargement des avis.</p>";
+        }
+      }
+
+      function setupReviews() {
+        const connectBtn = document.getElementById("reviewConnectBtn");
+        if (connectBtn) connectBtn.addEventListener("click", connectGoogleAccount);
+
+        const stars = document.querySelectorAll(".star-rating-input button");
+        const submitBtn = document.getElementById("submitReviewBtn");
+        let currentRating = 0;
+
+        stars.forEach(star => {
+          star.addEventListener("click", () => {
+            currentRating = parseInt(star.dataset.val, 10);
+            stars.forEach(s => {
+              if (parseInt(s.dataset.val, 10) <= currentRating) {
+                s.classList.add("active");
+              } else {
+                s.classList.remove("active");
+              }
+            });
+            document.getElementById("starRatingInput").classList.add("is-active");
+            submitBtn.disabled = false;
+          });
+        });
+
+        const form = document.getElementById("reviewForm");
+        if (form) {
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            if (!firebaseUser || !firebaseDb || !firebaseSdk) return;
+            const text = document.getElementById("reviewTextInput").value.trim();
+            if (!text || currentRating === 0) return;
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Envoi...";
+            try {
+              const reviewRef = firebaseSdk.doc(firebaseSdk.collection(firebaseDb, "reviews"));
+              await firebaseSdk.setDoc(reviewRef, {
+                uid: firebaseUser.uid,
+                displayName: firebaseUser.displayName,
+                photoURL: firebaseUser.photoURL,
+                rating: currentRating,
+                text: text,
+                createdAt: firebaseSdk.serverTimestamp()
+              });
+              document.getElementById("reviewTextInput").value = "";
+              currentRating = 0;
+              stars.forEach(s => s.classList.remove("active"));
+              document.getElementById("starRatingInput").classList.remove("is-active");
+              showToast("Merci pour votre avis !");
+              fetchReviews();
+            } catch (error) {
+              console.error(error);
+              showToast("Erreur lors de l'envoi");
+            } finally {
+              submitBtn.textContent = "Envoyer l'avis";
+            }
+          });
+        }
+      }
+
       applyStaticTranslations();
       setupMobileDockSwipe();
+      setupReviews();
       initializePwa();
       searchInput.placeholder = APP_LANGUAGE === "fr" ? "Nom, capacité, variante, rareté, bouclier, vitesse…" : "Name, ability, variant, rarity, shield, speed…";
       showPage(location.hash.slice(1), { updateHash: false });
