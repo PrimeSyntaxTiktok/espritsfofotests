@@ -34,7 +34,8 @@ function isCacheableResponse(response) {
 }
 
 function isFortniteAsset(url) {
-  return url.hostname === "fortnite.gg" && /\/sprites\/icons\//.test(url.pathname);
+  return (url.hostname === "fortnite.gg" && /\/sprites\/icons\//.test(url.pathname))
+    || url.hostname === "static.wikia.nocookie.net";
 }
 
 function isStaticRuntimeAsset(url, request) {
@@ -55,7 +56,7 @@ async function safeCachePut(cache, request, response) {
 async function fetchForOffline(rawUrl) {
   const url = new URL(rawUrl, SCOPE_URL);
   const sameOrigin = url.origin === self.location.origin;
-  const noCorsImage = !sameOrigin && (url.hostname === "fortnite.gg" || /\.(?:avif|gif|jpe?g|png|svg|webp)$/i.test(url.pathname));
+  const noCorsImage = !sameOrigin && (url.hostname === "fortnite.gg" || url.hostname === "static.wikia.nocookie.net" || /\.(?:avif|gif|jpe?g|png|svg|webp)$/i.test(url.pathname));
   const request = new Request(url.href, {
     mode: sameOrigin ? "same-origin" : (noCorsImage ? "no-cors" : "cors"),
     credentials: sameOrigin ? "same-origin" : "omit",
