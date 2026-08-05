@@ -5019,121 +5019,445 @@
 
     .admin-guard-state { display: inline-flex; padding: 8px 11px; align-items: center; gap: 7px; border: 1px solid rgba(255,214,74,.2); border-radius: 999px; background: rgba(255,214,74,.08); color: #ffdc6b; font-size: .61rem; font-weight: 900; white-space: nowrap; }
     .admin-guard-state.is-ready { border-color: rgba(69,229,154,.2); background: rgba(69,229,154,.08); color: #72efb3; }
-    /* --- REVIEWS PAGE --- */
-    .reviews-layout {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 20px 40px;
+    /* --- REVIEWS PAGE & MODAL --- */
+    .reviews-hero {
       display: flex;
       flex-direction: column;
-      gap: 30px;
-    }
-    .review-submission-glass {
-      background: rgba(10, 15, 39, .86);
-      border: 1px solid rgba(255, 255, 255, .13);
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .05);
+      align-items: center;
       text-align: center;
+      gap: 16px;
     }
-    #reviewAuthGate p {
-      margin-bottom: 15px;
-      color: rgba(255,255,255,.7);
+    .reviews-hero-action {
+      margin-top: 6px;
     }
-    .review-auth-btn {
+    .review-trigger-btn {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
-      padding: 10px 20px;
-      border-radius: 30px;
-      color: white;
-      font-weight: 600;
+      padding: 13px 28px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      border: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .review-trigger-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(var(--accent-rgb), 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    .review-trigger-btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+    .review-trigger-btn .btn-sparkle {
+      font-size: 1.15rem;
+      filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.8));
+    }
+    .review-trigger-btn .btn-arrow {
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+    }
+    .review-trigger-btn:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    .reviews-layout {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px 50px;
+    }
+    .reviews-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .reviews-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .reviews-list-header h3 {
+      font-size: 1.4rem;
+      margin: 0;
+      text-transform: uppercase;
+      font-style: italic;
+      color: var(--accent-light);
+      letter-spacing: 0.5px;
+    }
+    .reviews-counter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(var(--accent-rgb), 0.12);
+      border: 1px solid rgba(var(--accent-rgb), 0.25);
+      color: var(--accent-light);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .reviews-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .review-card {
+      background: rgba(14, 20, 48, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .review-card:hover {
+      border-color: rgba(var(--accent-rgb), 0.35);
+      transform: translateY(-2px);
+    }
+    .review-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .review-card-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .review-card-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(var(--accent-rgb), 0.4);
+      background: rgba(255, 255, 255, 0.05);
+      flex-shrink: 0;
+    }
+    .review-card-avatar-fallback {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.4), rgba(255, 255, 255, 0.1));
+      border: 2px solid rgba(var(--accent-rgb), 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.9rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .review-card-user-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .review-card-name {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+    .review-card-country {
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      width: fit-content;
+    }
+    .review-card-date-time {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      margin-left: auto;
+    }
+    .review-time-icon {
+      opacity: 0.6;
+    }
+    .review-card-stars {
+      letter-spacing: 3px;
+      font-size: 1.15rem;
+      color: #ffd64a;
+      filter: drop-shadow(0 0 4px rgba(255, 214, 74, 0.4));
+    }
+    .review-card-text {
+      color: rgba(240, 243, 255, 0.92);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin: 0;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    /* Modal Dialog for Reviews */
+    .review-modal-dialog {
+      width: min(520px, calc(100% - 32px));
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      background: linear-gradient(170deg, rgba(14, 21, 51, 0.97), rgba(8, 12, 30, 0.98));
+      color: #fff;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+    }
+    .review-modal-dialog::backdrop {
+      background: rgba(3, 6, 18, 0.82);
+      backdrop-filter: blur(10px);
+    }
+    .review-modal-shell {
+      position: relative;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .review-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .review-auth-btn:hover {
-      background: rgba(255,255,255,.1);
+    .review-modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      transform: scale(1.08);
     }
-    #reviewForm {
+    .review-modal-head {
+      text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      align-items: center;
+      gap: 6px;
+    }
+    .review-modal-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: var(--accent-light);
+      background: rgba(var(--accent-rgb), 0.12);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--accent-rgb), 0.25);
+    }
+    .review-modal-head h2 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-family: var(--display, sans-serif);
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .review-modal-head h2 span {
+      color: var(--accent-light);
+    }
+    .review-modal-copy {
+      margin: 0;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 380px;
+      line-height: 1.4;
+    }
+
+    .review-modal-gate {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .review-gate-icon {
+      font-size: 2.2rem;
+    }
+    .review-modal-gate p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.45;
+    }
+
+    .review-modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .review-user-preview {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+    .review-user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(var(--accent-rgb), 0.4);
+    }
+    .review-user-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+    .review-user-name {
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: #fff;
+    }
+    .review-user-country-tag {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .review-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+    .review-field-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.7);
     }
     .star-rating-input {
       display: flex;
       justify-content: center;
-      gap: 8px;
-      font-size: 2rem;
-      cursor: pointer;
+      gap: 10px;
+      font-size: 2.2rem;
+      padding: 6px 0;
     }
     .star-rating-input button {
       background: none;
       border: none;
       font-size: inherit;
-      padding: 0;
+      padding: 0 4px;
       cursor: pointer;
-      transition: transform 0.2s;
-      filter: grayscale(1) opacity(0.3);
+      transition: transform 0.18s, filter 0.18s;
+      filter: grayscale(1) opacity(0.25);
     }
     .star-rating-input button:hover {
-      transform: scale(1.2);
+      transform: scale(1.25);
     }
-    .star-rating-input button.active { filter: none; }
+    .star-rating-input button.active,
+    .star-rating-input button.hover-preview {
+      filter: drop-shadow(0 0 8px rgba(255, 214, 74, 0.7)) grayscale(0) opacity(1);
+    }
+    .review-rating-hint {
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+    }
+
     #reviewTextInput {
       width: 100%;
-      background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 15px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 12px 14px;
       color: white;
       font-family: inherit;
+      font-size: 0.88rem;
       resize: vertical;
+      min-height: 90px;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
     #reviewTextInput:focus {
       outline: none;
-      border-color: rgba(var(--accent-rgb), 0.5);
+      border-color: rgba(var(--accent-rgb), 0.6);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
     }
-    .reviews-list-container h3 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      font-style: italic;
-      color: var(--accent-light);
-    }
-    .reviews-list {
+    .review-counter-row {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      justify-content: flex-end;
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.4);
     }
-    .review-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
+
+    .review-modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
       gap: 10px;
-      text-align: left;
+      margin-top: 6px;
     }
-    .review-card-header {
-      display: flex;
-      justify-content: space-between;
+    .review-btn-secondary {
+      min-height: 44px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      color: #c5cee6;
+      font-weight: 800;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .review-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .review-btn-submit {
+      min-height: 44px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .review-auth-btn {
+      display: inline-flex;
       align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 12px 24px;
+      border-radius: 30px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .review-card-author {
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .review-card-stars {
-      letter-spacing: 2px;
-    }
-    .review-card-date {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
+    .review-auth-btn:hover {
+      background: rgba(255,255,255,.14);
+      transform: translateY(-1px);
     }
 
     .admin-workspace { display: grid; gap: 12px; }
@@ -6909,38 +7233,28 @@
       </article>
     </section>
     <section class="feature-page app-page" id="reviewsPage" data-page="reviews" aria-labelledby="reviewsTitle">
-      <header class="feature-hero">
+      <header class="feature-hero reviews-hero">
         <div>
           <span class="feature-eyebrow">Avis de la communauté</span>
           <h1 id="reviewsTitle">Livre <span>d'Or</span></h1>
-          <p>Laissez votre avis sur Sprite Locker et découvrez ceux des autres joueurs.</p>
+          <p>Laissez votre avis sur Sprite Locker et découvrez les retours des autres joueurs.</p>
+        </div>
+        <div class="reviews-hero-action">
+          <button class="feature-primary review-trigger-btn" type="button" id="openReviewModalBtn">
+            <span class="btn-sparkle" aria-hidden="true">⭐</span>
+            <span>Donnez votre avis</span>
+            <span class="btn-arrow" aria-hidden="true">➔</span>
+          </button>
         </div>
       </header>
 
       <div class="reviews-layout">
-        <!-- Zone de soumission -->
-        <div class="review-submission-glass">
-          <div id="reviewAuthGate">
-            <p>Vous devez être connecté avec Google pour laisser un avis.</p>
-            <button class="review-auth-btn" type="button" id="reviewConnectBtn"><span class="auth-google" aria-hidden="true">G</span><span>Connexion Google</span></button>
-          </div>
-          <form id="reviewForm" hidden>
-            <h3>Donnez votre avis</h3>
-            <div class="star-rating-input" id="starRatingInput">
-              <button type="button" data-val="1" aria-label="1 étoile">⭐</button>
-              <button type="button" data-val="2" aria-label="2 étoiles">⭐</button>
-              <button type="button" data-val="3" aria-label="3 étoiles">⭐</button>
-              <button type="button" data-val="4" aria-label="4 étoiles">⭐</button>
-              <button type="button" data-val="5" aria-label="5 étoiles">⭐</button>
-            </div>
-            <textarea id="reviewTextInput" placeholder="Racontez-nous votre expérience avec Sprite Locker..." rows="4" maxlength="500" required></textarea>
-            <button type="submit" id="submitReviewBtn" class="feature-primary" disabled>Envoyer l'avis</button>
-          </form>
-        </div>
-
         <!-- Liste des avis -->
         <div class="reviews-list-container">
-          <h3>Avis récents</h3>
+          <div class="reviews-list-header">
+            <h3>Avis de la communauté</h3>
+            <span class="reviews-counter-badge" id="reviewsCountBadge">En direct</span>
+          </div>
           <div id="reviewsList" class="reviews-list">
             <p class="reviews-loading">Chargement des avis...</p>
           </div>
@@ -7112,6 +7426,65 @@
         <button id="cancelReset" type="button">Annuler</button>
         <button class="confirm-reset" id="confirmReset" type="button">Tout effacer</button>
       </div>
+    </div>
+  </dialog>
+
+  <dialog class="review-modal-dialog" id="reviewModalDialog" aria-labelledby="reviewModalTitle">
+    <div class="review-modal-shell">
+      <button class="review-modal-close" id="closeReviewModalBtn" type="button" aria-label="Fermer la fenêtre">✕</button>
+      
+      <div class="review-modal-head">
+        <span class="review-modal-badge">⭐ LIVRE D'OR</span>
+        <h2 id="reviewModalTitle">Donnez votre <span>avis</span></h2>
+        <p class="review-modal-copy">Partagez votre expérience pour faire grandir la communauté Sprite Locker.</p>
+      </div>
+
+      <!-- Auth gate si non connecté -->
+      <div id="reviewAuthGate" class="review-modal-gate">
+        <div class="review-gate-icon" aria-hidden="true">🔐</div>
+        <p>Connectez-vous avec Google pour publier un avis certifié avec votre pseudo et votre pays.</p>
+        <button class="review-auth-btn" type="button" id="reviewConnectBtn">
+          <span class="auth-google" aria-hidden="true">G</span>
+          <span>Connexion avec Google</span>
+        </button>
+      </div>
+
+      <!-- Formulaire si connecté -->
+      <form id="reviewForm" class="review-modal-form" hidden>
+        <div class="review-user-preview">
+          <img id="reviewUserAvatar" class="review-user-avatar" src="" alt="Avatar" hidden>
+          <div id="reviewUserAvatarFallback" class="review-card-avatar-fallback">J</div>
+          <div class="review-user-info">
+            <span class="review-user-name" id="reviewUserName">Joueur</span>
+            <span class="review-user-country-tag" id="reviewUserCountryTag">📍 Détection du pays...</span>
+          </div>
+        </div>
+
+        <div class="review-form-group">
+          <label class="review-field-label">Votre note globale</label>
+          <div class="star-rating-input" id="starRatingInput">
+            <button type="button" data-val="1" aria-label="1 étoile">⭐</button>
+            <button type="button" data-val="2" aria-label="2 étoiles">⭐</button>
+            <button type="button" data-val="3" aria-label="3 étoiles">⭐</button>
+            <button type="button" data-val="4" aria-label="4 étoiles">⭐</button>
+            <button type="button" data-val="5" aria-label="5 étoiles">⭐</button>
+          </div>
+          <span class="review-rating-hint" id="reviewRatingHint">Cliquez sur une étoile pour attribuer votre note (1 à 5)</span>
+        </div>
+
+        <div class="review-form-group">
+          <label class="review-field-label" for="reviewTextInput">Votre message</label>
+          <textarea id="reviewTextInput" placeholder="Donnez vos impressions, suggestions ou encouragements..." rows="4" maxlength="500" required></textarea>
+          <div class="review-counter-row">
+            <span id="reviewCharCounter">0 / 500</span>
+          </div>
+        </div>
+
+        <div class="review-modal-actions">
+          <button type="button" id="cancelReviewModalBtn" class="review-btn-secondary">Annuler</button>
+          <button type="submit" id="submitReviewBtn" class="feature-primary review-btn-submit" disabled>Publier mon avis</button>
+        </div>
+      </form>
     </div>
   </dialog>
 
@@ -9603,6 +9976,9 @@
           reviewGate.hidden = connected;
           reviewForm.hidden = !connected;
         }
+        if (typeof updateReviewModalUserPreview === "function") {
+          updateReviewModalUserPreview();
+        }
 
         if (!connected) {
           accountAvatar.hidden = true;
@@ -11287,77 +11663,377 @@
       populateAdminSelectors();
       renderAdminAccess();
       document.getElementById("adminPatchForm").elements.date.value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+      let userDetectedCountry = null;
+      let userDetectedCountryCode = null;
+      let reviewsUnsubscribe = null;
+
+      const COUNTRY_FLAG_EMOJIS = {
+        FR: "🇫🇷", BE: "🇧🇪", CH: "🇨🇭", CA: "🇨🇦", US: "🇺🇸", GB: "🇬🇧", DE: "🇩🇪", ES: "🇪🇸", IT: "🇮🇹",
+        PT: "🇵🇹", NL: "🇳🇱", BR: "🇧🇷", JP: "🇯🇵", MA: "🇲🇦", DZ: "🇩🇿", TN: "🇹🇳", SN: "🇸🇳", CI: "🇨🇮",
+        LU: "🇱🇺", RE: "🇷🇪", GP: "🇬🇵", MQ: "🇲🇶", NC: "🇳🇨", PF: "🇵🇫", MG: "🇲🇬", CM: "🇨🇲"
+      };
+
+      function getCountryFlag(code) {
+        if (!code || code.length !== 2) return "🌍";
+        const upper = code.toUpperCase();
+        if (COUNTRY_FLAG_EMOJIS[upper]) return COUNTRY_FLAG_EMOJIS[upper];
+        try {
+          const codePoints = [...upper].map(c => 127397 + c.charCodeAt(0));
+          return String.fromCodePoint(...codePoints);
+        } catch (_) {
+          return "🌍";
+        }
+      }
+
+      function getCountryName(code) {
+        if (!code) return "France";
+        try {
+          if (typeof Intl !== "undefined" && Intl.DisplayNames) {
+            const dn = new Intl.DisplayNames([APP_LANGUAGE || "fr", "en"], { type: "region" });
+            return dn.of(code.toUpperCase()) || code;
+          }
+        } catch (_) {}
+        const fallback = {
+          FR: "France", BE: "Belgique", CH: "Suisse", CA: "Canada", US: "États-Unis",
+          GB: "Royaume-Uni", DE: "Allemagne", ES: "Espagne", IT: "Italie", PT: "Portugal",
+          NL: "Pays-Bas", MA: "Maroc", DZ: "Algérie", TN: "Tunisie", SN: "Sénégal",
+          CI: "Côte d'Ivoire", LU: "Luxembourg"
+        };
+        return fallback[code.toUpperCase()] || code;
+      }
+
+      function guessCountryFromTimezone() {
+        try {
+          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+          if (tz.includes("Paris")) return { code: "FR", name: "France" };
+          if (tz.includes("Brussels")) return { code: "BE", name: "Belgique" };
+          if (tz.includes("Zurich") || tz.includes("Geneva")) return { code: "CH", name: "Suisse" };
+          if (tz.includes("Montreal") || tz.includes("Toronto") || tz.includes("Vancouver")) return { code: "CA", name: "Canada" };
+          if (tz.includes("London")) return { code: "GB", name: "Royaume-Uni" };
+          if (tz.includes("Berlin")) return { code: "DE", name: "Allemagne" };
+          if (tz.includes("Madrid")) return { code: "ES", name: "Espagne" };
+          if (tz.includes("Rome")) return { code: "IT", name: "Italie" };
+          if (tz.includes("Casablanca")) return { code: "MA", name: "Maroc" };
+          if (tz.includes("Algiers")) return { code: "DZ", name: "Algérie" };
+          if (tz.includes("Tunis")) return { code: "TN", name: "Tunisie" };
+          if (tz.includes("New_York") || tz.includes("Chicago") || tz.includes("Los_Angeles")) return { code: "US", name: "États-Unis" };
+          if (tz.includes("Reunion")) return { code: "RE", name: "La Réunion" };
+          if (tz.includes("Guadeloupe")) return { code: "GP", name: "Guadeloupe" };
+          if (tz.includes("Martinique")) return { code: "MQ", name: "Martinique" };
+          if (tz.includes("Tahiti")) return { code: "PF", name: "Polynésie" };
+        } catch (_) {}
+        const lang = (navigator.language || "fr").toLowerCase();
+        if (lang.includes("fr")) return { code: "FR", name: "France" };
+        return { code: "FR", name: "France" };
+      }
+
+      async function detectUserCountry() {
+        if (userDetectedCountry && userDetectedCountryCode) {
+          return { country: userDetectedCountry, code: userDetectedCountryCode, flag: getCountryFlag(userDetectedCountryCode) };
+        }
+        const cached = localStorage.getItem("sprite-locker-user-country");
+        const cachedCode = localStorage.getItem("sprite-locker-user-country-code");
+        if (cached && cachedCode) {
+          userDetectedCountry = cached;
+          userDetectedCountryCode = cachedCode;
+          return { country: cached, code: cachedCode, flag: getCountryFlag(cachedCode) };
+        }
+
+        const fallback = guessCountryFromTimezone();
+        userDetectedCountry = fallback.name;
+        userDetectedCountryCode = fallback.code;
+
+        try {
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 2000);
+          const res = await fetch("https://api.country.is", { signal: controller.signal });
+          clearTimeout(timer);
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.country) {
+              const code = data.country.toUpperCase();
+              const name = getCountryName(code);
+              userDetectedCountry = name;
+              userDetectedCountryCode = code;
+              localStorage.setItem("sprite-locker-user-country", name);
+              localStorage.setItem("sprite-locker-user-country-code", code);
+            }
+          }
+        } catch (_) {}
+
+        return { country: userDetectedCountry, code: userDetectedCountryCode, flag: getCountryFlag(userDetectedCountryCode) };
+      }
+
+      function formatReviewDateTime(timestamp) {
+        if (!timestamp) return "";
+        let dateObj;
+        if (typeof timestamp.toMillis === "function") {
+          dateObj = new Date(timestamp.toMillis());
+        } else if (typeof timestamp.toDate === "function") {
+          dateObj = timestamp.toDate();
+        } else if (typeof timestamp === "number" || typeof timestamp === "string") {
+          dateObj = new Date(timestamp);
+        } else {
+          dateObj = new Date();
+        }
+        if (Number.isNaN(dateObj.getTime())) return "";
+
+        const formattedDate = new Intl.DateTimeFormat(APP_LOCALE, {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }).format(dateObj);
+
+        const formattedTime = new Intl.DateTimeFormat(APP_LOCALE, {
+          hour: "2-digit",
+          minute: "2-digit"
+        }).format(dateObj);
+
+        return `${formattedDate} · ${formattedTime}`;
+      }
+
+      async function updateReviewModalUserPreview() {
+        const currentUser = firebaseUser || (firebaseAuth && firebaseAuth.currentUser);
+        const userAvatar = document.getElementById("reviewUserAvatar");
+        const userFallback = document.getElementById("reviewUserAvatarFallback");
+        const userName = document.getElementById("reviewUserName");
+        const countryTag = document.getElementById("reviewUserCountryTag");
+        const reviewGate = document.getElementById("reviewAuthGate");
+        const reviewForm = document.getElementById("reviewForm");
+
+        if (currentUser) {
+          if (reviewGate) reviewGate.hidden = true;
+          if (reviewForm) reviewForm.hidden = false;
+          const displayName = currentUser.displayName || (APP_LANGUAGE === "fr" ? "Joueur" : "Player");
+          if (userName) userName.textContent = displayName;
+          if (currentUser.photoURL) {
+            if (userAvatar) {
+              userAvatar.src = currentUser.photoURL;
+              userAvatar.hidden = false;
+              userAvatar.onerror = () => {
+                userAvatar.hidden = true;
+                if (userFallback) userFallback.hidden = false;
+              };
+            }
+            if (userFallback) userFallback.hidden = true;
+          } else {
+            if (userAvatar) userAvatar.hidden = true;
+            if (userFallback) {
+              userFallback.hidden = false;
+              userFallback.textContent = displayName.trim().charAt(0).toUpperCase() || "J";
+            }
+          }
+
+          if (countryTag) {
+            countryTag.textContent = "📍 Détection du pays...";
+            const loc = await detectUserCountry();
+            countryTag.textContent = `${loc.flag} ${loc.country}`;
+          }
+        } else {
+          if (reviewGate) reviewGate.hidden = false;
+          if (reviewForm) reviewForm.hidden = true;
+        }
+      }
+
+      function renderReviewCardHtml(data) {
+        const dateTimeStr = formatReviewDateTime(data.createdAt || data.createdAtMs);
+        const rating = Math.max(1, Math.min(5, Number(data.rating) || 5));
+        const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
+        const safeAuthor = esc(data.displayName || (APP_LANGUAGE === "fr" ? "Joueur" : "Player"));
+        const safeText = esc(data.text || "");
+        const countryName = data.country ? esc(data.country) : "";
+        const countryFlag = data.countryFlag || (data.countryCode ? getCountryFlag(data.countryCode) : "📍");
+        const countryBadge = countryName
+          ? `<span class="review-card-country" title="${countryName}">${countryFlag} ${countryName}</span>`
+          : "";
+
+        const authorPhoto = data.photoURL && typeof data.photoURL === "string" && data.photoURL.startsWith("http")
+          ? `<img class="review-card-avatar" src="${esc(data.photoURL)}" alt="${safeAuthor}" onerror="this.style.display='none';this.nextElementSibling.hidden=false;"><div class="review-card-avatar-fallback" hidden>${safeAuthor.charAt(0).toUpperCase() || "J"}</div>`
+          : `<div class="review-card-avatar-fallback">${safeAuthor.charAt(0).toUpperCase() || "J"}</div>`;
+
+        return `
+          <article class="review-card">
+            <div class="review-card-top">
+              <div class="review-card-user">
+                ${authorPhoto}
+                <div class="review-card-user-meta">
+                  <span class="review-card-name">${safeAuthor}</span>
+                  ${countryBadge}
+                </div>
+              </div>
+              <div class="review-card-date-time">
+                <span class="review-time-icon" aria-hidden="true">🕒</span>
+                <span>${dateTimeStr}</span>
+              </div>
+            </div>
+            <div class="review-card-stars" aria-label="${rating} étoiles sur 5">${stars}</div>
+            <p class="review-card-text">${safeText}</p>
+          </article>
+        `;
+      }
+
+      function renderReviewsFromSnapshot(querySnapshot) {
+        const listContainer = document.getElementById("reviewsList");
+        const badge = document.getElementById("reviewsCountBadge");
+        if (!listContainer) return;
+
+        if (querySnapshot.empty) {
+          if (badge) badge.textContent = "0 avis";
+          listContainer.innerHTML = `
+            <div class="empty-state" style="padding: 34px 16px; text-align: center; border: 1px dashed rgba(255,255,255,0.12); border-radius: 16px; background: rgba(255,255,255,0.02);">
+              <strong style="display:block; font-size:1.1rem; margin-bottom:6px;">Soyez le premier à donner votre avis !</strong>
+              <span style="color: rgba(255,255,255,0.6); font-size:0.85rem;">Cliquez sur « Donnez votre avis » ci-dessus pour laisser votre commentaire.</span>
+            </div>`;
+          return;
+        }
+
+        const count = querySnapshot.size;
+        if (badge) badge.textContent = `${count} avis`;
+
+        const cards = [];
+        querySnapshot.forEach(doc => {
+          cards.push(renderReviewCardHtml(doc.data()));
+        });
+        listContainer.innerHTML = cards.join("");
+      }
+
       async function fetchReviews() {
         const listContainer = document.getElementById("reviewsList");
         if (!listContainer) return;
+
         if (!firebaseReady || !firebaseDb || !firebaseSdk) {
-          listContainer.innerHTML = "<p>Connexion au serveur des avis...</p>";
+          listContainer.innerHTML = `<p class="reviews-loading">Connexion au serveur des avis...</p>`;
           return;
         }
+
         try {
           const q = firebaseSdk.query(
             firebaseSdk.collection(firebaseDb, "reviews"),
             firebaseSdk.orderBy("createdAt", "desc"),
             firebaseSdk.limit(50)
           );
-          const querySnapshot = await firebaseSdk.getDocs(q);
-          listContainer.innerHTML = "";
-          if (querySnapshot.empty) {
-            listContainer.innerHTML = "<p>Soyez le premier à donner votre avis !</p>";
-            return;
+
+          if (reviewsUnsubscribe) {
+            reviewsUnsubscribe();
+            reviewsUnsubscribe = null;
           }
-          querySnapshot.forEach(doc => {
-            const data = doc.data();
-            const date = data.createdAt ? new Date(data.createdAt.toMillis ? data.createdAt.toMillis() : data.createdAt).toLocaleDateString() : "";
-            const rating = Math.max(1, Math.min(5, Number(data.rating) || 5));
-            const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
-            const safeAuthor = (data.displayName || "Joueur").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            const safeText = (data.text || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            const authorPhoto = data.photoURL && typeof data.photoURL === "string" && data.photoURL.startsWith("http")
-              ? `<img src="${data.photoURL.replace(/"/g, '&quot;')}" alt="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;">`
-              : "";
-            listContainer.innerHTML += `
-              <div class="review-card">
-                <div class="review-card-header">
-                  <span class="review-card-author">
-                    ${authorPhoto}
-                    <span>${safeAuthor}</span>
-                  </span>
-                  <span class="review-card-date">${date}</span>
-                </div>
-                <div class="review-card-stars" aria-label="${rating} étoiles sur 5">${stars}</div>
-                <div class="review-card-text">${safeText}</div>
-              </div>
-            `;
+
+          reviewsUnsubscribe = firebaseSdk.onSnapshot(q, snapshot => {
+            renderReviewsFromSnapshot(snapshot);
+          }, error => {
+            console.error("Erreur écoute avis", error);
+            listContainer.innerHTML = `<p class="reviews-loading">Impossible de charger les avis (${friendlyFirebaseError(error)}).</p>`;
           });
         } catch (e) {
           console.error("Erreur de chargement des avis", e);
-          listContainer.innerHTML = "<p>Impossible de charger les avis. Veuillez vérifier la connexion ou les règles Firestore.</p>";
+          listContainer.innerHTML = `<p class="reviews-loading">Impossible de charger les avis. Vérifiez votre connexion.</p>`;
         }
       }
 
       function setupReviews() {
+        const openModalBtn = document.getElementById("openReviewModalBtn");
+        const modalDialog = document.getElementById("reviewModalDialog");
+        const closeModalBtn = document.getElementById("closeReviewModalBtn");
+        const cancelModalBtn = document.getElementById("cancelReviewModalBtn");
         const connectBtn = document.getElementById("reviewConnectBtn");
-        if (connectBtn) connectBtn.addEventListener("click", connectGoogleAccount);
+
+        if (connectBtn) {
+          connectBtn.addEventListener("click", () => {
+            connectGoogleAccount();
+          });
+        }
+
+        if (openModalBtn && modalDialog) {
+          openModalBtn.addEventListener("click", () => {
+            updateReviewModalUserPreview();
+            if (typeof modalDialog.showModal === "function") {
+              modalDialog.showModal();
+            } else {
+              modalDialog.setAttribute("open", "");
+            }
+          });
+        }
+
+        if (closeModalBtn && modalDialog) {
+          closeModalBtn.addEventListener("click", () => modalDialog.close());
+        }
+        if (cancelModalBtn && modalDialog) {
+          cancelModalBtn.addEventListener("click", () => modalDialog.close());
+        }
+        if (modalDialog) {
+          modalDialog.addEventListener("click", (e) => {
+            if (e.target === modalDialog) modalDialog.close();
+          });
+        }
+
+        const RATING_HINTS = {
+          1: "⭐☆☆☆☆ · Décevant",
+          2: "⭐⭐☆☆☆ · Moyen",
+          3: "⭐⭐⭐☆☆ · Bon",
+          4: "⭐⭐⭐⭐☆ · Très bon",
+          5: "⭐⭐⭐⭐⭐ · Excellent !"
+        };
 
         const stars = document.querySelectorAll(".star-rating-input button");
         const submitBtn = document.getElementById("submitReviewBtn");
+        const textInput = document.getElementById("reviewTextInput");
+        const charCounter = document.getElementById("reviewCharCounter");
+        const ratingHint = document.getElementById("reviewRatingHint");
         let currentRating = 0;
 
+        function updateStarDisplay(rating) {
+          stars.forEach(s => {
+            const val = parseInt(s.dataset.val, 10);
+            if (val <= rating) {
+              s.classList.add("active");
+            } else {
+              s.classList.remove("active");
+            }
+          });
+          if (ratingHint) {
+            ratingHint.textContent = RATING_HINTS[rating] || "Cliquez sur une étoile pour attribuer votre note (1 à 5)";
+          }
+        }
+
+        function validateReviewForm() {
+          const hasRating = currentRating > 0;
+          const hasText = Boolean(textInput && textInput.value.trim().length > 0);
+          if (submitBtn) {
+            submitBtn.disabled = !(hasRating && hasText);
+          }
+        }
+
         stars.forEach(star => {
+          star.addEventListener("mouseenter", () => {
+            const hoverVal = parseInt(star.dataset.val, 10);
+            stars.forEach(s => {
+              const val = parseInt(s.dataset.val, 10);
+              s.classList.toggle("hover-preview", val <= hoverVal);
+            });
+            if (ratingHint) {
+              ratingHint.textContent = RATING_HINTS[hoverVal] || "";
+            }
+          });
+
+          star.addEventListener("mouseleave", () => {
+            stars.forEach(s => s.classList.remove("hover-preview"));
+            updateStarDisplay(currentRating);
+          });
+
           star.addEventListener("click", () => {
             currentRating = parseInt(star.dataset.val, 10);
-            stars.forEach(s => {
-              if (parseInt(s.dataset.val, 10) <= currentRating) {
-                s.classList.add("active");
-              } else {
-                s.classList.remove("active");
-              }
-            });
-            document.getElementById("starRatingInput").classList.add("is-active");
-            submitBtn.disabled = false;
+            updateStarDisplay(currentRating);
+            validateReviewForm();
           });
         });
+
+        if (textInput) {
+          textInput.addEventListener("input", () => {
+            const len = textInput.value.length;
+            if (charCounter) charCounter.textContent = `${len} / 500`;
+            validateReviewForm();
+          });
+        }
 
         const form = document.getElementById("reviewForm");
         if (form) {
@@ -11368,7 +12044,7 @@
               showToast("Vous devez être connecté avec Google.");
               return;
             }
-            const text = document.getElementById("reviewTextInput").value.trim();
+            const text = textInput ? textInput.value.trim() : "";
             if (!text) {
               showToast("Veuillez écrire un commentaire.");
               return;
@@ -11377,31 +12053,39 @@
               showToast("Veuillez choisir une note (1 à 5 étoiles).");
               return;
             }
-            
+
             submitBtn.disabled = true;
-            submitBtn.textContent = "Envoi...";
+            submitBtn.textContent = "Publication en cours...";
             try {
+              const loc = await detectUserCountry();
               const reviewRef = firebaseSdk.doc(firebaseSdk.collection(firebaseDb, "reviews"));
               await firebaseSdk.setDoc(reviewRef, {
                 uid: currentUser.uid,
-                displayName: currentUser.displayName || "Joueur",
+                displayName: (currentUser.displayName || "Joueur").slice(0, 50),
                 photoURL: currentUser.photoURL || "",
                 rating: currentRating,
-                text: text,
-                createdAt: firebaseSdk.serverTimestamp()
+                text: text.slice(0, 500),
+                country: loc.country,
+                countryCode: loc.code,
+                countryFlag: loc.flag,
+                createdAt: firebaseSdk.serverTimestamp(),
+                createdAtMs: Date.now()
               });
-              document.getElementById("reviewTextInput").value = "";
+
+              if (textInput) textInput.value = "";
+              if (charCounter) charCounter.textContent = "0 / 500";
               currentRating = 0;
-              stars.forEach(s => s.classList.remove("active"));
-              document.getElementById("starRatingInput").classList.remove("is-active");
-              showToast("Merci pour votre avis !");
+              updateStarDisplay(0);
+              if (modalDialog) modalDialog.close();
+              showToast("⭐ Merci pour votre avis !");
+              createStarExplosion(window.innerWidth / 2, window.innerHeight / 2);
               await fetchReviews();
             } catch (error) {
               console.error("Erreur lors de l'envoi de l'avis", error);
-              showToast("Erreur lors de l'envoi de l'avis");
+              showToast("Erreur lors de l'envoi de l'avis : " + friendlyFirebaseError(error));
             } finally {
-              submitBtn.textContent = "Envoyer l'avis";
-              submitBtn.disabled = false;
+              submitBtn.textContent = "Publier mon avis";
+              validateReviewForm();
             }
           });
         }
