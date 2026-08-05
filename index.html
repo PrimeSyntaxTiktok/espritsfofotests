@@ -5180,6 +5180,13 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       width: fit-content;
     }
+    .review-card-header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+      flex-wrap: wrap;
+    }
     .review-card-date-time {
       font-size: 0.78rem;
       color: rgba(255, 255, 255, 0.5);
@@ -5187,7 +5194,30 @@
       align-items: center;
       gap: 6px;
       white-space: nowrap;
-      margin-left: auto;
+    }
+    .review-admin-delete-btn {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .review-admin-delete-btn:hover {
+      background: rgba(239, 68, 68, 0.32);
+      border-color: rgba(239, 68, 68, 0.7);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+    }
+    .review-admin-delete-btn:active {
+      transform: scale(0.96);
     }
     .review-time-icon {
       opacity: 0.6;
@@ -7093,7 +7123,10 @@
         <form class="panel-card admin-form" id="adminPatchForm" data-admin-panel="patch">
           <div class="panel-heading"><div><span>Actualité</span><h2>Publier un Patch Note</h2></div></div>
           <div class="form-grid"><label class="field-label field-span">Titre<input name="title" required maxlength="100"></label><label class="field-label field-span">Contenu<textarea name="body" required maxlength="1800" rows="7" placeholder="Une ligne par nouveauté…"></textarea></label><label class="field-label">Date de publication<input name="date" required type="datetime-local"></label></div>
-          <button class="feature-primary" type="submit">Ajouter le Patch Note</button>
+          <div class="admin-patch-form-actions" style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px;">
+            <button class="feature-primary" type="submit" name="submitAction" value="publish" style="display: inline-flex; align-items: center; gap: 8px;"><span aria-hidden="true">🚀</span> Publier directement sur le site</button>
+            <button type="submit" name="submitAction" value="draft" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #fff; padding: 12px 18px; border-radius: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;"><span aria-hidden="true">📝</span> Enregistrer en brouillon</button>
+          </div>
           <section class="admin-patch-quick" aria-labelledby="adminPatchQuickTitle">
             <header><div><span>Gestion directe</span><h3 id="adminPatchQuickTitle">Mes Patch Notes</h3></div><small>Modifier ou supprimer</small></header>
             <div class="admin-patch-quick-list" id="adminPatchQuickList" aria-live="polite"></div>
@@ -7328,7 +7361,11 @@
     <h2 id="patchNoteEditorTitle">Modifier le Patch Note</h2>
     <label class="field-label">Titre<input id="patchEditorTitle" type="text" maxlength="120"></label>
     <label class="field-label">Contenu<textarea id="patchEditorBody" maxlength="1800" rows="7" required></textarea></label>
-    <div class="admin-editor-actions"><button type="button" data-patch-editor-action="close">Annuler</button><button class="is-primary" type="button" data-patch-editor-action="save">Enregistrer</button></div>
+    <div class="admin-editor-actions">
+      <button type="button" data-patch-editor-action="close">Annuler</button>
+      <button class="btn-subtle" type="button" data-patch-editor-action="save-draft" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 700; cursor: pointer;">Enregistrer en brouillon</button>
+      <button class="is-primary" type="button" data-patch-editor-action="save-publish">Publier sur le site</button>
+    </div>
   </dialog>
 
   <button class="top-btn" id="topBtn" type="button" aria-label="Revenir en haut">↑</button>
@@ -10223,6 +10260,7 @@
             doc: firestoreModule.doc,
             getDoc: firestoreModule.getDoc,
             setDoc: firestoreModule.setDoc,
+            deleteDoc: firestoreModule.deleteDoc,
             collection: firestoreModule.collection,
             getDocs: firestoreModule.getDocs,
             query: firestoreModule.query,
@@ -10876,28 +10914,58 @@
         if (!dialog.open) dialog.showModal();
       }
 
-      async function savePatchNoteEditor() {
+      async function savePatchNoteEditor({ publish = true } = {}) {
         if (!patchEditorContext || !adminAccess) return;
         const body = document.getElementById("patchEditorBody").value.trim();
         const title = document.getElementById("patchEditorTitle").value.trim().slice(0, 100) || "Mise à jour Sprite Locker";
         if (!body) return showToast("Le contenu ne peut pas être vide");
         const context = patchEditorContext;
         try {
-          if (context.kind === "patch") {
-            const notes = [...(adminContent.patchNotes || [])];
-            if (!notes[context.index]) return;
-            notes[context.index] = { ...notes[context.index], title, body: body.slice(0, 1800), updatedAtMs: Date.now() };
-            adminDraft = normalizeAdminContent({ ...adminContent, patchNotes: notes, updatedAtMs: Date.now() });
-            adminDraftDirty = true;
+          let currentNotes = Array.isArray(adminDraft.patchNotes) && adminDraft.patchNotes.length
+            ? [...adminDraft.patchNotes]
+            : [...(adminContent.patchNotes || [])];
+
+          let targetIndex = -1;
+          if (context.id) {
+            targetIndex = currentNotes.findIndex(n => n.id === context.id);
+          }
+          if (targetIndex < 0 && Number.isFinite(context.index)) {
+            targetIndex = context.index;
+          }
+
+          if (targetIndex >= 0 && currentNotes[targetIndex]) {
+            currentNotes[targetIndex] = {
+              ...currentNotes[targetIndex],
+              title,
+              body: body.slice(0, 1800),
+              updatedAtMs: Date.now()
+            };
+          } else {
+            currentNotes.push({
+              id: context.id || `patch-${Date.now().toString(36)}`,
+              title,
+              body: body.slice(0, 1800),
+              date: new Date().toISOString(),
+              createdAtMs: Date.now(),
+              updatedAtMs: Date.now()
+            });
+          }
+
+          adminDraft = normalizeAdminContent({
+            ...adminDraft,
+            patchNotes: currentNotes,
+            updatedAtMs: Date.now()
+          });
+
+          if (publish) {
             await publishAdminContent();
-          } else if (context.kind === "draftPatch") {
-            if (!adminDraft.patchNotes[context.index]) return;
-            adminDraft.patchNotes[context.index] = { ...adminDraft.patchNotes[context.index], title, body: body.slice(0, 1800), updatedAtMs: Date.now() };
+            showToast("Patch Note mis à jour et publié !");
+          } else {
             markAdminDraft("Patch Note modifié dans le brouillon");
+            showToast("Modification enregistrée dans le brouillon");
           }
           document.getElementById("patchNoteEditor").close();
           patchEditorContext = null;
-          showToast("Modification enregistrée");
         } catch (error) {
           showToast(friendlyFirebaseError(error));
         }
@@ -11016,28 +11084,41 @@
           feed.className = "published-patch-feed";
           document.getElementById("patchNotesPage").prepend(feed);
         }
-        feed.innerHTML = notes.map((note, index) => ({ note, index })).sort((a, b) => String(b.note.date).localeCompare(String(a.note.date))).map(({ note, index }) => `
-          <article class="patch-entry custom-patch-entry">
-            <header class="patch-simple-head"><div><span class="patch-kicker">Patch Note publié</span><h1>${esc(note.title || "Mise à jour Sprite Locker")}</h1></div><time class="patch-date">${esc(new Date(note.date || Date.now()).toLocaleString(APP_LOCALE, { dateStyle: "long", timeStyle: "short" }))}</time></header>
+        const sortedNotes = [...(notes || [])].sort((a, b) => String(b.date || b.createdAtMs || 0).localeCompare(String(a.date || a.createdAtMs || 0)));
+        feed.innerHTML = sortedNotes.map((note, index) => {
+          const noteId = note.id || `patch-${index}`;
+          const dateVal = note.date || note.createdAtMs || Date.now();
+          const parsedDate = new Date(dateVal);
+          const dateLabel = Number.isNaN(parsedDate.getTime()) ? "Date récente" : parsedDate.toLocaleString(APP_LOCALE, { dateStyle: "long", timeStyle: "short" });
+          return `
+          <article class="patch-entry custom-patch-entry" data-patch-id="${esc(noteId)}">
+            <header class="patch-simple-head"><div><span class="patch-kicker">Patch Note publié</span><h1>${esc(note.title || "Mise à jour Sprite Locker")}</h1></div><time class="patch-date">${esc(dateLabel)}</time></header>
             <section class="patch-card"><ul class="patch-list">${String(note.body || "").split(/\n+/).filter(Boolean).map(line => `<li>${esc(line)}</li>`).join("")}</ul></section>
-            ${adminAccess ? `<div class="patch-admin-actions"><button type="button" data-patch-admin-action="edit" data-patch-index="${index}"><span aria-hidden="true">✎</span>Modifier</button><button class="is-danger" type="button" data-patch-admin-action="delete" data-patch-index="${index}"><span aria-hidden="true">×</span>Supprimer</button></div>` : ""}
-          </article>`).join("");
+            ${adminAccess ? `<div class="patch-admin-actions"><button type="button" data-patch-admin-action="edit" data-patch-id="${esc(noteId)}"><span aria-hidden="true">✎</span>Modifier</button><button class="is-danger" type="button" data-patch-admin-action="delete" data-patch-id="${esc(noteId)}"><span aria-hidden="true">×</span>Supprimer</button></div>` : ""}
+          </article>`;
+        }).join("");
       }
 
-      async function loadPublishedContent() {
+      function loadPublishedContent() {
         if (!firebaseSdk || !firebaseDb) return;
         try {
-          const snapshot = await firebaseSdk.getDoc(firebaseSdk.doc(firebaseDb, "spriteLockerContent", "catalog"));
-          if (snapshot.exists()) {
-            const remote = normalizeAdminContent(snapshot.data());
-            if (remote.updatedAtMs >= adminContent.updatedAtMs) {
+          const catalogRef = firebaseSdk.doc(firebaseDb, "spriteLockerContent", "catalog");
+          firebaseSdk.onSnapshot(catalogRef, snapshot => {
+            if (snapshot.exists()) {
+              const remote = normalizeAdminContent(snapshot.data());
               adminContent = remote;
               try { localStorage.setItem(ADMIN_CONTENT_KEY, JSON.stringify(adminContent)); } catch (_) {}
-              if (!adminDraftDirty && !localStorage.getItem(ADMIN_DRAFT_KEY)) adminDraft = normalizeAdminContent(adminContent);
+              if (!adminDraftDirty && !localStorage.getItem(ADMIN_DRAFT_KEY)) {
+                adminDraft = normalizeAdminContent(adminContent);
+              }
+              applyAdminContent(adminContent);
             }
-          }
-        } catch (_) {}
-        applyAdminContent(adminContent);
+          }, error => {
+            console.warn("Erreur écoute catalogue distant:", error);
+          });
+        } catch (err) {
+          console.error("Erreur initialisation catalogue:", err);
+        }
       }
 
       function setAdminAccess(allowed) {
@@ -11045,6 +11126,9 @@
         document.querySelectorAll("[data-admin-link]").forEach(link => { link.hidden = !adminAccess; });
         renderPublishedPatchNotes(adminContent.patchNotes || []);
         renderAdminAccess();
+        if (typeof fetchReviews === "function" && firebaseReady) {
+          fetchReviews();
+        }
       }
 
       async function checkAdminAccess(user) {
@@ -11208,23 +11292,35 @@
       function renderAdminPatchQuickList() {
         const list = document.getElementById("adminPatchQuickList");
         if (!list) return;
-        const notes = adminDraft && Array.isArray(adminDraft.patchNotes) ? adminDraft.patchNotes : [];
+        const notes = adminDraft && Array.isArray(adminDraft.patchNotes) && adminDraft.patchNotes.length
+          ? adminDraft.patchNotes
+          : (adminContent.patchNotes || []);
         list.innerHTML = notes.length ? notes.map((note, index) => {
           const parsedDate = new Date(note.date || note.createdAtMs || Date.now());
           const dateLabel = Number.isNaN(parsedDate.getTime()) ? "Date non définie" : parsedDate.toLocaleString(APP_LOCALE, { dateStyle: "medium", timeStyle: "short" });
-          const published = (adminContent.patchNotes || []).some(publishedNote => publishedNote.id && publishedNote.id === note.id);
+          const published = (adminContent.patchNotes || []).some(publishedNote => (publishedNote.id && publishedNote.id === note.id) || (publishedNote.title === note.title && publishedNote.body === note.body));
+          const noteId = note.id || `patch-${index}`;
           return `<article class="admin-patch-quick-row">
             <div><strong>${esc(note.title || "Mise à jour Sprite Locker")}</strong><small>${esc(dateLabel)} · ${published ? "publié" : "brouillon à publier"}</small></div>
-            <div class="admin-patch-quick-actions"><button type="button" data-admin-manage-action="edit" data-admin-manage-type="patch" data-admin-manage-index="${index}"><span aria-hidden="true">✎</span>Modifier</button><button class="is-danger" type="button" data-admin-manage-action="delete" data-admin-manage-type="patch" data-admin-manage-index="${index}"><span aria-hidden="true">×</span>Supprimer</button></div>
+            <div class="admin-patch-quick-actions">
+              <button type="button" data-admin-manage-action="edit" data-admin-manage-type="patch" data-admin-manage-index="${index}" data-patch-id="${esc(noteId)}"><span aria-hidden="true">✎</span>Modifier</button>
+              <button class="is-danger" type="button" data-admin-manage-action="delete" data-admin-manage-type="patch" data-admin-manage-index="${index}" data-patch-id="${esc(noteId)}"><span aria-hidden="true">×</span>Supprimer</button>
+            </div>
           </article>`;
         }).join("") : `<div class="empty-state"><strong>Aucun Patch Note</strong>Les Patch Notes ajoutés apparaîtront ici avec leurs boutons de gestion.</div>`;
       }
 
-      function manageAdminContent(action, type, index, key) {
+      function manageAdminContent(action, type, index, key, targetId) {
         if (!adminAccess) return;
         if (action === "edit" && type === "patch") {
-          const note = (adminDraft.patchNotes || [])[index];
-          if (note) openPatchNoteEditor({ kind: "draftPatch", index }, note.body || "", note.title || "");
+          let note = null;
+          if (targetId) {
+            note = (adminDraft.patchNotes || []).find(n => n.id === targetId) || (adminContent.patchNotes || []).find(n => n.id === targetId);
+          }
+          if (!note && Number.isFinite(index)) {
+            note = (adminDraft.patchNotes || [])[index] || (adminContent.patchNotes || [])[index];
+          }
+          if (note) openPatchNoteEditor({ kind: "patch", index, id: note.id || targetId }, note.body || "", note.title || "");
           return;
         }
         if (action === "edit" && type === "variantMeta" && baseVariantSnapshot[key]) {
@@ -11235,8 +11331,14 @@
           document.getElementById("adminVariantEditForm").scrollIntoView({ behavior: "smooth", block: "start" });
           return;
         }
-        if (action !== "delete" || !window.confirm("Supprimer cet élément du contenu publié ?")) return;
-        if (type === "patch") adminDraft.patchNotes.splice(index, 1);
+        if (action !== "delete" || !window.confirm("Supprimer cet élément du contenu ?")) return;
+        if (type === "patch") {
+          if (targetId) {
+            adminDraft.patchNotes = (adminDraft.patchNotes || []).filter(n => n.id !== targetId);
+          } else if (Number.isFinite(index)) {
+            adminDraft.patchNotes.splice(index, 1);
+          }
+        }
         if (type === "addition") adminDraft.additions.splice(index, 1);
         if (type === "variant") adminDraft.variants.splice(index, 1);
         if (type === "override" && key) delete adminDraft.overrides[key];
@@ -11300,7 +11402,10 @@
           patchEditorContext = null;
           document.getElementById("patchNoteEditor").close();
         }
-        if (button.dataset.patchEditorAction === "save") savePatchNoteEditor();
+        if (button.dataset.patchEditorAction === "save") {
+          const publish = button.dataset.publish !== "false";
+          savePatchNoteEditor({ publish });
+        }
       });
 
       document.getElementById("accentColor").addEventListener("input", event => {
@@ -11401,35 +11506,84 @@
         markAdminDraft(`Variante ${adminDraft.variantOverrides[key].fr} modifiée`);
         showToast("Modification de variante ajoutée au brouillon");
       });
-      document.getElementById("adminPatchForm").addEventListener("submit", event => {
+      document.getElementById("adminPatchForm").addEventListener("submit", async event => {
         event.preventDefault();
-        const data = Object.fromEntries(new FormData(event.currentTarget));
-        adminDraft.patchNotes.push({ ...data, id: `patch-${Date.now().toString(36)}`, createdAtMs: Date.now() });
-        markAdminDraft(`Patch Note : ${data.title}`);
-        event.currentTarget.reset();
-        event.currentTarget.elements.date.value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16);
-        showToast("Patch Note ajouté au brouillon");
+        const submitter = event.submitter;
+        const shouldPublish = submitter ? submitter.value === "publish" : true;
+        const form = event.currentTarget;
+        const data = Object.fromEntries(new FormData(form));
+        if (!data.title || !data.body) {
+          return showToast("Le titre et le contenu sont requis");
+        }
+        const newPatch = {
+          ...data,
+          id: `patch-${Date.now().toString(36)}`,
+          date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
+          createdAtMs: Date.now(),
+          updatedAtMs: Date.now()
+        };
+
+        if (shouldPublish) {
+          let currentNotes = Array.isArray(adminDraft.patchNotes) && adminDraft.patchNotes.length
+            ? [...adminDraft.patchNotes]
+            : [...(adminContent.patchNotes || [])];
+          currentNotes.unshift(newPatch);
+          adminDraft = normalizeAdminContent({
+            ...adminDraft,
+            patchNotes: currentNotes,
+            updatedAtMs: Date.now()
+          });
+          await publishAdminContent();
+          showToast("Patch Note publié avec succès !");
+        } else {
+          adminDraft.patchNotes.unshift(newPatch);
+          markAdminDraft(`Patch Note : ${data.title}`);
+          showToast("Patch Note ajouté au brouillon");
+        }
+        form.reset();
+        form.elements.date.value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16);
       });
       document.getElementById("adminPreviewBtn").addEventListener("click", () => applyAdminContent(adminDraft, { announce: true }));
       document.getElementById("adminPublishBtn").addEventListener("click", publishAdminContent);
       document.getElementById("adminConnectBtn").addEventListener("click", connectGoogleAccount);
       document.getElementById("adminWorkspace").addEventListener("click", event => {
         const button = event.target.closest("[data-admin-manage-action]");
-        if (button) manageAdminContent(button.dataset.adminManageAction, button.dataset.adminManageType, Number(button.dataset.adminManageIndex), button.dataset.adminManageKey || "");
+        if (button) {
+          manageAdminContent(
+            button.dataset.adminManageAction,
+            button.dataset.adminManageType,
+            button.dataset.adminManageIndex !== undefined ? Number(button.dataset.adminManageIndex) : undefined,
+            button.dataset.adminManageKey || "",
+            button.dataset.patchId || ""
+          );
+        }
       });
       document.getElementById("patchNotesPage").addEventListener("click", async event => {
         const button = event.target.closest("[data-patch-admin-action]");
         if (!button || !adminAccess) return;
+        const patchId = button.dataset.patchId;
         const index = Number(button.dataset.patchIndex);
-        const note = (adminContent.patchNotes || [])[index];
+        let note = null;
+        let noteIndex = -1;
+        const currentNotes = [...(adminContent.patchNotes || [])];
+        if (patchId) {
+          noteIndex = currentNotes.findIndex(n => n.id === patchId);
+          if (noteIndex >= 0) note = currentNotes[noteIndex];
+        }
+        if (!note && Number.isFinite(index) && currentNotes[index]) {
+          noteIndex = index;
+          note = currentNotes[index];
+        }
         if (!note) return;
-        if (button.dataset.patchAdminAction === "edit") openPatchNoteEditor({ kind: "patch", index }, note.body || "", note.title || "");
+        if (button.dataset.patchAdminAction === "edit") {
+          openPatchNoteEditor({ kind: "patch", index: noteIndex, id: note.id || patchId }, note.body || "", note.title || "");
+        }
         if (button.dataset.patchAdminAction === "delete" && window.confirm("Supprimer définitivement ce Patch Note ?")) {
-          const notes = (adminContent.patchNotes || []).filter((_, noteIndex) => noteIndex !== index);
+          const notes = currentNotes.filter((_, idx) => idx !== noteIndex);
           adminDraft = normalizeAdminContent({ ...adminContent, patchNotes: notes, updatedAtMs: Date.now() });
           adminDraftDirty = true;
           await publishAdminContent();
-          showToast("Patch Note supprimé");
+          showToast("Patch Note supprimé avec succès !");
         }
       });
 
@@ -11835,7 +11989,8 @@
         }
       }
 
-      function renderReviewCardHtml(data) {
+      function renderReviewCardHtml(data, docId = "") {
+        const id = docId || data.id || "";
         const dateTimeStr = formatReviewDateTime(data.createdAt || data.createdAtMs);
         const rating = Math.max(1, Math.min(5, Number(data.rating) || 5));
         const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
@@ -11851,8 +12006,12 @@
           ? `<img class="review-card-avatar" src="${esc(data.photoURL)}" alt="${safeAuthor}" onerror="this.style.display='none';this.nextElementSibling.hidden=false;"><div class="review-card-avatar-fallback" hidden>${safeAuthor.charAt(0).toUpperCase() || "J"}</div>`
           : `<div class="review-card-avatar-fallback">${safeAuthor.charAt(0).toUpperCase() || "J"}</div>`;
 
+        const adminDeleteBtn = adminAccess && id
+          ? `<button class="review-admin-delete-btn" type="button" data-review-delete-id="${esc(id)}" title="Supprimer cet avis (Admin)" aria-label="Supprimer cet avis"><span aria-hidden="true">🗑️</span> Supprimer</button>`
+          : "";
+
         return `
-          <article class="review-card">
+          <article class="review-card" data-review-id="${esc(id)}">
             <div class="review-card-top">
               <div class="review-card-user">
                 ${authorPhoto}
@@ -11861,9 +12020,12 @@
                   ${countryBadge}
                 </div>
               </div>
-              <div class="review-card-date-time">
-                <span class="review-time-icon" aria-hidden="true">🕒</span>
-                <span>${dateTimeStr}</span>
+              <div class="review-card-header-right">
+                <div class="review-card-date-time">
+                  <span class="review-time-icon" aria-hidden="true">🕒</span>
+                  <span>${dateTimeStr}</span>
+                </div>
+                ${adminDeleteBtn}
               </div>
             </div>
             <div class="review-card-stars" aria-label="${rating} étoiles sur 5">${stars}</div>
@@ -11892,7 +12054,7 @@
 
         const cards = [];
         querySnapshot.forEach(doc => {
-          cards.push(renderReviewCardHtml(doc.data()));
+          cards.push(renderReviewCardHtml(doc.data(), doc.id));
         });
         listContainer.innerHTML = cards.join("");
       }
@@ -11936,6 +12098,40 @@
         const closeModalBtn = document.getElementById("closeReviewModalBtn");
         const cancelModalBtn = document.getElementById("cancelReviewModalBtn");
         const connectBtn = document.getElementById("reviewConnectBtn");
+        const reviewsList = document.getElementById("reviewsList");
+
+        if (reviewsList) {
+          reviewsList.addEventListener("click", async event => {
+            const deleteBtn = event.target.closest("[data-review-delete-id]");
+            if (!deleteBtn) return;
+            const reviewId = deleteBtn.dataset.reviewDeleteId;
+            if (!reviewId || !adminAccess) return;
+
+            if (!firebaseSdk || !firebaseDb || !firebaseSdk.deleteDoc) {
+              showToast("Service Firebase indisponible.");
+              return;
+            }
+
+            if (!window.confirm("Êtes-vous sûr de vouloir supprimer définitivement cet avis ?")) {
+              return;
+            }
+
+            deleteBtn.disabled = true;
+            deleteBtn.textContent = "Suppression...";
+            try {
+              const reviewRef = firebaseSdk.doc(firebaseDb, "reviews", reviewId);
+              await firebaseSdk.deleteDoc(reviewRef);
+              showToast("Avis supprimé avec succès.");
+              const card = deleteBtn.closest(".review-card");
+              if (card) card.remove();
+            } catch (error) {
+              console.error("Erreur lors de la suppression de l'avis:", error);
+              showToast("Erreur lors de la suppression : " + friendlyFirebaseError(error));
+              deleteBtn.disabled = false;
+              deleteBtn.innerHTML = `<span aria-hidden="true">🗑️</span> Supprimer`;
+            }
+          });
+        }
 
         if (connectBtn) {
           connectBtn.addEventListener("click", () => {
