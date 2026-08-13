@@ -5801,36 +5801,33 @@
     html[data-background] :is(.topbar-links a[aria-current="page"], .mobile-dock-item[aria-current="page"], .admin-tabs button[aria-selected="true"], .segmented button[aria-pressed="true"]) { border-color: rgba(var(--accent-rgb), .42); background: rgba(var(--accent-rgb), .15); color: var(--accent); }
 
     /* ==========================================================================
-       PRIME HUB — ULTRA REALISTIC SINGLE-SERVER DISCORD LEAK UI (CHAT ONLY)
+       PRIME HUB — DISCORD COMMUNITY HUB (CHAT ONLY & FULL ADMIN MODERATION)
        ========================================================================== */
     #hubPage { padding-block: 10px 40px; }
-    .discord-container { display: grid; grid-template-columns: 72px 240px minmax(0, 1fr) 240px; height: clamp(560px, 80vh, 840px); border: 1px solid #1e1f22; border-radius: 16px; background: #313338; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65); overflow: hidden; position: relative; font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #dbdee1; }
-    
-    /* 1. Strip Serveurs (Gauche Extrême - Single Server Discord) */
-    .discord-servers-strip { background: #1e1f22; display: flex; flex-direction: column; align-items: center; padding-block: 12px; gap: 8px; border-right: 1px solid rgba(0,0,0,0.2); }
-    .discord-server-item { width: 48px; height: 48px; border-radius: 50%; background: #313338; color: #dbdee1; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.2s cubic-bezier(0.2, 0, 0, 1); position: relative; text-decoration: none; }
-    .discord-server-item:hover, .discord-server-item.is-active { border-radius: 16px; background: #5865F2; color: #fff; }
-    .discord-server-item.is-active::before { content: ""; position: absolute; left: -12px; top: 10px; bottom: 10px; width: 4px; border-radius: 0 4px 4px 0; background: #fff; }
-    .discord-server-item .server-badge { position: absolute; top: -2px; right: -2px; background: #f23f43; color: #fff; font-size: 0.65rem; font-weight: 900; padding: 1px 5px; border-radius: 10px; border: 3px solid #1e1f22; }
-    .discord-server-divider { width: 32px; height: 2px; background: #35363c; border-radius: 1px; margin-block: 4px; }
-    .discord-server-icon-img { width: 28px; height: 28px; object-fit: contain; }
+    .discord-container { display: grid; grid-template-columns: 240px minmax(0, 1fr) 240px; height: clamp(560px, 80vh, 840px); border: 1px solid #1e1f22; border-radius: 16px; background: #313338; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65); overflow: hidden; position: relative; font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #dbdee1; }
 
-    /* 2. Sidebar Salons (Gauche) */
-    .discord-sidebar { display: flex; flex-direction: column; background: #2b2d31; border-right: 1px solid rgba(0,0,0,0.2); z-index: 10; }
+    /* 1. Sidebar Salons (Gauche) */
+    .discord-sidebar { display: flex; flex-direction: column; background: #2b2d31; border-right: 1px solid #1f2023; z-index: 10; }
     .discord-server-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #1f2023; background: #2b2d31; cursor: pointer; transition: background 0.15s ease; }
     .discord-server-header:hover { background: rgba(255,255,255,0.04); }
     .discord-server-info { display: flex; align-items: center; gap: 8px; }
-    .discord-server-info h3 { margin: 0; font-size: 0.95rem; font-weight: 800; color: #f2f3f5; letter-spacing: -0.01em; }
-    .discord-verified-badge { color: #5865F2; font-size: 0.8rem; }
+    .discord-server-info h3 { margin: 0; font-size: 0.98rem; font-weight: 800; color: #f2f3f5; letter-spacing: -0.01em; }
+    .discord-verified-badge { color: #5865F2; font-size: 0.85rem; }
     .discord-header-arrow { color: #949ba4; font-size: 0.75rem; }
     .discord-sidebar-close-btn { display: none; background: transparent; border: none; color: #dbdee1; font-size: 1.1rem; cursor: pointer; }
     .discord-channels-scroll { flex: 1; overflow-y: auto; padding: 12px 8px; display: flex; flex-direction: column; gap: 14px; }
-    .discord-category-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; color: #949ba4; padding-inline: 8px; margin-bottom: 4px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; }
-    .discord-channel-btn { width: 100%; display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 4px; border: none; background: transparent; color: #949ba4; font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; text-align: left; }
+    .discord-category-head { display: flex; align-items: center; justify-content: space-between; padding-inline: 8px; margin-bottom: 4px; }
+    .discord-category-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; color: #949ba4; text-transform: uppercase; }
+    .discord-add-channel-btn { background: transparent; border: none; color: #949ba4; font-size: 1.1rem; font-weight: 700; cursor: pointer; padding: 0 4px; transition: color 0.15s ease; }
+    .discord-add-channel-btn:hover { color: #f2f3f5; }
+    .discord-channel-btn { width: 100%; display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 4px; border: none; background: transparent; color: #949ba4; font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; text-align: left; position: relative; }
     .discord-channel-btn:hover { background: rgba(255, 255, 255, 0.06); color: #dbdee1; }
     .discord-channel-btn.is-active { background: rgba(255, 255, 255, 0.1); color: #fff; font-weight: 700; }
     .channel-hash { font-size: 1.1rem; opacity: 0.6; font-weight: 400; color: #80848e; }
     .channel-badge { margin-left: auto; background: #f23f43; color: #fff; font-size: 0.62rem; padding: 1px 6px; border-radius: 8px; font-weight: 800; }
+    .discord-channel-edit-btn { margin-left: auto; display: none; background: transparent; border: none; color: #949ba4; font-size: 0.75rem; cursor: pointer; padding: 2px; }
+    .discord-channel-btn:hover .discord-channel-edit-btn { display: inline-block; }
+    .discord-channel-edit-btn:hover { color: #f2f3f5; }
 
     /* Barre Utilisateur Bas */
     .discord-user-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #232428; }
@@ -5843,8 +5840,8 @@
     .discord-control-btn { background: transparent; border: none; color: #b5bac1; font-size: 0.85rem; padding: 4px; border-radius: 4px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
     .discord-control-btn:hover { background: rgba(255,255,255,0.08); color: #f2f3f5; }
 
-    /* 3. Zone Chat Principale (Centre) */
-    .discord-chat-area { display: flex; flex-direction: column; background: #313338; min-width: 0; }
+    /* 2. Zone Chat Principale (Centre) */
+    .discord-chat-area { display: flex; flex-direction: column; background: #313338; min-width: 0; position: relative; }
     .discord-chat-header { display: flex; align-items: center; gap: 12px; height: 48px; padding-inline: 16px; border-bottom: 1px solid #1f2023; background: #313338; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
     .discord-mobile-menu-btn { display: none; background: #2b2d31; border: 1px solid #3f4147; color: #dbdee1; border-radius: 6px; padding: 4px 8px; font-size: 0.85rem; cursor: pointer; }
     .discord-chat-title-hash { font-size: 1.2rem; font-weight: 400; color: #80848e; }
@@ -5855,9 +5852,12 @@
     .discord-header-icon:hover { color: #f2f3f5; }
     .discord-search-box { display: flex; align-items: center; background: #1e1f22; border-radius: 4px; padding: 4px 8px; font-size: 0.72rem; color: #949ba4; gap: 6px; width: 140px; }
 
-    /* Flux de Messages Textuels */
+    /* Messages Textuels & Effacement Admin */
     .discord-messages-container { flex: 1; overflow-y: auto; padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 16px; scroll-behavior: smooth; }
-    .discord-msg-row { display: flex; gap: 14px; align-items: flex-start; position: relative; padding: 2px 8px; border-radius: 4px; transition: background 0.1s ease; }
+    .discord-empty-welcome { padding: 30px 20px; text-align: left; }
+    .discord-empty-welcome h3 { margin: 0 0 6px; font-size: 1.6rem; color: #f2f3f5; font-weight: 800; }
+    .discord-empty-welcome p { margin: 0; font-size: 0.88rem; color: #949ba4; }
+    .discord-msg-row { display: flex; gap: 14px; align-items: flex-start; position: relative; padding: 4px 8px; border-radius: 4px; transition: background 0.1s ease; }
     .discord-msg-row:hover { background: #2e3035; }
     .discord-msg-avatar { width: 40px; height: 40px; border-radius: 50%; background: #5865F2; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; overflow: hidden; margin-top: 2px; }
     .discord-msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -5871,11 +5871,16 @@
     .role-member { background: rgba(255, 255, 255, 0.08); color: #b5bac1; }
     .discord-msg-time { font-size: 0.65rem; color: #949ba4; font-weight: 500; }
     .discord-msg-text { font-size: 0.88rem; line-height: 1.375; color: #dbdee1; word-break: break-word; white-space: pre-wrap; }
-    .discord-msg-reactions { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-    .discord-reaction-pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 1px solid #3f4147; background: #2b2d31; font-size: 0.75rem; color: #b5bac1; cursor: pointer; transition: all 0.12s ease; }
-    .discord-reaction-pill:hover, .discord-reaction-pill.has-reacted { background: rgba(88, 101, 242, 0.15); border-color: #5865F2; color: #5865F2; }
+    .discord-msg-delete-btn { display: none; position: absolute; top: 4px; right: 8px; background: #2b2d31; border: 1px solid #3f4147; color: #f23f43; border-radius: 4px; padding: 2px 6px; font-size: 0.75rem; cursor: pointer; transition: all 0.15s ease; }
+    .discord-msg-row:hover .discord-msg-delete-btn { display: block; }
+    .discord-msg-delete-btn:hover { background: #f23f43; color: #fff; border-color: #f23f43; }
 
-    /* Input Form (Chat uniquement, pas de bouton photo) */
+    /* Banner d'Authentification Obligatoire pour Tchat */
+    .discord-auth-lock-banner { margin: 12px 16px 20px; padding: 14px 18px; background: #2b2d31; border: 1px solid #3f4147; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #dbdee1; font-size: 0.85rem; }
+    .discord-login-btn { background: #5865F2; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: background 0.15s ease; }
+    .discord-login-btn:hover { background: #4752C4; }
+
+    /* Input Form (Chat uniquement) */
     .discord-input-form { padding: 0 16px 20px; background: #313338; }
     .discord-input-wrapper { display: flex; align-items: center; gap: 10px; background: #383a40; border-radius: 8px; padding: 4px 12px; min-height: 44px; }
     .discord-add-btn { background: #4e5058; color: #dbdee1; border: none; width: 24px; height: 24px; border-radius: 50%; font-size: 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; flex-shrink: 0; }
@@ -5891,8 +5896,8 @@
     .discord-send-btn { background: #5865F2; color: #fff; border: none; border-radius: 4px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s ease; flex-shrink: 0; }
     .discord-send-btn:hover { background: #4752C4; }
 
-    /* 4. Liste des membres (Droite) */
-    .discord-members-sidebar { background: #2b2d31; border-left: 1px solid rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+    /* 3. Liste des membres & Modal de Modération Admin */
+    .discord-members-sidebar { background: #2b2d31; border-left: 1px solid #1f2023; display: flex; flex-direction: column; }
     .discord-members-header { padding: 16px 16px 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; color: #949ba4; text-transform: uppercase; }
     .discord-members-list { flex: 1; overflow-y: auto; padding: 4px 8px; display: flex; flex-direction: column; gap: 4px; }
     .discord-member-row { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 4px; cursor: pointer; transition: background 0.15s ease; }
@@ -5904,9 +5909,18 @@
     .discord-member-name { font-size: 0.85rem; font-weight: 600; color: #dbdee1; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .discord-member-sub { font-size: 0.65rem; color: #949ba4; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
+    /* Popover / Modal Modération Membre Admin */
+    .discord-moderation-popover { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #232428; border: 1px solid #3f4147; border-radius: 12px; padding: 20px; width: min(340px, 90vw); box-shadow: 0 16px 40px rgba(0,0,0,0.8); z-index: 1000; color: #f2f3f5; }
+    .discord-moderation-popover h4 { margin: 0 0 12px; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #3f4147; padding-bottom: 10px; }
+    .discord-mod-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+    .discord-mod-btn { padding: 10px 14px; border-radius: 6px; border: none; font-size: 0.82rem; font-weight: 700; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px; transition: opacity 0.15s ease; }
+    .discord-mod-btn.is-mute { background: #f0b232; color: #000; }
+    .discord-mod-btn.is-tempban { background: #f23f43; color: #fff; }
+    .discord-mod-btn.is-ban { background: #da373c; color: #fff; }
+    .discord-mod-btn.is-close { background: #4e5058; color: #fff; margin-top: 6px; text-align: center; justify-content: center; }
+
     @media (max-width: 960px) {
       .discord-container { grid-template-columns: minmax(0, 1fr); height: clamp(520px, 84vh, 760px); }
-      .discord-servers-strip { display: none; }
       .discord-sidebar { position: absolute; top: 0; bottom: 0; left: 0; width: 260px; transform: translateX(-100%); transition: transform 0.25s ease; box-shadow: 10px 0 30px rgba(0,0,0,0.7); }
       .discord-sidebar.is-open { transform: translateX(0); }
       .discord-sidebar-close-btn, .discord-mobile-menu-btn { display: block; }
@@ -8672,18 +8686,6 @@
     <!-- PAGE PRIME HUB / COMMUNITY CHAT -->
     <main class="app-page" id="hubPage" data-page="hub">
       <div class="discord-container">
-        <!-- 0. Strip Serveurs (Single Server Discord) -->
-        <aside class="discord-servers-strip">
-          <button type="button" class="discord-server-item" title="Messages Privés">⚡</button>
-          <div class="discord-server-divider"></div>
-          <button type="button" class="discord-server-item is-active" title="Prime Hub (Communauté Officielle)">
-            <img src="./icons/prime-logo-white-transparent.png" alt="P" class="discord-server-icon-img">
-            <span class="server-badge" id="discordServerBadge">1</span>
-          </button>
-          <button type="button" class="discord-server-item" title="Ajouter un serveur" style="color:#23a55a;">+</button>
-          <button type="button" class="discord-server-item" title="Découvrir des serveurs" style="color:#23a55a;">🧭</button>
-        </aside>
-
         <!-- 1. Sidebar Salons (Gauche) -->
         <aside class="discord-sidebar" id="discordSidebar">
           <div class="discord-server-header">
@@ -8695,30 +8697,8 @@
             <button type="button" class="discord-sidebar-close-btn" id="discordCloseSidebarBtn" aria-label="Fermer le menu">✖</button>
           </div>
 
-          <div class="discord-channels-scroll">
-            <div class="discord-category">
-              <span class="discord-category-title">▼ SALONS TEXTUELS <span>+</span></span>
-              <button type="button" class="discord-channel-btn is-active" data-channel="general">
-                <span class="channel-hash">#</span> général
-                <span class="channel-badge" id="unread-general" hidden>0</span>
-              </button>
-              <button type="button" class="discord-channel-btn" data-channel="annonces">
-                <span class="channel-hash">📢</span> annonces-patchs
-                <span class="channel-badge" id="unread-annonces" hidden>0</span>
-              </button>
-            </div>
-
-            <div class="discord-category">
-              <span class="discord-category-title">▼ ESPRITS & FORTNITE <span>+</span></span>
-              <button type="button" class="discord-channel-btn" data-channel="entraide">
-                <span class="channel-hash">#</span> entraide-esprits
-                <span class="channel-badge" id="unread-entraide" hidden>0</span>
-              </button>
-              <button type="button" class="discord-channel-btn" data-channel="partage">
-                <span class="channel-hash">#</span> partage-collections
-                <span class="channel-badge" id="unread-partage" hidden>0</span>
-              </button>
-            </div>
+          <div class="discord-channels-scroll" id="discordChannelsScroll">
+            <!-- Salons dynamiques générés par le JS -->
           </div>
 
           <!-- Barre Utilisateur Bas -->
@@ -8754,12 +8734,19 @@
           </header>
 
           <div class="discord-messages-container" id="discordMessagesContainer">
-            <!-- Messages textuels dynamiques -->
+            <!-- Messages textuels dynamiques (aucun exemple harcodé) -->
           </div>
 
+          <!-- Banner si non-connecté -->
+          <div class="discord-auth-lock-banner" id="discordAuthLock" hidden>
+            <span>🔒 Vous devez être connecté pour participer aux discussions du Prime Hub.</span>
+            <button type="button" class="discord-login-btn" id="discordLoginBtn">Se connecter</button>
+          </div>
+
+          <!-- Formulaire de tchat si connecté -->
           <form class="discord-input-form" id="discordInputForm">
             <div class="discord-input-wrapper">
-              <button type="button" class="discord-add-btn" title="Ajouter un fichier textuel">+</button>
+              <button type="button" class="discord-add-btn" title="Fichier textuel">+</button>
               <input type="text" class="discord-input-field" id="discordInputField" placeholder="Envoyer un message dans #général..." maxlength="600" autocomplete="off">
               <div class="discord-emoji-picker-container">
                 <button type="button" class="discord-gift-btn" title="Offrir Nitro">🎁</button>
@@ -8775,12 +8762,17 @@
           </form>
         </section>
 
-        <!-- 3. Liste des membres connectés (Droite) -->
+        <!-- 3. Liste des membres (Droite) -->
         <aside class="discord-members-sidebar" id="discordMembersSidebar">
           <div class="discord-members-list" id="discordMembersList">
             <!-- Membres dynamiques -->
           </div>
         </aside>
+      </div>
+
+      <!-- Popover Modération Membre Admin -->
+      <div class="discord-moderation-popover" id="discordModPopover" hidden>
+        <!-- Rempli dynamiquement par JS -->
       </div>
     </main>
 
@@ -9151,7 +9143,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-13-v16";
+      const PWA_VERSION = "2026-08-13-v17";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -10897,89 +10889,63 @@
       }
 
       /* ==========================================================================
-         PRIME DISCORD — INTEGRATED COMMUNITY CHAT ENGINE
+         PRIME HUB — DISCORD ENGINE (DYNAMIC CHANNELS, AUTH REQUIREMENT, ADMIN MODERATION)
          ========================================================================== */
       let currentDiscordChannel = "general";
       let discordFirestoreUnsub = null;
       let discordUserStatus = "🟢";
+      let hubBannedUsers = JSON.parse(localStorage.getItem("prime_hub_banned_users") || "[]");
 
-      const DISCORD_TOPICS = {
-        general: "Discussion générale entre collectionneurs Fortnite & Esprits",
-        annonces: "Canal officiel des patch notes, mises à jour et nouveautés",
-        entraide: "Captures, localisations et entraide pour débloquer les 109 esprits",
-        partage: "Partage ton casier d'esprits, ta progression et tes victoires"
-      };
+      let defaultHubCategories = [
+        {
+          id: "text",
+          name: "Salons Textuels",
+          channels: [
+            { id: "general", name: "général", topic: "Discussion générale entre collectionneurs Fortnite & Esprits" },
+            { id: "annonces", name: "annonces-patchs", topic: "Annonces officielles, patch notes et mises à jour" }
+          ]
+        },
+        {
+          id: "fortnite",
+          name: "Esprits & Fortnite",
+          channels: [
+            { id: "entraide", name: "entraide-esprits", topic: "Captures, astuces et entraide pour débloquer les 109 esprits" },
+            { id: "partage", name: "partage-collections", topic: "Partage vos casiers, maîtrises et progressions" }
+          ]
+        }
+      ];
 
-      const DEFAULT_DISCORD_MESSAGES = {
-        general: [
-          {
-            id: "msg_gen_1",
-            author: "PrimeSyntax",
-            role: "admin",
-            avatar: "./icons/icon-192.png",
-            text: "Bienvenue sur le Discord officiel de **Prime Sprites** ! 🎮 N'hésite pas à discuter et partager tes captures d'esprits !",
-            time: "Aujourd'hui à 14:00",
-            reactions: { "🔥": 8, "❤️": 5, "👑": 3 }
-          },
-          {
-            id: "msg_gen_2",
-            author: "FortniteHunter",
-            role: "pro",
-            avatar: "⚡",
-            text: "Merci pour le site ! J'ai enfin débloqué les 109 esprits de la Saison 3 ! 🏆",
-            time: "Aujourd'hui à 14:32",
-            reactions: { "🏆": 6, "🎉": 4 }
-          }
-        ],
-        annonces: [
-          {
-            id: "msg_ann_1",
-            author: "PrimeSyntax",
-            role: "admin",
-            avatar: "./icons/icon-192.png",
-            text: "📢 **Patch Note 13 août 2026** : Lancement du **Mini Discord officiel** intégré ! Discutez en direct et découvrez vos fonds d'écran épiques !",
-            time: "Aujourd'hui à 18:45",
-            reactions: { "🔥": 12, "⭐": 9 }
-          }
-        ],
-        entraide: [
-          {
-            id: "msg_ent_1",
-            author: "EspritMaster",
-            role: "member",
-            avatar: "👻",
-            text: "Où se trouve l'esprit légendaire *Ombre Céleste* sur la nouvelle map ?",
-            time: "Aujourd'hui à 15:10",
-            reactions: { "🎯": 2 }
-          },
-          {
-            id: "msg_ent_2",
-            author: "FortniteHunter",
-            role: "pro",
-            avatar: "⚡",
-            text: "Il est juste à côté du temple volant au nord de la tempête violette ! N'oublie pas d'utiliser l'élément Néon !",
-            time: "Aujourd'hui à 15:14",
-            reactions: { "👍": 4, "❤️": 3 }
-          }
-        ],
-        partage: [
-          {
-            id: "msg_part_1",
-            author: "CollectionneurPro",
-            role: "pro",
-            avatar: "⭐",
-            text: "Mon casier affiche 109/109 esprits et 100% de maîtrise ! Qui d'autre a le badge Maître ?",
-            time: "Aujourd'hui à 16:05",
-            reactions: { "🏆": 7, "🔥": 5 }
-          }
-        ]
-      };
+      let hubCategories = JSON.parse(localStorage.getItem("prime_hub_categories_v1") || "null") || defaultHubCategories;
+
+      const DEFAULT_DISCORD_MESSAGES = {};
 
       function initPrimeDiscord() {
         setupDiscordEventListeners();
+        renderDiscordChannels();
         updateDiscordUserBar();
         renderDiscordMembers();
         switchDiscordChannel(currentDiscordChannel);
+      }
+
+      function renderDiscordChannels() {
+        const scrollContainer = document.getElementById("discordChannelsScroll");
+        if (!scrollContainer) return;
+        const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
+
+        scrollContainer.innerHTML = hubCategories.map(cat => `
+          <div class="discord-category" data-category-id="${esc(cat.id)}">
+            <div class="discord-category-head">
+              <span class="discord-category-title">▼ ${esc(cat.name)}</span>
+              ${isAppAdmin ? `<button type="button" class="discord-add-channel-btn" data-action="admin-add-channel" data-category-id="${esc(cat.id)}" title="Créer un salon">+</button>` : ''}
+            </div>
+            ${cat.channels.map(ch => `
+              <button type="button" class="discord-channel-btn${ch.id === currentDiscordChannel ? ' is-active' : ''}" data-channel="${esc(ch.id)}">
+                <span class="channel-hash">${ch.name.includes('annonces') ? '📢' : '#'}</span> ${esc(ch.name)}
+                ${isAppAdmin ? `<span class="discord-channel-edit-btn" data-action="admin-edit-channel" data-channel-id="${esc(ch.id)}" title="Gérer le salon">⚙️</span>` : ''}
+              </button>
+            `).join('')}
+          </div>
+        `).join('');
       }
 
       function updateDiscordUserBar() {
@@ -10987,12 +10953,15 @@
         const nameEl = document.getElementById("discordUserBarName");
         const roleEl = document.getElementById("discordUserBarRole");
         const statusBtn = document.getElementById("discordStatusBtn");
+        const authLockBanner = document.getElementById("discordAuthLock");
+        const inputForm = document.getElementById("discordInputForm");
 
         const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
+
         if (authUser) {
           const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
           if (nameEl) nameEl.textContent = authUser.displayName || authUser.email || "Collectionneur";
-          if (roleEl) roleEl.textContent = isAppAdmin ? "Administrateur" : "Chasseur d'Esprits";
+          if (roleEl) roleEl.textContent = isAppAdmin ? "Administrateur" : "#0001";
           if (avatarEl) {
             if (authUser.photoURL) {
               avatarEl.innerHTML = `<img src="${esc(authUser.photoURL)}" alt="Avatar">`;
@@ -11000,10 +10969,15 @@
               avatarEl.textContent = isAppAdmin ? "👑" : "⚡";
             }
           }
+          if (authLockBanner) authLockBanner.hidden = true;
+          if (inputForm) inputForm.hidden = false;
         } else {
           if (nameEl) nameEl.textContent = "Visiteur Invité";
-          if (roleEl) roleEl.textContent = "Chasseur d'Esprits";
+          if (roleEl) roleEl.textContent = "#0000";
           if (avatarEl) avatarEl.textContent = "👤";
+
+          if (authLockBanner) authLockBanner.hidden = false;
+          if (inputForm) inputForm.hidden = true;
         }
 
         if (statusBtn) statusBtn.textContent = discordUserStatus;
@@ -11012,26 +10986,24 @@
       function renderDiscordMembers() {
         const listEl = document.getElementById("discordMembersList");
         const badgeCountEl = document.getElementById("discordMembersCountBadge");
-        const serverBadgeEl = document.getElementById("discordServerBadge");
 
         const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
         const currentName = authUser ? (authUser.displayName || "Moi") : "Visiteur (Moi)";
         const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
 
         const onlineMembers = [
-          { name: "PrimeSyntax", role: "admin", status: "🟢", sub: "Fondateur · Développeur", color: "#f23f43" },
-          { name: currentName, role: isAppAdmin ? "admin" : (authUser ? "pro" : "member"), status: discordUserStatus, isMe: true, color: isAppAdmin ? "#f23f43" : "#5865F2" },
-          { name: "FortniteHunter", role: "pro", status: "🟢", sub: "Joue à Fortnite 🎮", color: "#5865F2" },
-          { name: "EspritMaster", role: "member", status: "🟢", sub: "En ligne", color: "#dbdee1" }
+          { id: "usr_admin", name: "PrimeSyntax", role: "admin", status: "🟢", sub: "Fondateur · Développeur", color: "#f23f43" },
+          { id: authUser ? authUser.uid : "usr_me", name: currentName, role: isAppAdmin ? "admin" : (authUser ? "pro" : "member"), status: discordUserStatus, isMe: true, color: isAppAdmin ? "#f23f43" : "#5865F2" },
+          { id: "usr_hunter", name: "FortniteHunter", role: "pro", status: "🟢", sub: "Joue à Fortnite 🎮", color: "#5865F2" },
+          { id: "usr_master", role: "member", name: "EspritMaster", status: "🟢", sub: "En ligne", color: "#dbdee1" }
         ];
 
         const offlineMembers = [
-          { name: "ShadowRunner", role: "member", status: "🔴", sub: "Hors ligne", color: "#80848e" }
+          { id: "usr_shadow", role: "member", name: "ShadowRunner", status: "🔴", sub: "Hors ligne", color: "#80848e" }
         ];
 
         const totalOnline = onlineMembers.length;
         if (badgeCountEl) badgeCountEl.textContent = totalOnline;
-        if (serverBadgeEl) serverBadgeEl.textContent = totalOnline;
 
         if (listEl) {
           listEl.innerHTML = `
@@ -11049,8 +11021,11 @@
 
       function renderMemberRow(m) {
         const dotColor = m.status === '🟢' ? '#23a55a' : (m.status === '🌙' ? '#f0b232' : '#80848e');
+        const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
+        const canModerate = isAppAdmin && !m.isMe;
+
         return `
-          <div class="discord-member-row">
+          <div class="discord-member-row" ${canModerate ? `data-action="admin-mod-member" data-member-name="${esc(m.name)}" data-member-id="${esc(m.id || m.name)}"` : ''}>
             <div class="discord-member-avatar">
               ${m.role === 'admin' ? '👑' : (m.role === 'pro' ? '⚡' : '👤')}
               <span class="discord-member-status-dot" style="background:${dotColor}"></span>
@@ -11063,12 +11038,18 @@
         `;
       }
 
+      function getChannelTopic(channelId) {
+        for (const cat of hubCategories) {
+          const ch = cat.channels.find(c => c.id === channelId);
+          if (ch) return ch.topic || ch.name;
+        }
+        return "Discussion de la communauté";
+      }
+
       function switchDiscordChannel(channelName) {
         currentDiscordChannel = channelName;
 
-        document.querySelectorAll(".discord-channel-btn").forEach(btn => {
-          btn.classList.toggle("is-active", btn.dataset.channel === channelName);
-        });
+        renderDiscordChannels();
 
         const titleEl = document.getElementById("discordChatTitle");
         const topicEl = document.getElementById("discordChatTopic");
@@ -11076,8 +11057,8 @@
         const inputEl = document.getElementById("discordInputField");
 
         if (titleEl) titleEl.textContent = channelName;
-        if (topicEl) topicEl.textContent = DISCORD_TOPICS[channelName] || "Discussion de la communauté";
-        if (hashEl) hashEl.textContent = channelName === "annonces" ? "📢" : "#";
+        if (topicEl) topicEl.textContent = getChannelTopic(channelName);
+        if (hashEl) hashEl.textContent = channelName.includes("annonces") ? "📢" : "#";
         if (inputEl) inputEl.placeholder = `Envoyer un message dans #${channelName}...`;
 
         loadDiscordMessages(channelName);
@@ -11089,7 +11070,16 @@
 
         const localMsgs = (DEFAULT_DISCORD_MESSAGES[channelName] || []);
 
-        container.innerHTML = localMsgs.map(msg => renderSingleDiscordMsg(msg)).join('');
+        if (localMsgs.length === 0) {
+          container.innerHTML = `
+            <div class="discord-empty-welcome">
+              <h3>Bienvenue dans le début du salon #${esc(channelName)} !</h3>
+              <p>C'est le tout début du salon #${esc(channelName)}. Soyez le premier à envoyer un message !</p>
+            </div>
+          `;
+        } else {
+          container.innerHTML = localMsgs.map(msg => renderSingleDiscordMsg(msg)).join('');
+        }
         container.scrollTop = container.scrollHeight;
 
         try {
@@ -11117,7 +11107,16 @@
                     });
                   });
                   const combined = [...localMsgs, ...firestoreMsgs];
-                  container.innerHTML = combined.map(m => renderSingleDiscordMsg(m)).join('');
+                  if (combined.length === 0) {
+                    container.innerHTML = `
+                      <div class="discord-empty-welcome">
+                        <h3>Bienvenue dans le début du salon #${esc(channelName)} !</h3>
+                        <p>C'est le tout début du salon #${esc(channelName)}. Soyez le premier à envoyer un message !</p>
+                      </div>
+                    `;
+                  } else {
+                    container.innerHTML = combined.map(m => renderSingleDiscordMsg(m)).join('');
+                  }
                   container.scrollTop = container.scrollHeight;
                 }
               }, err => {
@@ -11130,6 +11129,7 @@
       }
 
       function renderSingleDiscordMsg(msg) {
+        const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
         const roleClass = msg.role === 'admin' ? 'role-admin' : (msg.role === 'pro' ? 'role-pro' : 'role-member');
         const roleText = msg.role === 'admin' ? '👑 Admin' : (msg.role === 'pro' ? '⚡ Pro' : '👤 Membre');
 
@@ -11155,6 +11155,7 @@
               <div class="discord-msg-text">${formatDiscordText(msg.text)}</div>
               ${reactionsHtml ? `<div class="discord-msg-reactions">${reactionsHtml}</div>` : ''}
             </div>
+            ${isAppAdmin ? `<button type="button" class="discord-msg-delete-btn" data-action="admin-delete-msg" data-msg-id="${esc(msg.id)}" title="Supprimer le message">🗑️ Supprimer</button>` : ''}
           </div>
         `;
       }
@@ -11172,9 +11173,77 @@
         if (window._discordEventsSetup) return;
         window._discordEventsSetup = true;
 
+        document.getElementById("discordLoginBtn")?.addEventListener("click", () => {
+          if (typeof openAuthModal === "function") openAuthModal();
+        });
+
         document.addEventListener("click", e => {
           const btn = e.target.closest(".discord-channel-btn");
-          if (btn && btn.dataset.channel) {
+          const editBtn = e.target.closest('[data-action="admin-edit-channel"]');
+          const addBtn = e.target.closest('[data-action="admin-add-channel"]');
+          const deleteMsgBtn = e.target.closest('[data-action="admin-delete-msg"]');
+          const modMemberRow = e.target.closest('[data-action="admin-mod-member"]');
+
+          if (addBtn) {
+            e.stopPropagation();
+            const catId = addBtn.dataset.categoryId;
+            const newName = prompt("Entrez le nom du nouveau salon :");
+            if (newName && newName.trim()) {
+              const cleanId = newName.trim().toLowerCase().replace(/[^a-z0-9]/g, '-');
+              const cat = hubCategories.find(c => c.id === catId);
+              if (cat) {
+                cat.channels.push({ id: cleanId, name: newName.trim(), topic: `Salon #${newName.trim()}` });
+                localStorage.setItem("prime_hub_categories_v1", JSON.stringify(hubCategories));
+                switchDiscordChannel(cleanId);
+              }
+            }
+            return;
+          }
+
+          if (editBtn) {
+            e.stopPropagation();
+            const chId = editBtn.dataset.channelId;
+            const choice = prompt(`Gérer le salon #${chId} :\n1. Renommer le salon\n2. Supprimer le salon\n(Entrez 1 ou 2)`);
+            if (choice === "1") {
+              const newName = prompt("Nouveau nom du salon :");
+              if (newName && newName.trim()) {
+                hubCategories.forEach(cat => {
+                  const ch = cat.channels.find(c => c.id === chId);
+                  if (ch) ch.name = newName.trim();
+                });
+                localStorage.setItem("prime_hub_categories_v1", JSON.stringify(hubCategories));
+                switchDiscordChannel(chId);
+              }
+            } else if (choice === "2") {
+              if (confirm(`Voulez-vous vraiment supprimer définitivement le salon #${chId} ?`)) {
+                hubCategories.forEach(cat => {
+                  cat.channels = cat.channels.filter(c => c.id !== chId);
+                });
+                localStorage.setItem("prime_hub_categories_v1", JSON.stringify(hubCategories));
+                switchDiscordChannel("general");
+              }
+            }
+            return;
+          }
+
+          if (deleteMsgBtn) {
+            e.stopPropagation();
+            const msgId = deleteMsgBtn.dataset.msgId;
+            if (confirm("Supprimer ce message ?")) {
+              deleteDiscordMessage(msgId);
+            }
+            return;
+          }
+
+          if (modMemberRow) {
+            e.stopPropagation();
+            const memberName = modMemberRow.dataset.memberName;
+            const memberId = modMemberRow.dataset.memberId;
+            openAdminModerationModal(memberName, memberId);
+            return;
+          }
+
+          if (btn && btn.dataset.channel && !editBtn) {
             switchDiscordChannel(btn.dataset.channel);
             document.getElementById("discordSidebar")?.classList.remove("is-open");
           }
@@ -11218,15 +11287,21 @@
           });
         }
 
-        document.getElementById("discordAttachmentBtn")?.addEventListener("click", () => {
-          const url = prompt("Entrez l'URL d'une image à partager dans le chat :");
-          if (url && url.trim()) {
-            sendDiscordMessage("", url.trim());
-          }
-        });
-
         document.getElementById("discordInputForm")?.addEventListener("submit", e => {
           e.preventDefault();
+          const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
+
+          if (!authUser) {
+            alert("Vous devez être connecté pour envoyer des messages.");
+            if (typeof openAuthModal === "function") openAuthModal();
+            return;
+          }
+
+          if (hubBannedUsers.includes(authUser.uid || authUser.email)) {
+            alert("⛔ Votre compte a été banni de Prime Hub par l'administrateur.");
+            return;
+          }
+
           const input = document.getElementById("discordInputField");
           const val = input ? input.value.trim() : "";
           if (val) {
@@ -11249,11 +11324,57 @@
         });
       }
 
-      function sendDiscordMessage(text, imgUrl = null) {
+      function deleteDiscordMessage(msgId) {
+        if (DEFAULT_DISCORD_MESSAGES[currentDiscordChannel]) {
+          DEFAULT_DISCORD_MESSAGES[currentDiscordChannel] = DEFAULT_DISCORD_MESSAGES[currentDiscordChannel].filter(m => m.id !== msgId);
+        }
+
+        try {
+          if (typeof firebaseApp !== "undefined" && firebaseApp && typeof firebaseApp.firestore === "function") {
+            const db = firebaseApp.firestore();
+            db.collection("discord_messages").doc(msgId).delete();
+          }
+        } catch(e) {
+          console.log("Delete msg error:", e);
+        }
+
+        loadDiscordMessages(currentDiscordChannel);
+      }
+
+      function openAdminModerationModal(memberName, memberId) {
+        const popover = document.getElementById("discordModPopover");
+        if (!popover) return;
+
+        popover.innerHTML = `
+          <h4>👑 Gérer le membre : ${esc(memberName)}</h4>
+          <p style="margin:0 0 10px;font-size:0.75rem;color:#949ba4;">Sélectionnez une sanction d'administration pour ce membre :</p>
+          <div class="discord-mod-actions">
+            <button type="button" class="discord-mod-btn is-mute" onclick="applyAdminSanction('mute', '${esc(memberId)}', '${esc(memberName)}')">🔇 Muter temporairement (10 min)</button>
+            <button type="button" class="discord-mod-btn is-tempban" onclick="applyAdminSanction('tempban', '${esc(memberId)}', '${esc(memberName)}')">⏱️ Exclure 24 heures</button>
+            <button type="button" class="discord-mod-btn is-ban" onclick="applyAdminSanction('ban', '${esc(memberId)}', '${esc(memberName)}')">🔨 Bannir définitivement du Hub</button>
+            <button type="button" class="discord-mod-btn is-close" onclick="document.getElementById('discordModPopover').hidden = true;">Annuler</button>
+          </div>
+        `;
+        popover.hidden = false;
+      }
+
+      function applyAdminSanction(type, memberId, memberName) {
+        if (!hubBannedUsers.includes(memberId)) {
+          hubBannedUsers.push(memberId);
+          localStorage.setItem("prime_hub_banned_users", JSON.stringify(hubBannedUsers));
+        }
+        document.getElementById("discordModPopover").hidden = true;
+        alert(`La sanction (${type.toUpperCase()}) a bien été appliquée à ${memberName}.`);
+        renderDiscordMembers();
+      }
+
+      function sendDiscordMessage(text) {
         const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
-        const authorName = authUser ? (authUser.displayName || "Collectionneur") : "Visiteur Invité";
+        if (!authUser) return;
+
+        const authorName = authUser.displayName || authUser.email || "Collectionneur";
         const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
-        const userRole = isAppAdmin ? "admin" : (authUser ? "pro" : "member");
+        const userRole = isAppAdmin ? "admin" : "member";
         const userAvatar = authUser && authUser.photoURL ? authUser.photoURL : (isAppAdmin ? "👑" : "⚡");
 
         const newMsg = {
