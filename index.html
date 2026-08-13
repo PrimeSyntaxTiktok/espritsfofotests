@@ -5923,6 +5923,12 @@
     .discord-mod-btn.is-ban { background: #da373c; color: #fff; }
     .discord-mod-btn.is-close { background: #4e5058; color: #fff; margin-top: 6px; text-align: center; justify-content: center; }
 
+    /* Menu Clic Droit / Pression Longue Discord Admin */
+    .discord-ctx-menu { position: fixed; background: #111214; border: 1px solid #1e1f22; border-radius: 8px; padding: 6px; width: 220px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75); z-index: 9999; display: flex; flex-direction: column; gap: 2px; }
+    .discord-ctx-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 4px; border: none; background: transparent; color: #dbdee1; font-size: 0.86rem; font-weight: 600; cursor: pointer; text-align: left; transition: background 0.1s ease, color 0.1s ease; }
+    .discord-ctx-item:hover { background: #5865F2; color: #fff; }
+    .discord-ctx-divider { height: 1px; background: #2b2d31; margin-block: 4px; }
+
     @media (max-width: 960px) {
       .discord-container { grid-template-columns: minmax(0, 1fr); height: clamp(520px, 84vh, 760px); }
       .discord-sidebar { position: absolute; top: 0; bottom: 0; left: 0; width: 260px; transform: translateX(-100%); transition: transform 0.25s ease; box-shadow: 10px 0 30px rgba(0,0,0,0.7); }
@@ -8778,6 +8784,19 @@
       <div class="discord-moderation-popover" id="discordModPopover" hidden>
         <!-- Rempli dynamiquement par JS -->
       </div>
+
+      <!-- Menu Clic Droit / Longue Pression Discord Admin -->
+      <div class="discord-ctx-menu" id="discordContextMenu" hidden>
+        <button type="button" class="discord-ctx-item" data-action="ctx-create-channel">
+          <span>Créer un salon</span>
+          <span style="font-size:0.75rem;opacity:0.6;">#</span>
+        </button>
+        <div class="discord-ctx-divider"></div>
+        <button type="button" class="discord-ctx-item" data-action="ctx-create-category">
+          <span>Créer une catégorie</span>
+          <span style="font-size:0.75rem;opacity:0.6;">📁</span>
+        </button>
+      </div>
     </main>
 
     <footer class="footer">
@@ -9147,7 +9166,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-13-v22";
+      const PWA_VERSION = "2026-08-13-v23";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -11197,6 +11216,28 @@
         return safe;
       }
 
+      function showDiscordContextMenu(x, y) {
+        const menu = document.getElementById("discordContextMenu");
+        if (!menu) return;
+
+        const winW = window.innerWidth;
+        const winH = window.innerHeight;
+        const menuW = 220;
+        const menuH = 100;
+
+        let posX = Math.min(x, winW - menuW - 10);
+        let posY = Math.min(y, winH - menuH - 10);
+
+        menu.style.left = Math.max(10, posX) + "px";
+        menu.style.top = Math.max(10, posY) + "px";
+        menu.hidden = false;
+      }
+
+      function hideDiscordContextMenu() {
+        const menu = document.getElementById("discordContextMenu");
+        if (menu) menu.hidden = true;
+      }
+
       function setupDiscordEventListeners() {
         if (window._discordEventsSetup) return;
         window._discordEventsSetup = true;
@@ -11206,14 +11247,142 @@
           else if (typeof openAuthModal === "function") openAuthModal();
         });
 
+        document.addEventListener("contextmenu", e => {
+          const sidebar = e.target.closest("#discordSidebar, .discord-sidebar, .discord-server-header, #discordChannelsScroll");
+          if (sidebar) {
+            const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
+            if (isAppAdmin) {
+              e.preventDefault();
+              showDiscordContextMenu(e.clientX, e.clientY);
+            }
+          } else {
+            hideDiscordContextMenu();
+          }
+        });
+
+        document.querySelector(".discord-server-header")?.addEventListener("click", e => {
+          const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
+          if (isAppAdmin) {
+            e.stopPropagation();
+            const rect = e.currentTarget.getBoundingClientRect();
+            showDiscordContextMenu(rect.left + 10, rect.bottom + 4);
+          }
+        });
+
+        let discordTouchTimer = null;
+        let discordTouchStartPos = { x: 0, y: 0 };
+
+        document.addEventListener("touchstart", e => {
+          const sidebar = e.target.closest("#discordSidebar, .discord-sidebar, .discord-server-header, #discordChannelsScroll");
+          if (sidebar && e.touches.length === 1) {
+            const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
+            if (isAppAdmin) {
+              const touch = e.touches[0];
+              discordTouchStartPos = { x: touch.clientX, y: touch.clientY };
+              clearTimeout(discordTouchTimer);
+              discordTouchTimer = setTimeout(() => {
+                if (navigator.vibrate) navigator.vibrate(40);
+                showDiscordContextMenu(touch.clientX, touch.clientY);
+              }, 450);
+            }
+          }
+        }, { passive: true });
+
+        document.addEventListener("touchmove", e => {
+          if (discordTouchTimer && e.touches.length === 1) {
+            const touch = e.touches[0];
+            const dx = Math.abs(touch.clientX - discordTouchStartPos.x);
+            const dy = Math.abs(touch.clientY - discordTouchStartPos.y);
+            if (dx > 10 || dy > 10) {
+              clearTimeout(discordTouchTimer);
+              discordTouchTimer = null;
+            }
+          }
+        }, { passive: true });
+
+        document.addEventListener("touchend", () => {
+          clearTimeout(discordTouchTimer);
+          discordTouchTimer = null;
+        });
+        document.addEventListener("touchcancel", () => {
+          clearTimeout(discordTouchTimer);
+          discordTouchTimer = null;
+        });
+
         document.addEventListener("click", e => {
           const btn = e.target.closest(".discord-channel-btn");
           const editBtn = e.target.closest('[data-action="admin-edit-channel"]');
           const addBtn = e.target.closest('[data-action="admin-add-channel"]');
           const createCatBtn = e.target.closest('[data-action="admin-create-category"]');
           const editCatBtn = e.target.closest('[data-action="admin-edit-category"]');
+          const ctxCreateChan = e.target.closest('[data-action="ctx-create-channel"]');
+          const ctxCreateCat = e.target.closest('[data-action="ctx-create-category"]');
           const deleteMsgBtn = e.target.closest('[data-action="admin-delete-msg"]');
           const modMemberRow = e.target.closest('[data-action="admin-mod-member"]');
+
+          if (!e.target.closest("#discordContextMenu")) {
+            hideDiscordContextMenu();
+          }
+
+          if (ctxCreateCat) {
+            e.stopPropagation();
+            hideDiscordContextMenu();
+            const catName = prompt("Nom de la nouvelle catégorie (ex: SALONS TEXTUELS, FORTNITE) :");
+            if (catName && catName.trim()) {
+              const catId = "cat_" + Date.now();
+              hubCategories.push({
+                id: catId,
+                name: catName.trim().toUpperCase(),
+                channels: []
+              });
+              saveHubCategories();
+              renderDiscordChannels();
+            }
+            return;
+          }
+
+          if (ctxCreateChan) {
+            e.stopPropagation();
+            hideDiscordContextMenu();
+
+            if (!hubCategories || hubCategories.length === 0) {
+              const catName = prompt("Aucune catégorie n'existe encore. Nom de la première catégorie :");
+              if (catName && catName.trim()) {
+                const catId = "cat_" + Date.now();
+                const newCat = { id: catId, name: catName.trim().toUpperCase(), channels: [] };
+                hubCategories.push(newCat);
+                const chName = prompt(`Nom du nouveau salon dans ${newCat.name} :`);
+                if (chName && chName.trim()) {
+                  const cleanId = chName.trim().toLowerCase().replace(/[^a-z0-9]/g, '-');
+                  newCat.channels.push({ id: cleanId, name: chName.trim(), topic: `Salon #${chName.trim()}` });
+                  saveHubCategories();
+                  switchDiscordChannel(cleanId);
+                } else {
+                  saveHubCategories();
+                  renderDiscordChannels();
+                }
+              }
+            } else {
+              let targetCat = hubCategories[0];
+              if (hubCategories.length > 1) {
+                const choices = hubCategories.map((c, i) => `${i+1}. ${c.name}`).join('\n');
+                const selected = prompt(`Dans quelle catégorie créer le salon ?\n${choices}\n(Entrez le numéro 1 à ${hubCategories.length})`);
+                const idx = parseInt(selected, 10) - 1;
+                if (!isNaN(idx) && hubCategories[idx]) {
+                  targetCat = hubCategories[idx];
+                }
+              }
+              const chName = prompt(`Nom du nouveau salon dans ${targetCat.name} :`);
+              if (chName && chName.trim()) {
+                const cleanId = chName.trim().toLowerCase().replace(/[^a-z0-9]/g, '-');
+                if (!targetCat.channels) targetCat.channels = [];
+                targetCat.channels.push({ id: cleanId, name: chName.trim(), topic: `Salon #${chName.trim()}` });
+                saveHubCategories();
+                switchDiscordChannel(cleanId);
+              }
+            }
+            return;
+          }
 
           if (createCatBtn) {
             e.stopPropagation();
