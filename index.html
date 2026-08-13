@@ -7910,7 +7910,7 @@
           <a href="#catalog" data-page-target="catalog">Catalogue</a>
           <a href="#guide" data-page-target="guide">Guide</a>
           <a href="#maps" data-page-target="maps">Maps</a>
-          <a href="#discord" data-page-target="discord">💬 Discord</a>
+          <a href="#hub" data-page-target="hub">💬 Prime Hub</a>
           <a href="#settings" data-page-target="settings">Réglages</a>
           <a href="#reviews" data-page-target="reviews">Avis</a>
           <a href="#patch-notes" data-page-target="patch-notes">Patch Notes</a>
@@ -8391,11 +8391,11 @@
 
         <div class="patch-grid">
           <section class="patch-card">
-            <h2>💬 Mini Discord Intégré</h2>
+            <h2>💬 Lancement du Prime Hub</h2>
             <ul class="patch-list">
-              <li>Lancement du tout nouveau <strong>Chat Communautaire Mini Discord</strong> directement intégré sur le site !</li>
-              <li>Salons de discussion dédiés (<em>#général</em>, <em>#entraide-esprits</em>, <em>#partage-collections</em>, <em>#annonces-patchs</em>).</li>
-              <li>Messages et réactions emojis en temps réel, profil utilisateur personnalisé et liste des membres connectés.</li>
+              <li>Lancement du tout nouveau <strong>Prime Hub</strong> : l'espace de discussion communautaire officiel !</li>
+              <li>Salons dédiés (<em>#général</em>, <em>#entraide-esprits</em>, <em>#partage-collections</em>, <em>#annonces-patchs</em>).</li>
+              <li>Messages et réactions emojis en temps réel, profil personnalisé et liste des membres connectés.</li>
             </ul>
           </section>
           <section class="patch-card">
@@ -8637,15 +8637,17 @@
           </div>
         </div>
       </div>
-    <!-- PAGE DISCORD / COMMUNITY CHAT -->
-    <main class="app-page" id="discordPage" data-page="discord">
+    </section>
+
+    <!-- PAGE PRIME HUB / COMMUNITY CHAT -->
+    <main class="app-page" id="hubPage" data-page="hub">
       <div class="discord-container">
         <!-- Sidebar Salons (Gauche) -->
         <aside class="discord-sidebar" id="discordSidebar">
           <div class="discord-server-header">
             <img src="./icons/prime-logo-white-transparent.png" alt="Prime Sprites" class="discord-server-icon">
             <div class="discord-server-info">
-              <h3>Prime Sprites</h3>
+              <h3>Prime Hub</h3>
               <span class="discord-online-count"><span class="online-dot">●</span> <span id="discordOnlineCount">1</span> en ligne</span>
             </div>
             <button type="button" class="discord-sidebar-close-btn" id="discordCloseSidebarBtn" aria-label="Fermer le menu">✖</button>
@@ -8753,9 +8755,9 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
       <span>Maps</span>
     </a>
-    <a class="mobile-dock-item" href="#discord" data-page-target="discord">
+    <a class="mobile-dock-item" href="#hub" data-page-target="hub">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-      <span>Discord</span>
+      <span>Prime Hub</span>
     </a>
     <a class="mobile-dock-item" href="#settings" data-page-target="settings">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .4 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.4 1.7 1.7 0 0 0-1 1.6v.1h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.4l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .4-1.9 1.7 1.7 0 0 0-1.6-1H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.4-1.9L4.2 7l2.9-2.8.1.1a1.7 1.7 0 0 0 1.9.4 1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.4l.1-.1L19.9 7l-.1.1a1.7 1.7 0 0 0-.4 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
@@ -9098,7 +9100,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-13-v14";
+      const PWA_VERSION = "2026-08-13-v15";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -11230,7 +11232,8 @@
       function normalizedPage(value) {
         const route = String(value || "").split("/")[0];
         if (route === "inventory") return "catalog";
-        return ["home", "catalog", "guide", "maps", "discord", "settings", "admin", "patch-notes", "reviews"].includes(route) ? route : "home";
+        if (route === "discord") return "hub";
+        return ["home", "catalog", "guide", "maps", "hub", "settings", "admin", "patch-notes", "reviews"].includes(route) ? route : "home";
       }
 
       function updateCollectionPageCopy() {
@@ -11247,7 +11250,7 @@
         const patchNotesVisible = activePage === "patch-notes";
         const guideVisible = activePage === "guide";
         const mapsVisible = activePage === "maps";
-        const discordVisible = activePage === "discord";
+        const hubVisible = activePage === "hub";
         const settingsVisible = activePage === "settings";
         const adminVisible = activePage === "admin";
         const reviewsVisible = activePage === "reviews";
@@ -11258,7 +11261,7 @@
         document.getElementById("patchNotesPage")?.classList.toggle("is-active", patchNotesVisible);
         document.getElementById("guidePage")?.classList.toggle("is-active", guideVisible);
         document.getElementById("mapsPage")?.classList.toggle("is-active", mapsVisible);
-        document.getElementById("discordPage")?.classList.toggle("is-active", discordVisible);
+        document.getElementById("hubPage")?.classList.toggle("is-active", hubVisible);
         document.getElementById("settingsPage")?.classList.toggle("is-active", settingsVisible);
         document.getElementById("adminPage")?.classList.toggle("is-active", adminVisible);
         document.getElementById("reviewsPage")?.classList.toggle("is-active", reviewsVisible);
@@ -11287,7 +11290,7 @@
         } else if (mapsVisible) {
           renderMaps();
           updateStats();
-        } else if (discordVisible) {
+        } else if (hubVisible) {
           if (typeof initPrimeDiscord === "function") initPrimeDiscord();
           updateStats();
         } else if (settingsVisible) {
