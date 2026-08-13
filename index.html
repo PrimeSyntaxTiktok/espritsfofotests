@@ -9143,7 +9143,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-13-v19";
+      const PWA_VERSION = "2026-08-13-v20";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -10948,6 +10948,14 @@
         `).join('');
       }
 
+      function getActiveHubAuthUser() {
+        if (typeof firebaseUser !== "undefined" && firebaseUser) return firebaseUser;
+        if (typeof firebaseAuth !== "undefined" && firebaseAuth && firebaseAuth.currentUser) return firebaseAuth.currentUser;
+        if (typeof currentAuthUser !== "undefined" && currentAuthUser) return currentAuthUser;
+        if (typeof getStoredAuthUser === "function") return getStoredAuthUser();
+        return null;
+      }
+
       function updateDiscordUserBar() {
         const avatarEl = document.getElementById("discordUserBarAvatar");
         const nameEl = document.getElementById("discordUserBarName");
@@ -10956,7 +10964,7 @@
         const authLockBanner = document.getElementById("discordAuthLock");
         const inputForm = document.getElementById("discordInputForm");
 
-        const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
+        const authUser = getActiveHubAuthUser();
 
         if (authUser) {
           const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
@@ -10987,8 +10995,8 @@
         const listEl = document.getElementById("discordMembersList");
         const badgeCountEl = document.getElementById("discordMembersCountBadge");
 
-        const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
-        const currentName = authUser ? (authUser.displayName || "Moi") : "Visiteur (Moi)";
+        const authUser = getActiveHubAuthUser();
+        const currentName = authUser ? (authUser.displayName || authUser.email || "Moi") : "Visiteur (Moi)";
         const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
 
         const onlineMembers = [
@@ -11290,11 +11298,12 @@
 
         document.getElementById("discordInputForm")?.addEventListener("submit", e => {
           e.preventDefault();
-          const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
+          const authUser = getActiveHubAuthUser();
 
           if (!authUser) {
             alert("Vous devez être connecté pour envoyer des messages.");
-            if (typeof openAuthModal === "function") openAuthModal();
+            if (typeof connectGoogleAccount === "function") connectGoogleAccount();
+            else if (typeof openAuthModal === "function") openAuthModal();
             return;
           }
 
@@ -11370,7 +11379,7 @@
       }
 
       function sendDiscordMessage(text) {
-        const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
+        const authUser = getActiveHubAuthUser();
         if (!authUser) return;
 
         const authorName = authUser.displayName || authUser.email || "Collectionneur";
