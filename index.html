@@ -9143,7 +9143,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-13-v17";
+      const PWA_VERSION = "2026-08-13-v18";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -11174,7 +11174,8 @@
         window._discordEventsSetup = true;
 
         document.getElementById("discordLoginBtn")?.addEventListener("click", () => {
-          if (typeof openAuthModal === "function") openAuthModal();
+          if (typeof connectGoogleAccount === "function") connectGoogleAccount();
+          else if (typeof openAuthModal === "function") openAuthModal();
         });
 
         document.addEventListener("click", e => {
@@ -12384,6 +12385,10 @@
         if (typeof updateReviewModalUserPreview === "function") {
           updateReviewModalUserPreview();
         }
+
+        if (typeof updateDiscordUserBar === "function") updateDiscordUserBar();
+        if (typeof renderDiscordMembers === "function") renderDiscordMembers();
+        if (typeof loadDiscordMessages === "function" && typeof currentDiscordChannel !== "undefined") loadDiscordMessages(currentDiscordChannel);
 
         if (!connected) {
           accountAvatar.hidden = true;
