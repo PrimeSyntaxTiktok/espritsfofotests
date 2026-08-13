@@ -5801,86 +5801,116 @@
     html[data-background] :is(.topbar-links a[aria-current="page"], .mobile-dock-item[aria-current="page"], .admin-tabs button[aria-selected="true"], .segmented button[aria-pressed="true"]) { border-color: rgba(var(--accent-rgb), .42); background: rgba(var(--accent-rgb), .15); color: var(--accent); }
 
     /* ==========================================================================
-       MINI DISCORD INTEGRATED COMMUNITY CHAT (PRIME DISCORD)
+       PRIME HUB — ULTRA REALISTIC SINGLE-SERVER DISCORD LEAK UI (CHAT ONLY)
        ========================================================================== */
-    #discordPage { padding-block: 10px 40px; }
-    .discord-container { display: grid; grid-template-columns: 240px minmax(0, 1fr) 220px; height: clamp(540px, 78vh, 820px); border: 1px solid rgba(var(--accent-rgb), 0.25); border-radius: 20px; background: linear-gradient(165deg, rgba(8, 11, 28, 0.92) 0%, rgba(4, 6, 18, 0.96) 100%); backdrop-filter: blur(24px); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08); overflow: hidden; position: relative; }
-    .discord-sidebar { display: flex; flex-direction: column; background: rgba(4, 6, 16, 0.75); border-right: 1px solid rgba(255, 255, 255, 0.08); z-index: 10; }
-    .discord-server-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02); }
-    .discord-server-icon { width: 30px; height: 30px; object-fit: contain; }
-    .discord-server-info h3 { margin: 0; font-family: var(--display); font-size: 0.92rem; font-style: italic; color: #fff; }
-    .discord-online-count { font-size: 0.62rem; color: var(--feature-muted); display: flex; align-items: center; gap: 4px; }
-    .online-dot { color: #4fe29a; font-size: 0.6rem; }
-    .discord-sidebar-close-btn { display: none; margin-left: auto; background: transparent; border: none; color: #fff; font-size: 1rem; cursor: pointer; }
-    .discord-channels-scroll { flex: 1; overflow-y: auto; padding: 12px 8px; display: flex; flex-direction: column; gap: 16px; }
-    .discord-category-title { font-size: 0.54rem; font-weight: 900; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.45); padding-inline: 8px; margin-bottom: 6px; display: block; }
-    .discord-channel-btn { width: 100%; display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; border: none; background: transparent; color: rgba(255, 255, 255, 0.7); font-size: 0.74rem; font-weight: 700; cursor: pointer; transition: all 0.18s ease; text-align: left; }
-    .discord-channel-btn:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
-    .discord-channel-btn.is-active { background: rgba(var(--accent-rgb), 0.18); color: var(--accent); border-left: 3px solid var(--accent); }
-    .channel-hash { opacity: 0.6; font-weight: 900; }
-    .channel-badge { margin-left: auto; background: #ff4757; color: #fff; font-size: 0.55rem; padding: 2px 6px; border-radius: 10px; font-weight: 900; }
-    .discord-user-bar { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(2, 4, 12, 0.9); border-top: 1px solid rgba(255, 255, 255, 0.08); }
-    .discord-user-avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(var(--accent-rgb), 0.2); border: 1px solid rgba(var(--accent-rgb), 0.4); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; overflow: hidden; }
+    #hubPage { padding-block: 10px 40px; }
+    .discord-container { display: grid; grid-template-columns: 72px 240px minmax(0, 1fr) 240px; height: clamp(560px, 80vh, 840px); border: 1px solid #1e1f22; border-radius: 16px; background: #313338; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65); overflow: hidden; position: relative; font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #dbdee1; }
+    
+    /* 1. Strip Serveurs (Gauche Extrême - Single Server Discord) */
+    .discord-servers-strip { background: #1e1f22; display: flex; flex-direction: column; align-items: center; padding-block: 12px; gap: 8px; border-right: 1px solid rgba(0,0,0,0.2); }
+    .discord-server-item { width: 48px; height: 48px; border-radius: 50%; background: #313338; color: #dbdee1; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.2s cubic-bezier(0.2, 0, 0, 1); position: relative; text-decoration: none; }
+    .discord-server-item:hover, .discord-server-item.is-active { border-radius: 16px; background: #5865F2; color: #fff; }
+    .discord-server-item.is-active::before { content: ""; position: absolute; left: -12px; top: 10px; bottom: 10px; width: 4px; border-radius: 0 4px 4px 0; background: #fff; }
+    .discord-server-item .server-badge { position: absolute; top: -2px; right: -2px; background: #f23f43; color: #fff; font-size: 0.65rem; font-weight: 900; padding: 1px 5px; border-radius: 10px; border: 3px solid #1e1f22; }
+    .discord-server-divider { width: 32px; height: 2px; background: #35363c; border-radius: 1px; margin-block: 4px; }
+    .discord-server-icon-img { width: 28px; height: 28px; object-fit: contain; }
+
+    /* 2. Sidebar Salons (Gauche) */
+    .discord-sidebar { display: flex; flex-direction: column; background: #2b2d31; border-right: 1px solid rgba(0,0,0,0.2); z-index: 10; }
+    .discord-server-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #1f2023; background: #2b2d31; cursor: pointer; transition: background 0.15s ease; }
+    .discord-server-header:hover { background: rgba(255,255,255,0.04); }
+    .discord-server-info { display: flex; align-items: center; gap: 8px; }
+    .discord-server-info h3 { margin: 0; font-size: 0.95rem; font-weight: 800; color: #f2f3f5; letter-spacing: -0.01em; }
+    .discord-verified-badge { color: #5865F2; font-size: 0.8rem; }
+    .discord-header-arrow { color: #949ba4; font-size: 0.75rem; }
+    .discord-sidebar-close-btn { display: none; background: transparent; border: none; color: #dbdee1; font-size: 1.1rem; cursor: pointer; }
+    .discord-channels-scroll { flex: 1; overflow-y: auto; padding: 12px 8px; display: flex; flex-direction: column; gap: 14px; }
+    .discord-category-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; color: #949ba4; padding-inline: 8px; margin-bottom: 4px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; }
+    .discord-channel-btn { width: 100%; display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 4px; border: none; background: transparent; color: #949ba4; font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; text-align: left; }
+    .discord-channel-btn:hover { background: rgba(255, 255, 255, 0.06); color: #dbdee1; }
+    .discord-channel-btn.is-active { background: rgba(255, 255, 255, 0.1); color: #fff; font-weight: 700; }
+    .channel-hash { font-size: 1.1rem; opacity: 0.6; font-weight: 400; color: #80848e; }
+    .channel-badge { margin-left: auto; background: #f23f43; color: #fff; font-size: 0.62rem; padding: 1px 6px; border-radius: 8px; font-weight: 800; }
+
+    /* Barre Utilisateur Bas */
+    .discord-user-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #232428; }
+    .discord-user-avatar { width: 32px; height: 32px; border-radius: 50%; background: #5865F2; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; overflow: hidden; flex-shrink: 0; position: relative; }
     .discord-user-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .discord-user-meta { flex: 1; min-width: 0; }
-    .discord-user-meta strong { display: block; font-size: 0.72rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .discord-user-meta small { display: block; font-size: 0.55rem; color: var(--feature-muted); }
-    .discord-status-toggle { background: transparent; border: none; font-size: 0.8rem; cursor: pointer; }
-    .discord-chat-area { display: flex; flex-direction: column; background: rgba(6, 9, 22, 0.5); min-width: 0; }
-    .discord-chat-header { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02); }
-    .discord-mobile-menu-btn { display: none; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; border-radius: 6px; padding: 4px 8px; font-size: 0.9rem; cursor: pointer; }
-    .discord-chat-title-hash { font-size: 1.1rem; font-weight: 900; color: rgba(255, 255, 255, 0.4); }
-    .discord-chat-title { margin: 0; font-family: var(--display); font-size: 1.05rem; font-style: italic; color: #fff; }
-    .discord-chat-topic { margin: 0; font-size: 0.65rem; color: var(--feature-muted); border-left: 1px solid rgba(255, 255, 255, 0.15); padding-left: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .discord-toggle-members-btn { margin-left: auto; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; border-radius: 8px; padding: 5px 10px; font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-    .discord-messages-container { flex: 1; overflow-y: auto; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth; }
-    .discord-msg-row { display: flex; gap: 12px; align-items: flex-start; position: relative; padding: 4px 6px; border-radius: 8px; transition: background 0.15s ease; }
-    .discord-msg-row:hover { background: rgba(255, 255, 255, 0.03); }
-    .discord-msg-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(var(--accent-rgb), 0.25); border: 1px solid rgba(var(--accent-rgb), 0.4); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; overflow: hidden; }
+    .discord-user-meta strong { display: block; font-size: 0.78rem; font-weight: 700; color: #f2f3f5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+    .discord-user-meta small { display: block; font-size: 0.62rem; color: #949ba4; }
+    .discord-user-controls { display: flex; align-items: center; gap: 4px; }
+    .discord-control-btn { background: transparent; border: none; color: #b5bac1; font-size: 0.85rem; padding: 4px; border-radius: 4px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
+    .discord-control-btn:hover { background: rgba(255,255,255,0.08); color: #f2f3f5; }
+
+    /* 3. Zone Chat Principale (Centre) */
+    .discord-chat-area { display: flex; flex-direction: column; background: #313338; min-width: 0; }
+    .discord-chat-header { display: flex; align-items: center; gap: 12px; height: 48px; padding-inline: 16px; border-bottom: 1px solid #1f2023; background: #313338; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+    .discord-mobile-menu-btn { display: none; background: #2b2d31; border: 1px solid #3f4147; color: #dbdee1; border-radius: 6px; padding: 4px 8px; font-size: 0.85rem; cursor: pointer; }
+    .discord-chat-title-hash { font-size: 1.2rem; font-weight: 400; color: #80848e; }
+    .discord-chat-title { margin: 0; font-size: 0.95rem; font-weight: 700; color: #f2f3f5; }
+    .discord-chat-topic { margin: 0; font-size: 0.75rem; color: #949ba4; border-left: 1px solid #3f4147; padding-left: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+    .discord-header-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+    .discord-header-icon { color: #b5bac1; font-size: 1rem; cursor: pointer; transition: color 0.15s ease; background: transparent; border: none; padding: 2px; }
+    .discord-header-icon:hover { color: #f2f3f5; }
+    .discord-search-box { display: flex; align-items: center; background: #1e1f22; border-radius: 4px; padding: 4px 8px; font-size: 0.72rem; color: #949ba4; gap: 6px; width: 140px; }
+
+    /* Flux de Messages Textuels */
+    .discord-messages-container { flex: 1; overflow-y: auto; padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 16px; scroll-behavior: smooth; }
+    .discord-msg-row { display: flex; gap: 14px; align-items: flex-start; position: relative; padding: 2px 8px; border-radius: 4px; transition: background 0.1s ease; }
+    .discord-msg-row:hover { background: #2e3035; }
+    .discord-msg-avatar { width: 40px; height: 40px; border-radius: 50%; background: #5865F2; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; overflow: hidden; margin-top: 2px; }
     .discord-msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .discord-msg-content { flex: 1; min-width: 0; }
-    .discord-msg-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 3px; }
-    .discord-msg-author { font-weight: 900; font-size: 0.8rem; color: #fff; }
-    .discord-msg-role { font-size: 0.52rem; padding: 1px 5px; border-radius: 4px; font-weight: 850; text-transform: uppercase; letter-spacing: 0.04em; }
-    .role-admin { background: rgba(255, 71, 87, 0.2); color: #ff6f87; border: 1px solid rgba(255, 71, 87, 0.4); }
-    .role-pro { background: rgba(var(--accent-rgb), 0.2); color: var(--accent); border: 1px solid rgba(var(--accent-rgb), 0.4); }
-    .role-member { background: rgba(255, 255, 255, 0.1); color: #ddd; }
-    .discord-msg-time { font-size: 0.56rem; color: var(--feature-muted); }
-    .discord-msg-text { font-size: 0.78rem; line-height: 1.45; color: rgba(255, 255, 255, 0.9); word-break: break-word; }
-    .discord-msg-img { max-width: 280px; max-height: 200px; border-radius: 10px; margin-top: 6px; border: 1px solid rgba(255, 255, 255, 0.15); cursor: pointer; }
-    .discord-msg-reactions { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
-    .discord-reaction-pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.05); font-size: 0.65rem; color: rgba(255, 255, 255, 0.8); cursor: pointer; transition: all 0.15s ease; }
-    .discord-reaction-pill:hover, .discord-reaction-pill.has-reacted { background: rgba(var(--accent-rgb), 0.18); border-color: rgba(var(--accent-rgb), 0.4); color: #fff; }
-    .discord-input-form { padding: 12px 18px 16px; background: rgba(4, 6, 16, 0.6); }
-    .discord-input-wrapper { display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 4px 8px; transition: border-color 0.2s ease; }
-    .discord-input-wrapper:focus-within { border-color: var(--accent); }
-    .discord-attachment-btn, .discord-emoji-picker-btn { background: transparent; border: none; font-size: 1.1rem; cursor: pointer; padding: 4px; border-radius: 6px; transition: background 0.15s ease; }
-    .discord-attachment-btn:hover, .discord-emoji-picker-btn:hover { background: rgba(255, 255, 255, 0.1); }
-    .discord-input-field { flex: 1; background: transparent; border: none; color: #fff; font-size: 0.8rem; padding: 8px 4px; outline: none; }
-    .discord-input-field::placeholder { color: rgba(255, 255, 255, 0.35); }
-    .discord-emoji-picker-container { position: relative; }
-    .discord-emoji-popover { position: absolute; bottom: 42px; right: 0; background: #0f1428; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px; padding: 8px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; box-shadow: 0 12px 30px rgba(0,0,0,0.6); z-index: 100; }
-    .discord-emoji-popover span { font-size: 1.2rem; cursor: pointer; padding: 4px; border-radius: 6px; text-align: center; transition: background 0.15s ease; }
-    .discord-emoji-popover span:hover { background: rgba(255, 255, 255, 0.15); }
-    .discord-send-btn { background: var(--accent); color: #000; border: none; border-radius: 8px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.15s ease, background 0.2s ease; }
-    .discord-send-btn:hover { transform: scale(1.05); }
-    .discord-members-sidebar { background: rgba(4, 6, 16, 0.75); border-left: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; }
-    .discord-members-header { padding: 14px 14px 8px; font-size: 0.54rem; font-weight: 900; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.45); }
-    .discord-members-list { flex: 1; overflow-y: auto; padding: 8px 10px; display: flex; flex-direction: column; gap: 8px; }
-    .discord-member-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; transition: background 0.15s ease; }
-    .discord-member-row:hover { background: rgba(255, 255, 255, 0.04); }
-    .discord-member-avatar { position: relative; width: 28px; height: 28px; border-radius: 50%; background: rgba(var(--accent-rgb), 0.2); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; overflow: hidden; }
+    .discord-msg-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+    .discord-msg-author { font-weight: 700; font-size: 0.92rem; color: #f2f3f5; cursor: pointer; }
+    .discord-msg-author:hover { text-decoration: underline; }
+    .discord-msg-role { font-size: 0.58rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; }
+    .role-admin { background: rgba(242, 63, 67, 0.2); color: #f23f43; border: 1px solid rgba(242, 63, 67, 0.4); }
+    .role-pro { background: rgba(88, 101, 242, 0.2); color: #5865F2; border: 1px solid rgba(88, 101, 242, 0.4); }
+    .role-member { background: rgba(255, 255, 255, 0.08); color: #b5bac1; }
+    .discord-msg-time { font-size: 0.65rem; color: #949ba4; font-weight: 500; }
+    .discord-msg-text { font-size: 0.88rem; line-height: 1.375; color: #dbdee1; word-break: break-word; white-space: pre-wrap; }
+    .discord-msg-reactions { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .discord-reaction-pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 8px; border: 1px solid #3f4147; background: #2b2d31; font-size: 0.75rem; color: #b5bac1; cursor: pointer; transition: all 0.12s ease; }
+    .discord-reaction-pill:hover, .discord-reaction-pill.has-reacted { background: rgba(88, 101, 242, 0.15); border-color: #5865F2; color: #5865F2; }
+
+    /* Input Form (Chat uniquement, pas de bouton photo) */
+    .discord-input-form { padding: 0 16px 20px; background: #313338; }
+    .discord-input-wrapper { display: flex; align-items: center; gap: 10px; background: #383a40; border-radius: 8px; padding: 4px 12px; min-height: 44px; }
+    .discord-add-btn { background: #4e5058; color: #dbdee1; border: none; width: 24px; height: 24px; border-radius: 50%; font-size: 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; flex-shrink: 0; }
+    .discord-add-btn:hover { background: #dbdee1; color: #313338; }
+    .discord-input-field { flex: 1; background: transparent; border: none; color: #f2f3f5; font-size: 0.88rem; padding: 8px 0; outline: none; font-family: inherit; }
+    .discord-input-field::placeholder { color: #80848e; }
+    .discord-emoji-picker-container { position: relative; display: flex; align-items: center; gap: 8px; }
+    .discord-emoji-picker-btn, .discord-gift-btn { background: transparent; border: none; font-size: 1.1rem; color: #b5bac1; cursor: pointer; padding: 2px; transition: color 0.15s ease; }
+    .discord-emoji-picker-btn:hover, .discord-gift-btn:hover { color: #f2f3f5; }
+    .discord-emoji-popover { position: absolute; bottom: 44px; right: 0; background: #2b2d31; border: 1px solid #1f2023; border-radius: 8px; padding: 10px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); z-index: 100; }
+    .discord-emoji-popover span { font-size: 1.3rem; cursor: pointer; padding: 6px; border-radius: 6px; text-align: center; transition: background 0.15s ease; }
+    .discord-emoji-popover span:hover { background: rgba(255, 255, 255, 0.1); }
+    .discord-send-btn { background: #5865F2; color: #fff; border: none; border-radius: 4px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s ease; flex-shrink: 0; }
+    .discord-send-btn:hover { background: #4752C4; }
+
+    /* 4. Liste des membres (Droite) */
+    .discord-members-sidebar { background: #2b2d31; border-left: 1px solid rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+    .discord-members-header { padding: 16px 16px 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; color: #949ba4; text-transform: uppercase; }
+    .discord-members-list { flex: 1; overflow-y: auto; padding: 4px 8px; display: flex; flex-direction: column; gap: 4px; }
+    .discord-member-row { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 4px; cursor: pointer; transition: background 0.15s ease; }
+    .discord-member-row:hover { background: rgba(255, 255, 255, 0.06); }
+    .discord-member-avatar { position: relative; width: 32px; height: 32px; border-radius: 50%; background: #5865F2; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; overflow: hidden; }
     .discord-member-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .discord-member-status-dot { position: absolute; bottom: -1px; right: -1px; width: 8px; height: 8px; border-radius: 50%; background: #4fe29a; border: 2px solid #040610; }
+    .discord-member-status-dot { position: absolute; bottom: -1px; right: -1px; width: 10px; height: 10px; border-radius: 50%; background: #23a55a; border: 3px solid #2b2d31; }
     .discord-member-info { min-width: 0; flex: 1; }
-    .discord-member-name { font-size: 0.72rem; font-weight: 800; color: rgba(255, 255, 255, 0.9); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .discord-member-sub { font-size: 0.52rem; color: var(--feature-muted); display: block; }
-    @media (max-width: 880px) {
-      .discord-container { grid-template-columns: minmax(0, 1fr); height: clamp(500px, 82vh, 720px); }
+    .discord-member-name { font-size: 0.85rem; font-weight: 600; color: #dbdee1; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .discord-member-sub { font-size: 0.65rem; color: #949ba4; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    
+    @media (max-width: 960px) {
+      .discord-container { grid-template-columns: minmax(0, 1fr); height: clamp(520px, 84vh, 760px); }
+      .discord-servers-strip { display: none; }
       .discord-sidebar { position: absolute; top: 0; bottom: 0; left: 0; width: 260px; transform: translateX(-100%); transition: transform 0.25s ease; box-shadow: 10px 0 30px rgba(0,0,0,0.7); }
       .discord-sidebar.is-open { transform: translateX(0); }
       .discord-sidebar-close-btn, .discord-mobile-menu-btn { display: block; }
-      .discord-members-sidebar { position: absolute; top: 0; bottom: 0; right: 0; width: 220px; transform: translateX(100%); transition: transform 0.25s ease; box-shadow: -10px 0 30px rgba(0,0,0,0.7); z-index: 10; }
+      .discord-members-sidebar { position: absolute; top: 0; bottom: 0; right: 0; width: 240px; transform: translateX(100%); transition: transform 0.25s ease; box-shadow: -10px 0 30px rgba(0,0,0,0.7); z-index: 10; }
       .discord-members-sidebar.is-open { transform: translateX(0); }
     }
 
@@ -8642,20 +8672,32 @@
     <!-- PAGE PRIME HUB / COMMUNITY CHAT -->
     <main class="app-page" id="hubPage" data-page="hub">
       <div class="discord-container">
-        <!-- Sidebar Salons (Gauche) -->
+        <!-- 0. Strip Serveurs (Single Server Discord) -->
+        <aside class="discord-servers-strip">
+          <button type="button" class="discord-server-item" title="Messages Privés">⚡</button>
+          <div class="discord-server-divider"></div>
+          <button type="button" class="discord-server-item is-active" title="Prime Hub (Communauté Officielle)">
+            <img src="./icons/prime-logo-white-transparent.png" alt="P" class="discord-server-icon-img">
+            <span class="server-badge" id="discordServerBadge">1</span>
+          </button>
+          <button type="button" class="discord-server-item" title="Ajouter un serveur" style="color:#23a55a;">+</button>
+          <button type="button" class="discord-server-item" title="Découvrir des serveurs" style="color:#23a55a;">🧭</button>
+        </aside>
+
+        <!-- 1. Sidebar Salons (Gauche) -->
         <aside class="discord-sidebar" id="discordSidebar">
           <div class="discord-server-header">
-            <img src="./icons/prime-logo-white-transparent.png" alt="Prime Sprites" class="discord-server-icon">
             <div class="discord-server-info">
               <h3>Prime Hub</h3>
-              <span class="discord-online-count"><span class="online-dot">●</span> <span id="discordOnlineCount">1</span> en ligne</span>
+              <span class="discord-verified-badge" title="Serveur Communautaire Vérifié">✔</span>
             </div>
+            <span class="discord-header-arrow">▼</span>
             <button type="button" class="discord-sidebar-close-btn" id="discordCloseSidebarBtn" aria-label="Fermer le menu">✖</button>
           </div>
 
           <div class="discord-channels-scroll">
             <div class="discord-category">
-              <span class="discord-category-title">💬 COMMUNAUTÉ</span>
+              <span class="discord-category-title">▼ SALONS TEXTUELS <span>+</span></span>
               <button type="button" class="discord-channel-btn is-active" data-channel="general">
                 <span class="channel-hash">#</span> général
                 <span class="channel-badge" id="unread-general" hidden>0</span>
@@ -8667,7 +8709,7 @@
             </div>
 
             <div class="discord-category">
-              <span class="discord-category-title">🎮 FORTNITE & ESPRITS</span>
+              <span class="discord-category-title">▼ ESPRITS & FORTNITE <span>+</span></span>
               <button type="button" class="discord-channel-btn" data-channel="entraide">
                 <span class="channel-hash">#</span> entraide-esprits
                 <span class="channel-badge" id="unread-entraide" hidden>0</span>
@@ -8684,48 +8726,57 @@
             <div class="discord-user-avatar" id="discordUserBarAvatar">👤</div>
             <div class="discord-user-meta">
               <strong id="discordUserBarName">Visiteur</strong>
-              <small id="discordUserBarRole">Chasseur d'Esprits</small>
+              <small id="discordUserBarRole">#0001</small>
             </div>
-            <button type="button" class="discord-status-toggle" id="discordStatusBtn" title="Statut En Ligne">🟢</button>
+            <div class="discord-user-controls">
+              <button type="button" class="discord-status-toggle discord-control-btn" id="discordStatusBtn" title="Changer de statut">🟢</button>
+              <button type="button" class="discord-control-btn" title="Paramètres">⚙️</button>
+            </div>
           </div>
         </aside>
 
-        <!-- Zone Chat Principale (Centre) -->
+        <!-- 2. Zone Chat Principale (Centre) -->
         <section class="discord-chat-area">
           <header class="discord-chat-header">
             <button type="button" class="discord-mobile-menu-btn" id="discordOpenSidebarBtn" aria-label="Salons">☰</button>
             <span class="discord-chat-title-hash" id="discordChatHeaderHash">#</span>
             <h2 class="discord-chat-title" id="discordChatTitle">général</h2>
             <p class="discord-chat-topic" id="discordChatTopic">Discussion générale entre collectionneurs Fortnite & Esprits</p>
-            <button type="button" class="discord-toggle-members-btn" id="discordToggleMembersBtn" title="Voir les membres">👥 <span id="discordMembersCountBadge">1</span></button>
+            <div class="discord-header-actions">
+              <button type="button" class="discord-header-icon" title="Notifications">🔔</button>
+              <button type="button" class="discord-header-icon" title="Messages épinglés">📌</button>
+              <button type="button" class="discord-header-icon discord-toggle-members-btn" id="discordToggleMembersBtn" title="Liste des membres">👥</button>
+              <div class="discord-search-box">
+                <span>🔍</span>
+                <span>Rechercher</span>
+              </div>
+            </div>
           </header>
 
           <div class="discord-messages-container" id="discordMessagesContainer">
-            <!-- Messages dynamiques -->
+            <!-- Messages textuels dynamiques -->
           </div>
 
           <form class="discord-input-form" id="discordInputForm">
             <div class="discord-input-wrapper">
-              <button type="button" class="discord-attachment-btn" id="discordAttachmentBtn" title="Ajouter une image/lien">📷</button>
+              <button type="button" class="discord-add-btn" title="Ajouter un fichier textuel">+</button>
               <input type="text" class="discord-input-field" id="discordInputField" placeholder="Envoyer un message dans #général..." maxlength="600" autocomplete="off">
               <div class="discord-emoji-picker-container">
+                <button type="button" class="discord-gift-btn" title="Offrir Nitro">🎁</button>
                 <button type="button" class="discord-emoji-picker-btn" id="discordEmojiBtn" title="Emojis">😊</button>
                 <div class="discord-emoji-popover" id="discordEmojiPopover" hidden>
                   <span>🔥</span><span>❤️</span><span>🏆</span><span>👻</span><span>⚡</span><span>👑</span><span>🎮</span><span>⭐</span><span>😂</span><span>👍</span><span>🎉</span><span>🎯</span>
                 </div>
               </div>
               <button type="submit" class="discord-send-btn" id="discordSendBtn" aria-label="Envoyer">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
               </button>
             </div>
           </form>
         </section>
 
-        <!-- Liste des membres connectés (Droite) -->
+        <!-- 3. Liste des membres connectés (Droite) -->
         <aside class="discord-members-sidebar" id="discordMembersSidebar">
-          <div class="discord-members-header">
-            MEMBRES EN LIGNE — <span id="discordOnlineHeaderCount">1</span>
-          </div>
           <div class="discord-members-list" id="discordMembersList">
             <!-- Membres dynamiques -->
           </div>
@@ -9100,7 +9151,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-13-v15";
+      const PWA_VERSION = "2026-08-13-v16";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -10960,41 +11011,56 @@
 
       function renderDiscordMembers() {
         const listEl = document.getElementById("discordMembersList");
-        const headerCountEl = document.getElementById("discordOnlineHeaderCount");
         const badgeCountEl = document.getElementById("discordMembersCountBadge");
-        const onlineCountEl = document.getElementById("discordOnlineCount");
+        const serverBadgeEl = document.getElementById("discordServerBadge");
 
         const authUser = (typeof currentAuthUser !== "undefined" && currentAuthUser) ? currentAuthUser : (typeof getStoredAuthUser === "function" ? getStoredAuthUser() : null);
         const currentName = authUser ? (authUser.displayName || "Moi") : "Visiteur (Moi)";
         const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
 
-        const members = [
-          { name: currentName, role: isAppAdmin ? "admin" : (authUser ? "pro" : "member"), status: discordUserStatus, isMe: true },
-          { name: "PrimeSyntax", role: "admin", status: "🟢", sub: "Développeur" },
-          { name: "FortniteHunter", role: "pro", status: "🟢", sub: "En jeu 🎮" },
-          { name: "EspritMaster", role: "member", status: "🟢", sub: "En ligne" },
-          { name: "ShadowRunner", role: "member", status: "🌙", sub: "Absent" }
+        const onlineMembers = [
+          { name: "PrimeSyntax", role: "admin", status: "🟢", sub: "Fondateur · Développeur", color: "#f23f43" },
+          { name: currentName, role: isAppAdmin ? "admin" : (authUser ? "pro" : "member"), status: discordUserStatus, isMe: true, color: isAppAdmin ? "#f23f43" : "#5865F2" },
+          { name: "FortniteHunter", role: "pro", status: "🟢", sub: "Joue à Fortnite 🎮", color: "#5865F2" },
+          { name: "EspritMaster", role: "member", status: "🟢", sub: "En ligne", color: "#dbdee1" }
         ];
 
-        const totalOnline = members.filter(m => m.status !== "🔴").length;
-        if (headerCountEl) headerCountEl.textContent = totalOnline;
+        const offlineMembers = [
+          { name: "ShadowRunner", role: "member", status: "🔴", sub: "Hors ligne", color: "#80848e" }
+        ];
+
+        const totalOnline = onlineMembers.length;
         if (badgeCountEl) badgeCountEl.textContent = totalOnline;
-        if (onlineCountEl) onlineCountEl.textContent = totalOnline;
+        if (serverBadgeEl) serverBadgeEl.textContent = totalOnline;
 
         if (listEl) {
-          listEl.innerHTML = members.map(m => `
-            <div class="discord-member-row">
-              <div class="discord-member-avatar">
-                ${m.role === 'admin' ? '👑' : (m.role === 'pro' ? '⚡' : '👤')}
-                <span class="discord-member-status-dot" style="background:${m.status === '🟢' ? '#4fe29a' : (m.status === '🌙' ? '#ffd15c' : '#ff4757')}"></span>
-              </div>
-              <div class="discord-member-info">
-                <span class="discord-member-name">${esc(m.name)} ${m.isMe ? '<small style="color:var(--accent);">(Moi)</small>' : ''}</span>
-                <span class="discord-member-sub">${esc(m.sub || (m.role === 'admin' ? 'Fondateur' : 'Chasseur d\'Esprits'))}</span>
-              </div>
-            </div>
-          `).join('');
+          listEl.innerHTML = `
+            <div class="discord-members-header">FONDATEURS — 1</div>
+            ${onlineMembers.filter(m => m.role === 'admin').map(m => renderMemberRow(m)).join('')}
+
+            <div class="discord-members-header" style="margin-top: 10px;">CHASSEURS D'ESPRITS — ${onlineMembers.filter(m => m.role !== 'admin').length}</div>
+            ${onlineMembers.filter(m => m.role !== 'admin').map(m => renderMemberRow(m)).join('')}
+
+            <div class="discord-members-header" style="margin-top: 10px;">HORS LIGNE — ${offlineMembers.length}</div>
+            ${offlineMembers.map(m => renderMemberRow(m)).join('')}
+          `;
         }
+      }
+
+      function renderMemberRow(m) {
+        const dotColor = m.status === '🟢' ? '#23a55a' : (m.status === '🌙' ? '#f0b232' : '#80848e');
+        return `
+          <div class="discord-member-row">
+            <div class="discord-member-avatar">
+              ${m.role === 'admin' ? '👑' : (m.role === 'pro' ? '⚡' : '👤')}
+              <span class="discord-member-status-dot" style="background:${dotColor}"></span>
+            </div>
+            <div class="discord-member-info">
+              <span class="discord-member-name" style="color:${m.color}">${esc(m.name)} ${m.isMe ? '<small style="color:#5865F2;">(Moi)</small>' : ''}</span>
+              <span class="discord-member-sub">${esc(m.sub || 'Membre Prime Hub')}</span>
+            </div>
+          </div>
+        `;
       }
 
       function switchDiscordChannel(channelName) {
@@ -11046,7 +11112,6 @@
                       role: data.role || "member",
                       avatar: data.avatar || "👤",
                       text: data.text || "",
-                      img: data.img || null,
                       time: data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : "À l'instant",
                       reactions: data.reactions || {}
                     });
@@ -11088,7 +11153,6 @@
                 <span class="discord-msg-time">${esc(msg.time)}</span>
               </div>
               <div class="discord-msg-text">${formatDiscordText(msg.text)}</div>
-              ${msg.img ? `<img src="${esc(msg.img)}" class="discord-msg-img" alt="Image" onclick="window.open('${esc(msg.img)}', '_blank')">` : ''}
               ${reactionsHtml ? `<div class="discord-msg-reactions">${reactionsHtml}</div>` : ''}
             </div>
           </div>
