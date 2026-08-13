@@ -9143,7 +9143,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-13-v20";
+      const PWA_VERSION = "2026-08-13-v21";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -11072,11 +11072,19 @@
         loadDiscordMessages(channelName);
       }
 
+      let hubLocalMessages = JSON.parse(localStorage.getItem("prime_hub_messages_v1") || "{}");
+
+      function saveHubLocalMessages() {
+        try {
+          localStorage.setItem("prime_hub_messages_v1", JSON.stringify(hubLocalMessages));
+        } catch(e) {}
+      }
+
       function loadDiscordMessages(channelName) {
         const container = document.getElementById("discordMessagesContainer");
         if (!container) return;
 
-        const localMsgs = (DEFAULT_DISCORD_MESSAGES[channelName] || []);
+        const localMsgs = (hubLocalMessages[channelName] || []);
 
         if (localMsgs.length === 0) {
           container.innerHTML = `
@@ -11091,45 +11099,51 @@
         container.scrollTop = container.scrollHeight;
 
         try {
-          if (typeof firebaseApp !== "undefined" && firebaseApp && typeof firebaseApp.firestore === "function") {
-            const db = firebaseApp.firestore();
+          if (firebaseSdk && firebaseDb && firebaseSdk.collection && firebaseSdk.query && firebaseSdk.onSnapshot) {
             if (typeof discordFirestoreUnsub === "function") discordFirestoreUnsub();
 
-            discordFirestoreUnsub = db.collection("discord_messages")
-              .where("channel", "==", channelName)
-              .orderBy("createdAt", "asc")
-              .limit(50)
-              .onSnapshot(snapshot => {
-                if (snapshot && !snapshot.empty) {
-                  const firestoreMsgs = [];
-                  snapshot.forEach(doc => {
-                    const data = doc.data();
+            const colRef = firebaseSdk.collection(firebaseDb, "discord_messages");
+            const q = firebaseSdk.where 
+              ? firebaseSdk.query(colRef, firebaseSdk.where("channel", "==", channelName), firebaseSdk.limit(50))
+              : firebaseSdk.query(colRef, firebaseSdk.limit(50));
+
+            discordFirestoreUnsub = firebaseSdk.onSnapshot(q, snapshot => {
+              if (snapshot && !snapshot.empty) {
+                const firestoreMsgs = [];
+                snapshot.forEach(docSnap => {
+                  const data = docSnap.data();
+                  if (data.channel === channelName || !data.channel) {
                     firestoreMsgs.push({
-                      id: doc.id,
+                      id: docSnap.id,
                       author: data.author || "Anonyme",
                       role: data.role || "member",
                       avatar: data.avatar || "👤",
                       text: data.text || "",
-                      time: data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : "À l'instant",
+                      time: data.createdAt && data.createdAt.seconds ? new Date(data.createdAt.seconds * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : "À l'instant",
                       reactions: data.reactions || {}
                     });
-                  });
-                  const combined = [...localMsgs, ...firestoreMsgs];
-                  if (combined.length === 0) {
-                    container.innerHTML = `
-                      <div class="discord-empty-welcome">
-                        <h3>Bienvenue dans le début du salon #${esc(channelName)} !</h3>
-                        <p>C'est le tout début du salon #${esc(channelName)}. Soyez le premier à envoyer un message !</p>
-                      </div>
-                    `;
-                  } else {
-                    container.innerHTML = combined.map(m => renderSingleDiscordMsg(m)).join('');
                   }
-                  container.scrollTop = container.scrollHeight;
+                });
+                const combined = [...localMsgs];
+                firestoreMsgs.forEach(fm => {
+                  if (!combined.some(lm => lm.id === fm.id || (lm.text === fm.text && lm.author === fm.author))) {
+                    combined.push(fm);
+                  }
+                });
+
+                if (combined.length === 0) {
+                  container.innerHTML = `
+                    <div class="discord-empty-welcome">
+                      <h3>Bienvenue dans le début du salon #${esc(channelName)} !</h3>
+                      <p>C'est le tout début du salon #${esc(channelName)}. Soyez le premier à envoyer un message !</p>
+                    </div>
+                  `;
+                } else {
+                  container.innerHTML = combined.map(m => renderSingleDiscordMsg(m)).join('');
                 }
-              }, err => {
-                console.log("Discord Firestore offline mode fallback:", err);
-              });
+                container.scrollTop = container.scrollHeight;
+              }
+            }, err => console.log("Discord snapshot fallback:", err));
           }
         } catch(e) {
           console.log("Discord fallback local:", e);
@@ -11335,14 +11349,14 @@
       }
 
       function deleteDiscordMessage(msgId) {
-        if (DEFAULT_DISCORD_MESSAGES[currentDiscordChannel]) {
-          DEFAULT_DISCORD_MESSAGES[currentDiscordChannel] = DEFAULT_DISCORD_MESSAGES[currentDiscordChannel].filter(m => m.id !== msgId);
+        if (hubLocalMessages[currentDiscordChannel]) {
+          hubLocalMessages[currentDiscordChannel] = hubLocalMessages[currentDiscordChannel].filter(m => m.id !== msgId);
+          saveHubLocalMessages();
         }
 
         try {
-          if (typeof firebaseApp !== "undefined" && firebaseApp && typeof firebaseApp.firestore === "function") {
-            const db = firebaseApp.firestore();
-            db.collection("discord_messages").doc(msgId).delete();
+          if (firebaseSdk && firebaseDb && firebaseSdk.deleteDoc && firebaseSdk.doc) {
+            firebaseSdk.deleteDoc(firebaseSdk.doc(firebaseDb, "discord_messages", msgId));
           }
         } catch(e) {
           console.log("Delete msg error:", e);
@@ -11393,29 +11407,28 @@
           role: userRole,
           avatar: userAvatar,
           text: text,
-          img: imgUrl,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          reactions: { "🔥": 1 }
+          reactions: {}
         };
 
-        if (!DEFAULT_DISCORD_MESSAGES[currentDiscordChannel]) {
-          DEFAULT_DISCORD_MESSAGES[currentDiscordChannel] = [];
+        if (!hubLocalMessages[currentDiscordChannel]) {
+          hubLocalMessages[currentDiscordChannel] = [];
         }
-        DEFAULT_DISCORD_MESSAGES[currentDiscordChannel].push(newMsg);
+        hubLocalMessages[currentDiscordChannel].push(newMsg);
+        saveHubLocalMessages();
 
         try {
-          if (typeof firebaseApp !== "undefined" && firebaseApp && typeof firebaseApp.firestore === "function") {
-            const db = firebaseApp.firestore();
-            db.collection("discord_messages").add({
+          if (firebaseSdk && firebaseDb && firebaseSdk.addDoc && firebaseSdk.collection) {
+            const colRef = firebaseSdk.collection(firebaseDb, "discord_messages");
+            firebaseSdk.addDoc(colRef, {
               channel: currentDiscordChannel,
               author: authorName,
               role: userRole,
               avatar: userAvatar,
               text: text,
-              img: imgUrl,
-              createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-              reactions: { "🔥": 1 }
-            });
+              createdAt: firebaseSdk.serverTimestamp ? firebaseSdk.serverTimestamp() : new Date().toISOString(),
+              reactions: {}
+            }).catch(e => console.error("Cloud msg add error:", e));
           }
         } catch(err) {
           console.log("Firestore msg error:", err);
@@ -12644,8 +12657,10 @@
             doc: firestoreModule.doc,
             getDoc: firestoreModule.getDoc,
             setDoc: firestoreModule.setDoc,
+            addDoc: firestoreModule.addDoc,
             deleteDoc: firestoreModule.deleteDoc,
             collection: firestoreModule.collection,
+            where: firestoreModule.where,
             getDocs: firestoreModule.getDocs,
             query: firestoreModule.query,
             orderBy: firestoreModule.orderBy,
