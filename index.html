@@ -5818,8 +5818,12 @@
     .discord-channels-scroll { flex: 1; overflow-y: auto; padding: 12px 8px; display: flex; flex-direction: column; gap: 14px; }
     .discord-category-head { display: flex; align-items: center; justify-content: space-between; padding-inline: 8px; margin-bottom: 4px; }
     .discord-category-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; color: #949ba4; text-transform: uppercase; }
-    .discord-add-channel-btn { background: transparent; border: none; color: #949ba4; font-size: 1.1rem; font-weight: 700; cursor: pointer; padding: 0 4px; transition: color 0.15s ease; }
-    .discord-add-channel-btn:hover { color: #f2f3f5; }
+    .discord-category-actions { display: flex; align-items: center; gap: 4px; }
+    .discord-add-channel-btn, .discord-edit-category-btn { background: transparent; border: none; color: #949ba4; font-size: 0.9rem; font-weight: 700; cursor: pointer; padding: 0 4px; transition: color 0.15s ease; }
+    .discord-add-channel-btn:hover, .discord-edit-category-btn:hover { color: #f2f3f5; }
+    .discord-create-category-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 12px; border: 1px dashed rgba(255, 255, 255, 0.2); border-radius: 6px; background: rgba(255, 255, 255, 0.02); color: #b5bac1; font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: all 0.15s ease; margin-top: 8px; }
+    .discord-create-category-btn:hover { background: rgba(88, 101, 242, 0.15); border-color: #5865F2; color: #fff; }
+    .discord-empty-sidebar-notice { padding: 20px 12px; text-align: center; color: #949ba4; font-size: 0.78rem; line-height: 1.4; }
     .discord-channel-btn { width: 100%; display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 4px; border: none; background: transparent; color: #949ba4; font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; text-align: left; position: relative; }
     .discord-channel-btn:hover { background: rgba(255, 255, 255, 0.06); color: #dbdee1; }
     .discord-channel-btn.is-active { background: rgba(255, 255, 255, 0.1); color: #fff; font-weight: 700; }
@@ -9143,7 +9147,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-13-v21";
+      const PWA_VERSION = "2026-08-13-v22";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -10896,35 +10900,14 @@
       let discordUserStatus = "🟢";
       let hubBannedUsers = JSON.parse(localStorage.getItem("prime_hub_banned_users") || "[]");
 
-      let defaultHubCategories = [
-        {
-          id: "text",
-          name: "Salons Textuels",
-          channels: [
-            { id: "general", name: "général", topic: "Discussion générale entre collectionneurs Fortnite & Esprits" },
-            { id: "annonces", name: "annonces-patchs", topic: "Annonces officielles, patch notes et mises à jour" }
-          ]
-        },
-        {
-          id: "fortnite",
-          name: "Esprits & Fortnite",
-          channels: [
-            { id: "entraide", name: "entraide-esprits", topic: "Captures, astuces et entraide pour débloquer les 109 esprits" },
-            { id: "partage", name: "partage-collections", topic: "Partage vos casiers, maîtrises et progressions" }
-          ]
-        }
-      ];
+      let defaultHubCategories = [];
 
-      let hubCategories = JSON.parse(localStorage.getItem("prime_hub_categories_v1") || "null") || defaultHubCategories;
+      let hubCategories = JSON.parse(localStorage.getItem("prime_hub_categories_v3") || "null") || defaultHubCategories;
 
-      const DEFAULT_DISCORD_MESSAGES = {};
-
-      function initPrimeDiscord() {
-        setupDiscordEventListeners();
-        renderDiscordChannels();
-        updateDiscordUserBar();
-        renderDiscordMembers();
-        switchDiscordChannel(currentDiscordChannel);
+      function saveHubCategories() {
+        try {
+          localStorage.setItem("prime_hub_categories_v3", JSON.stringify(hubCategories));
+        } catch(e) {}
       }
 
       function renderDiscordChannels() {
@@ -10932,13 +10915,28 @@
         if (!scrollContainer) return;
         const isAppAdmin = typeof isAdmin === "function" ? isAdmin() : false;
 
-        scrollContainer.innerHTML = hubCategories.map(cat => `
+        if (!hubCategories || hubCategories.length === 0) {
+          scrollContainer.innerHTML = `
+            <div class="discord-empty-sidebar-notice">
+              Le serveur est actuellement vide.
+              ${isAppAdmin ? `<br><button type="button" class="discord-create-category-btn" data-action="admin-create-category">➕ Créer la 1ère catégorie</button>` : '<br><small style="color:#80848e;">L\'administrateur prépare les nouveaux salons.</small>'}
+            </div>
+          `;
+          return;
+        }
+
+        const categoriesHtml = hubCategories.map(cat => `
           <div class="discord-category" data-category-id="${esc(cat.id)}">
             <div class="discord-category-head">
               <span class="discord-category-title">▼ ${esc(cat.name)}</span>
-              ${isAppAdmin ? `<button type="button" class="discord-add-channel-btn" data-action="admin-add-channel" data-category-id="${esc(cat.id)}" title="Créer un salon">+</button>` : ''}
+              ${isAppAdmin ? `
+                <div class="discord-category-actions">
+                  <button type="button" class="discord-edit-category-btn" data-action="admin-edit-category" data-category-id="${esc(cat.id)}" title="Gérer la catégorie">⚙️</button>
+                  <button type="button" class="discord-add-channel-btn" data-action="admin-add-channel" data-category-id="${esc(cat.id)}" title="Créer un salon dans cette catégorie">+</button>
+                </div>
+              ` : ''}
             </div>
-            ${cat.channels.map(ch => `
+            ${(cat.channels || []).map(ch => `
               <button type="button" class="discord-channel-btn${ch.id === currentDiscordChannel ? ' is-active' : ''}" data-channel="${esc(ch.id)}">
                 <span class="channel-hash">${ch.name.includes('annonces') ? '📢' : '#'}</span> ${esc(ch.name)}
                 ${isAppAdmin ? `<span class="discord-channel-edit-btn" data-action="admin-edit-channel" data-channel-id="${esc(ch.id)}" title="Gérer le salon">⚙️</span>` : ''}
@@ -10946,6 +10944,14 @@
             `).join('')}
           </div>
         `).join('');
+
+        const addCategoryFooterHtml = isAppAdmin ? `
+          <button type="button" class="discord-create-category-btn" data-action="admin-create-category">
+            ➕ Ajouter une catégorie
+          </button>
+        ` : '';
+
+        scrollContainer.innerHTML = categoriesHtml + addCategoryFooterHtml;
       }
 
       function getActiveHubAuthUser() {
@@ -11048,7 +11054,7 @@
 
       function getChannelTopic(channelId) {
         for (const cat of hubCategories) {
-          const ch = cat.channels.find(c => c.id === channelId);
+          const ch = (cat.channels || []).find(c => c.id === channelId);
           if (ch) return ch.topic || ch.name;
         }
         return "Discussion de la communauté";
@@ -11204,8 +11210,50 @@
           const btn = e.target.closest(".discord-channel-btn");
           const editBtn = e.target.closest('[data-action="admin-edit-channel"]');
           const addBtn = e.target.closest('[data-action="admin-add-channel"]');
+          const createCatBtn = e.target.closest('[data-action="admin-create-category"]');
+          const editCatBtn = e.target.closest('[data-action="admin-edit-category"]');
           const deleteMsgBtn = e.target.closest('[data-action="admin-delete-msg"]');
           const modMemberRow = e.target.closest('[data-action="admin-mod-member"]');
+
+          if (createCatBtn) {
+            e.stopPropagation();
+            const catName = prompt("Nom de la nouvelle catégorie (ex: SALONS TEXTUELS, FORTNITE) :");
+            if (catName && catName.trim()) {
+              const catId = "cat_" + Date.now();
+              hubCategories.push({
+                id: catId,
+                name: catName.trim().toUpperCase(),
+                channels: []
+              });
+              saveHubCategories();
+              renderDiscordChannels();
+            }
+            return;
+          }
+
+          if (editCatBtn) {
+            e.stopPropagation();
+            const catId = editCatBtn.dataset.categoryId;
+            const cat = hubCategories.find(c => c.id === catId);
+            if (!cat) return;
+
+            const choice = prompt(`Gérer la catégorie "${cat.name}" :\n1. Renommer la catégorie\n2. Supprimer la catégorie et tous ses salons\n(Entrez 1 ou 2)`);
+            if (choice === "1") {
+              const newName = prompt("Nouveau nom de la catégorie :", cat.name);
+              if (newName && newName.trim()) {
+                cat.name = newName.trim().toUpperCase();
+                saveHubCategories();
+                renderDiscordChannels();
+              }
+            } else if (choice === "2") {
+              if (confirm(`Voulez-vous vraiment supprimer la catégorie "${cat.name}" et tous ses salons ?`)) {
+                hubCategories = hubCategories.filter(c => c.id !== catId);
+                saveHubCategories();
+                renderDiscordChannels();
+              }
+            }
+            return;
+          }
 
           if (addBtn) {
             e.stopPropagation();
@@ -11215,8 +11263,9 @@
               const cleanId = newName.trim().toLowerCase().replace(/[^a-z0-9]/g, '-');
               const cat = hubCategories.find(c => c.id === catId);
               if (cat) {
+                if (!cat.channels) cat.channels = [];
                 cat.channels.push({ id: cleanId, name: newName.trim(), topic: `Salon #${newName.trim()}` });
-                localStorage.setItem("prime_hub_categories_v1", JSON.stringify(hubCategories));
+                saveHubCategories();
                 switchDiscordChannel(cleanId);
               }
             }
@@ -11231,19 +11280,19 @@
               const newName = prompt("Nouveau nom du salon :");
               if (newName && newName.trim()) {
                 hubCategories.forEach(cat => {
-                  const ch = cat.channels.find(c => c.id === chId);
+                  const ch = (cat.channels || []).find(c => c.id === chId);
                   if (ch) ch.name = newName.trim();
                 });
-                localStorage.setItem("prime_hub_categories_v1", JSON.stringify(hubCategories));
+                saveHubCategories();
                 switchDiscordChannel(chId);
               }
             } else if (choice === "2") {
               if (confirm(`Voulez-vous vraiment supprimer définitivement le salon #${chId} ?`)) {
                 hubCategories.forEach(cat => {
-                  cat.channels = cat.channels.filter(c => c.id !== chId);
+                  cat.channels = (cat.channels || []).filter(c => c.id !== chId);
                 });
-                localStorage.setItem("prime_hub_categories_v1", JSON.stringify(hubCategories));
-                switchDiscordChannel("general");
+                saveHubCategories();
+                renderDiscordChannels();
               }
             }
             return;
