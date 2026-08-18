@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://primesyntaxtiktok.github.io/espritsfofo/sitemap.xml
