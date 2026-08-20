@@ -4287,7 +4287,7 @@
     }
 
     /* Navigation multipage interne : un seul HTML, un écran à la fois. */
-    .app-page { display: none; animation: page-in .24s ease both; }
+    .app-page { display: none; animation: page-in .22s cubic-bezier(0.16, 1, 0.3, 1) both; contain: layout style; transform: translateZ(0); backface-visibility: hidden; }
     .app-page.is-active { display: block; }
     @keyframes page-in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
     .topbar-links a[aria-current="page"] { border-color: rgba(247,237,56,.38); background: rgba(247,237,56,.11); color: var(--yellow); }
@@ -5917,6 +5917,11 @@
         radial-gradient(circle at 8% 50%, rgba(var(--accent-rgb), .14), transparent 24rem),
         linear-gradient(135deg, color-mix(in srgb, var(--theme-surface-2, #182044) 92%, transparent), color-mix(in srgb, var(--theme-deep, #050817) 96%, transparent));
       box-shadow: 0 16px 42px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.055), -12px 0 32px rgba(var(--accent-rgb), .08);
+      content-visibility: auto;
+      contain-intrinsic-size: 180px 220px;
+      contain: layout style paint;
+      transform: translateZ(0);
+      backface-visibility: hidden;
     }
     .family-row::before {
       position: absolute;
@@ -9227,7 +9232,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-19-v5.2.0";
+      const PWA_VERSION = "2026-08-20-v6.5.0";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -9770,6 +9775,69 @@
 
       const families = [
         {
+          key: "wolverine", fr: "Esprit de Wolverine", en: "Wolverine Sprite", rarity: "mythic",
+          aliases: ["Esprit Wolverine", "Weapon X"],
+          effect: {
+            fr: "Accorde la régénération de PV sauvage et les griffes de découpe en mêlée.",
+            en: "Grants feral HP regeneration and melee slicing claws."
+          },
+          images: {
+            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='w' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fde047'/><stop offset='100%' stop-color='%23ca8a04'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23w)' stroke='%23fef08a' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%231e293b' stroke-width='8' stroke-linecap='round'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%23eab308' stroke-width='4' stroke-linecap='round'/></svg>",
+            gold: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='wg' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fef08a'/><stop offset='100%' stop-color='%23b45309'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23wg)' stroke='%23fff' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%2378350f' stroke-width='8' stroke-linecap='round'/></svg>",
+            galaxy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='wgx' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23c084fc'/><stop offset='100%' stop-color='%23312e81'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23wgx)' stroke='%23e0e7ff' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%23818cf8' stroke-width='8' stroke-linecap='round'/></svg>",
+            holofoil: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='wh' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%23a855f7'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23wh)' stroke='%23f472b6' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%23e0e7ff' stroke-width='8' stroke-linecap='round'/></svg>"
+          }
+        },
+        {
+          key: "midas", fr: "Esprit de Midas", en: "Midas Sprite", rarity: "mythic",
+          aliases: ["Esprit Midas"],
+          effect: {
+            fr: "Transforme le butin trouvé en or précieux et augmente les dégâts des armes dorées de 20 %.",
+            en: "Converts found loot into precious gold and boosts golden weapon damage by 20%."
+          },
+          images: {
+            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='m' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fef08a'/><stop offset='100%' stop-color='%23a16207'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23m)' stroke='%23fef08a' stroke-width='5'/><path d='M35 75 L60 30 L85 75 L70 75 L60 50 L50 75 Z' fill='%23451a03'/><circle cx='60' cy='42' r='8' fill='%23fff'/></svg>",
+            gold: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mg' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fff59d'/><stop offset='100%' stop-color='%23e65100'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mg)' stroke='%23fff' stroke-width='5'/><path d='M35 75 L60 30 L85 75 L70 75 L60 50 L50 75 Z' fill='%2378350f'/><circle cx='60' cy='42' r='8' fill='%23fef08a'/></svg>",
+            galaxy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mgx' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23f472b6'/><stop offset='100%' stop-color='%234c1d95'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mgx)' stroke='%23fbbf24' stroke-width='5'/><path d='M35 75 L60 30 L85 75 L70 75 L60 50 L50 75 Z' fill='%23fef08a'/></svg>"
+          }
+        },
+        {
+          key: "nebula", fr: "Esprit Nébuleuse", en: "Nebula Sprite", rarity: "legendary",
+          effect: {
+            fr: "Accorde le saut zéro gravité et une traînée d'énergie stellaire repoussant les ennemis.",
+            en: "Grants Zero-G leap and a stellar energy trail repelling enemies."
+          },
+          images: {
+            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='n' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23c084fc'/><stop offset='100%' stop-color='%231e1b4b'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23n)' stroke='%23a855f7' stroke-width='4'/><polygon points='60,20 72,46 100,46 77,63 85,90 60,72 35,90 43,63 20,46 48,46' fill='%23f0abfc'/></svg>",
+            galaxy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='ngx' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%23311b92'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23ngx)' stroke='%23818cf8' stroke-width='4'/><polygon points='60,20 72,46 100,46 77,63 85,90 60,72 35,90 43,63 20,46 48,46' fill='%23bae6fd'/></svg>",
+            celestial: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='nc' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fbbf24'/><stop offset='100%' stop-color='%2392400e'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23nc)' stroke='%23fef08a' stroke-width='4'/><polygon points='60,20 72,46 100,46 77,63 85,90 60,72 35,90 43,63 20,46 48,46' fill='%23fff'/></svg>"
+          }
+        },
+        {
+          key: "mech", fr: "Esprit Méca Néon", en: "Neon Mech Sprite", rarity: "epic",
+          effect: {
+            fr: "Accorde un surbouclier mécanique et libère une onde IEM désactivant les pièges et véhicules.",
+            en: "Grants a mechanical overshield and emits an EMP wave disabling traps and vehicles."
+          },
+          images: {
+            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mc' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2322d3ee'/><stop offset='100%' stop-color='%230f172a'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mc)' stroke='%2338bdf8' stroke-width='4'/><rect x='35' y='35' width='50' height='50' rx='10' fill='%231e293b' stroke='%2322d3ee' stroke-width='4'/><circle cx='48' cy='52' r='6' fill='%2322d3ee'/><circle cx='72' cy='52' r='6' fill='%2322d3ee'/><path d='M48 70 L72 70' stroke='%2322d3ee' stroke-width='3'/></svg>",
+            cyber: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mcc' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23f472b6'/><stop offset='100%' stop-color='%23831843'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mcc)' stroke='%23f472b6' stroke-width='4'/><rect x='35' y='35' width='50' height='50' rx='10' fill='%23831843' stroke='%23f472b6' stroke-width='4'/><circle cx='48' cy='52' r='6' fill='%23fff'/><circle cx='72' cy='52' r='6' fill='%23fff'/></svg>",
+            holofoil: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mch' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23a855f7'/><stop offset='100%' stop-color='%230284c7'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mch)' stroke='%2338bdf8' stroke-width='4'/><rect x='35' y='35' width='50' height='50' rx='10' fill='%230f172a' stroke='%23c084fc' stroke-width='4'/></svg>"
+          }
+        },
+        {
+          key: "slurp", fr: "Esprit de Breuvage", en: "Slurp Sprite", rarity: "rare",
+          effect: {
+            fr: "Régénère le bouclier et la santé en continu pour toi et ton escouade à proximité.",
+            en: "Continuously regenerates shield and health for you and nearby squadmates."
+          },
+          images: {
+            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='s' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%23115e59'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23s)' stroke='%232dd4bf' stroke-width='4'/><path d='M40 80 C40 55 80 55 80 80 Z' fill='%23ccfbf1'/><circle cx='60' cy='48' r='10' fill='%23fff'/></svg>",
+            gummy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='sg' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23f472b6'/><stop offset='100%' stop-color='%239d174d'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23sg)' stroke='%23f472b6' stroke-width='4'/><path d='M40 80 C40 55 80 55 80 80 Z' fill='%23fbcfe8'/></svg>",
+            gem: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='sgm' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2322d3ee'/><stop offset='100%' stop-color='%23164e63'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23sgm)' stroke='%2367e8f9' stroke-width='4'/><path d='M40 80 C40 55 80 55 80 80 Z' fill='%23cffaff'/></svg>"
+          }
+        },
+        {
           key: "batman", fr: "Esprit de Batman", en: "Batman Sprite", rarity: "mythic",
           aliases: ["Esprit Batman"],
           effect: {
@@ -10309,6 +10377,31 @@
           category: "defense", summonCost: 4500,
           ability: { fr: "Construit des blocs Tetramino de protection instantanés qui se renforcent mutuellement.", en: "Builds instant protective Tetramino blocks that reinforce each other." },
           levelCaption: { fr: "Résistance des blocs", en: "Block Health" }, levels: ["150", "250", "350", "500", "750"]
+        },
+        wolverine: {
+          category: "combat", summonCost: 6750,
+          ability: { fr: "Accorde la régénération de PV sauvage et les griffes de découpe en mêlée.", en: "Grants feral HP regeneration and melee slicing claws." },
+          levelCaption: { fr: "Régénération & Dégâts", en: "Regen & Damage" }, levels: ["+10/s", "+15/s", "+20/s", "+25/s", "+35/s"]
+        },
+        midas: {
+          category: "loot", summonCost: 6750,
+          ability: { fr: "Transforme le butin trouvé en or précieux et augmente les dégâts des armes dorées de 20 %.", en: "Converts found loot into precious gold and boosts golden weapon damage by 20%." },
+          levelCaption: { fr: "Bonus de lingots d'or", en: "Gold Bars Bonus" }, levels: ["+25 %", "+50 %", "+75 %", "+100 %", "+150 %"]
+        },
+        nebula: {
+          category: "mobility", summonCost: 4500,
+          ability: { fr: "Accorde le saut zéro gravité et une traînée d'énergie stellaire repoussant les ennemis.", en: "Grants Zero-G leap and a stellar energy trail repelling enemies." },
+          levelCaption: { fr: "Impulsion stellaire", en: "Stellar Thrust" }, levels: ["10 m", "15 m", "20 m", "25 m", "30 m"]
+        },
+        mech: {
+          category: "defense", summonCost: 4500,
+          ability: { fr: "Accorde un surbouclier mécanique et libère une onde IEM désactivant les pièges et véhicules.", en: "Grants a mechanical overshield and emits an EMP wave disabling traps and vehicles." },
+          levelCaption: { fr: "Surbouclier Méca", en: "Mech Overshield" }, levels: ["25", "50", "75", "100", "125"]
+        },
+        slurp: {
+          category: "healing", summonCost: 2700,
+          ability: { fr: "Régénère le bouclier et la santé en continu pour toi et ton escouade à proximité.", en: "Continuously regenerates shield and health for you and nearby squadmates." },
+          levelCaption: { fr: "Taux de soin par seconde", en: "Heal rate per second" }, levels: ["2/s", "3/s", "4/s", "5/s", "6/s"]
         }
       });
 
@@ -10330,7 +10423,7 @@
         mythic: "rgba(246,223,50,.39)"
       };
 
-      const SEASON4_KEYS = new Set();
+      const SEASON4_KEYS = new Set(["wolverine", "midas", "nebula", "mech", "slurp"]);
 
       const sprites = [];
       const season4Sprites = [];
@@ -11377,9 +11470,16 @@
         const root = container || grid;
         if (!root) return;
         root.querySelectorAll(".family-variants-track").forEach(track => {
+          let scrollTicking = false;
           const updateEdges = () => {
-            track.dataset.atStart = String(track.scrollLeft <= 2);
-            track.dataset.atEnd = String(track.scrollLeft + track.clientWidth >= track.scrollWidth - 2);
+            if (!scrollTicking) {
+              requestAnimationFrame(() => {
+                track.dataset.atStart = String(track.scrollLeft <= 2);
+                track.dataset.atEnd = String(track.scrollLeft + track.clientWidth >= track.scrollWidth - 2);
+                scrollTicking = false;
+              });
+              scrollTicking = true;
+            }
           };
           track.addEventListener("scroll", updateEdges, { passive: true });
           track.addEventListener("wheel", event => {
@@ -11394,11 +11494,27 @@
         });
       }
 
+      const spriteFamilyFallbacks = {
+        wolverine: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='w' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fde047'/><stop offset='100%' stop-color='%23ca8a04'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23w)' stroke='%23fef08a' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%231e293b' stroke-width='8' stroke-linecap='round'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%23eab308' stroke-width='4' stroke-linecap='round'/></svg>",
+        midas: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='m' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fef08a'/><stop offset='100%' stop-color='%23a16207'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23m)' stroke='%23fef08a' stroke-width='5'/><path d='M35 75 L60 30 L85 75 L70 75 L60 50 L50 75 Z' fill='%23451a03'/><circle cx='60' cy='42' r='8' fill='%23fff'/></svg>",
+        nebula: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='n' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23c084fc'/><stop offset='100%' stop-color='%231e1b4b'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23n)' stroke='%23a855f7' stroke-width='4'/><polygon points='60,20 72,46 100,46 77,63 85,90 60,72 35,90 43,63 20,46 48,46' fill='%23f0abfc'/></svg>",
+        mech: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mc' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2322d3ee'/><stop offset='100%' stop-color='%230f172a'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mc)' stroke='%2338bdf8' stroke-width='4'/><rect x='35' y='35' width='50' height='50' rx='10' fill='%231e293b' stroke='%2322d3ee' stroke-width='4'/><circle cx='48' cy='52' r='6' fill='%2322d3ee'/><circle cx='72' cy='52' r='6' fill='%2322d3ee'/><path d='M48 70 L72 70' stroke='%2322d3ee' stroke-width='3'/></svg>",
+        slurp: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='s' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%23115e59'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23s)' stroke='%232dd4bf' stroke-width='4'/><path d='M40 80 C40 55 80 55 80 80 Z' fill='%23ccfbf1'/><circle cx='60' cy='48' r='10' fill='%23fff'/></svg>"
+      };
+
       function settleSpriteImage(image, loaded) {
         image.classList.remove("is-pending", "is-loading");
         image.classList.toggle("is-loaded", loaded);
         image.classList.toggle("broken", !loaded);
         if (loaded && image.currentSrc) warmedImageUrls.add(image.currentSrc);
+        else if (!loaded && !image.dataset.fallbackApplied) {
+          const spriteId = image.closest("[data-id]")?.dataset.id;
+          const familyKey = spriteId ? spriteId.split("-")[0] : null;
+          if (familyKey && spriteFamilyFallbacks[familyKey]) {
+            image.dataset.fallbackApplied = "true";
+            image.src = spriteFamilyFallbacks[familyKey];
+          }
+        }
       }
 
       function trackSpriteImage(image) {
