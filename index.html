@@ -2413,39 +2413,27 @@
       text-align: center;
     }
 
-    .developer-credit {
-      display: inline-flex;
-      min-height: 43px;
-      margin: 0;
-      padding: 9px 15px;
+    .developer-signature-wrap {
+      display: flex;
       align-items: center;
-      gap: 7px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(28, 36, 79, .82), rgba(12, 17, 42, .82));
-      box-shadow: 0 14px 34px rgba(0, 0, 0, .23), inset 0 1px 0 rgba(255, 255, 255, .07);
-      color: #aeb8d8;
-      font-size: .7rem;
-      font-weight: 750;
-      letter-spacing: .015em;
+      justify-content: center;
+      margin: 10px auto 0;
+      padding: 0;
     }
 
-    .developer-credit strong {
-      color: var(--yellow);
-      font-family: var(--display);
-      font-size: 1rem;
-      font-style: italic;
-      letter-spacing: .04em;
-      text-transform: uppercase;
+    .developer-signature-img {
+      height: auto;
+      max-height: 65px;
+      width: auto;
+      max-width: 260px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.45));
+      transition: transform .25s ease, filter .25s ease;
     }
 
-    .developer-signal {
-      width: 8px;
-      height: 8px;
-      flex: 0 0 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 4px rgba(73, 239, 160, .1), 0 0 14px rgba(73, 239, 160, .65);
+    .developer-signature-img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 6px 22px rgba(56, 189, 248, 0.4));
     }
 
     .mobile-dock { display: none; }
@@ -4446,20 +4434,20 @@
       border-bottom: 1px solid rgba(255, 255, 255, .11);
       background: linear-gradient(110deg, rgba(31, 44, 98, .58), rgba(18, 23, 55, .3));
     }
-    .patch-simple-head h1 {
+    .patch-simple-head :is(h1, h2) {
       max-width: none;
-      margin: 11px 0 0;
+      margin: 8px 0 0;
       color: #fff;
       font-family: var(--display);
-      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
       font-style: italic;
       font-weight: 900;
       letter-spacing: -.025em;
-      line-height: .94;
+      line-height: 1.15;
       text-transform: uppercase;
       transform: none;
     }
-    .patch-simple-head h1 span {
+    .patch-simple-head :is(h1, h2) span {
       display: inline;
       margin: 0;
       color: var(--yellow);
@@ -4544,7 +4532,7 @@
         flex-direction: column;
         gap: 10px;
       }
-      .patch-simple-head h1 { font-size: clamp(1.7rem, 9vw, 2.5rem); }
+      .patch-simple-head :is(h1, h2) { font-size: clamp(1.1rem, 5vw, 1.35rem); }
       .patch-page-compact .patch-date { margin: 0; white-space: normal; }
       .patch-page-compact .patch-card {
         padding: 15px 17px;
@@ -5126,33 +5114,36 @@
     .review-trigger-btn {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 13px 28px;
-      font-size: 0.92rem;
+      gap: 8px;
+      padding: 9px 18px;
+      font-size: 0.86rem;
       font-weight: 800;
-      border-radius: 999px;
-      box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent, #24a9ff), #0077ff);
+      color: #000;
+      box-shadow: 0 6px 20px rgba(36, 169, 255, 0.35);
       cursor: pointer;
       border: 0;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s ease;
+      white-space: nowrap;
     }
     .review-trigger-btn:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 16px 40px rgba(var(--accent-rgb), 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(36, 169, 255, 0.5);
     }
     .review-trigger-btn:active {
-      transform: translateY(1px) scale(0.98);
+      transform: translateY(1px);
     }
     .review-trigger-btn .btn-sparkle {
-      font-size: 1.15rem;
+      font-size: 1rem;
       filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.8));
     }
     .review-trigger-btn .btn-arrow {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: transform 0.2s;
     }
     .review-trigger-btn:hover .btn-arrow {
-      transform: translateX(4px);
+      transform: translateX(3px);
     }
 
     .reviews-layout {
@@ -5800,6 +5791,47 @@
     html[data-background] :is(.sync-card, .progress-wrap, .stat, .variant-overview, .toolbar, .panel-card, .guide-summary, .guide-integrity, .guide-card, .admin-publish-bar, .admin-history article, .admin-manage-row, .admin-patch-quick-row, .patch-entry, .patch-card, dialog) { border-color: rgba(var(--accent-rgb), .16); background: linear-gradient(145deg, color-mix(in srgb, var(--theme-surface-2) 90%, transparent), color-mix(in srgb, var(--theme-deep) 94%, transparent)); }
     html[data-background] :is(.feature-hero, .patch-simple-head) { border-color: rgba(var(--accent-rgb), .22); background: radial-gradient(circle at 88% 8%, rgba(var(--accent-rgb), .19), transparent 23rem), linear-gradient(135deg, color-mix(in srgb, var(--theme-surface-2) 92%, transparent), color-mix(in srgb, var(--theme-deep) 96%, transparent)); }
     html[data-background] :is(.topbar-links a[aria-current="page"], .mobile-dock-item[aria-current="page"], .admin-tabs button[aria-selected="true"], .segmented button[aria-pressed="true"]) { border-color: rgba(var(--accent-rgb), .42); background: rgba(var(--accent-rgb), .15); color: var(--accent); }
+
+    /* Point rouge clignotant pour les nouveautés non lues */
+    .topbar-links a[data-page-target],
+    .mobile-dock-item {
+      position: relative;
+    }
+
+    .nav-unread-dot {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 9px;
+      height: 9px;
+      background-color: #ef4444;
+      border-radius: 50%;
+      border: 1.5px solid rgba(15, 23, 42, 0.9);
+      box-shadow: 0 0 8px #ef4444;
+      animation: navUnreadPulse 1.4s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 12;
+    }
+
+    .mobile-dock-item .nav-unread-dot {
+      top: 3px;
+      right: 18px;
+    }
+
+    @keyframes navUnreadPulse {
+      0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.85);
+      }
+      70% {
+        transform: scale(1.25);
+        box-shadow: 0 0 0 7px rgba(239, 68, 68, 0);
+      }
+      100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+      }
+    }
 
     /* Échelle de lecture confortable sur ordinateur. */
     @media (min-width: 1000px) {
@@ -7984,18 +8016,793 @@
       font-size: 0.78rem;
       color: #a855f7;
     }
-    .scanner-apply-btn {
-      width: 100%;
-      padding: 14px;
+    /* ==========================================
+       CHEATS PAGE - ULTRA PREMIUM STYLING
+       ========================================== */
+    .cheats-hero {
+      margin-bottom: 28px;
+      padding: 32px 28px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 24px;
+      background: radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.92) 65%);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cheats-hero-inner { position: relative; z-index: 2; }
+    
+    .cheats-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    
+    .cheats-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 10px #38bdf8;
+      animation: neonPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes neonPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.4; }
+    }
+
+    .cheats-hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 10px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .cheats-hero-title span {
+      background: linear-gradient(135deg, #fde047, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cheats-hero-lead {
+      color: #cbd5e1;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 0 24px;
+    }
+
+    .cheats-stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .cheats-stat-item { display: flex; flex-direction: column; gap: 2px; }
+    .cheats-stat-val { font-size: 1.4rem; font-weight: 900; color: #fde047; font-family: monospace; }
+    .cheats-stat-lbl { font-size: 0.76rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .cheats-stat-divider { width: 1px; height: 28px; background: rgba(255, 255, 255, 0.12); }
+
+    /* ADMIN TERMINAL */
+    .admin-terminal-card {
+      margin-bottom: 32px;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 20px;
+      background: #090d16;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.12);
+      overflow: hidden;
+    }
+    
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .terminal-dots { display: flex; gap: 7px; }
+    .terminal-dots .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-dots .red { background: #ef4444; }
+    .terminal-dots .yellow { background: #f59e0b; }
+    .terminal-dots .green { background: #22c55e; }
+
+    .terminal-title { font-family: monospace; font-size: 0.8rem; font-weight: 800; color: #94a3b8; letter-spacing: 0.08em; }
+    .terminal-status { font-size: 0.74rem; font-weight: 800; color: #4ade80; display: flex; align-items: center; gap: 6px; }
+    .terminal-status .status-live { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+
+    .terminal-body { padding: 22px 24px; }
+    .terminal-intro { color: #64748b; font-family: monospace; font-size: 0.82rem; margin: 0 0 14px; }
+
+    .terminal-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 6px 6px 16px;
+      border: 1px solid rgba(56, 189, 248, 0.4);
       border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .terminal-input-wrap:focus-within {
+      border-color: #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    .terminal-prompt { color: #38bdf8; font-family: monospace; font-size: 1.3rem; font-weight: 900; }
+    .terminal-input {
+      flex: 1;
+      background: transparent;
       border: none;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fde047;
+      font-family: monospace, monospace;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      outline: none;
+    }
+    .terminal-input::placeholder { color: #475569; font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
+
+    .terminal-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #0f172a;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .terminal-submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .terminal-feedback {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .terminal-feedback.success { background: rgba(34, 197, 94, 0.14); border: 1px solid rgba(34, 197, 94, 0.4); color: #4ade80; }
+    .terminal-feedback.error { background: rgba(239, 68, 68, 0.14); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; }
+
+    .terminal-quick-chips {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .chips-label { font-size: 0.78rem; color: #64748b; font-weight: 700; }
+    .quick-chip-btn {
+      padding: 5px 11px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .quick-chip-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #fff;
+    }
+
+    /* FILTER TABS BAR */
+    .cheats-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .cheat-filter-btn {
+      padding: 9px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.6);
+      color: #94a3b8;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cheat-filter-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .cheat-filter-btn.is-active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(253, 224, 71, 0.2));
+      border-color: #38bdf8;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+    }
+
+    /* CARDS GRID */
+    .cheats-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .cheat-card-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .cheat-card-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.15);
+    }
+    .cheat-card-item.priority {
+      border-color: rgba(253, 224, 71, 0.45);
+      background: linear-gradient(135deg, rgba(253, 224, 71, 0.08), rgba(15, 23, 42, 0.85));
+    }
+
+    .cheat-card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .cheat-card-code-val {
+      font-family: monospace, monospace;
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #fde047;
+      letter-spacing: 0.06em;
+    }
+    .copy-btn-action {
+      padding: 7px 14px;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 9px;
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .copy-btn-action:hover {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
+    }
+
+    .cheat-card-reward-desc {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    .cheat-card-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .cheat-type-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+    .cheat-type-tag.sprite { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .cheat-type-tag.xp { background: rgba(250, 204, 21, 0.2); color: #facc15; border: 1px solid rgba(250, 204, 21, 0.3); }
+    .cheat-type-tag.item { background: rgba(192, 132, 252, 0.2); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+    .cheat-type-tag.hack { background: rgba(244, 114, 182, 0.2); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.3); }
+
+    .cheat-status-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+    }
+    .cheat-status-badge.unlocked { color: #4ade80; font-weight: 800; }
+
+    /* TUTORIAL ROADMAP */
+    .cheat-tutorial-section {
+      padding: 32px 28px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      background: rgba(15, 23, 42, 0.5);
+      margin-top: 20px;
+    }
+    .tutorial-head { margin-bottom: 24px; }
+    .tutorial-kicker { font-size: 0.76rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; }
+    .tutorial-head h2 { font-size: 1.4rem; font-weight: 800; color: #fff; margin: 4px 0 6px; }
+    .tutorial-head p { color: #94a3b8; font-size: 0.9rem; margin: 0; }
+
+    .tutorial-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .tutorial-step-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      background: rgba(30, 41, 59, 0.5);
+      position: relative;
+    }
+    .step-num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #0f172a;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+    .tutorial-step-card h3 { font-size: 1rem; font-weight: 800; color: #fff; margin: 0 0 6px; }
+    .tutorial-step-card p { font-size: 0.84rem; color: #94a3b8; margin: 0; line-height: 1.45; }
+
+    /* ==========================================
+       TIPS & LEAKS PAGE - ULTRA PREMIUM STYLING
+       ========================================== */
+    .tips-hero {
+      margin-bottom: 28px;
+      padding: 32px 28px;
+      border: 1px solid rgba(250, 204, 21, 0.25);
+      border-radius: 24px;
+      background: radial-gradient(circle at 0% 0%, rgba(250, 204, 21, 0.15), rgba(15, 23, 42, 0.92) 65%);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .tips-hero-inner { position: relative; z-index: 2; }
+    .tips-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(250, 204, 21, 0.15);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      color: #facc15;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    .tips-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #facc15;
+      box-shadow: 0 0 10px #facc15;
+      animation: pulse-dot 1.5s infinite;
+    }
+    .tips-hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 10px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .tips-hero-title span {
+      background: linear-gradient(135deg, #facc15, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tips-hero-lead {
+      color: #cbd5e1;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 760px;
+      margin: 0;
+    }
+
+    .tips-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .tip-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .tip-card.featured-leak {
+      border-color: rgba(250, 204, 21, 0.35);
+      background: linear-gradient(145deg, rgba(250, 204, 21, 0.08), rgba(15, 23, 42, 0.85));
+    }
+    .tip-card:hover {
+      border-color: rgba(250, 204, 21, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .tip-card-header {
+      margin-bottom: 24px;
+    }
+    .tip-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .tip-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+    .tip-badge.leak-badge {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+    .tip-date {
+      color: #94a3b8;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .tip-card-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .tip-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      width: 100%;
+    }
+    .tip-card-body:has(.tip-media-box) {
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 860px) {
+      .tip-card-body:has(.tip-media-box) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tip-media-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tip-icon-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      min-height: 170px;
+    }
+    .tip-icon-box .tip-big-emoji {
+      font-size: 3.8rem;
+      line-height: 1;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    }
+    .tip-icon-box .tip-icon-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tip-img-wrap {
+      position: relative;
+      border-radius: 16px;
+      background: radial-gradient(circle at 50% 50%, rgba(250, 204, 21, 0.2), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .tip-img {
+      width: 170px;
+      height: 170px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+      transition: transform 0.3s ease;
+    }
+    .tip-img-wrap:hover .tip-img {
+      transform: scale(1.06);
+    }
+
+    .tip-content-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .tip-explicatif-block h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fde047;
+      margin: 0 0 10px;
+    }
+    .tip-explicatif-block p {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin: 0 0 18px;
+    }
+
+    .tip-rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .rule-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .rule-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+    .rule-card > div > strong:first-child {
+      display: block;
+      color: #f8fafc;
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+    .rule-card p strong {
+      display: inline;
       color: #fff;
       font-weight: 800;
-      font-size: 1rem;
+    }
+    .rule-card p {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .rule-card a {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+
+    .tip-alert-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #7dd3fc;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .tip-alert-box .alert-icon {
+      font-size: 1.2rem;
+    }
+
+    .tip-actions-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tip-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
-      margin-top: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 0;
+    }
+    .tip-action-btn.primary {
+      background: linear-gradient(135deg, #facc15, #eab308);
+      color: #0f172a;
+      box-shadow: 0 4px 16px rgba(250, 204, 21, 0.35);
+    }
+    .tip-action-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(250, 204, 21, 0.5);
+    }
+    .tip-action-btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .tip-action-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    /* ==========================================
+       ADMIN PAGES MANAGEMENT & MAINTENANCE STYLES
+       ========================================== */
+    .admin-pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .admin-page-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+    .admin-page-card:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      transform: translateY(-2px);
+    }
+    .admin-page-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .admin-page-title {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .admin-page-route {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .admin-page-state-picker {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .admin-page-state-btn {
+      padding: 8px 6px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+    .admin-page-state-btn:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+    .admin-page-state-btn.is-active[data-state="active"] {
+      background: rgba(74, 222, 128, 0.2);
+      border-color: rgba(74, 222, 128, 0.5);
+      color: #4ade80;
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+    }
+    .admin-page-state-btn.is-active[data-state="disabled"] {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: #f87171;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+    }
+    .admin-page-state-btn.is-active[data-state="maintenance"] {
+      background: rgba(250, 204, 21, 0.2);
+      border-color: rgba(250, 204, 21, 0.5);
+      color: #facc15;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.2);
+    }
+
+    /* Page Maintenance Overlay */
+    .page-maintenance-screen {
+      padding: 60px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 55vh;
+      animation: page-in 0.3s ease;
+    }
+    .maintenance-content-card {
+      max-width: 520px;
+      width: 100%;
+      padding: 40px 32px;
+      border-radius: 24px;
+      background: radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.15), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .maintenance-icon-glow {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 16px rgba(250, 204, 21, 0.6));
+    }
+    .maintenance-content-card h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 12px;
+    }
+    .maintenance-content-card h2 span {
+      color: #facc15;
+    }
+    .maintenance-content-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0 0 24px;
+    }
+    .maintenance-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -8011,12 +8818,14 @@
         <div class="topbar-links" aria-label="Accès rapides">
           <a href="#home" data-page-target="home">Accueil</a>
           <a href="#catalog" data-page-target="catalog">Collection</a>
-          <a href="#garden" data-page-target="garden">🌸 Jardin des Esprits</a>
+          <a href="#cheats" data-page-target="cheats">Cheat Codes</a>
+          <a href="#tips" data-page-target="tips">Astuces &amp; Secrets</a>
           <a href="#guide" data-page-target="guide">Guide</a>
+          <a href="#garden" data-page-target="garden">Jardin</a>
+          <a href="#patch-notes" data-page-target="patch-notes">Patch Notes</a>
+          <a href="#reviews" data-page-target="reviews">Avis</a>
           <a href="#maps" data-page-target="maps">Maps</a>
           <a href="#settings" data-page-target="settings">Réglages</a>
-          <a href="#reviews" data-page-target="reviews">Avis</a>
-          <a href="#patch-notes" data-page-target="patch-notes">Patch Notes</a>
           <a href="#admin" data-page-target="admin" data-admin-link hidden>Admin</a>
         </div>
       </div>
@@ -8423,6 +9232,7 @@
           <button type="button" data-admin-tab="edit" aria-selected="false">Modifier</button>
           <button type="button" data-admin-tab="variant" aria-selected="false">Nouvelle variante</button>
           <button type="button" data-admin-tab="variant-edit" aria-selected="false">Modifier les variantes</button>
+          <button type="button" data-admin-tab="pages" aria-selected="false">🌐 Gestion des Pages</button>
           <button type="button" data-admin-tab="map" aria-selected="false">Maps Créatives</button>
           <button type="button" data-admin-tab="users" aria-selected="false">👥 Casiers Joueurs</button>
           <button type="button" data-admin-tab="patch" aria-selected="false">Patch Note</button>
@@ -8507,274 +9317,490 @@
           <p class="admin-manage-copy">Gère les Patch Notes, les esprits ajoutés, les types de variantes, leurs noms, bonus et couleurs, ainsi que les corrections publiées. Les changements sont ajoutés au brouillon avant publication.</p>
           <div class="admin-content-manager" id="adminContentManager"></div>
         </section>
+        <section class="panel-card admin-form" id="adminPagesPanel" data-admin-panel="pages">
+          <div class="panel-heading"><div><span>Configuration Système</span><h2>Gestion &amp; Statut des Pages</h2></div></div>
+          <p class="admin-manage-copy">Activez 🟢, masquez 🔴 ou passez 🛠️ n'importe quelle page du site en mode <strong>Mise à jour (Maintenance)</strong>. Toutes les nouvelles pages ajoutées s'afficheront automatiquement ci-dessous.</p>
+          <div id="adminPagesGrid" class="admin-pages-grid"></div>
+        </section>
         <section class="admin-publish-bar"><div><span>Brouillon global</span><strong id="adminDraftStatus">Aucune modification</strong></div><button id="adminPreviewBtn" type="button">Aperçu local</button><button class="feature-primary" id="adminPublishBtn" type="button">Publier sur Sprite Locker</button></section>
         <div class="admin-history" id="adminHistory"></div>
       </div>
     </section>
 
     <section class="patch-page patch-page-compact app-page" id="patchNotesPage" data-page="patch-notes" aria-labelledby="patchNotesTitle">
+      <!-- NEW PATCH NOTE v10.8.0 (21 août 2026) -->
       <article class="patch-entry">
         <header class="patch-simple-head">
           <div>
-            <span class="patch-kicker">Nouvelle Saison · Chapitre 7 Saison 4</span>
-            <h1 id="patchNotesTitle">Prime Sprites <span>1.2 — Override</span></h1>
+            <span class="patch-kicker">Mise à jour Majeure v10.8.0</span>
+            <h1 id="patchNotesTitle">Mise à jour <span>Nouveautés, Tri Chronologique &amp; Ergonomie</span></h1>
           </div>
-          <time class="patch-date" datetime="2026-08-20T00:00:00+02:00">
-            <span>20 août 2026 · Lancement officiel</span>
+          <time class="patch-date" datetime="2026-08-21T02:20:00+02:00">
+            <span>21 août 2026 · 02h20 (heure de Paris)</span>
           </time>
         </header>
 
         <div class="patch-grid">
           <section class="patch-card">
-            <h2>🎮 Nouvelle Saison « Override »</h2>
+            <h2>🔴 Navigation Intelligente &amp; Persistance</h2>
             <ul class="patch-list">
-              <li>L'application passe officiellement en version <strong>Prime Sprites 1.2</strong> pour la nouvelle saison Fortnite.</li>
-              <li>Thématique officielle <strong>« Gaming Legends »</strong> &amp; Cybernétique : <em>Brisez les règles. Changez la donne.</em></li>
-              <li>Prise en charge des futurs esprits, compétences et variantes inspirés de l'univers cybernétique et des effets glitch.</li>
+              <li>Ajout d'un point rouge clignotant sur les onglets (<em>Astuces &amp; Leaks</em>, <em>Cheat Codes</em>, <em>Patch Notes</em>) en cas de contenu inédit.</li>
+              <li>Mémorisation automatique de l'onglet actif : l'application rouvre exactement là où vous étiez lors d'un rafraîchissement (PC &amp; Mobile).</li>
+              <li>Disparition automatique de l'indicateur d'inédits dès la consultation de la section concernée.</li>
             </ul>
           </section>
           <section class="patch-card">
-            <h2>⚡ Crossovers &amp; Légendes Confirmées</h2>
+            <h2>⏱️ Tri Chronologique &amp; Code H0p0nVC</h2>
             <ul class="patch-list">
-              <li>Préparation du catalogue pour l'arrivée des légendes : <strong>Sonic</strong>, <strong>Joker (Persona 5)</strong>, <strong>Sora (Kingdom Hearts)</strong>, <strong>Crash Bandicoot</strong> &amp; <strong>Spyro</strong>.</li>
-              <li>Intégration des éléments Pac-Man, Tetris et Mega Man dès leur déploiement dans le jeu.</li>
-              <li>Prise en charge des nouvelles mécaniques de piratage (Hacking) sur les cartes créatives et le catalogue.</li>
+              <li>Classement dynamique des astuces, leaks et codes du plus récent au plus ancien en temps réel.</li>
+              <li>Ajout du nouveau Cheat Code <strong>H0p0nVC</strong> (récompense : <em>2 000 Poussière d'esprit</em>) avec saisie insensible à la casse.</li>
+              <li>Copie instantanée en un clic avec confirmation visuelle directe sur chaque carte de code.</li>
             </ul>
           </section>
           <section class="patch-card">
-            <h2>🚀 Optimisations Prime Sprites 1.2</h2>
+            <h2>🌍 Nomenclature Officielle &amp; Interface Épurée</h2>
             <ul class="patch-list">
-              <li>Refonte complète du système de versioning PWA et synchronisation instantanée du casier.</li>
-              <li>Mise à jour des icônes de raccourcis d'application et des métadonnées de partage social.</li>
-              <li>Performances accrues pour un chargement fluide sur tous les appareils mobile et PC.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
-      <article class="patch-entry">
-        <header class="patch-simple-head">
-          <div>
-            <span class="patch-kicker">Mise à jour majeure</span>
-            <h1 id="patchNotesTitle">Prime Sprites <span>&amp; Design</span></h1>
-          </div>
-          <time class="patch-date" datetime="2026-08-13T01:14:00+02:00">
-            <span>13 août 2026 · En direct</span>
-          </time>
-        </header>
-
-        <div class="patch-grid">
-          <section class="patch-card">
-            <h2>⚡ Optimisations &amp; Performances</h2>
-            <ul class="patch-list">
-              <li>Mise à jour majeure du moteur applicatif et suppression des modules inutilisés.</li>
-              <li>Amélioration de la réactivité PWA et chargement instantané du catalogue.</li>
-              <li>Optimisation de la synchronisation du casier et du mode hors ligne.</li>
-            </ul>
-          </section>
-          <section class="patch-card">
-            <h2>Nouveau Nom &amp; Logos Adaptatifs</h2>
-            <ul class="patch-list">
-              <li>L'application évolue officiellement sous le nouveau nom <strong>Prime Sprites</strong>.</li>
-              <li>Intégration du nouveau logo adaptatif en version transparente (affichage automatique en blanc ou noir selon le thème).</li>
-              <li>Mise à jour complète des icônes d'application et des écrans d'accueil PWA.</li>
-            </ul>
-          </section>
-          <section class="patch-card">
-            <h2>Fonds d'Écran Épiques &amp; Ergonomie</h2>
-            <ul class="patch-list">
-              <li>Intégration des arrière-plans Fortnite personnalisés et réactifs pour PC (16:9) et Mobile (9:16).</li>
-              <li>Suppression des bannières d'en-tête pour un accès direct et instantané à toutes les fonctionnalités.</li>
-              <li>Barre de statut compacte réunissant l'état de synchronisation et les visiteurs en direct.</li>
+              <li>Harmonisation intégrale du terme officiel <strong>Poussière d'esprit</strong> dans toutes les traductions françaises (FR/EN).</li>
+              <li>Suppression du simulateur d'injection encombrant pour un affichage direct, fluide et aéré de la liste des codes.</li>
+              <li>Design et typographie des titres de patch notes totalement harmonisés et uniformisés.</li>
             </ul>
           </section>
         </div>
       </article>
 
+      <!-- PREVIOUS PATCH NOTE -->
       <article class="patch-entry">
         <header class="patch-simple-head">
           <div>
-            <span class="patch-kicker">Nouvelle Fonctionnalité</span>
-            <h1>Page Avis &amp; <span>Livre d'Or</span></h1>
+            <span class="patch-kicker">Mise à jour Corrective</span>
+            <h2>Correctif <span>Système d'Avis &amp; Noms</span></h2>
           </div>
-          <time class="patch-date" datetime="2026-08-05T02:00:00+02:00">
-            <span>5 août 2026 · 02h00 (heure de Paris)</span>
+          <time class="patch-date" datetime="2026-08-20T21:27:00+02:00">
+            <span>20 août 2026 · 21h27 (heure de Paris)</span>
           </time>
         </header>
 
         <div class="patch-grid">
           <section class="patch-card">
-            <h2>Livre d'Or &amp; Avis Publics</h2>
+            <h2>⭐ Résolution du Système d'Avis</h2>
             <ul class="patch-list">
-              <li>Nouvelle section dédiée "Avis" accessible depuis le menu principal et le dock mobile.</li>
-              <li>Affichage public et en direct des avis, commentaires et retours laissés par la communauté.</li>
-              <li>Cartes d'avis élégantes affichant la note en étoiles, l'avatar Google et la date de publication.</li>
+              <li>Correction du bug qui empêchait l'ouverture de la modale lors d'un clic sur le bouton « Donnez votre avis ».</li>
+              <li>Redesign complet du bouton d'avis pour un affichage compact, élégant et parfaitement intégré.</li>
+              <li>Élimination des boutons doublons et activation universelle sur tous les supports.</li>
             </ul>
           </section>
           <section class="patch-card">
-            <h2>Système de Notation 5 Étoiles</h2>
+            <h2>🇫🇷 Traduction Intégrale des Esprits &amp; Variantes</h2>
             <ul class="patch-list">
-              <li>Système interactif de vote par étoiles dorées pour noter l'application de 1 à 5 étoiles.</li>
-              <li>Zone de texte pour rédiger vos commentaires, suggestions et encouragements.</li>
-              <li>Connexion simplifiée et sécurisée via compte Google pour garantir l'authenticité de chaque avis.</li>
+              <li>Correction de la traduction en français pour toutes les variantes d'esprits en jeu.</li>
+              <li>La variante <em>Cheat Master</em> s'affiche désormais sous son nom officiel français : <strong>« Roi de la triche »</strong>.</li>
+              <li>Noms officiels Fortnite vérifiés et synchronisés en français et en anglais pour tous les esprits.</li>
             </ul>
           </section>
           <section class="patch-card">
-            <h2>Synchronisation &amp; Sécurité Cloud</h2>
+            <h2>⚡ Optimisations &amp; Ergonomie</h2>
             <ul class="patch-list">
-              <li>Enregistrement instantané des avis sur la base de données Firestore.</li>
-              <li>Règles de sécurité Firestore dédiées assurant la lecture publique et la protection contre le spam.</li>
-              <li>Rafraîchissement automatique de la liste dès qu'un nouvel avis est posté.</li>
+              <li>Navigation dynamique avec masquage intelligent des pages archivées.</li>
+              <li>Mise à jour PWA v7.5.0 pour un chargement instantané.</li>
+              <li>Fluidité accrue sur mobile et PC.</li>
             </ul>
           </section>
         </div>
-      </article>
-
-      <article class="patch-entry">
-        <header class="patch-simple-head">
-          <div>
-            <span class="patch-kicker">Mise à jour Récente</span>
-            <h1>Refonte Premium <span>UI & VFX</span></h1>
-          </div>
-          <time class="patch-date" datetime="2026-08-05T23:00:00+02:00">
-            <span>5 août 2026 · 23h00 (heure de Paris)</span>
-          </time>
-        </header>
-
-        <div class="patch-grid">
-          <section class="patch-card">
-            <h2>Paramètres "Glassmorphism"</h2>
-            <ul class="patch-list">
-              <li>Refonte totale de la page Réglages avec un design premium tout en transparence (Glassmorphism 3.0).</li>
-              <li>Nouveaux boutons segmentés ultra-fluides pour ajuster la taille des cartes et la densité.</li>
-              <li>Sphères 3D lumineuses pour le choix de la couleur d'accentuation en temps réel.</li>
-              <li>Tuiles de fonds interactives reprenant le dégradé visuel exact.</li>
-            </ul>
-          </section>
-          <section class="patch-card">
-            <h2>VFX et Typographie</h2>
-            <ul class="patch-list">
-              <li>Intégration d'un système de particules d'étoiles 3D ultra-réaliste déclenché lors de la maîtrise.</li>
-              <li>Nouvelle typographie audacieuse "Jeu Vidéo Premium" pour les titres de section.</li>
-              <li>Nouvelle icône de sécurité 3D 🛡️ lumineuse pour l'accès administrateur.</li>
-            </ul>
-          </section>
-          <section class="patch-card">
-            <h2>Qualité de Vie</h2>
-            <ul class="patch-list">
-              <li>L'interface d'administration bénéficie d'une ambiance "Hack Terminal" très sécurisée.</li>
-              <li>Suppression des panneaux inutiles pour recentrer l'interface sur l'essentiel.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
-
-      <article class="patch-entry">
-        <header class="patch-simple-head">
-          <div>
-            <span class="patch-kicker">Mise à jour v41.37</span>
-            <h1>Effets Sonores <span>(SFX)</span></h1>
-          </div>
-          <time class="patch-date" datetime="2026-08-11T01:30:00+02:00">
-            <span>11 août 2026 · 01h30 (heure de Paris)</span>
-          </time>
-        </header>
-
-        <div class="patch-grid">
-          <section class="patch-card">
-            <h2>Sons Interactifs</h2>
-            <ul class="patch-list">
-              <li>Sons tactiles discrets sur chaque clic de bouton ou d'interface.</li>
-              <li>Carillon harmonieux lors du déverrouillage d'un esprit.</li>
-              <li>Fanfare héroïque d'étoiles 🌟 lors de l'obtention d'une Maîtrise.</li>
-              <li>Son d'annulation lors du retrait d'un esprit.</li>
-            </ul>
-          </section>
-          <section class="patch-card">
-            <h2>Réglages Audio</h2>
-            <ul class="patch-list">
-              <li>Commutateur <strong>Activer les sons</strong> ajouté dans Réglages → Système.</li>
-              <li>Préférences sauvegardées automatiquement.</li>
-              <li>Synthèse Web Audio API 100% zéro latence et ultra-léger.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
-
-      <article class="patch-entry">
-        <header class="patch-simple-head">
-          <div>
-            <span class="patch-kicker">Mise à jour v41.36</span>
-            <h1>Recherche Intelligente & <span>Mise à jour Auto</span></h1>
-          </div>
-          <time class="patch-date" datetime="2026-08-08T23:30:00+02:00">
-            <span>8 août 2026 · 23h30 (heure de Paris)</span>
-          </time>
-        </header>
-
-        <div class="patch-grid">
-          <section class="patch-card">
-            <h2>Moteur de Recherche Flou ("Fuzzy Search")</h2>
-            <ul class="patch-list">
-              <li>L'application tolère désormais tes fautes de frappe ! <strong>irnmouse</strong> ou <strong>balkman</strong> trouveront quand même l'esprit.</li>
-              <li>Algorithme adaptatif : 1 faute autorisée (3-5 lettres) et 2 fautes (6+ lettres).</li>
-              <li>Les correspondances exactes sans faute apparaissent toujours en premier.</li>
-            </ul>
-          </section>
-          <section class="patch-card">
-            <h2>Actualisation Automatique</h2>
-            <ul class="patch-list">
-              <li>Mises à jour instantanées de l'application et du catalogue sans manipulation.</li>
-              <li>Rechargement automatique et transparent dès qu'une nouvelle version est disponible en arrière-plan.</li>
-              <li>Plus besoin de fermer toutes tes fenêtres pour avoir les nouveautés !</li>
-            </ul>
-          </section>
-        </div>
-      </article>
-
-      <article class="patch-entry">
-        <header class="patch-simple-head">
-          <div>
-            <span class="patch-kicker" id="patchKicker">Mise à jour v41.35</span>
-            <h1 id="patchNotesTitle">Nouvelle interface <span>Catalogue & Guide</span></h1>
-          </div>
-          <time class="patch-date" id="patchDate" datetime="2026-08-04T14:30:00+02:00">
-            <span id="patchDateText">4 août 2026 · 14h30 (heure de Paris)</span>
-          </time>
-        </header>
-
-        <div class="patch-grid">
-          <section class="patch-card">
-            <h2 id="patchNewTitle">Nouvelle Interface (Cartes &amp; Slide)</h2>
-            <ul class="patch-list">
-              <li id="patchNewJohn">Chaque esprit possède désormais sa propre carte dédiée.</li>
-              <li id="patchNewLlama">Fais glisser de gauche à droite sur la carte pour voir toutes ses variantes.</li>
-              <li id="patchNewPeely">Vue claire sur la maîtrise, le nombre de variantes et la progression.</li>
-            </ul>
-          </section>
-          <section class="patch-card">
-            <h2 id="patchVariantsTitle">Correctifs &amp; Navigation PC</h2>
-            <ul class="patch-list">
-              <li id="patchVariantsQuack">Repositionnement des flèches de défilement (‹ ›) dans l’en-tête de carte.</li>
-              <li id="patchVariantsZero">Résolution du chevauchement avec le texte du nombre de variantes sur PC.</li>
-              <li id="patchVariantsRare">Navigation fluide et lisibilité optimale sur tous les écrans.</li>
-            </ul>
-          </section>
-          <section class="patch-card">
-            <h2 id="patchAppTitle">Améliorations PWA</h2>
-            <ul class="patch-list">
-              <li id="patchAppLevels">Installation automatique instantanée sur tous les navigateurs compatibles.</li>
-              <li id="patchAppFilters">Affichage du logo garanti dans la bannière d’installation.</li>
-              <li id="patchAppData">Guide interactif d’installation étape par étape pour Safari sur iOS.</li>
-            </ul>
-          </section>
-        </div>
-
-        <aside class="patch-notice">
-          <span class="patch-notice-mark" aria-hidden="true">!</span>
-          <div><strong id="patchNoticeTitle">Contenu encore non sorti</strong><p id="patchNoticeCopy">Ironmouse et les variantes Gemme encore signalées comme non sorties ne sont pas ajoutés au total : ils rejoindront le catalogue dès leur disponibilité officielle.</p></div>
-        </aside>
       </article>
     </section>
+    <section class="feature-page app-page" id="cheatsPage" data-page="cheats" aria-labelledby="cheatsTitle">
+      <!-- HERO BANNER -->
+      <header class="cheats-hero">
+        <div class="cheats-hero-inner">
+          <div class="cheats-hero-badge">
+            <span class="cheats-pulse-dot" aria-hidden="true"></span>
+            <span>FORTNITE v42.00 // OVERRIDE CHEAT SYSTEM</span>
+          </div>
+          <h1 id="cheatsTitle" class="cheats-hero-title">
+            Cheat Codes <span>&amp; Lobby Hacks</span>
+          </h1>
+          <p class="cheats-hero-lead">
+            Injectez directement vos codes dans la console Admin Panel de Fortnite pour débloquer les esprits <strong>Roi de la triche</strong>, des bonus d'EXP et des métamorphoses exclusives !
+          </p>
+          
+          <!-- QUICK STATS -->
+          <div class="cheats-stats-bar">
+            <div class="cheats-stat-item">
+              <span class="cheats-stat-val">19</span>
+              <span class="cheats-stat-lbl">Codes actifs</span>
+            </div>
+            <div class="cheats-stat-divider" aria-hidden="true"></div>
+            <div class="cheats-stat-item">
+              <span class="cheats-stat-val">5</span>
+              <span class="cheats-stat-lbl">Esprits Exclusifs</span>
+            </div>
+            <div class="cheats-stat-divider" aria-hidden="true"></div>
+            <div class="cheats-stat-item">
+              <span class="cheats-stat-val">+40K</span>
+              <span class="cheats-stat-lbl">EXP &amp; Bonus</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- FILTER TABS BAR -->
+      <div class="cheats-filter-bar" role="tablist" aria-label="Catégories de cheat codes">
+        <button type="button" class="cheat-filter-btn is-active" data-filter="all" onclick="filterCheatCategory('all')">Tous les codes (20)</button>
+        <button type="button" class="cheat-filter-btn" data-filter="sprite" onclick="filterCheatCategory('sprite')">🔥 Esprits Roi de la triche (6)</button>
+        <button type="button" class="cheat-filter-btn" data-filter="xp" onclick="filterCheatCategory('xp')">⚡ XP &amp; Boosts (3)</button>
+        <button type="button" class="cheat-filter-btn" data-filter="item" onclick="filterCheatCategory('item')">🎁 Objets &amp; Extractions (5)</button>
+        <button type="button" class="cheat-filter-btn" data-filter="hack" onclick="filterCheatCategory('hack')">🕹️ Lobby Hacks &amp; Cosmetics (6)</button>
+      </div>
+
+      <!-- CHEATS GRID -->
+      <div class="cheats-cards-grid" id="allCheatsGrid"></div>
+
+      <!-- TUTORIAL STEP-BY-STEP ROADMAP -->
+      <div class="cheat-tutorial-section">
+        <div class="tutorial-head">
+          <span class="tutorial-kicker">Tutoriel Fortnite</span>
+          <h2>Comment injecter un Cheat Code en jeu ?</h2>
+          <p>Suivez ces 4 étapes simples directement dans Fortnite Battle Royale :</p>
+        </div>
+
+        <div class="tutorial-steps-grid">
+          <div class="tutorial-step-card">
+            <div class="step-num">01</div>
+            <h3>Ouvrez le Lobby</h3>
+            <p>Lancez Fortnite et rendez-vous dans l'écran principal du lobby Battle Royale.</p>
+          </div>
+
+          <div class="tutorial-step-card">
+            <div class="step-num">02</div>
+            <h3>Ouvrez l'Admin Panel</h3>
+            <p>Cliquez sur l'onglet <strong>« Admin Panel »</strong> situé dans le menu d'administration.</p>
+          </div>
+
+          <div class="tutorial-step-card">
+            <div class="step-num">03</div>
+            <h3>Saisissez le Code</h3>
+            <p>Copiez l'un des codes ci-dessus et collez-le exactement dans le champ texte.</p>
+          </div>
+
+          <div class="tutorial-step-card">
+            <div class="step-num">04</div>
+            <h3>Validez avec Submit</h3>
+            <p>Appuyez sur <strong>Submit</strong> pour débloquer immédiatement votre récompense en jeu !</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-page app-page" id="tipsPage" data-page="tips" aria-labelledby="tipsTitle">
+      <!-- HERO BANNER -->
+      <header class="tips-hero">
+        <div class="tips-hero-inner">
+          <div class="tips-hero-badge">
+            <span class="tips-pulse-dot" aria-hidden="true"></span>
+            <span>FORTNITE ASTUCES &amp; NOUVEAUTÉS</span>
+          </div>
+          <h1 id="tipsTitle" class="tips-hero-title">
+            Astuces <span>&amp; Secrets</span>
+          </h1>
+          <p class="tips-hero-lead">
+            Découvrez en exclusivité les astuces d'obtention, les mécaniques cachées et les secrets d'esprits pour Fortnite !
+          </p>
+        </div>
+      </header>
+
+      <!-- TIPS CARDS CONTAINER -->
+      <div class="tips-container">
+        <!-- CARD 1: GOLD CROWN LEAK -->
+        <article class="tip-card featured-leak">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge">🚨 NOUVELLE INFORMATION</span>
+              <span class="tip-date">Publié le 21/08/2026 à 01:45</span>
+            </div>
+            <h2 class="tip-card-title">L'Esprit Couronne (Or) se débloque via l'Esprit Couronne (Roi de la triche) !</h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-media-box">
+              <div class="tip-img-wrap">
+                <img src="https://fortnite.gg/img/x/sprites/icons/T_Icon_BR_Creature_Sprite_Crown_Gold_L.webp" alt="Esprit Couronne (Or)" class="tip-img" loading="eager">
+              </div>
+            </div>
+
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 Explicatif clair de la découverte</h3>
+                <p>Un mécanisme secret d'obtention a été découvert pour l'esprit Couronne :</p>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">🎯</div>
+                    <div>
+                      <strong>Condition d'obtention</strong>
+                      <p>Maîtriser l'<strong>Esprit Couronne (Roi de la triche)</strong> débloque automatiquement la variante <strong>Esprit Couronne (Or)</strong>.</p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⏳</div>
+                    <div>
+                      <strong>Disponibilité en jeu</strong>
+                      <p>L'<strong>Esprit Couronne (Or)</strong> ainsi débloqué restera verrouillé à l'équipement jusqu'à son activation officielle programmée pour la semaine prochaine.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: CHEAT MASTER BUSH SPRITE -->
+        <article class="tip-card featured-leak">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(34, 197, 94, 0.15); color: #4ade80; border-color: rgba(34, 197, 94, 0.3);">🟢 LOBBY HACK · DISPONIBLE</span>
+              <span class="tip-date">Publié le 21/08/2026 à 01:35</span>
+            </div>
+            <h2 class="tip-card-title">Nouveau Lobby Hack : Esprit Buisson (Roi de la triche) !</h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-media-box">
+              <div class="tip-img-wrap">
+                <img src="https://fortnite.gg/img/x/sprites/icons/T_Icon_BR_Creature_Sprite_BushRanger_Cheatmaster_L.webp" alt="Esprit Buisson (Roi de la triche)" class="tip-img" loading="lazy">
+              </div>
+            </div>
+
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 Détails du nouveau code d'injection</h3>
+                <p>Un nouveau Lobby Hack a été découvert et permet d'obtenir directement l'esprit Buisson (Roi de la triche) !</p>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">🔑</div>
+                    <div>
+                      <strong>Code de triche</strong>
+                      <p><strong>GatherAndCraft</strong></p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">🎁</div>
+                    <div>
+                      <strong>Récompense</strong>
+                      <p><strong>Esprit Buisson (Roi de la triche)</strong></p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⚠️</div>
+                    <div>
+                      <strong>Condition de progression</strong>
+                      <p>Ce code nécessite d'avoir suffisamment avancé dans les quêtes d'histoire. Si elles ne sont pas terminées, Fortnite peut afficher que la récompense n'est pas encore disponible. Si vous possédez déjà cet esprit, vous recevez <strong>10 000 Poussière d'esprit</strong>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3: STORM SCOUT IN LIVE CATALOG -->
+        <article class="tip-card">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">🟢 CATALOGUE LIVE · MYTHIQUE</span>
+              <span class="tip-date">Publié le 21/08/2026 à 01:30</span>
+            </div>
+            <h2 class="tip-card-title">L'Esprit Storm Scout est confirmé et actif dans le catalogue Live !</h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-media-box">
+              <div class="tip-img-wrap">
+                <img src="https://fortnite.gg/img/x/sprites/icons/T_Icon_BR_Creature_Sprite_StormScout_L.webp" alt="Storm Scout Sprite" class="tip-img" loading="lazy">
+              </div>
+            </div>
+
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 Présence confirmée en jeu</h3>
+                <p>L'audit du catalogue live de Fortnite confirme actuellement <strong>12 familles d'esprits officielles</strong> pour cette génération (Aventure, 8-Bit, Sonic, Tails, Buisson, Couronne, Jackrabbit, Jonesy, Killswitch, Klombo, Ombre, Storm Scout).</p>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">⭐</div>
+                    <div>
+                      <strong>Rareté</strong>
+                      <p><strong>Mythique</strong></p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⚡</div>
+                    <div>
+                      <strong>Pouvoir passif (Overdrive)</strong>
+                      <p>Après avoir subi des dégâts dans la tempête, le Storm Scout active <strong>Overdrive</strong>. À son niveau maximum, il révèle les prochains cercles de tempête. Plus son niveau est élevé, moins il faut subir de dégâts pour déclencher l'effet.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 4: CHEAT MASTERS FOUND IN-GAME -->
+        <article class="tip-card">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: rgba(168, 85, 247, 0.3);">🟣 OBSERVATION COMMUNAUTAIRE</span>
+              <span class="tip-date">Publié le 21/08/2026 à 01:25</span>
+            </div>
+            <h2 class="tip-card-title">Les Esprits Roi de la triche s'obtiennent aussi directement en partie !</h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-media-box">
+              <div class="tip-img-wrap">
+                <img src="https://fortnite.gg/img/x/sprites/icons/T_Icon_BR_Creature_Sprite_NarrowFlea_Scribe_Cheatmaster_L.webp" alt="Esprit Ombre (Roi de la triche)" class="tip-img" loading="lazy">
+              </div>
+            </div>
+
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 Obtention directement sur l'île</h3>
+                <p>Les Lobby Hacks du menu principal ne sont pas le seul moyen d'obtenir les variantes Roi de la triche. Plusieurs joueurs ont confirmé avoir obtenu l'<strong>Esprit Ombre (Roi de la triche)</strong> / <em>Cheat Master Shadow Sprite</em> directement depuis les Cheat Codes violets trouvés sur l'île durant une partie !</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 5: 30 SPRITE BOONS DATAMINED -->
+        <article class="tip-card">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">🟠 DATAMINE · GAMEPLAY</span>
+              <span class="tip-date">Publié le 21/08/2026 à 01:20</span>
+            </div>
+            <h2 class="tip-card-title">30 Pouvoirs et Passifs d'Esprits découverts dans les fichiers du jeu !</h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 Analyse des capacités découvertes</h3>
+                <p>Un audit approfondi des fichiers du jeu (build v42.00) identifie <strong>30 pouvoirs passifs d'esprits</strong> intégrés dans le plugin système. Ces entrées correspondent à de vraies mécaniques de jeu (Gameplay Abilities &amp; Effects).</p>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">🔥</div>
+                    <div>
+                      <strong>Pouvoirs avec icônes UI</strong>
+                      <p>Ammo Hoarder, Collector, Extractable Expert, Firefly Frenzy, Gotta Get Goop, Hydro Healing, Infinite Ammo, Loot Pack, Midas Splash, One Man's Trash, Pickaxe Maniac, Rift 'N Ready, Scout, Shrapnel Damage, Storm Caller, Wind Parkour.</p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⚙️</div>
+                    <div>
+                      <strong>Pouvoirs internes en développement</strong>
+                      <p>AirSpeed, BossHealth, ChargedUp, DarkIntel, GhostReload, Greedy, HauntedHelpers, Inflated, JamSession, RoyalWins, Siphon, SuperShield, Void, WindVortex.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 6: THREE PLUGINS DATAMINED -->
+        <article class="tip-card">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">🟠 DATAMINE · ARCHITECTURE</span>
+              <span class="tip-date">Publié le 21/08/2026 à 01:15</span>
+            </div>
+            <h2 class="tip-card-title">Découverte des 3 plugins majeurs dédiés au système d'Esprits</h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 Architecture interne des esprits (v42.00)</h3>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">📚</div>
+                    <div>
+                      <strong>SpriteLibrary_CH7S3 (~4 127 assets)</strong>
+                      <p>Catalogue complet des esprits, modèles 3D et définitions de variantes.</p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⚡</div>
+                    <div>
+                      <strong>SpriteBoons_Ch7S3 (~190 assets)</strong>
+                      <p>Ensemble des capacités, compétences actives et arbres de passifs.</p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">🌀</div>
+                    <div>
+                      <strong>RiftAnomalies_Ch7s3_Base</strong>
+                      <p>Système gérant les anomalies de faille et chasses d'esprits rares sur la carte.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 7: ZERO POINT QUACK VARIANT -->
+        <article class="tip-card">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">🟠 DATAMINE · PAS ENCORE LIVE</span>
+              <span class="tip-date">Publié le 21/08/2026 à 01:10</span>
+            </div>
+            <h2 class="tip-card-title">Nouvelle variante découverte : Quack Zero Point Sprite !</h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 Variante identifiée dans les fichiers</h3>
+                <p>La variante <strong>Quack</strong> (Canard en plastique) pour la famille <strong>Zero Point Sprite</strong> a été localisée dans les DataAssets (`ESD_ZeroPointSprite_Variant_Quack.uasset`). Ses textures d'interface sont présentes dans les fichiers mais elle n'est pas encore activée dans le catalogue live.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 8: DEBUNKED RUMORS -->
+        <article class="tip-card">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border-color: rgba(148, 163, 184, 0.3);">⚪ RUMEURS INVALIDÉES</span>
+              <span class="tip-date">Publié le 21/08/2026 à 01:00</span>
+            </div>
+            <h2 class="tip-card-title">Statut des rumeurs : Joker Sprite &amp; Goose Sprite</h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 Aucune donnée trouvée dans la v42.00</h3>
+                <p>Les noms <strong>Joker Sprite</strong> et <strong>Goose Sprite</strong> qui circulent dans la communauté ne possèdent actuellement <strong>aucune famille correspondante dans le catalogue live</strong> ni aucun <strong>DisplayName dans les fichiers du jeu</strong>. Ils ne sont donc pas confirmés pour cette version.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="feature-page app-page" id="reviewsPage" data-page="reviews" aria-labelledby="reviewsTitle">
       <header class="feature-hero reviews-hero">
         <div>
@@ -8813,7 +9839,9 @@
     </section>
 
     <footer class="footer">
-      <p class="developer-credit"><span class="developer-signal" aria-hidden="true"></span>Développé par <strong>PrimeSyntax</strong> <span aria-hidden="true">.</span></p>
+      <div class="developer-signature-wrap">
+        <img src="./icons/prime-syntax-signature.png" alt="Prime Syntax" class="developer-signature-img" loading="lazy" width="260" height="85">
+      </div>
     </footer>
   </div>
 
@@ -8826,13 +9854,29 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5.5h16v13H4z"></path><path d="M8 5.5v13M16 5.5v13M4 12h16"></path></svg>
       <span>Collection</span>
     </a>
-    <a class="mobile-dock-item" href="#garden" data-page-target="garden">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      <span>Jardin</span>
+    <a class="mobile-dock-item" href="#cheats" data-page-target="cheats">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      <span>Cheats</span>
+    </a>
+    <a class="mobile-dock-item" href="#tips" data-page-target="tips">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"></path><path d="M9 21h6"></path></svg>
+      <span>Astuces</span>
     </a>
     <a class="mobile-dock-item" href="#guide" data-page-target="guide">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5.5h6a3 3 0 0 1 3 3v10H7a3 3 0 0 0-3 3z"></path><path d="M20 5.5h-4a3 3 0 0 0-3 3v10h4a3 3 0 0 1 3 3z"></path></svg>
       <span>Guide</span>
+    </a>
+    <a class="mobile-dock-item" href="#garden" data-page-target="garden">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      <span>Jardin</span>
+    </a>
+    <a class="mobile-dock-item" href="#patch-notes" data-page-target="patch-notes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M14 3v5h5M9 12h7M9 16h7"></path></svg>
+      <span>Patch Notes</span>
+    </a>
+    <a class="mobile-dock-item" href="#reviews" data-page-target="reviews">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      <span>Avis</span>
     </a>
     <a class="mobile-dock-item" href="#maps" data-page-target="maps">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
@@ -8841,14 +9885,6 @@
     <a class="mobile-dock-item" href="#settings" data-page-target="settings">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .4 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.4 1.7 1.7 0 0 0-1 1.6v.1h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.4l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .4-1.9 1.7 1.7 0 0 0-1.6-1H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.4-1.9L4.2 7l2.9-2.8.1.1a1.7 1.7 0 0 0 1.9.4 1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.4l.1-.1L19.9 7l-.1.1a1.7 1.7 0 0 0-.4 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
       <span>Réglages</span>
-    </a>
-    <a class="mobile-dock-item" href="#reviews" data-page-target="reviews">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-      <span>Avis</span>
-    </a>
-    <a class="mobile-dock-item" href="#patch-notes" data-page-target="patch-notes">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M14 3v5h5M9 12h7M9 16h7"></path></svg>
-      <span>Patch Notes</span>
     </a>
     <a class="mobile-dock-item" href="#admin" data-page-target="admin" data-admin-link hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 4.5 6v5c0 5 3.2 8.4 7.5 10 4.3-1.6 7.5-5 7.5-10V6z"></path><path d="m9 12 2 2 4-5"></path></svg>
@@ -9102,48 +10138,7 @@
         </div>
       </form>
     </div>
-  <!-- Écran d'accueil / Splash Screen d'entrée stylé -->
-  <div class="splash-screen" id="splashScreen" role="dialog" aria-label="Écran d'entrée Prime Sprites">
-    <div class="splash-backdrop"></div>
-    <div class="splash-glow-fx"></div>
-    <div class="splash-content">
-      <div class="splash-brand">
-        <div class="splash-logo-ring">
-          <img src="./icons/prime-logo-white-transparent.png" alt="Prime Sprites" class="splash-logo-img">
-        </div>
-        <span class="splash-badge">SAISON OVERRIDE · PRIME SPRITES 1.2</span>
-        <h1 class="splash-title">PRIME SPRITES 1.2</h1>
-        <p class="splash-subtitle">Collection officielle & Maps Créatives</p>
-      </div>
 
-      <!-- Action sur Téléphone (Glisser / Swipe to enter) -->
-      <div class="splash-action-mobile" id="splashActionMobile">
-        <div class="swipe-track" id="swipeTrack">
-          <span class="swipe-track-text">GLISSER POUR ENTRER ➔</span>
-          <div class="swipe-progress" id="swipeProgress"></div>
-          <div class="swipe-thumb" id="swipeThumb" role="button" aria-label="Glisser pour entrer dans l'application">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- Action sur PC (Cliquer / Click button) -->
-      <div class="splash-action-desktop" id="splashActionDesktop">
-        <button class="splash-enter-btn" id="splashEnterBtn" type="button">
-          <span class="splash-btn-glow"></span>
-          <span class="splash-btn-icon">⚡</span>
-          <span>ENTRER SUR L'APPLICATION</span>
-          <span class="splash-btn-arrow">➔</span>
-        </button>
-      </div>
-
-      <div class="splash-footer">
-        <span class="splash-status-text" id="splashStatusText">
-          <i class="splash-status-dot"></i> Synchronisation & Actualisation automatique
-        </span>
-      </div>
-    </div>
-  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -9231,8 +10226,8 @@
       const VISITOR_HOUR_KEY = "sprite-locker-visitor-hour";
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
-      const PATCH_RELEASED_AT = "2026-08-04T14:30:00+02:00";
-      const PWA_VERSION = "2026-08-20-v6.5.0";
+      const PATCH_RELEASED_AT = "2026-08-21T02:20:00+02:00";
+      const PWA_VERSION = "2026-08-21-v11.14.0";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -9770,71 +10765,171 @@
             fr: "Accorde la furtivité et camoufle les bruits de pas.",
             en: "Grants stealth and silences footstep sounds."
           }
+        },
+        cheatmaster: {
+          fr: "Roi de la triche", en: "Cheat Master", color: "#38bdf8",
+          effect: {
+            fr: "Variante réseau débloquée par Cheat Code dans l'Admin Panel du lobby.",
+            en: "Network variant unlocked via Cheat Code in the lobby Admin Panel."
+          }
         }
       };
 
       const families = [
         {
-          key: "wolverine", fr: "Esprit de Wolverine", en: "Wolverine Sprite", rarity: "mythic",
-          aliases: ["Esprit Wolverine", "Weapon X"],
+          key: "bushranger", fr: "Esprit Buisson", en: "Bush Sprite", rarity: "rare",
+          aliases: ["Esprit Buisson", "Bushranger", "Bush Sprite"],
           effect: {
-            fr: "Accorde la régénération de PV sauvage et les griffes de découpe en mêlée.",
-            en: "Grants feral HP regeneration and melee slicing claws."
+            fr: "Fait apparaître un buisson. Au niveau maximum, peut en faire apparaître après une élimination.",
+            en: "Spawns a bush. At max level, can spawn a bush after an elimination."
           },
           images: {
-            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='w' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fde047'/><stop offset='100%' stop-color='%23ca8a04'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23w)' stroke='%23fef08a' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%231e293b' stroke-width='8' stroke-linecap='round'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%23eab308' stroke-width='4' stroke-linecap='round'/></svg>",
-            gold: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='wg' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fef08a'/><stop offset='100%' stop-color='%23b45309'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23wg)' stroke='%23fff' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%2378350f' stroke-width='8' stroke-linecap='round'/></svg>",
-            galaxy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='wgx' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23c084fc'/><stop offset='100%' stop-color='%23312e81'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23wgx)' stroke='%23e0e7ff' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%23818cf8' stroke-width='8' stroke-linecap='round'/></svg>",
-            holofoil: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='wh' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%23a855f7'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23wh)' stroke='%23f472b6' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%23e0e7ff' stroke-width='8' stroke-linecap='round'/></svg>"
+            base: "T_Icon_BR_Creature_Sprite_BushRanger_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_BushRanger_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_BushRanger_Cheatmaster_L.webp"
           }
         },
         {
-          key: "midas", fr: "Esprit de Midas", en: "Midas Sprite", rarity: "mythic",
-          aliases: ["Esprit Midas"],
+          key: "eight-bit", fr: "Esprit 8-Bit", en: "8-Bit Sprite", rarity: "rare",
+          aliases: ["Esprit 8-Bit", "8Bit", "8-Bit Sprite"],
           effect: {
-            fr: "Transforme le butin trouvé en or précieux et augmente les dégâts des armes dorées de 20 %.",
-            en: "Converts found loot into precious gold and boosts golden weapon damage by 20%."
+            fr: "Permet d'obtenir le 8-Bit Shotgun depuis le premier coffre et améliore son multiplicateur.",
+            en: "Grants the 8-Bit Shotgun from the first chest and increases its multiplier."
           },
           images: {
-            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='m' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fef08a'/><stop offset='100%' stop-color='%23a16207'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23m)' stroke='%23fef08a' stroke-width='5'/><path d='M35 75 L60 30 L85 75 L70 75 L60 50 L50 75 Z' fill='%23451a03'/><circle cx='60' cy='42' r='8' fill='%23fff'/></svg>",
-            gold: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mg' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fff59d'/><stop offset='100%' stop-color='%23e65100'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mg)' stroke='%23fff' stroke-width='5'/><path d='M35 75 L60 30 L85 75 L70 75 L60 50 L50 75 Z' fill='%2378350f'/><circle cx='60' cy='42' r='8' fill='%23fef08a'/></svg>",
-            galaxy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mgx' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23f472b6'/><stop offset='100%' stop-color='%234c1d95'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mgx)' stroke='%23fbbf24' stroke-width='5'/><path d='M35 75 L60 30 L85 75 L70 75 L60 50 L50 75 Z' fill='%23fef08a'/></svg>"
+            base: "T_Icon_BR_Creature_Sprite_EightBitBlaster_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_EightBitBlaster_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_EightBitBlaster_Cheatmaster_L.webp"
           }
         },
         {
-          key: "nebula", fr: "Esprit Nébuleuse", en: "Nebula Sprite", rarity: "legendary",
+          key: "adventure", fr: "Esprit Aventure", en: "Adventure Sprite", rarity: "rare",
+          aliases: ["Esprit Aventure", "Nain", "Adventure Sprite"],
           effect: {
-            fr: "Accorde le saut zéro gravité et une traînée d'énergie stellaire repoussant les ennemis.",
-            en: "Grants Zero-G leap and a stellar energy trail repelling enemies."
+            fr: "Améliore un objet aléatoire de l'inventaire à chaque niveau.",
+            en: "Upgrades a random inventory item at each level."
           },
           images: {
-            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='n' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23c084fc'/><stop offset='100%' stop-color='%231e1b4b'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23n)' stroke='%23a855f7' stroke-width='4'/><polygon points='60,20 72,46 100,46 77,63 85,90 60,72 35,90 43,63 20,46 48,46' fill='%23f0abfc'/></svg>",
-            galaxy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='ngx' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%23311b92'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23ngx)' stroke='%23818cf8' stroke-width='4'/><polygon points='60,20 72,46 100,46 77,63 85,90 60,72 35,90 43,63 20,46 48,46' fill='%23bae6fd'/></svg>",
-            celestial: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='nc' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fbbf24'/><stop offset='100%' stop-color='%2392400e'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23nc)' stroke='%23fef08a' stroke-width='4'/><polygon points='60,20 72,46 100,46 77,63 85,90 60,72 35,90 43,63 20,46 48,46' fill='%23fff'/></svg>"
+            base: "T_Icon_BR_Creature_Sprite_Dwarf_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_Dwarf_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_Dwarf_Cheatmaster_L.webp"
           }
         },
         {
-          key: "mech", fr: "Esprit Méca Néon", en: "Neon Mech Sprite", rarity: "epic",
+          key: "jonesy", fr: "Esprit Jonesy", en: "Jonesy Sprite", rarity: "rare",
+          aliases: ["Esprit Jonesy", "Jonesy Sprite"],
           effect: {
-            fr: "Accorde un surbouclier mécanique et libère une onde IEM désactivant les pièges et véhicules.",
-            en: "Grants a mechanical overshield and emits an EMP wave disabling traps and vehicles."
+            fr: "Régénère de la vie ou du bouclier après avoir subi des dégâts.",
+            en: "Regenerates Health or Shield after taking damage."
           },
           images: {
-            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mc' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2322d3ee'/><stop offset='100%' stop-color='%230f172a'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mc)' stroke='%2338bdf8' stroke-width='4'/><rect x='35' y='35' width='50' height='50' rx='10' fill='%231e293b' stroke='%2322d3ee' stroke-width='4'/><circle cx='48' cy='52' r='6' fill='%2322d3ee'/><circle cx='72' cy='52' r='6' fill='%2322d3ee'/><path d='M48 70 L72 70' stroke='%2322d3ee' stroke-width='3'/></svg>",
-            cyber: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mcc' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23f472b6'/><stop offset='100%' stop-color='%23831843'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mcc)' stroke='%23f472b6' stroke-width='4'/><rect x='35' y='35' width='50' height='50' rx='10' fill='%23831843' stroke='%23f472b6' stroke-width='4'/><circle cx='48' cy='52' r='6' fill='%23fff'/><circle cx='72' cy='52' r='6' fill='%23fff'/></svg>",
-            holofoil: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mch' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23a855f7'/><stop offset='100%' stop-color='%230284c7'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mch)' stroke='%2338bdf8' stroke-width='4'/><rect x='35' y='35' width='50' height='50' rx='10' fill='%230f172a' stroke='%23c084fc' stroke-width='4'/></svg>"
+            base: "T_Icon_BR_Creature_Sprite_Jonesy_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_Jonesy_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_Jonesy_Cheatmaster_L.webp"
           }
         },
         {
-          key: "slurp", fr: "Esprit de Breuvage", en: "Slurp Sprite", rarity: "rare",
+          key: "shadow", fr: "Esprit Ombre", en: "Shadow Sprite", rarity: "epic",
+          aliases: ["Esprit Shadow", "Esprit Ombre", "Shadow Sprite"],
           effect: {
-            fr: "Régénère le bouclier et la santé en continu pour toi et ton escouade à proximité.",
-            en: "Continuously regenerates shield and health for you and nearby squadmates."
+            fr: "Recharge automatiquement les armes, y compris celles qui ne sont pas équipées.",
+            en: "Automatically reloads weapons, including unequipped ones."
           },
           images: {
-            base: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='s' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%23115e59'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23s)' stroke='%232dd4bf' stroke-width='4'/><path d='M40 80 C40 55 80 55 80 80 Z' fill='%23ccfbf1'/><circle cx='60' cy='48' r='10' fill='%23fff'/></svg>",
-            gummy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='sg' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23f472b6'/><stop offset='100%' stop-color='%239d174d'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23sg)' stroke='%23f472b6' stroke-width='4'/><path d='M40 80 C40 55 80 55 80 80 Z' fill='%23fbcfe8'/></svg>",
-            gem: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='sgm' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2322d3ee'/><stop offset='100%' stop-color='%23164e63'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23sgm)' stroke='%2367e8f9' stroke-width='4'/><path d='M40 80 C40 55 80 55 80 80 Z' fill='%23cffaff'/></svg>"
+            base: "T_Icon_BR_Creature_Sprite_NarrowFlea_Scribe_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_NarrowFlea_Scribe_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_NarrowFlea_Scribe_Cheatmaster_L.webp"
+          }
+        },
+        {
+          key: "sonic", fr: "Esprit Sonic", en: "Sonic Sprite", rarity: "epic",
+          aliases: ["Esprit Sonic", "Sonic", "Sonic Sprite"],
+          effect: {
+            fr: "Augmente la vitesse de sprint.",
+            en: "Increases sprint speed."
+          },
+          images: {
+            base: "T_Icon_BR_Creature_Sprite_NarrowFlea_Obsidian_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_NarrowFlea_Obsidian_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_NarrowFlea_Obsidian_Cheatmaster_L.webp"
+          }
+        },
+        {
+          key: "tails", fr: "Esprit Tails", en: "Tails Sprite", rarity: "epic",
+          aliases: ["Esprit Tails", "Tails", "Tails Sprite"],
+          effect: {
+            fr: "Permet de planer dans les airs.",
+            en: "Allows hovering mid-air."
+          },
+          images: {
+            base: "T_Icon_BR_Creature_Sprite_NarrowFlea_Monkey_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_NarrowFlea_Monkey_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_NarrowFlea_Monkey_Cheatmaster_L.webp"
+          }
+        },
+        {
+          key: "killswitch", fr: "Esprit Killswitch", en: "Killswitch Sprite", rarity: "epic",
+          aliases: ["Esprit Killswitch", "Killswitch Sprite"],
+          effect: {
+            fr: "Active Hangtime avec une précision améliorée.",
+            en: "Activates Hangtime with improved accuracy."
+          },
+          images: {
+            base: "T_Icon_BR_Creature_Sprite_Killswitch_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_Killswitch_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_Killswitch_Cheatmaster_L.webp"
+          }
+        },
+        {
+          key: "jackrabbit", fr: "Esprit Jackrabbit", en: "Jackrabbit Sprite", rarity: "legendary",
+          aliases: ["Esprit Jackrabbit", "Jazz Jackrabbit", "Jackrabbit Sprite"],
+          effect: {
+            fr: "Permet d'effectuer un saut supplémentaire en plein vol.",
+            en: "Allows performing an extra jump mid-air."
+          },
+          images: {
+            base: "T_Icon_BR_Creature_Sprite_JazzJackrabbit_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_JazzJackrabbit_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_JazzJackrabbit_Cheatmaster_L.webp"
+          }
+        },
+        {
+          key: "crown", fr: "Esprit Couronne", en: "Crown Sprite", rarity: "mythic",
+          aliases: ["Esprit Couronne", "Couronne", "Crown Sprite"],
+          effect: {
+            fr: "Permet d'obtenir des Crown Wins supplémentaires après une Victoire Royale.",
+            en: "Grants extra Crown Wins after a Victory Royale."
+          },
+          images: {
+            base: "T_Icon_BR_Creature_Sprite_Crown_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_Crown_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_Crown_Cheatmaster_L.webp"
+          }
+        },
+        {
+          key: "klombo", fr: "Esprit Klombo", en: "Klombo Sprite", rarity: "mythic",
+          aliases: ["Esprit Klombo", "Klombo", "Klombo Sprite"],
+          effect: {
+            fr: "Donne des objets aléatoires à chaque niveau.",
+            en: "Grants random items at each level."
+          },
+          images: {
+            base: "T_Icon_BR_Creature_Sprite_Klombo_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_Klombo_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_Klombo_Cheatmaster_L.webp"
+          }
+        },
+        {
+          key: "stormscout", fr: "Esprit Éclaireur de la Tempête", en: "Storm Scout Sprite", rarity: "rare",
+          aliases: ["Esprit Éclaireur de la Tempête", "Esprit Tempête", "Storm Scout Sprite"],
+          effect: {
+            fr: "Active Overdrive après avoir subi suffisamment de dégâts dans la tempête. Au niveau maximum, révèle les prochains cercles.",
+            en: "Activates Overdrive after taking enough storm damage. At max level, reveals future storm circles."
+          },
+          images: {
+            base: "T_Icon_BR_Creature_Sprite_StormScout_L.webp",
+            gold: "T_Icon_BR_Creature_Sprite_StormScout_Gold_L.webp",
+            cheatmaster: "T_Icon_BR_Creature_Sprite_StormScout_Cheatmaster_L.webp"
           }
         },
         {
@@ -10423,7 +11518,7 @@
         mythic: "rgba(246,223,50,.39)"
       };
 
-      const SEASON4_KEYS = new Set(["wolverine", "midas", "nebula", "mech", "slurp"]);
+      const SEASON4_KEYS = new Set(["bushranger", "eight-bit", "adventure", "jonesy", "shadow", "sonic", "tails", "killswitch", "jackrabbit", "crown", "klombo", "stormscout"]);
 
       const sprites = [];
       const season4Sprites = [];
@@ -10441,7 +11536,7 @@
             familyIndex,
             variantIndex,
             variant,
-            fr: family.fr,
+            fr: variant === "base" ? family.fr : `${family.fr} (${v.fr})`,
             en: variant === "base" ? family.en : `${v.en} ${family.en}`,
             aliases: family.aliases || [],
             rarity: family.rarity,
@@ -10579,10 +11674,14 @@
           const target = link.dataset.pageTarget;
           if (target === "home") link.textContent = t("home");
           else if (target === "catalog") link.textContent = t("catalogNav");
+          else if (target === "cheats") link.textContent = "Cheat Codes";
+          else if (target === "tips") link.textContent = APP_LANGUAGE === "fr" ? "Astuces & Secrets" : "Tips & Secrets";
           else if (target === "guide") link.textContent = "Guide";
-          else if (target === "settings") link.textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
-          else if (target === "reviews") link.textContent = APP_LANGUAGE === "fr" ? "Avis" : "Reviews";
+          else if (target === "garden") link.textContent = APP_LANGUAGE === "fr" ? "Jardin" : "Garden";
           else if (target === "patch-notes") link.textContent = t("patchNotesNav");
+          else if (target === "reviews") link.textContent = APP_LANGUAGE === "fr" ? "Avis" : "Reviews";
+          else if (target === "maps") link.textContent = "Maps";
+          else if (target === "settings") link.textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
           else if (target === "admin") link.textContent = "Admin";
         });
         const heroTitle = document.querySelector(".hero-text h1");
@@ -10642,8 +11741,6 @@
         setText("#importBtn", "importBackup");
         setText("#resetBtn", "resetAll");
 
-        const developerCredit = document.querySelector(".developer-credit");
-        if (developerCredit) developerCredit.innerHTML = `<span class="developer-signal" aria-hidden="true"></span>${t("developedBy")} <strong>PrimeSyntax</strong> <span aria-hidden="true">.</span>`;
         setAttribute(".mobile-dock", "aria-label", "mobileNav");
         document.querySelectorAll(".mobile-dock-item").forEach(item => {
           const target = item.dataset.pageTarget;
@@ -10651,12 +11748,19 @@
           if (!span) return;
           if (target === "home") span.textContent = t("home");
           else if (target === "catalog") span.textContent = t("catalogNav");
+          else if (target === "cheats") span.textContent = "Cheats";
+          else if (target === "tips") span.textContent = APP_LANGUAGE === "fr" ? "Astuces" : "Tips";
           else if (target === "guide") span.textContent = "Guide";
-          else if (target === "settings") span.textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
-          else if (target === "reviews") span.textContent = APP_LANGUAGE === "fr" ? "Avis" : "Reviews";
+          else if (target === "garden") span.textContent = APP_LANGUAGE === "fr" ? "Jardin" : "Garden";
           else if (target === "patch-notes") span.textContent = t("patchNotesNav");
+          else if (target === "reviews") span.textContent = APP_LANGUAGE === "fr" ? "Avis" : "Reviews";
+          else if (target === "maps") span.textContent = "Maps";
+          else if (target === "settings") span.textContent = APP_LANGUAGE === "fr" ? "Réglages" : "Settings";
           else if (target === "admin") span.textContent = "Admin";
         });
+
+        renderTipsPage();
+        renderCheatCodesPage();
         setAttribute("#topBtn", "aria-label", "backToTop");
 
         setText("#patchKicker", "patchKicker");
@@ -11153,11 +12257,38 @@
         }).join("") : `<div class="empty-state"><strong>Aucune Map enregistrée</strong>Les maps publiées apparaîtront ici avec leurs boutons de gestion.</div>`;
       }
 
+      function userHasGardenSpirits() {
+        const activeState = getActiveState();
+        return gardenSprites.some(sprite => {
+          const entry = activeState[sprite.id];
+          return entry && (entry.owned || entry.mastered || (entry.note && String(entry.note).trim().length > 0));
+        });
+      }
+
+      function updateGardenVisibility() {
+        const hasGarden = userHasGardenSpirits();
+
+        document.querySelectorAll('[data-page-target="garden"], a[href="#garden"]').forEach(el => {
+          el.hidden = !hasGarden;
+          if (!hasGarden) {
+            el.style.display = "none";
+          } else {
+            el.style.display = "";
+          }
+        });
+
+        if (!hasGarden && activePage === "garden") {
+          showPage("catalog", { updateHash: true });
+        }
+      }
+
       function normalizedPage(value) {
         const route = String(value || "").split("/")[0];
         if (route === "inventory" || route === "collection") return "catalog";
         if (route === "jardin" || route === "garden") return "garden";
-        return ["home", "catalog", "garden", "guide", "maps", "settings", "admin", "patch-notes", "reviews"].includes(route) ? route : "home";
+        if (route === "cheat" || route === "cheats" || route === "cheat-codes") return "cheats";
+        if (route === "tips" || route === "astuces" || route === "astuce" || route === "leaks") return "tips";
+        return ["home", "catalog", "garden", "cheats", "guide", "maps", "settings", "admin", "patch-notes", "reviews", "tips"].includes(route) ? route : "home";
       }
 
       function updateCollectionPageCopy() {
@@ -11169,23 +12300,120 @@
         if (hintEl) hintEl.textContent = t("fullCatalog");
       }
 
+      function updateUnreadBadges() {
+        const sections = [
+          { target: "tips", latest: new Date("2026-08-21T01:45:00+02:00").getTime() },
+          { target: "cheats", latest: new Date("2026-08-21T01:35:00+02:00").getTime() },
+          { target: "patch-notes", latest: (typeof PATCH_RELEASED_AT !== "undefined" ? new Date(PATCH_RELEASED_AT).getTime() : 0) || new Date("2026-08-20T21:27:00+02:00").getTime() }
+        ];
+
+        sections.forEach(sec => {
+          const lastSeen = Number(localStorage.getItem(`sprite_locker_last_seen_${sec.target}_v1`)) || 0;
+          const isUnread = lastSeen < sec.latest && activePage !== sec.target;
+
+          document.querySelectorAll(`[data-page-target="${sec.target}"]`).forEach(link => {
+            let dot = link.querySelector(".nav-unread-dot");
+            if (isUnread) {
+              if (!dot) {
+                dot = document.createElement("span");
+                dot.className = "nav-unread-dot";
+                dot.setAttribute("aria-hidden", "true");
+                link.appendChild(dot);
+              }
+              dot.hidden = false;
+            } else if (dot) {
+              dot.remove();
+            }
+          });
+        });
+      }
+
       function showPage(page, { updateHash = true } = {}) {
         try {
-          activePage = normalizedPage(String(page || "home").replace(/^#/, ""));
-          const homeVisible = activePage === "home";
-          const collectionVisible = activePage === "catalog";
-          const gardenVisible = activePage === "garden";
-          const patchNotesVisible = activePage === "patch-notes";
-          const guideVisible = activePage === "guide";
-          const mapsVisible = activePage === "maps";
-          const settingsVisible = activePage === "settings";
+          const rawTarget = String(page || "").replace(/^#/, "").trim();
+          if (rawTarget) {
+            activePage = normalizedPage(rawTarget);
+          } else {
+            const savedPage = localStorage.getItem("sprite_locker_last_active_page_v1");
+            activePage = normalizedPage(savedPage || "home");
+          }
+          localStorage.setItem("sprite_locker_last_active_page_v1", activePage);
+
+          if (activePage === "tips" || activePage === "cheats" || activePage === "patch-notes") {
+            const sectionLatestMap = {
+              "tips": new Date("2026-08-21T01:45:00+02:00").getTime(),
+              "cheats": new Date("2026-08-21T01:35:00+02:00").getTime(),
+              "patch-notes": (typeof PATCH_RELEASED_AT !== "undefined" ? new Date(PATCH_RELEASED_AT).getTime() : 0) || new Date("2026-08-20T21:27:00+02:00").getTime()
+            };
+            const latest = sectionLatestMap[activePage] || Date.now();
+            localStorage.setItem(`sprite_locker_last_seen_${activePage}_v1`, latest);
+          }
+          updateUnreadBadges();
+          
+          const pageStates = (adminDraftDirty ? adminDraft.pageStates : adminContent.pageStates) || adminContent.pageStates || {};
+          const pageState = pageStates[activePage] || "active";
+
+          if (pageState === "disabled" && !adminAccess) {
+            activePage = "home";
+          }
+
+          if (activePage === "garden" && !userHasGardenSpirits()) {
+            activePage = "catalog";
+          }
+
+          updateGardenVisibility();
+          updateNavigationVisibility();
+
+          const isMaintenance = pageState === "maintenance" && !adminAccess;
+          let maintenanceScreen = document.getElementById("globalPageMaintenanceScreen");
+
+          if (isMaintenance) {
+            if (!maintenanceScreen) {
+              maintenanceScreen = document.createElement("div");
+              maintenanceScreen.id = "globalPageMaintenanceScreen";
+              maintenanceScreen.className = "page-maintenance-screen";
+              const appEl = document.querySelector(".app");
+              if (appEl) appEl.appendChild(maintenanceScreen);
+            }
+            const isFr = APP_LANGUAGE === "fr";
+            const pageObj = APP_PAGES_REGISTRY.find(p => p.id === activePage);
+            const pageName = pageObj ? (isFr ? pageObj.fr : pageObj.en) : activePage;
+
+            maintenanceScreen.innerHTML = `
+              <div class="maintenance-content-card">
+                <div class="maintenance-icon-glow" aria-hidden="true">🛠️</div>
+                <h2>${isFr ? 'Page en cours de <span>mise à jour</span>' : 'Page under <span>maintenance</span>'}</h2>
+                <p>${isFr 
+                  ? `La section <strong>${esc(pageName)}</strong> est actuellement en cours de mise à jour pour vous apporter de nouvelles fonctionnalités Fortnite. Revenez très bientôt !` 
+                  : `The <strong>${esc(pageName)}</strong> section is currently under maintenance to bring you exciting new features. Check back very soon!`}</p>
+                <button type="button" onclick="showPage('home')" class="feature-primary maintenance-home-btn">
+                  <span>${isFr ? 'Retour à l\'accueil' : 'Back to Home'}</span>
+                  <span aria-hidden="true">➔</span>
+                </button>
+              </div>`;
+            maintenanceScreen.hidden = false;
+          } else if (maintenanceScreen) {
+            maintenanceScreen.hidden = true;
+          }
+
+          const homeVisible = activePage === "home" && !isMaintenance;
+          const collectionVisible = activePage === "catalog" && !isMaintenance;
+          const gardenVisible = activePage === "garden" && !isMaintenance;
+          const cheatsVisible = activePage === "cheats" && !isMaintenance;
+          const tipsVisible = activePage === "tips" && !isMaintenance;
+          const patchNotesVisible = activePage === "patch-notes" && !isMaintenance;
+          const guideVisible = activePage === "guide" && !isMaintenance;
+          const mapsVisible = activePage === "maps" && !isMaintenance;
+          const settingsVisible = activePage === "settings" && !isMaintenance;
           const adminVisible = activePage === "admin";
-          const reviewsVisible = activePage === "reviews";
+          const reviewsVisible = activePage === "reviews" && !isMaintenance;
 
           document.documentElement.dataset.appPage = activePage;
           document.getElementById("homePage")?.classList.toggle("is-active", homeVisible);
           document.getElementById("collectionPage")?.classList.toggle("is-active", collectionVisible);
           document.getElementById("gardenPage")?.classList.toggle("is-active", gardenVisible);
+          document.getElementById("cheatsPage")?.classList.toggle("is-active", cheatsVisible);
+          document.getElementById("tipsPage")?.classList.toggle("is-active", tipsVisible);
           document.getElementById("patchNotesPage")?.classList.toggle("is-active", patchNotesVisible);
           document.getElementById("guidePage")?.classList.toggle("is-active", guideVisible);
           document.getElementById("mapsPage")?.classList.toggle("is-active", mapsVisible);
@@ -11213,6 +12441,12 @@
             render();
           } else if (gardenVisible) {
             renderGarden();
+            updateStats();
+          } else if (cheatsVisible) {
+            renderCheatCodesPage();
+            updateStats();
+          } else if (tipsVisible) {
+            renderTipsPage();
             updateStats();
           } else if (guideVisible) {
             renderGuide();
@@ -11326,6 +12560,7 @@
       }
 
       function render() {
+        updateGardenVisibility();
         if (!grid) return;
         if (renderFrame) {
           cancelAnimationFrame(renderFrame);
@@ -11495,11 +12730,18 @@
       }
 
       const spriteFamilyFallbacks = {
-        wolverine: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='w' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fde047'/><stop offset='100%' stop-color='%23ca8a04'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23w)' stroke='%23fef08a' stroke-width='4'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%231e293b' stroke-width='8' stroke-linecap='round'/><path d='M32 25 L52 95 M60 18 L60 102 M88 25 L68 95' stroke='%23eab308' stroke-width='4' stroke-linecap='round'/></svg>",
-        midas: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='m' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fef08a'/><stop offset='100%' stop-color='%23a16207'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23m)' stroke='%23fef08a' stroke-width='5'/><path d='M35 75 L60 30 L85 75 L70 75 L60 50 L50 75 Z' fill='%23451a03'/><circle cx='60' cy='42' r='8' fill='%23fff'/></svg>",
-        nebula: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='n' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23c084fc'/><stop offset='100%' stop-color='%231e1b4b'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23n)' stroke='%23a855f7' stroke-width='4'/><polygon points='60,20 72,46 100,46 77,63 85,90 60,72 35,90 43,63 20,46 48,46' fill='%23f0abfc'/></svg>",
-        mech: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='mc' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2322d3ee'/><stop offset='100%' stop-color='%230f172a'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23mc)' stroke='%2338bdf8' stroke-width='4'/><rect x='35' y='35' width='50' height='50' rx='10' fill='%231e293b' stroke='%2322d3ee' stroke-width='4'/><circle cx='48' cy='52' r='6' fill='%2322d3ee'/><circle cx='72' cy='52' r='6' fill='%2322d3ee'/><path d='M48 70 L72 70' stroke='%2322d3ee' stroke-width='3'/></svg>",
-        slurp: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='s' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%23115e59'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23s)' stroke='%232dd4bf' stroke-width='4'/><path d='M40 80 C40 55 80 55 80 80 Z' fill='%23ccfbf1'/><circle cx='60' cy='48' r='10' fill='%23fff'/></svg>"
+        bushranger: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='br' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2322c55e'/><stop offset='100%' stop-color='%2314532d'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23br)' stroke='%234ade80' stroke-width='4'/><circle cx='60' cy='60' r='30' fill='%23166534'/></svg>",
+        "eight-bit": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='eb' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%230369a1'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23eb)' stroke='%237dd3fc' stroke-width='4'/><rect x='40' y='40' width='40' height='40' fill='%23e0f2fe'/></svg>",
+        adventure: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='adv' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fbbf24'/><stop offset='100%' stop-color='%23b45309'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23adv)' stroke='%23fef08a' stroke-width='4'/><polygon points='60,25 75,75 45,75' fill='%2378350f'/></svg>",
+        jonesy: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='jo' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23facc15'/><stop offset='100%' stop-color='%23ca8a04'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23jo)' stroke='%23fef08a' stroke-width='4'/><circle cx='60' cy='50' r='18' fill='%231e293b'/></svg>",
+        shadow: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='sh' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23ef4444'/><stop offset='100%' stop-color='%2318181b'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23sh)' stroke='%23f87171' stroke-width='4'/><circle cx='60' cy='60' r='20' fill='%23ef4444'/></svg>",
+        sonic: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='sn' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%2360a5fa'/><stop offset='100%' stop-color='%231d4ed8'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23sn)' stroke='%2393c5fd' stroke-width='4'/><polygon points='40,40 85,60 40,80' fill='%23fef08a'/></svg>",
+        tails: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='tl' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fbbf24'/><stop offset='100%' stop-color='%23d97706'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23tl)' stroke='%23fef08a' stroke-width='4'/><path d='M35 70 C40 30 80 30 85 70' stroke='%23fff' stroke-width='6'/></svg>",
+        killswitch: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='ks' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23f97316'/><stop offset='100%' stop-color='%237c2d12'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23ks)' stroke='%23fdba74' stroke-width='4'/><polygon points='60,25 75,50 65,50 75,75 55,75' fill='%23fff'/></svg>",
+        jackrabbit: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='jr' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%234ade80'/><stop offset='100%' stop-color='%2315803d'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23jr)' stroke='%2386efac' stroke-width='4'/><polygon points='50,20 65,55 35,55' fill='%23fff'/></svg>",
+        crown: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='cw' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23fef08a'/><stop offset='100%' stop-color='%23854d0e'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23cw)' stroke='%23fde047' stroke-width='5'/><polygon points='30,75 35,40 50,60 60,30 70,60 85,40 90,75' fill='%23eab308'/></svg>",
+        klombo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='kl' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23c084fc'/><stop offset='100%' stop-color='%236b21a8'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23kl)' stroke='%23e9d5ff' stroke-width='4'/><ellipse cx='60' cy='65' rx='30' ry='20' fill='%23f472b6'/></svg>",
+        stormscout: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><radialGradient id='ss' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23a855f7'/><stop offset='100%' stop-color='%234c1d95'/></radialGradient><circle cx='60' cy='60' r='54' fill='url(%23ss)' stroke='%23c084fc' stroke-width='4'/><circle cx='60' cy='60' r='20' fill='%2338bdf8'/></svg>"
       };
 
       function settleSpriteImage(image, loaded) {
@@ -12884,8 +14126,85 @@
           variantOverrides: value.variantOverrides && typeof value.variantOverrides === "object" ? value.variantOverrides : {},
           patchNotes: Array.isArray(value.patchNotes) ? value.patchNotes : [],
           creativeMaps: Array.isArray(value.creativeMaps) ? value.creativeMaps : [],
+          pageStates: value.pageStates && typeof value.pageStates === "object" ? value.pageStates : {},
           updatedAtMs: Math.max(0, Number(value.updatedAtMs) || 0)
         };
+      }
+
+      const APP_PAGES_REGISTRY = [
+        { id: "home", fr: "Accueil", en: "Home", icon: "🏠" },
+        { id: "catalog", fr: "Collection / Esprits", en: "Catalog / Sprites", icon: "🎴" },
+        { id: "garden", fr: "Jardin des Esprits", en: "Spirit Garden", icon: "🌸" },
+        { id: "cheats", fr: "Cheat Codes", en: "Cheat Codes", icon: "⚡" },
+        { id: "tips", fr: "Astuces & Secrets", en: "Tips & Secrets", icon: "💡" },
+        { id: "guide", fr: "Guide du Joueur", en: "Player Guide", icon: "📖" },
+        { id: "maps", fr: "Maps Créatives", en: "Creative Maps", icon: "🗺️" },
+        { id: "settings", fr: "Réglages / Thèmes", en: "Settings / Themes", icon: "⚙️" },
+        { id: "reviews", fr: "Avis & Livre d'Or", en: "Reviews & Guestbook", icon: "⭐" },
+        { id: "patch-notes", fr: "Patch Notes", en: "Patch Notes", icon: "📜" }
+      ];
+
+      function updateNavigationVisibility() {
+        const states = (adminDraftDirty ? adminDraft.pageStates : adminContent.pageStates) || adminContent.pageStates || {};
+        const hasGarden = userHasGardenSpirits();
+
+        document.querySelectorAll(".topbar-links a, .mobile-dock-item").forEach(link => {
+          const target = link.dataset.pageTarget;
+          if (!target || target === "admin") return;
+
+          if (target === "garden" && !hasGarden) {
+            link.hidden = true;
+            link.style.display = "none";
+            return;
+          }
+
+          const state = states[target] || "active";
+          if (state === "disabled" && !adminAccess) {
+            link.hidden = true;
+            link.style.display = "none";
+          } else {
+            link.hidden = false;
+            link.style.display = "";
+            link.classList.toggle("is-maintenance-link", state === "maintenance");
+          }
+        });
+      }
+
+      function renderAdminPagesPanel() {
+        const grid = document.getElementById("adminPagesGrid");
+        if (!grid) return;
+
+        const currentStates = (adminDraftDirty ? adminDraft.pageStates : adminContent.pageStates) || adminContent.pageStates || {};
+
+        grid.innerHTML = APP_PAGES_REGISTRY.map(page => {
+          const currentState = currentStates[page.id] || "active";
+          const title = APP_LANGUAGE === "fr" ? page.fr : page.en;
+
+          return `
+            <article class="admin-page-card" data-page-id="${esc(page.id)}">
+              <div class="admin-page-card-head">
+                <span class="admin-page-title">${page.icon} ${esc(title)}</span>
+                <span class="admin-page-route">#${esc(page.id)}</span>
+              </div>
+              <div class="admin-page-state-picker">
+                <button type="button" class="admin-page-state-btn${currentState === 'active' ? ' is-active' : ''}" data-state="active" onclick="setAdminPageState('${esc(page.id)}', 'active')">🟢 Active</button>
+                <button type="button" class="admin-page-state-btn${currentState === 'maintenance' ? ' is-active' : ''}" data-state="maintenance" onclick="setAdminPageState('${esc(page.id)}', 'maintenance')">🛠️ Maj</button>
+                <button type="button" class="admin-page-state-btn${currentState === 'disabled' ? ' is-active' : ''}" data-state="disabled" onclick="setAdminPageState('${esc(page.id)}', 'disabled')">🔴 Masquée</button>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+
+      function setAdminPageState(pageId, newState) {
+        if (!adminAccess) return showToast("Accès administrateur requis");
+        if (!adminDraft.pageStates) adminDraft.pageStates = { ...(adminContent.pageStates || {}) };
+        adminDraft.pageStates[pageId] = newState;
+        markAdminDraft(`Page #${pageId} -> ${newState}`);
+        renderAdminPagesPanel();
+        updateNavigationVisibility();
+        const label = newState === 'active' ? 'Active 🟢' : (newState === 'maintenance' ? 'Mise à jour 🛠️' : 'Masquée 🔴');
+        showToast(`Page #${pageId} passée en : ${label}`);
       }
 
       function loadAdminContent() {
@@ -13415,6 +14734,444 @@
         if (announce) showToast("Aperçu du catalogue appliqué");
       }
 
+      function formatLeakTimestamp(isoString) {
+        const date = new Date(isoString);
+        if (isNaN(date.getTime())) return "";
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        return APP_LANGUAGE === "fr"
+          ? `Publié le ${day}/${month}/${year} à ${hours}:${minutes}`
+          : `Published on ${day}/${month}/${year} at ${hours}:${minutes}`;
+      }
+
+      function renderTipsPage() {
+        const page = document.getElementById("tipsPage");
+        if (!page) return;
+
+        const isFr = APP_LANGUAGE === "fr";
+
+        page.innerHTML = `
+      <!-- HERO BANNER -->
+      <header class="tips-hero">
+        <div class="tips-hero-inner">
+          <div class="tips-hero-badge">
+            <span class="tips-pulse-dot" aria-hidden="true"></span>
+            <span>${isFr ? "FORTNITE ASTUCES &amp; NOUVEAUTÉS" : "FORTNITE TIPS &amp; NEWS"}</span>
+          </div>
+          <h1 id="tipsTitle" class="tips-hero-title">
+            ${isFr ? "Astuces <span>&amp; Secrets</span>" : "Tips <span>&amp; Secrets</span>"}
+          </h1>
+          <p class="tips-hero-lead">
+            ${isFr 
+              ? "Découvrez en exclusivité les astuces d'obtention, les mécaniques cachées et les secrets d'esprits pour Fortnite !" 
+              : "Discover exclusive unlocking tips, hidden mechanics, and spirit secrets for Fortnite!"}
+          </p>
+        </div>
+      </header>
+
+      <!-- TIPS CARDS CONTAINER -->
+      <div class="tips-container">
+        <!-- FEATURED TIP CARD (GOLD CROWN LEAK) -->
+        <article class="tip-card featured-leak" data-timestamp="1787269500000">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge">${isFr ? "🚨 NOUVELLE INFORMATION" : "🚨 NEW INFORMATION"}</span>
+              <span class="tip-date">${formatLeakTimestamp("2026-08-21T01:45:00+02:00")}</span>
+            </div>
+            <h2 class="tip-card-title">
+              ${isFr 
+                ? "L'Esprit Couronne (Or) se débloque via l'Esprit Couronne (Roi de la triche) !" 
+                : "Gold Crown Sprite unlocks via Cheat Master Crown Sprite!"}
+            </h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-media-box">
+              <div class="tip-img-wrap">
+                <img src="https://fortnite.gg/img/x/sprites/icons/T_Icon_BR_Creature_Sprite_Crown_Gold_L.webp" alt="${isFr ? "Esprit Couronne (Or)" : "Gold Crown Sprite"}" class="tip-img" loading="eager">
+              </div>
+            </div>
+
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 ${isFr ? "Explicatif clair de la découverte" : "Clear Discovery Explanation"}</h3>
+                <p>
+                  ${isFr 
+                    ? "Un mécanisme secret d'obtention a été découvert pour l'esprit Couronne :" 
+                    : "A secret unlocking mechanism has been discovered for the Crown Sprite:"}
+                </p>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">🎯</div>
+                    <div>
+                      <strong>${isFr ? "Condition d'obtention" : "Unlocking Condition"}</strong>
+                      <p>
+                        ${isFr 
+                          ? "Maîtriser l'<strong>Esprit Couronne (Roi de la triche)</strong> débloque automatiquement la variante <strong>Esprit Couronne (Or)</strong>." 
+                          : "Mastering the <strong>Cheat Master Crown Sprite</strong> automatically unlocks the <strong>Gold Crown Sprite</strong> variant."}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⏳</div>
+                    <div>
+                      <strong>${isFr ? "Disponibilité en jeu" : "In-Game Availability"}</strong>
+                      <p>
+                        ${isFr 
+                          ? "L'<strong>Esprit Couronne (Or)</strong> ainsi débloqué restera verrouillé à l'équipement jusqu'à son activation officielle programmée pour la semaine prochaine." 
+                          : "The <strong>Gold Crown Sprite</strong> unlocked this way will remain locked for equipping until its official activation scheduled for next week."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: CHEAT MASTER BUSH SPRITE -->
+        <article class="tip-card featured-leak" data-timestamp="1787268900000">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(34, 197, 94, 0.15); color: #4ade80; border-color: rgba(34, 197, 94, 0.3);">${isFr ? "🟢 LOBBY HACK · DISPONIBLE" : "🟢 LOBBY HACK · AVAILABLE"}</span>
+              <span class="tip-date">${formatLeakTimestamp("2026-08-21T01:35:00+02:00")}</span>
+            </div>
+            <h2 class="tip-card-title">
+              ${isFr 
+                ? "Nouveau Lobby Hack : Esprit Buisson (Roi de la triche) !" 
+                : "New Lobby Hack: Cheat Master Bush Sprite!"}
+            </h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-media-box">
+              <div class="tip-img-wrap">
+                <img src="https://fortnite.gg/img/x/sprites/icons/T_Icon_BR_Creature_Sprite_BushRanger_Cheatmaster_L.webp" alt="${isFr ? "Esprit Buisson (Roi de la triche)" : "Cheat Master Bush Sprite"}" class="tip-img" loading="lazy">
+              </div>
+            </div>
+
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 ${isFr ? "Détails du nouveau code d'injection" : "New Injection Code Details"}</h3>
+                <p>
+                  ${isFr 
+                    ? "Un nouveau Lobby Hack a été découvert et permet d'obtenir directement l'esprit Buisson (Roi de la triche) !" 
+                    : "A new Lobby Hack has been discovered allowing you to directly get the Cheat Master Bush Sprite!"}
+                </p>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">🔑</div>
+                    <div>
+                      <strong>${isFr ? "Code de triche" : "Cheat Code"}</strong>
+                      <p><strong>GatherAndCraft</strong></p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">🎁</div>
+                    <div>
+                      <strong>${isFr ? "Récompense" : "Reward"}</strong>
+                      <p><strong>${isFr ? "Esprit Buisson (Roi de la triche)" : "Cheat Master Bush Sprite"}</strong></p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⚠️</div>
+                    <div>
+                      <strong>${isFr ? "Condition de progression" : "Progression Condition"}</strong>
+                      <p>
+                        ${isFr 
+                          ? "Ce code nécessite d'avoir suffisamment avancé dans les quêtes d'histoire. Si elles ne sont pas terminées, Fortnite peut afficher que la récompense n'est pas encore disponible. Si vous possédez déjà cet esprit, vous recevez <strong>10 000 Poussière d'esprit</strong>." 
+                          : "This code requires sufficient progress in story quests. If not completed, Fortnite may show the reward is not yet available. If already owned, you get <strong>10,000 Sprite Dust</strong>."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3: STORM SCOUT IN LIVE CATALOG -->
+        <article class="tip-card" data-timestamp="1787268600000">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">${isFr ? "🟢 CATALOGUE LIVE · MYTHIQUE" : "🟢 LIVE CATALOG · MYTHIC"}</span>
+              <span class="tip-date">${formatLeakTimestamp("2026-08-21T01:30:00+02:00")}</span>
+            </div>
+            <h2 class="tip-card-title">
+              ${isFr 
+                ? "L'Esprit Storm Scout est confirmé et actif dans le catalogue Live !" 
+                : "Storm Scout Sprite is confirmed active in the Live Catalog!"}
+            </h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-media-box">
+              <div class="tip-img-wrap">
+                <img src="https://fortnite.gg/img/x/sprites/icons/T_Icon_BR_Creature_Sprite_StormScout_L.webp" alt="Storm Scout Sprite" class="tip-img" loading="lazy">
+              </div>
+            </div>
+
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 ${isFr ? "Présence confirmée en jeu" : "Confirmed In-Game Presence"}</h3>
+                <p>
+                  ${isFr 
+                    ? "L'audit du catalogue live de Fortnite confirme actuellement <strong>12 familles d'esprits officielles</strong> pour cette génération (Aventure, 8-Bit, Sonic, Tails, Buisson, Couronne, Jackrabbit, Jonesy, Killswitch, Klombo, Ombre, Storm Scout)." 
+                    : "Fortnite's live catalog audit currently confirms <strong>12 official sprite families</strong> for this generation (Adventure, 8-Bit, Sonic, Tails, Bush, Crown, Jackrabbit, Jonesy, Killswitch, Klombo, Shadow, Storm Scout)."}
+                </p>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">⭐</div>
+                    <div>
+                      <strong>${isFr ? "Rareté" : "Rarity"}</strong>
+                      <p><strong>${isFr ? "Mythique" : "Mythic"}</strong></p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⚡</div>
+                    <div>
+                      <strong>${isFr ? "Pouvoir passif (Overdrive)" : "Passive Ability (Overdrive)"}</strong>
+                      <p>
+                        ${isFr 
+                          ? "Après avoir subi des dégâts dans la tempête, le Storm Scout active <strong>Overdrive</strong>. À son niveau maximum, il révèle les prochains cercles de tempête. Plus son niveau est élevé, moins il faut subir de dégâts pour déclencher l'effet." 
+                          : "After taking storm damage, Storm Scout activates <strong>Overdrive</strong>. At max level, it reveals future storm circles."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 4: CHEAT MASTERS FOUND IN-GAME -->
+        <article class="tip-card" data-timestamp="1787268300000">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: rgba(168, 85, 247, 0.3);">${isFr ? "🟣 OBSERVATION COMMUNAUTAIRE" : "🟣 COMMUNITY OBSERVATION"}</span>
+              <span class="tip-date">${formatLeakTimestamp("2026-08-21T01:25:00+02:00")}</span>
+            </div>
+            <h2 class="tip-card-title">
+              ${isFr 
+                ? "Les Esprits Roi de la triche s'obtiennent aussi directement en partie !" 
+                : "Cheat Master Sprites can also be found directly in matches!"}
+            </h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-media-box">
+              <div class="tip-img-wrap">
+                <img src="https://fortnite.gg/img/x/sprites/icons/T_Icon_BR_Creature_Sprite_NarrowFlea_Scribe_Cheatmaster_L.webp" alt="${isFr ? "Esprit Ombre (Roi de la triche)" : "Cheat Master Shadow Sprite"}" class="tip-img" loading="lazy">
+              </div>
+            </div>
+
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 ${isFr ? "Obtention directement sur l'île" : "Unlocking Directly on the Island"}</h3>
+                <p>
+                  ${isFr 
+                    ? "Les Lobby Hacks du menu principal ne sont pas le seul moyen d'obtenir les variantes Roi de la triche. Plusieurs joueurs ont confirmé avoir obtenu l'<strong>Esprit Ombre (Roi de la triche)</strong> / <em>Cheat Master Shadow Sprite</em> directement depuis les Cheat Codes violets trouvés sur l'île durant une partie !" 
+                    : "Lobby Hacks are not the only way to get Cheat Master variants. Players have confirmed receiving the <strong>Cheat Master Shadow Sprite</strong> directly from purple Cheat Codes in matches!"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 5: 30 SPRITE BOONS DATAMINED -->
+        <article class="tip-card" data-timestamp="1787268000000">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">${isFr ? "🟠 DATAMINE · GAMEPLAY" : "🟠 DATAMINE · GAMEPLAY"}</span>
+              <span class="tip-date">${formatLeakTimestamp("2026-08-21T01:20:00+02:00")}</span>
+            </div>
+            <h2 class="tip-card-title">
+              ${isFr 
+                ? "30 Pouvoirs et Passifs d'Esprits découverts dans les fichiers du jeu !" 
+                : "30 Sprite Boons & Passives discovered in game files!"}
+            </h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 ${isFr ? "Analyse des capacités découvertes" : "Discovered Ability Analysis"}</h3>
+                <p>
+                  ${isFr 
+                    ? "Un audit approfondi des fichiers du jeu (build v42.00) identifie <strong>30 pouvoirs passifs d'esprits</strong> intégrés dans le plugin système. Ces entrées correspondent à de vraies mécaniques de jeu (Gameplay Abilities &amp; Effects)." 
+                    : "An in-depth audit of game files (v42.00 build) identifies <strong>30 passive sprite boons</strong> in the system plugin."}
+                </p>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">🔥</div>
+                    <div>
+                      <strong>${isFr ? "Pouvoirs avec icônes UI" : "Boons with UI Icons"}</strong>
+                      <p>Ammo Hoarder, Collector, Extractable Expert, Firefly Frenzy, Gotta Get Goop, Hydro Healing, Infinite Ammo, Loot Pack, Midas Splash, One Man's Trash, Pickaxe Maniac, Rift 'N Ready, Scout, Shrapnel Damage, Storm Caller, Wind Parkour.</p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⚙️</div>
+                    <div>
+                      <strong>${isFr ? "Pouvoirs internes en développement" : "Internal Boons in Development"}</strong>
+                      <p>AirSpeed, BossHealth, ChargedUp, DarkIntel, GhostReload, Greedy, HauntedHelpers, Inflated, JamSession, RoyalWins, Siphon, SuperShield, Void, WindVortex.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 6: THREE PLUGINS DATAMINED -->
+        <article class="tip-card" data-timestamp="1787267700000">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">${isFr ? "🟠 DATAMINE · ARCHITECTURE" : "🟠 DATAMINE · ARCHITECTURE"}</span>
+              <span class="tip-date">${formatLeakTimestamp("2026-08-21T01:15:00+02:00")}</span>
+            </div>
+            <h2 class="tip-card-title">
+              ${isFr 
+                ? "Découverte des 3 plugins majeurs dédiés au système d'Esprits" 
+                : "Discovery of 3 Major Plugins Dedicated to the Sprite System"}
+            </h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 ${isFr ? "Architecture interne des esprits (v42.00)" : "Internal Sprite Architecture (v42.00)"}</h3>
+
+                <div class="tip-rules-grid">
+                  <div class="rule-card">
+                    <div class="rule-icon">📚</div>
+                    <div>
+                      <strong>SpriteLibrary_CH7S3 (~4 127 assets)</strong>
+                      <p>${isFr ? "Catalogue complet des esprits, modèles 3D et définitions de variantes." : "Complete catalog of sprites, 3D models, and variant definitions."}</p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">⚡</div>
+                    <div>
+                      <strong>SpriteBoons_Ch7S3 (~190 assets)</strong>
+                      <p>${isFr ? "Ensemble des capacités, compétences actives et arbres de passifs." : "All capabilities, active abilities, and passive trees."}</p>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <div class="rule-icon">🌀</div>
+                    <div>
+                      <strong>RiftAnomalies_Ch7s3_Base</strong>
+                      <p>${isFr ? "Système gérant les anomalies de faille et chasses d'esprits rares sur la carte." : "System handling rift anomalies and rare sprite hunts on the map."}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 7: ZERO POINT QUACK VARIANT -->
+        <article class="tip-card" data-timestamp="1787267400000">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(249, 115, 22, 0.15); color: #fb923c; border-color: rgba(249, 115, 22, 0.3);">${isFr ? "🟠 DATAMINE · PAS ENCORE LIVE" : "🟠 DATAMINE · NOT YET LIVE"}</span>
+              <span class="tip-date">${formatLeakTimestamp("2026-08-21T01:10:00+02:00")}</span>
+            </div>
+            <h2 class="tip-card-title">
+              ${isFr 
+                ? "Nouvelle variante découverte : Quack Zero Point Sprite !" 
+                : "New Variant Discovered: Quack Zero Point Sprite!"}
+            </h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 ${isFr ? "Variante identifiée dans les fichiers" : "Variant Identified in Files"}</h3>
+                <p>
+                  ${isFr 
+                    ? "La variante <strong>Quack</strong> (Canard en plastique) pour la famille <strong>Zero Point Sprite</strong> a été localisée dans les DataAssets (`ESD_ZeroPointSprite_Variant_Quack.uasset`). Ses textures d'interface sont présentes dans les fichiers mais elle n'est pas encore activée dans le catalogue live." 
+                    : "The <strong>Quack</strong> variant for the <strong>Zero Point Sprite</strong> family has been located in DataAssets. Textures are ready for future activation."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 8: DEBUNKED RUMORS -->
+        <article class="tip-card" data-timestamp="1787266800000">
+          <div class="tip-card-header">
+            <div class="tip-card-meta">
+              <span class="tip-badge leak-badge" style="background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border-color: rgba(148, 163, 184, 0.3);">${isFr ? "⚪ RUMEURS INVALIDÉES" : "⚪ DEBUNKED RUMORS"}</span>
+              <span class="tip-date">${formatLeakTimestamp("2026-08-21T01:00:00+02:00")}</span>
+            </div>
+            <h2 class="tip-card-title">
+              ${isFr 
+                ? "Statut des rumeurs : Joker Sprite &amp; Goose Sprite" 
+                : "Rumor Status: Joker Sprite &amp; Goose Sprite"}
+            </h2>
+          </div>
+
+          <div class="tip-card-body">
+            <div class="tip-content-details">
+              <div class="tip-explicatif-block">
+                <h3>📌 ${isFr ? "Aucune donnée trouvée dans la v42.00" : "No Data Found in v42.00"}</h3>
+                <p>
+                  ${isFr 
+                    ? "Les noms <strong>Joker Sprite</strong> et <strong>Goose Sprite</strong> qui circulent dans la communauté ne possèdent actuellement <strong>aucune famille correspondante dans le catalogue live</strong> ni aucun <strong>DisplayName dans les fichiers du jeu</strong>. Ils ne sont donc pas confirmés pour cette version." 
+                    : "Names like <strong>Joker Sprite</strong> and <strong>Goose Sprite</strong> currently have no matching family in the live catalog or game files. They are unconfirmed."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>`;
+
+        sortTipsByDate(page.querySelector(".tips-container"));
+      }
+
+      function sortTipsByDate(container) {
+        const targetContainer = container || document.querySelector("#tipsPage .tips-container");
+        if (!targetContainer) return;
+
+        const cards = Array.from(targetContainer.querySelectorAll(".tip-card"));
+        cards.forEach(card => {
+          if (!card.hasAttribute("data-timestamp")) {
+            const timeEl = card.querySelector(".tip-date");
+            if (timeEl) {
+              const text = timeEl.textContent || "";
+              const match = text.match(/(\d{2})\/(\d{2})\/(\d{4})\D+(\d{2}):(\d{2})/);
+              if (match) {
+                const [_, day, month, year, hours, minutes] = match;
+                const d = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00+02:00`);
+                card.setAttribute("data-timestamp", String(d.getTime() || 0));
+              }
+            }
+          }
+        });
+
+        cards.sort((a, b) => {
+          const tsA = Number(a.getAttribute("data-timestamp")) || 0;
+          const tsB = Number(b.getAttribute("data-timestamp")) || 0;
+          return tsB - tsA;
+        });
+
+        cards.forEach(card => targetContainer.appendChild(card));
+      }
+
       function renderPublishedPatchNotes(notes) {
         document.querySelectorAll(".custom-patch-entry").forEach(el => el.remove());
         const page = document.getElementById("patchNotesPage");
@@ -13854,6 +15611,7 @@
         document.querySelectorAll("[data-admin-panel]").forEach(panel => panel.classList.toggle("is-active", panel.dataset.adminPanel === tab));
         if (tab === "variant-edit") fillAdminVariantEditForm();
         if (tab === "users") fetchAdminUsersList();
+        if (tab === "pages") renderAdminPagesPanel();
       }
 
       function markAdminDraft(message) {
@@ -14900,16 +16658,18 @@
           });
         }
 
-        if (openModalBtn && modalDialog) {
-          openModalBtn.addEventListener("click", () => {
+        document.querySelectorAll(".review-trigger-btn, #openReviewModalBtn").forEach(btn => {
+          btn.addEventListener("click", () => {
             updateReviewModalUserPreview();
-            if (typeof modalDialog.showModal === "function") {
-              modalDialog.showModal();
-            } else {
-              modalDialog.setAttribute("open", "");
+            if (modalDialog) {
+              if (typeof modalDialog.showModal === "function") {
+                modalDialog.showModal();
+              } else {
+                modalDialog.setAttribute("open", "");
+              }
             }
           });
-        }
+        });
 
         if (closeModalBtn && modalDialog) {
           closeModalBtn.addEventListener("click", () => modalDialog.close());
@@ -15048,123 +16808,135 @@
         }
       }
 
-      function initSplashScreen() {
-        const splash = document.getElementById("splashScreen");
-        if (!splash) return;
+      let activeCheatFilter = "all";
 
-        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth <= 768 && "ontouchstart" in window);
+      const CHEAT_CODES = [
+        { code: "H0p0nVC", reward: { fr: "2 000 Poussière d'esprit", en: "2,000 Sprite Dust" }, type: "item", priority: false, releasedAt: "2026-08-21T02:50:00+02:00" },
+        { code: "GatherAndCraft", reward: { fr: "Esprit Buisson (Roi de la triche)", en: "Cheat Master Bush Sprite" }, type: "sprite", targetId: "bushranger-cheatmaster", priority: true, releasedAt: "2026-08-21T01:35:00+02:00" },
+        { code: "GOTTAGOFAST", reward: { fr: "Esprit Sonic (Roi de la triche)", en: "Cheat Master Sonic Sprite" }, type: "sprite", targetId: "sonic-cheatmaster", priority: true, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "IWANNAFLYHIGH", reward: { fr: "Esprit Tails (Roi de la triche)", en: "Cheat Master Tails Sprite" }, type: "sprite", targetId: "tails-cheatmaster", priority: true, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "BORN2PLAY", reward: { fr: "Esprit Aventure (Roi de la triche)", en: "Cheat Master Adventure Sprite" }, type: "sprite", targetId: "adventure-cheatmaster", priority: true, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "8BITBLAST", reward: { fr: "Esprit 8-Bit (Roi de la triche)", en: "Cheat Master 8-Bit Sprite" }, type: "sprite", targetId: "eight-bit-cheatmaster", priority: true, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "PLAY4ALL", reward: { fr: "Esprit Jonesy (Roi de la triche)", en: "Cheat Master Jonesy Sprite" }, type: "sprite", targetId: "jonesy-cheatmaster", priority: true, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "FINDITCHAT", reward: { fr: "2 Détecteurs de Cheat Codes", en: "2 Cheat Code Locators" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "OVERRIDEXP", reward: { fr: "40 000 EXP", en: "40,000 XP" }, type: "xp", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "O2OVERRIDE", reward: { fr: "Ravitaillement de Llama + 5 Extracteurs Portables", en: "Llama Supply Drop + 5 Portable Extractors" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "PERFECTORDER", reward: { fr: "4 Gadgets Tacos Épicés", en: "4 Spicy Tacos Gizmos" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "SURVIVETHENIGHT", reward: { fr: "2 Détecteurs de Cheat Codes", en: "2 Cheat Code Locators" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "LETSBLOCKANDROLL", reward: { fr: "Transformation en bloc Tetris dans le salon", en: "Tetris block lobby transformation" }, type: "hack", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "TAKEYOURHEART", reward: { fr: "2 Accélérateurs d'Extraction", en: "2 Extraction Accelerators" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "DONTBLOCKME", reward: { fr: "Transformation en bloc Tetris dans le salon", en: "Tetris block lobby transformation" }, type: "hack", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "MAGILUME", reward: { fr: "2 000 Poussière d'esprit", en: "2,000 Sprite Dust" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "BEMOREALIEN", reward: { fr: "Écran de chargement Override Ready", en: "Override Ready Loading Screen" }, type: "hack", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "CHISPAMBO", reward: { fr: "2 000 Poussière d'esprit", en: "2,000 Sprite Dust" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "ABGESTAUBT", reward: { fr: "2 000 Poussière d'esprit", en: "2,000 Sprite Dust" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "REACHYOURIMPOSSIBLE", reward: { fr: "Écran de chargement Block Party", en: "Block Party Loading Screen" }, type: "hack", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" },
+        { code: "PERLIMPINPIN", reward: { fr: "2 000 Poussière d'esprit", en: "2,000 Sprite Dust" }, type: "item", priority: false, releasedAt: "2026-08-20T21:00:00+02:00" }
+      ];
 
-        const mobileContainer = document.getElementById("splashActionMobile");
-        const desktopContainer = document.getElementById("splashActionDesktop");
-        const statusText = document.getElementById("splashStatusText");
-
-        if (isMobileDevice) {
-          if (mobileContainer) mobileContainer.style.display = "flex";
-          if (desktopContainer) desktopContainer.style.display = "none";
-        } else {
-          if (mobileContainer) mobileContainer.style.display = "none";
-          if (desktopContainer) desktopContainer.style.display = "flex";
-        }
-
-        if (sessionStorage.getItem("sprite_locker_refreshed_on_entry") === "true") {
-          sessionStorage.removeItem("sprite_locker_refreshed_on_entry");
-          splash.classList.add("is-hidden");
-          setTimeout(() => { splash.style.display = "none"; }, 550);
-          showToast("Application synchronisée & actualisée ✓");
-          return;
-        }
-
-        const executeCompulsoryEntry = async () => {
-          playSfx("click");
-          if (statusText) statusText.innerHTML = `<i class="splash-status-dot"></i> Actualisation & chargement des données… ⚡`;
-          
-          sessionStorage.setItem("sprite_locker_refreshed_on_entry", "true");
-
-          if ("serviceWorker" in navigator) {
-            try {
-              const registrations = await navigator.serviceWorker.getRegistrations();
-              for (const reg of registrations) {
-                await reg.update();
-              }
-            } catch (_) {}
+      function getCheatRewardText(c) {
+        if (!c) return "";
+        if (c.targetId) {
+          const sprite = (allSprites || []).find(s => s.id === c.targetId);
+          if (sprite) {
+            return localizedName(sprite);
           }
+        }
+        if (typeof c.reward === "object" && c.reward !== null) {
+          return c.reward[APP_LANGUAGE] || c.reward.fr || c.reward.en || "";
+        }
+        return c.reward || "";
+      }
 
-          setTimeout(() => {
-            window.location.reload(true);
-          }, 350);
+      function renderCheatCodesPage() {
+        const container = document.getElementById("allCheatsGrid");
+        if (!container) return;
+
+        const isFr = APP_LANGUAGE === "fr";
+        const filterBtns = document.querySelectorAll(".cheats-filter-bar .cheat-filter-btn");
+        const totalCount = CHEAT_CODES.length;
+        const spriteCount = CHEAT_CODES.filter(c => c.type === "sprite").length;
+        const xpCount = CHEAT_CODES.filter(c => c.type === "xp").length;
+        const itemCount = CHEAT_CODES.filter(c => c.type === "item").length;
+        const hackCount = CHEAT_CODES.filter(c => c.type === "hack").length;
+
+        const filterLabels = {
+          "all": isFr ? `Tous les codes (${totalCount})` : `All Codes (${totalCount})`,
+          "sprite": isFr ? `🔥 Esprits Roi de la triche (${spriteCount})` : `🔥 Cheat Master Sprites (${spriteCount})`,
+          "xp": isFr ? `⚡ XP & Boosts (${xpCount})` : `⚡ XP & Boosts (${xpCount})`,
+          "item": isFr ? `🎁 Objets & Extractions (${itemCount})` : `🎁 Items & Extractions (${itemCount})`,
+          "hack": isFr ? `🕹️ Lobby Hacks & Cosmétiques (${hackCount})` : `🕹️ Lobby Hacks & Cosmetics (${hackCount})`
         };
+        filterBtns.forEach(btn => {
+          const cat = btn.dataset.filter;
+          if (filterLabels[cat]) btn.textContent = filterLabels[cat];
+        });
 
-        const enterBtn = document.getElementById("splashEnterBtn");
-        if (enterBtn) {
-          enterBtn.addEventListener("click", () => {
-            executeCompulsoryEntry();
-          });
-        }
+        const activeState = getActiveState();
+        const filtered = (activeCheatFilter === "all"
+          ? CHEAT_CODES
+          : CHEAT_CODES.filter(c => c.type === activeCheatFilter)
+        ).slice().sort((a, b) => new Date(b.releasedAt || 0) - new Date(a.releasedAt || 0));
 
-        const track = document.getElementById("swipeTrack");
-        const thumb = document.getElementById("swipeThumb");
-        const progress = document.getElementById("swipeProgress");
+        container.innerHTML = filtered.map(c => {
+          const isUnlocked = c.targetId && (activeState[c.targetId] || {}).owned;
+          const statusText = isUnlocked ? (isFr ? "✓ Dans votre casier" : "✓ In your locker") : (isFr ? "Code actif" : "Active code");
+          const typeLabel = c.priority ? (isFr ? "★ Esprit Roi de la triche" : "★ Cheat Master Sprite") : (c.type === "xp" ? "⚡ XP & Boost" : (c.type === "item" ? (isFr ? "🎁 Objet / Extracteur" : "🎁 Item / Extractor") : "🕹️ Lobby Hack"));
+          const dateFormatted = c.releasedAt ? formatLeakTimestamp(c.releasedAt) : "";
+          const rewardText = getCheatRewardText(c);
 
-        if (track && thumb && progress) {
-          let startX = 0;
-          let currentX = 0;
-          let isDragging = false;
+          return `
+            <article class="cheat-card-item${c.priority ? " priority" : ""}">
+              <div class="cheat-card-top-row">
+                <span class="cheat-card-code-val">${esc(c.code)}</span>
+                <button class="copy-btn-action" type="button" onclick="copyCheatCode('${esc(c.code)}', this)">${isFr ? "COPIER" : "COPY"}</button>
+              </div>
+              <div class="cheat-card-reward-desc">${esc(rewardText)}</div>
+              ${dateFormatted ? `<div style="font-size: 0.78rem; color: #94a3b8; font-weight: 600; margin: 4px 0 10px;">📅 ${dateFormatted}</div>` : ""}
+              <div class="cheat-card-bottom-row">
+                <span class="cheat-type-tag ${esc(c.type)}">${typeLabel}</span>
+                <span class="cheat-status-badge${isUnlocked ? " unlocked" : ""}">${statusText}</span>
+              </div>
+            </article>`;
+        }).join("");
+      }
 
-          const getTrackBounds = () => {
-            const rect = track.getBoundingClientRect();
-            const thumbWidth = thumb.offsetWidth || 52;
-            const maxDrag = rect.width - thumbWidth - 8;
-            return { rect, maxDrag };
-          };
+      function filterCheatCategory(category) {
+        activeCheatFilter = category;
+        document.querySelectorAll(".cheat-filter-btn").forEach(btn => {
+          btn.classList.toggle("is-active", btn.dataset.filter === category);
+        });
+        renderCheatCodesPage();
+      }
 
-          const onStart = (e) => {
-            isDragging = true;
-            startX = e.touches ? e.touches[0].clientX : e.clientX;
-          };
-
-          const onMove = (e) => {
-            if (!isDragging) return;
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const deltaX = clientX - startX;
-            const { maxDrag } = getTrackBounds();
-
-            currentX = Math.max(0, Math.min(deltaX, maxDrag));
-            thumb.style.transform = `translateX(${currentX}px)`;
-            const percent = (currentX / maxDrag) * 100;
-            progress.style.width = `${percent}%`;
-
-            if (percent >= 85) {
-              isDragging = false;
-              thumb.style.transform = `translateX(${maxDrag}px)`;
-              progress.style.width = "100%";
-              executeCompulsoryEntry();
-            }
-          };
-
-          const onEnd = () => {
-            if (!isDragging) return;
-            isDragging = false;
-            const { maxDrag } = getTrackBounds();
-            if (currentX < maxDrag * 0.85) {
-              thumb.style.transition = "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)";
-              progress.style.transition = "width 0.3s cubic-bezier(0.16, 1, 0.3, 1)";
-              thumb.style.transform = "translateX(0px)";
-              progress.style.width = "0%";
+      function copyCheatCode(code, btnEl) {
+        const isFr = APP_LANGUAGE === "fr";
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(() => {
+            if (btnEl) {
+              const orig = btnEl.textContent;
+              btnEl.textContent = isFr ? "✓ COPIÉ !" : "✓ COPIED!";
+              btnEl.style.background = "#22c55e";
+              btnEl.style.color = "#fff";
               setTimeout(() => {
-                thumb.style.transition = "";
-                progress.style.transition = "";
-              }, 300);
+                btnEl.textContent = orig;
+                btnEl.style.background = "";
+                btnEl.style.color = "";
+              }, 1500);
             }
-          };
-
-          thumb.addEventListener("touchstart", onStart, { passive: true });
-          window.addEventListener("touchmove", onMove, { passive: true });
-          window.addEventListener("touchend", onEnd, { passive: true });
-
-          thumb.addEventListener("mousedown", onStart);
-          window.addEventListener("mousemove", onMove);
-          window.addEventListener("mouseup", onEnd);
+            showToast(isFr ? `Code ${code} copié ! ⚡` : `Code ${code} copied! ⚡`);
+          }).catch(() => showToast(`Code : ${code}`));
+        } else {
+          showToast(`Code : ${code}`);
         }
+      }
+
+      function initCheatsEngine() {
+        renderCheatCodesPage();
+      }
+
+      function initSplashScreen() {
+        // Splash Screen désactivé pour un accès direct à l'application et aux modales
       }
 
       // ==========================================
@@ -15369,8 +17141,11 @@
       setupReviews();
       initializePwa();
       initScannerEngine();
-      searchInput.placeholder = APP_LANGUAGE === "fr" ? "Nom, capacité, variante, rareté, bouclier, vitesse…" : "Name, ability, variant, rarity, shield, speed…";
-      showPage(location.hash.slice(1), { updateHash: false });
+      initCheatsEngine();
+      const savedStartPage = localStorage.getItem("sprite_locker_last_active_page_v1");
+      const hashStartPage = location.hash ? location.hash.slice(1) : "";
+      const bootPage = normalizedPage(hashStartPage || savedStartPage || "home");
+      showPage(bootPage, { updateHash: true });
       updateAccountInterface(null);
       scheduleFirebaseInitialization();
       if (document.readyState === "complete") {
