@@ -10227,7 +10227,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-21T02:20:00+02:00";
-      const PWA_VERSION = "2026-08-21-v11.14.0";
+      const PWA_VERSION = "2026-08-21-v11.15.0";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -16837,7 +16837,8 @@
       function getCheatRewardText(c) {
         if (!c) return "";
         if (c.targetId) {
-          const sprite = (allSprites || []).find(s => s.id === c.targetId);
+          const spriteList = typeof sprites !== "undefined" ? sprites : [];
+          const sprite = spriteList.find(s => s.id === c.targetId);
           if (sprite) {
             return localizedName(sprite);
           }
