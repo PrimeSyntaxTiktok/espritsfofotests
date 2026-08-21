@@ -10227,7 +10227,7 @@
       const VISITOR_LIFETIME_KEY = "sprite-locker-visitor-lifetime";
       const FIREBASE_SDK_VERSION = "12.16.0";
       const PATCH_RELEASED_AT = "2026-08-21T02:20:00+02:00";
-      const PWA_VERSION = "2026-08-21-v11.15.0";
+      const PWA_VERSION = "2026-08-21-v11.16.0";
       const PWA_INSTALLED_KEY = "sprite-locker-pwa-installed-v1";
       const PWA_OFFLINE_READY_KEY = "sprite-locker-offline-ready-v1";
       let deferredInstallPrompt = null;
@@ -12475,6 +12475,7 @@
           console.error("Erreur lors du changement de page:", err);
         }
       }
+      window.showPage = showPage;
 
       function setupMobileDockSwipe() {
         const dock = document.querySelector(".mobile-dock");
@@ -14206,6 +14207,7 @@
         const label = newState === 'active' ? 'Active 🟢' : (newState === 'maintenance' ? 'Mise à jour 🛠️' : 'Masquée 🔴');
         showToast(`Page #${pageId} passée en : ${label}`);
       }
+      window.setAdminPageState = setAdminPageState;
 
       function loadAdminContent() {
         try { return normalizeAdminContent(JSON.parse(localStorage.getItem(ADMIN_CONTENT_KEY) || "{}")); }
@@ -16909,6 +16911,7 @@
         });
         renderCheatCodesPage();
       }
+      window.filterCheatCategory = filterCheatCategory;
 
       function copyCheatCode(code, btnEl) {
         const isFr = APP_LANGUAGE === "fr";
@@ -16931,6 +16934,7 @@
           showToast(`Code : ${code}`);
         }
       }
+      window.copyCheatCode = copyCheatCode;
 
       function initCheatsEngine() {
         renderCheatCodesPage();
